@@ -135,6 +135,10 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen_Model">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/document.png</normaloff>:/Images/DefaultIcon/document.png</iconset>
+   </property>
    <property name="text">
     <string>Open Model...</string>
    </property>
@@ -405,6 +409,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
