@@ -19,7 +19,40 @@
   <property name="dockOptions">
    <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="Visualizer">
+       <property name="whatsThis">
+        <string>Visuallizer</string>
+       </property>
+       <property name="accessibleName">
+        <string>Visualizer</string>
+       </property>
+       <attribute name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Images/DefaultIcon/4-direction-alt.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Visualizer</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -139,8 +172,7 @@
    <addaction name="menu_Window"/>
    <addaction name="menu_Help"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="simulationToolBar">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -169,6 +201,10 @@
      <width>200</width>
      <height>40</height>
     </size>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/list-unordered.png</normaloff>:/Images/DefaultIcon/list-unordered.png</iconset>
    </property>
    <property name="windowTitle">
     <string>Navigator</string>
@@ -223,6 +259,18 @@
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="kinimaticsToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
   </widget>
   <action name="actionOpen_Model">
    <property name="icon">
@@ -292,7 +340,7 @@
   <action name="actionE_xit">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/door.png</normaloff>:/Images/DefaultIcon/door.png</iconset>
+     <normaloff>:/Images/DefaultIcon/logout.png</normaloff>:/Images/DefaultIcon/logout.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
