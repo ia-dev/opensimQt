@@ -28,30 +28,26 @@ TODOs:
 
 The project has 5 milestones:
 
-1. Building current interface
-   - building an interface similar to the current.
-   - open a .osim file
-     - load its elements to the navigator.
-     - load its element to the visualiser
-   - edit external function
-     - open the .osim file in a text editor 
-   - reload current scene function.
-     - close everything (save the paths of current loaded files)
-     - reload everything. 
-   - save functions: scene, model, element.
-   - close functions: scene, model, element.
-2. Simulation.
+1. [Building current interface](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+1%3A+Building+the+main+interface%22)
+   - [MS0101 create the main qt project with an interface similar to the one in opensim-gui.](https://github.com/VisSimKoblenz/opensimQt/issues/1) 
+   - [MS0102: open a .osim file and load its elements to the navigator](https://github.com/VisSimKoblenz/opensimQt/issues/2) 
+   - [MS0103: open a .osim file and load its elements to the visualizer.](https://github.com/VisSimKoblenz/opensimQt/issues/3) 
+   - [MS0104: open file by drag and drop.](https://github.com/VisSimKoblenz/opensimQt/issues/4) 
+   - [MS0105: reload current scene function.](https://github.com/VisSimKoblenz/opensimQt/issues/5) 
+   - [MS0106: save functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/6) 
+   - [MS0107: close functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/7)    
+2. [Simulation.](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+2%3A+Simulation%22)
    - run the simulation and visualise the result
    - add simulation settings function
-3. Tools 
+3. [Tools](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+3%3A+Tools%22)
    - add different tools functions
      - Inverse Kenimatics, Inverse Dynamics, ..etc 
    - add plugin function 
    - Plotting:
      - plotting functions
-4. Python
+4. [Python](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+4%3A+Python+Scripting%22)
      - implement current python scripting functions
-5. Customisation
+5. [Customisation](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+5%3A+Customization%22)
    - adding new model. 
    - modify model elements e.g. add,edit,remove a body 
    - compare models.
