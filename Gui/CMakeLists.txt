@@ -31,25 +31,25 @@ set(TS_FILES OpensimQtGUI_en_US.ts)
 if(ANDROID)
   add_library(OpensimQtGUI SHARED
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    Gui/simulationtoolswidget.cpp
-    Gui/simulationtoolswidget.h
-    Gui/simulationtoolswidget.ui
-    resources.qrc
+    OpenSimWidgets/mainwindow.cpp
+    OpenSimWidgets/mainwindow.h
+    OpenSimWidgets/mainwindow.ui
+    OpenSimWidgets/simulationtoolswidget.cpp
+    OpenSimWidgets/simulationtoolswidget.h
+    OpenSimWidgets/simulationtoolswidget.ui
+    resource.qrc
     ${TS_FILES}
   )
 else()
   add_executable(OpensimQtGUI
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    Gui/simulationtoolswidget.cpp
-    Gui/simulationtoolswidget.h
-    Gui/simulationtoolswidget.ui
-    resources.qrc
+    OpenSimWidgets/mainwindow.cpp
+    OpenSimWidgets/mainwindow.h
+    OpenSimWidgets/mainwindow.ui
+    OpenSimWidgets/simulationtoolswidget.cpp
+    OpenSimWidgets/simulationtoolswidget.h
+    OpenSimWidgets/simulationtoolswidget.ui
+    resource.qrc
     ${TS_FILES}
   )
 endif()

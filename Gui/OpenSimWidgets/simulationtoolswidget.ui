@@ -33,7 +33,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources.qrc">
-       <normaloff>:/Images/DefaultIcon/arrow-1-backward.png</normaloff>:/Images/DefaultIcon/arrow-1-backward.png</iconset>
+       <normaloff>:/Data/Images/DefaultIcon/arrow-1-backward.png</normaloff>:/Data/Images/DefaultIcon/arrow-1-backward.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -56,7 +56,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources.qrc">
-       <normaloff>:/Images/DefaultIcon/arrow-1-forward.png</normaloff>:/Images/DefaultIcon/arrow-1-forward.png</iconset>
+       <normaloff>:/Data/Images/DefaultIcon/arrow-1-forward.png</normaloff>:/Data/Images/DefaultIcon/arrow-1-forward.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -104,7 +104,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/user-refresh.png</normaloff>:/Images/DefaultIcon/user-refresh.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/user-refresh.png</normaloff>:/Data/Images/DefaultIcon/user-refresh.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -124,7 +124,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/power-standby.png</normaloff>:/Images/DefaultIcon/power-standby.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/power-standby.png</normaloff>:/Data/Images/DefaultIcon/power-standby.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -171,7 +171,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/MD-fast-forward-alt.png</normaloff>:/Images/DefaultIcon/MD-fast-forward-alt.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/MD-fast-forward-alt.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-forward-alt.png</iconset>
         </property>
        </widget>
       </item>
@@ -188,7 +188,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/arrow-3-left.png</normaloff>:/Images/DefaultIcon/arrow-3-left.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</iconset>
         </property>
        </widget>
       </item>
@@ -205,7 +205,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Images/DefaultIcon/arrow-3-right.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
         </property>
        </widget>
       </item>
@@ -242,7 +242,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/MD-fast-backward-alt.png</normaloff>:/Images/DefaultIcon/MD-fast-backward-alt.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/MD-fast-backward-alt.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-backward-alt.png</iconset>
         </property>
        </widget>
       </item>
@@ -272,7 +272,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/MD-pause.png</normaloff>:/Images/DefaultIcon/MD-pause.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/MD-pause.png</normaloff>:/Data/Images/DefaultIcon/MD-pause.png</iconset>
         </property>
        </widget>
       </item>
@@ -302,7 +302,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/MD-next.png</normaloff>:/Images/DefaultIcon/MD-next.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/MD-next.png</normaloff>:/Data/Images/DefaultIcon/MD-next.png</iconset>
         </property>
        </widget>
       </item>
@@ -345,7 +345,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources.qrc">
-          <normaloff>:/Images/DefaultIcon/MD-previous.png</normaloff>:/Images/DefaultIcon/MD-previous.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/MD-previous.png</normaloff>:/Data/Images/DefaultIcon/MD-previous.png</iconset>
         </property>
        </widget>
       </item>

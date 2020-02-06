@@ -20,6 +20,12 @@
    <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="topMargin">
      <number>0</number>
@@ -27,7 +33,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Visualizer">
        <property name="whatsThis">
@@ -37,8 +43,8 @@
         <string>Visualizer</string>
        </property>
        <attribute name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Images/DefaultIcon/4-direction-alt.png</iconset>
+        <iconset resource="../resource.qrc">
+         <normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</iconset>
        </attribute>
        <attribute name="title">
         <string>Visualizer</string>
@@ -200,6 +206,12 @@
    <addaction name="actionUser_Plugins"/>
   </widget>
   <widget class="QDockWidget" name="messagesDock">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
    <property name="allowedAreas">
     <set>Qt::BottomDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea</set>
    </property>
@@ -225,6 +237,12 @@
      </property>
      <item>
       <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
@@ -244,8 +262,8 @@
     </size>
    </property>
    <property name="windowIcon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/list-unordered.png</normaloff>:/Images/DefaultIcon/list-unordered.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/list-unordered.png</normaloff>:/Data/Images/DefaultIcon/list-unordered.png</iconset>
    </property>
    <property name="windowTitle">
     <string>Navigator</string>
@@ -309,8 +327,8 @@
   <widget class="QDockWidget" name="scriptingDock">
    <property name="minimumSize">
     <size>
-     <width>218</width>
-     <height>193</height>
+     <width>0</width>
+     <height>0</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -323,15 +341,40 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QGroupBox" name="groupBox">
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="title">
         <string>output</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="lineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="inputMask">
            <string/>
           </property>
@@ -345,6 +388,12 @@
      </item>
      <item>
       <widget class="QPlainTextEdit" name="plainTextEdit_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="plainText">
         <string>## script history
 #a =10
@@ -430,8 +479,8 @@
   </widget>
   <action name="actionOpen_Model">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/file-add.png</normaloff>:/Images/DefaultIcon/file-add.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-add.png</normaloff>:/Data/Images/DefaultIcon/file-add.png</iconset>
    </property>
    <property name="text">
     <string>Open Model...</string>
@@ -439,8 +488,8 @@
   </action>
   <action name="actionLoad_Motion">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/connect.png</normaloff>:/Images/DefaultIcon/connect.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/connect.png</normaloff>:/Data/Images/DefaultIcon/connect.png</iconset>
    </property>
    <property name="text">
     <string>Load Motion...</string>
@@ -453,8 +502,8 @@
   </action>
   <action name="actionClose_Model">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/file-remove.png</normaloff>:/Images/DefaultIcon/file-remove.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-remove.png</normaloff>:/Data/Images/DefaultIcon/file-remove.png</iconset>
    </property>
    <property name="text">
     <string>Close Model</string>
@@ -462,8 +511,8 @@
   </action>
   <action name="actionClose_All">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/files.png</normaloff>:/Images/DefaultIcon/files.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/files.png</normaloff>:/Data/Images/DefaultIcon/files.png</iconset>
    </property>
    <property name="text">
     <string>Close All</string>
@@ -471,8 +520,8 @@
   </action>
   <action name="actionSave_Model">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/save.png</normaloff>:/Images/DefaultIcon/save.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/save.png</normaloff>:/Data/Images/DefaultIcon/save.png</iconset>
    </property>
    <property name="text">
     <string>Save Model...</string>
@@ -480,8 +529,8 @@
   </action>
   <action name="actionSave_Model_As">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/file-download-alt.png</normaloff>:/Images/DefaultIcon/file-download-alt.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-download-alt.png</normaloff>:/Data/Images/DefaultIcon/file-download-alt.png</iconset>
    </property>
    <property name="text">
     <string>Save Model As...</string>
@@ -489,8 +538,8 @@
   </action>
   <action name="actionSave_All">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/files.png</normaloff>:/Images/DefaultIcon/files.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/files.png</normaloff>:/Data/Images/DefaultIcon/files.png</iconset>
    </property>
    <property name="text">
     <string>Save All</string>
@@ -498,8 +547,8 @@
   </action>
   <action name="actionPreview_Experement_Data">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/presentation.png</normaloff>:/Images/DefaultIcon/presentation.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/presentation.png</normaloff>:/Data/Images/DefaultIcon/presentation.png</iconset>
    </property>
    <property name="text">
     <string>Preview Experement Data</string>
@@ -507,8 +556,8 @@
   </action>
   <action name="actionE_xit">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/logout.png</normaloff>:/Images/DefaultIcon/logout.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/logout.png</normaloff>:/Data/Images/DefaultIcon/logout.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
@@ -531,8 +580,8 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/code.png</normaloff>:/Images/DefaultIcon/code.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/code.png</normaloff>:/Data/Images/DefaultIcon/code.png</iconset>
    </property>
    <property name="text">
     <string>Open...</string>
@@ -545,8 +594,8 @@
   </action>
   <action name="actionRun">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/MD-play.png</normaloff>:/Images/DefaultIcon/MD-play.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-play.png</normaloff>:/Data/Images/DefaultIcon/MD-play.png</iconset>
    </property>
    <property name="text">
     <string>Run...</string>
@@ -559,8 +608,8 @@
   </action>
   <action name="actionSave_Current_Script">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/save.png</normaloff>:/Images/DefaultIcon/save.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/save.png</normaloff>:/Data/Images/DefaultIcon/save.png</iconset>
    </property>
    <property name="text">
     <string>Save Current Script...</string>
@@ -568,8 +617,8 @@
   </action>
   <action name="actionRun_Current_Script">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Images/DefaultIcon/arrow-3-right.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
    </property>
    <property name="text">
     <string>Run Current Script...</string>
@@ -577,8 +626,8 @@
   </action>
   <action name="actionPlot">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/axis-x-y.png</normaloff>:/Images/DefaultIcon/axis-x-y.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/axis-x-y.png</normaloff>:/Data/Images/DefaultIcon/axis-x-y.png</iconset>
    </property>
    <property name="text">
     <string>Plot</string>
@@ -586,8 +635,8 @@
   </action>
   <action name="actionScale_Model">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/4-direction.png</normaloff>:/Images/DefaultIcon/4-direction.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/4-direction.png</normaloff>:/Data/Images/DefaultIcon/4-direction.png</iconset>
    </property>
    <property name="text">
     <string>Scale Model...</string>
@@ -595,8 +644,8 @@
   </action>
   <action name="actionInverse_Kinematics">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/3D-sphere.png</normaloff>:/Images/DefaultIcon/3D-sphere.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/3D-sphere.png</normaloff>:/Data/Images/DefaultIcon/3D-sphere.png</iconset>
    </property>
    <property name="text">
     <string>Inverse Kinematics...</string>
@@ -604,8 +653,8 @@
   </action>
   <action name="actionInverse_Dynamics">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/bicycle.png</normaloff>:/Images/DefaultIcon/bicycle.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/bicycle.png</normaloff>:/Data/Images/DefaultIcon/bicycle.png</iconset>
    </property>
    <property name="text">
     <string>Inverse Dynamics</string>
@@ -613,8 +662,8 @@
   </action>
   <action name="actionStatic_Optimization">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/MD-knob-increase.png</normaloff>:/Images/DefaultIcon/MD-knob-increase.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-knob-increase.png</normaloff>:/Data/Images/DefaultIcon/MD-knob-increase.png</iconset>
    </property>
    <property name="text">
     <string>Static Optimization...</string>
@@ -622,8 +671,8 @@
   </action>
   <action name="actionReduce_Residuals">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/arrow-3-down.png</normaloff>:/Images/DefaultIcon/arrow-3-down.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-3-down.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-down.png</iconset>
    </property>
    <property name="text">
     <string>Reduce Residuals...</string>
@@ -631,8 +680,8 @@
   </action>
   <action name="actionCompute_Muscle_Controle">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/controls.png</normaloff>:/Images/DefaultIcon/controls.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/controls.png</normaloff>:/Data/Images/DefaultIcon/controls.png</iconset>
    </property>
    <property name="text">
     <string>Compute Muscle Controle...</string>
@@ -640,8 +689,8 @@
   </action>
   <action name="actionForward_Dynamics">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/MD-fast-forward.png</normaloff>:/Images/DefaultIcon/MD-fast-forward.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-fast-forward.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-forward.png</iconset>
    </property>
    <property name="text">
     <string>Forward Dynamics...</string>
@@ -649,8 +698,8 @@
   </action>
   <action name="actionAnalyze">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/search-advanced.png</normaloff>:/Images/DefaultIcon/search-advanced.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/search-advanced.png</normaloff>:/Data/Images/DefaultIcon/search-advanced.png</iconset>
    </property>
    <property name="text">
     <string>Analyze...</string>
@@ -658,8 +707,8 @@
   </action>
   <action name="actionConvert_Files">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/arrow-circular-alt-1.png</normaloff>:/Images/DefaultIcon/arrow-circular-alt-1.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-circular-alt-1.png</normaloff>:/Data/Images/DefaultIcon/arrow-circular-alt-1.png</iconset>
    </property>
    <property name="text">
     <string>Convert Files ...</string>
@@ -667,8 +716,8 @@
   </action>
   <action name="actionUser_Plugins">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/plugin.png</normaloff>:/Images/DefaultIcon/plugin.png</iconset>
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/plugin.png</normaloff>:/Data/Images/DefaultIcon/plugin.png</iconset>
    </property>
    <property name="text">
     <string>User Plugins</string>
@@ -796,7 +845,7 @@
   </action>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections/>
 </ui>

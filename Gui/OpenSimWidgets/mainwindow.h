@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include <Gui/simulationtoolswidget.h>
+#include <OpenSimWidgets/simulationtoolswidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
