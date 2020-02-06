@@ -172,9 +172,12 @@
    <addaction name="menu_Window"/>
    <addaction name="menu_Help"/>
   </widget>
-  <widget class="QToolBar" name="simulationToolBar">
+  <widget class="QToolBar" name="kinematicToolBar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Simulation</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -182,6 +185,19 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionPlot"/>
+   <addaction name="actionScale_Model"/>
+   <addaction name="actionInverse_Kinematics"/>
+   <addaction name="actionInverse_Dynamics"/>
+   <addaction name="actionStatic_Optimization"/>
+   <addaction name="actionReduce_Residuals"/>
+   <addaction name="actionCompute_Muscle_Controle"/>
+   <addaction name="actionForward_Dynamics"/>
+   <addaction name="actionAnalyze"/>
+   <addaction name="separator"/>
+   <addaction name="actionConvert_Files"/>
+   <addaction name="separator"/>
+   <addaction name="actionUser_Plugins"/>
   </widget>
   <widget class="QDockWidget" name="messagesDock">
    <property name="allowedAreas">
@@ -261,9 +277,12 @@
    <widget class="QWidget" name="dockWidgetContents_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="kinimaticsToolBar">
+  <widget class="QToolBar" name="fileToolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -271,11 +290,42 @@
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
+   <addaction name="actionOpen_Model"/>
+   <addaction name="actionLoad_Motion"/>
+   <addaction name="separator"/>
+   <addaction name="actionClose_Model"/>
+   <addaction name="actionClose_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionSave_Model"/>
+   <addaction name="actionSave_Model_As"/>
+   <addaction name="actionSave_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionPreview_Experement_Data"/>
+   <addaction name="actionE_xit"/>
+  </widget>
+  <widget class="QToolBar" name="scriptToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionRun"/>
+   <addaction name="separator"/>
+   <addaction name="actionSave_Current_Script"/>
+   <addaction name="actionRun_Current_Script"/>
   </widget>
   <action name="actionOpen_Model">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/document.png</normaloff>:/Images/DefaultIcon/document.png</iconset>
+     <normaloff>:/Images/DefaultIcon/file-add.png</normaloff>:/Images/DefaultIcon/file-add.png</iconset>
    </property>
    <property name="text">
     <string>Open Model...</string>
@@ -298,13 +348,17 @@
   <action name="actionClose_Model">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/Images/DefaultIcon/cancel.png</normaloff>:/Images/DefaultIcon/cancel.png</iconset>
+     <normaloff>:/Images/DefaultIcon/file-remove.png</normaloff>:/Images/DefaultIcon/file-remove.png</iconset>
    </property>
    <property name="text">
     <string>Close Model</string>
    </property>
   </action>
   <action name="actionClose_All">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/files.png</normaloff>:/Images/DefaultIcon/files.png</iconset>
+   </property>
    <property name="text">
     <string>Close All</string>
    </property>
@@ -319,11 +373,19 @@
    </property>
   </action>
   <action name="actionSave_Model_As">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/file-download-alt.png</normaloff>:/Images/DefaultIcon/file-download-alt.png</iconset>
+   </property>
    <property name="text">
     <string>Save Model As...</string>
    </property>
   </action>
   <action name="actionSave_All">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/files.png</normaloff>:/Images/DefaultIcon/files.png</iconset>
+   </property>
    <property name="text">
     <string>Save All</string>
    </property>
@@ -362,6 +424,10 @@
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/code.png</normaloff>:/Images/DefaultIcon/code.png</iconset>
+   </property>
    <property name="text">
     <string>Open...</string>
    </property>
@@ -372,6 +438,10 @@
    </property>
   </action>
   <action name="actionRun">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/MD-play.png</normaloff>:/Images/DefaultIcon/MD-play.png</iconset>
+   </property>
    <property name="text">
     <string>Run...</string>
    </property>
@@ -382,66 +452,118 @@
    </property>
   </action>
   <action name="actionSave_Current_Script">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/save.png</normaloff>:/Images/DefaultIcon/save.png</iconset>
+   </property>
    <property name="text">
     <string>Save Current Script...</string>
    </property>
   </action>
   <action name="actionRun_Current_Script">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Images/DefaultIcon/arrow-3-right.png</iconset>
+   </property>
    <property name="text">
     <string>Run Current Script...</string>
    </property>
   </action>
   <action name="actionPlot">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/axis-x-y.png</normaloff>:/Images/DefaultIcon/axis-x-y.png</iconset>
+   </property>
    <property name="text">
     <string>Plot</string>
    </property>
   </action>
   <action name="actionScale_Model">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/4-direction.png</normaloff>:/Images/DefaultIcon/4-direction.png</iconset>
+   </property>
    <property name="text">
     <string>Scale Model...</string>
    </property>
   </action>
   <action name="actionInverse_Kinematics">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/3D-sphere.png</normaloff>:/Images/DefaultIcon/3D-sphere.png</iconset>
+   </property>
    <property name="text">
     <string>Inverse Kinematics...</string>
    </property>
   </action>
   <action name="actionInverse_Dynamics">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/bicycle.png</normaloff>:/Images/DefaultIcon/bicycle.png</iconset>
+   </property>
    <property name="text">
     <string>Inverse Dynamics</string>
    </property>
   </action>
   <action name="actionStatic_Optimization">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/MD-knob-increase.png</normaloff>:/Images/DefaultIcon/MD-knob-increase.png</iconset>
+   </property>
    <property name="text">
     <string>Static Optimization...</string>
    </property>
   </action>
   <action name="actionReduce_Residuals">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/arrow-3-down.png</normaloff>:/Images/DefaultIcon/arrow-3-down.png</iconset>
+   </property>
    <property name="text">
     <string>Reduce Residuals...</string>
    </property>
   </action>
   <action name="actionCompute_Muscle_Controle">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/controls.png</normaloff>:/Images/DefaultIcon/controls.png</iconset>
+   </property>
    <property name="text">
     <string>Compute Muscle Controle...</string>
    </property>
   </action>
   <action name="actionForward_Dynamics">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/MD-fast-forward.png</normaloff>:/Images/DefaultIcon/MD-fast-forward.png</iconset>
+   </property>
    <property name="text">
     <string>Forward Dynamics...</string>
    </property>
   </action>
   <action name="actionAnalyze">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/search-advanced.png</normaloff>:/Images/DefaultIcon/search-advanced.png</iconset>
+   </property>
    <property name="text">
     <string>Analyze...</string>
    </property>
   </action>
   <action name="actionConvert_Files">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/arrow-circular-alt-1.png</normaloff>:/Images/DefaultIcon/arrow-circular-alt-1.png</iconset>
+   </property>
    <property name="text">
     <string>Convert Files ...</string>
    </property>
   </action>
   <action name="actionUser_Plugins">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/DefaultIcon/plugin.png</normaloff>:/Images/DefaultIcon/plugin.png</iconset>
+   </property>
    <property name="text">
     <string>User Plugins</string>
    </property>
