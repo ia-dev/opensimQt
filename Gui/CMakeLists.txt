@@ -58,6 +58,6 @@ else()
     ${TS_FILES}
   )
 endif()
-target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets)
-#target_link_libraries(OpensimQtGUI ${OpenSim_LIBRARIES})
+target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets ${OpenSim_LIBRARIES})
+
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})

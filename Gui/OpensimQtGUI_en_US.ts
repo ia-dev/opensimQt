@@ -368,6 +368,11 @@
         <source>About Opensim</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="OpenSimWidgets/mainwindow.cpp" line="28"/>
+        <source>Open Model From File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SimulationToolsWidget</name>
