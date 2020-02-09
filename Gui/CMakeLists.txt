@@ -28,6 +28,11 @@ find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 
 set(TS_FILES OpensimQtGUI_en_US.ts)
 
+#adding opensim to the project
+#after building and installing the project add the /bin
+#to the system path
+find_package(OpenSim REQUIRED)
+
 if(ANDROID)
   add_library(OpensimQtGUI SHARED
     main.cpp
@@ -53,7 +58,6 @@ else()
     ${TS_FILES}
   )
 endif()
-
 target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets)
-
+#target_link_libraries(OpensimQtGUI ${OpenSim_LIBRARIES})
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})

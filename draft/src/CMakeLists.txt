@@ -1,3 +1,4 @@
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 foreach(p
     CMP0071 # 3.10: Let AUTOMOC and AUTOUIC process GENERATED files
@@ -24,6 +25,11 @@ find_package(VTK COMPONENTS
   vtkIOGeometry
 )
 include(${VTK_USE_FILE})
+
+#adding opensim to the project
+#after building and installing the project add the /bin
+#to the system path
+find_package(OpenSim REQUIRED)
 
 if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")
@@ -72,4 +78,5 @@ set(CMAKE_AUTOMOC ON)
   add_executable(opensimQt MACOSX_BUNDLE     ${Srcs} ${Hdrs} ${UI_Srcs} ${MOC_Hdrs} ${QRC_Srcs})
   qt5_use_modules(opensimQt Core Gui Widgets)
   target_link_libraries(opensimQt   Qt5::Core  Qt5::Gui  Qt5::Widgets ${VTK_LIBRARIES})
+  target_link_libraries(opensimQt ${OpenSim_LIBRARIES})
 #LINK_LIBRARIES (opensimQt [snip] vtkIOGeometry)
