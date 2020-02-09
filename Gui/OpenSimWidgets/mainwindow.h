@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include <OpenSimWidgets/simulationtoolswidget.h>
+#include <Modeling/navigatormodel.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,5 +24,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     SimulationToolsWidget *simulationWidget;
+    NavigatorModel *navigatorModel;
 };
 #endif // MAINWINDOW_H

@@ -29,4 +29,6 @@ void MainWindow::on_actionOpen_Model_triggered()
     qDebug() << fileName;
     OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
     qDebug() << QString::fromStdString(newModel->getName());
+    navigatorModel = new NavigatorModel(newModel);
+    ui->navigatorTreeView->setModel(navigatorModel);
 }

@@ -1,7 +1,27 @@
 #include "navigatormodel.h"
-
-NavigatorModel::NavigatorModel(NavigatorNode *rootNode):m_rootNNode(rootNode)
+#include <QDebug>
+NavigatorModel::NavigatorModel(OpenSim::Model *rootModel)
 {
+    loadOpenSimModel(rootModel);
+}
+
+void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
+{
+    //loading the model it self
+    m_rootOpenSimModel = openSimModel;
+    m_rootNNode = new NavigatorNode(openSimModel,"the root ",nullptr,this);
+
+    //loading bodies
+    NavigatorNode *bodySetNode = new NavigatorNode(nullptr,"Bodies",m_rootNNode,this);
+    OpenSim::BodySet bodySet = m_rootOpenSimModel->updBodySet();
+    for (int i = 0; i < bodySet.getSize(); i++) {
+        NavigatorNode *bodyNode = new NavigatorNode(&(bodySet.get(i)),"items",bodySetNode,this);
+        qDebug() << "body display name : " <<bodyNode->displayName;
+        qDebug() << "body display name from item: " <<QString::fromStdString(bodyNode->openSimObject->getName());
+    }
+//    foreach (OpenSim::Body *body, m_rootOpenSimModel->getBodySet()) {
+//        NavigatorNode *bodyNode = new NavigatorNode(body,"",bodySetNode,this);
+//    }
 
 }
 

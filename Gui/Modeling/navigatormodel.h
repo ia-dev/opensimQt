@@ -9,9 +9,11 @@ class NavigatorModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    NavigatorModel(NavigatorNode *rootNNode);
+    NavigatorModel(OpenSim::Model *rootModel);
 
     //~NavigatorModel();
+
+    void loadOpenSimModel(OpenSim::Model *openSimModel);
 
     // QAbstractItemModel interface
 public:
@@ -27,6 +29,7 @@ protected:
     int rowForNode(NavigatorNode *node) const;
 private:
     NavigatorNode *m_rootNNode;
+    OpenSim::Model *m_rootOpenSimModel;
 
 };
 

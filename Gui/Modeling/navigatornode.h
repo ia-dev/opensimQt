@@ -8,7 +8,7 @@ class NavigatorNode : public QObject
 {
     Q_OBJECT
 public:
-    explicit NavigatorNode(QObject *parent = nullptr);
+    explicit NavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,NavigatorNode *_parentNode,QObject *parent = nullptr);
 
 
 public:
