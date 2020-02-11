@@ -36,6 +36,8 @@ find_package(OpenSim REQUIRED)
 if(ANDROID)
   add_library(OpensimQtGUI SHARED
     main.cpp
+    Modeling/modelnode.h
+    Modeling/modelnode.cpp
     Modeling/navigatornode.h
     Modeling/navigatornode.cpp
     Modeling/navigatormodel.h
@@ -52,6 +54,8 @@ if(ANDROID)
 else()
   add_executable(OpensimQtGUI
     main.cpp
+    Modeling/modelnode.h
+    Modeling/modelnode.cpp
     Modeling/navigatornode.h
     Modeling/navigatornode.cpp
     Modeling/navigatormodel.h

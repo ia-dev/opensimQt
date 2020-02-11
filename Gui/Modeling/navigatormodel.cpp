@@ -1,5 +1,6 @@
 #include "navigatormodel.h"
 #include <QDebug>
+#include <QIcon>
 NavigatorModel::NavigatorModel(OpenSim::Model *rootModel)
 {
     loadOpenSimModel(rootModel);
@@ -137,6 +138,9 @@ QVariant NavigatorModel::data(const QModelIndex &index, int role) const
     {
         NavigatorNode *nNode = nodeForIndex(index);
         return  nNode->displayName;
+    }
+    if (index.isValid() && role==Qt::DecorationRole) {
+        return QVariant::fromValue(QPixmap(":/Data/Images/Nodes/bodyNode.png"));
     }
     return QVariant();
 

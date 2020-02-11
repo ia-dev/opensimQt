@@ -653,5 +653,44 @@
         <file>Data/Images/DefaultIcon/zoom.png</file>
         <file>Data/Images/DefaultIcon/zoom-in.png</file>
         <file>Data/Images/DefaultIcon/zoom-out.png</file>
+        <file>Data/Images/Nodes/actuatorsNode.png</file>
+        <file>Data/Images/Nodes/bodiesNode.png</file>
+        <file>Data/Images/Nodes/body.png</file>
+        <file>Data/Images/Nodes/bodyNode.png</file>
+        <file>Data/Images/Nodes/chain.png</file>
+        <file>Data/Images/Nodes/collapsedNode.gif</file>
+        <file>Data/Images/Nodes/constraintNode.png</file>
+        <file>Data/Images/Nodes/constraintsNode.png</file>
+        <file>Data/Images/Nodes/contactGeometryNode.png</file>
+        <file>Data/Images/Nodes/contactNode.png</file>
+        <file>Data/Images/Nodes/disabledNode.png</file>
+        <file>Data/Images/Nodes/displayGeometry.png</file>
+        <file>Data/Images/Nodes/displayGeometryAll.png</file>
+        <file>Data/Images/Nodes/displayGeometryNode.png</file>
+        <file>Data/Images/Nodes/dofNode.png</file>
+        <file>Data/Images/Nodes/dofsNode.png</file>
+        <file>Data/Images/Nodes/forceNode.png</file>
+        <file>Data/Images/Nodes/functionNode.png</file>
+        <file>Data/Images/Nodes/generalizedForceNode.png</file>
+        <file>Data/Images/Nodes/geometryNode.png</file>
+        <file>Data/Images/Nodes/joint.png</file>
+        <file>Data/Images/Nodes/jointNode.png</file>
+        <file>Data/Images/Nodes/jointsNode.png</file>
+        <file>Data/Images/Nodes/markerNode.png</file>
+        <file>Data/Images/Nodes/markersNode.png</file>
+        <file>Data/Images/Nodes/motionNode.png</file>
+        <file>Data/Images/Nodes/motionsNode.png</file>
+        <file>Data/Images/Nodes/muscle.png</file>
+        <file>Data/Images/Nodes/muscleNode.png</file>
+        <file>Data/Images/Nodes/musclesNode.png</file>
+        <file>Data/Images/Nodes/node.png</file>
+        <file>Data/Images/Nodes/openedNode.png</file>
+        <file>Data/Images/Nodes/openNode.gif</file>
+        <file>Data/Images/Nodes/osimNode.png</file>
+        <file>Data/Images/Nodes/probe_multiple.png</file>
+        <file>Data/Images/Nodes/probe_single.png</file>
+        <file>Data/Images/Nodes/torqueNode.png</file>
+        <file>Data/Images/Nodes/wrap.png</file>
+        <file>Data/Images/Nodes/wrapNode.png</file>
     </qresource>
 </RCC>
