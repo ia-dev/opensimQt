@@ -69,6 +69,32 @@ void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 //        NavigatorNode *bodyNode = new NavigatorNode(body,"",bodySetNode,this);
 //    }
 
+    //loading joints
+    NavigatorNode *jointsSetNode = new NavigatorNode(nullptr,"Joints",modelNNode,this);
+    OpenSim::JointSet jointSet  = m_rootOpenSimModel->updJointSet();
+    for (int i = 0; i < jointSet.getSize(); ++i) {
+        OpenSim::Joint *joint = &jointSet.get(i);
+        NavigatorNode *jointNode = new NavigatorNode(joint,"",jointsSetNode,this);
+
+        //loading transforms
+        OpenSim::CustomJoint *cj = OpenSim::CustomJoint::safeDownCast(joint);
+        if(cj != nullptr)
+        {
+            OpenSim::SpatialTransform jointTransform = cj->updSpatialTransform();
+            for (int j = 0; j < 6; ++j) {
+                OpenSim::TransformAxis *transformAxis = &jointTransform.updTransformAxis(j);
+                NavigatorNode *axisNode = new NavigatorNode(transformAxis,"",jointNode,this);
+            }
+        }
+
+        //loading frames
+        for (int j = 0; j < joint->getProperty_frames().size(); ++j) {
+            OpenSim::PhysicalOffsetFrame *pyOfstFrame =  &joint->upd_frames(j);
+            NavigatorNode *frameNode = new NavigatorNode(pyOfstFrame,"",jointNode,this);
+        }
+
+    }
+
 }
 
 QModelIndex NavigatorModel::index(int row, int column, const QModelIndex &parent) const
