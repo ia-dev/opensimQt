@@ -1,26 +1,26 @@
 #include "navigatormodel.h"
 #include <QDebug>
 #include <QIcon>
-NavigatorModel::NavigatorModel(OpenSim::Model *rootModel)
+NavigatorModel::NavigatorModel()
 {
-    loadOpenSimModel(rootModel);
-
+    m_rootNNode = new NavigatorNode(nullptr,"the root",nullptr,this);
 }
 
 void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
+    m_activeModel = openSimModel;
     //loading the model it self
-    m_rootOpenSimModel = openSimModel;
+    m_openModels.append(openSimModel);
     //m_rootOpenSimModel->initSystem();
     //m_rootOpenSimModel.getn
-    m_rootNNode = new NavigatorNode(nullptr,"the root",nullptr,this);
-    NavigatorNode *modelNNode = new NavigatorNode(m_rootOpenSimModel,"Model",m_rootNNode,this);
+
+    NavigatorNode *modelNNode = new NavigatorNode(m_activeModel,"Model",m_rootNNode,this);
     //loading ground
-    NavigatorNode *groundNode  = new NavigatorNode(&(openSimModel->updGround()),"",modelNNode,this);
+    NavigatorNode *groundNode  = new NavigatorNode(&(m_activeModel->updGround()),"",modelNNode,this);
 
     //loading bodies
     NavigatorNode *bodySetNode = new NavigatorNode(nullptr,"Bodies",modelNNode,this);
-    OpenSim::BodySet bodySet = m_rootOpenSimModel->updBodySet();
+    OpenSim::BodySet bodySet = m_activeModel->updBodySet();
     for (int i = 0; i < bodySet.getSize(); i++) {
         OpenSim::Body *body = &(bodySet.get(i));
         NavigatorNode *bodyNode = new NavigatorNode(body,"items",bodySetNode,this);
@@ -72,7 +72,7 @@ void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
     //loading joints
     NavigatorNode *jointsSetNode = new NavigatorNode(nullptr,"Joints",modelNNode,this);
-    OpenSim::JointSet jointSet  = m_rootOpenSimModel->updJointSet();
+    OpenSim::JointSet jointSet  = m_activeModel->updJointSet();
     for (int i = 0; i < jointSet.getSize(); ++i) {
         OpenSim::Joint *joint = &jointSet.get(i);
         NavigatorNode *jointNode = new NavigatorNode(joint,"",jointsSetNode,this);
@@ -95,6 +95,7 @@ void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
         }
 
     }
+    emit layoutChanged();
 
 }
 
@@ -140,7 +141,8 @@ QVariant NavigatorModel::data(const QModelIndex &index, int role) const
         return  nNode->displayName;
     }
     if (index.isValid() && role==Qt::DecorationRole) {
-        return QVariant::fromValue(QPixmap(":/Data/Images/Nodes/bodyNode.png"));
+        NavigatorNode *nNode = nodeForIndex(index);
+        return QVariant::fromValue(QPixmap(nNode->iconPath));
     }
     return QVariant();
 

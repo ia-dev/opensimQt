@@ -16,6 +16,7 @@ public:
     QString displayName;
     NavigatorNode* parentNode;
     QList<NavigatorNode*> childNodes;
+    QString iconPath;
 signals:
 
 };

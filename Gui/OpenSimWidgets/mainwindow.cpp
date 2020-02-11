@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     simulationWidget = new SimulationToolsWidget(this);
     ui->simulationToolBar->addWidget(simulationWidget);
+
+    //setting the navigator
+    navigatorModel = new NavigatorModel();
+    ui->navigatorTreeView->setModel(navigatorModel);
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +33,6 @@ void MainWindow::on_actionOpen_Model_triggered()
     qDebug() << fileName;
     OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
     qDebug() << QString::fromStdString(newModel->getName());
-    navigatorModel = new NavigatorModel(newModel);
-    ui->navigatorTreeView->setModel(navigatorModel);
+    navigatorModel->loadOpenSimModel(newModel);
+    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 }

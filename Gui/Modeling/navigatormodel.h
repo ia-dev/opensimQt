@@ -9,12 +9,11 @@ class NavigatorModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    NavigatorModel(OpenSim::Model *rootModel);
+    NavigatorModel();
 
     //~NavigatorModel();
 
     void loadOpenSimModel(OpenSim::Model *openSimModel);
-
     // QAbstractItemModel interface
 public:
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;
@@ -29,7 +28,8 @@ protected:
     int rowForNode(NavigatorNode *node) const;
 private:
     NavigatorNode *m_rootNNode;
-    OpenSim::Model *m_rootOpenSimModel;
+    OpenSim::Model *m_activeModel;
+    QList<OpenSim::Model*>m_openModels;
 
 };
 

@@ -7,4 +7,5 @@ NavigatorNode::NavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,N
         displayName = QString::fromStdString(openSimObject->getName());
     if(parentNode != nullptr)
         parentNode->childNodes.append(this);
+    iconPath = ":/Data/Images/Nodes/bodyNode.png";
 }
