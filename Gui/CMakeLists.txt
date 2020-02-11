@@ -36,6 +36,12 @@ find_package(OpenSim REQUIRED)
 if(ANDROID)
   add_library(OpensimQtGUI SHARED
     main.cpp
+    Modeling/onegeometrynode.h
+    Modeling/onegeometrynode.cpp
+    Modeling/onewrapobjectnode.h
+    Modeling/onewrapobjectnode.cpp
+    Modeling/oneframenode.h
+    Modeling/oneframenode.cpp
     Modeling/modelnode.h
     Modeling/modelnode.cpp
     Modeling/navigatornode.h
@@ -54,6 +60,22 @@ if(ANDROID)
 else()
   add_executable(OpensimQtGUI
     main.cpp
+    Modeling/onedofnode.h
+    Modeling/onedofnode.cpp
+    Modeling/onejointnode.h
+    Modeling/onejointnode.cpp
+    Modeling/jointsnode.h
+    Modeling/jointsnode.cpp
+    Modeling/groundnode.h
+    Modeling/groundnode.cpp
+    Modeling/onegeometrynode.h
+    Modeling/onegeometrynode.cpp
+    Modeling/onewrapobjectnode.h
+    Modeling/onewrapobjectnode.cpp
+    Modeling/onebodynode.h
+    Modeling/onebodynode.cpp
+    Modeling/oneframenode.h
+    Modeling/oneframenode.cpp
     Modeling/modelnode.h
     Modeling/modelnode.cpp
     Modeling/navigatornode.h
