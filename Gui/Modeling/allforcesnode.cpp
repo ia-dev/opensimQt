@@ -1,5 +1,8 @@
+#include "actuatorsnode.h"
 #include "allforcesnode.h"
+#include "contactforcesnode.h"
 #include "musclesnode.h"
+#include "otherforcesnode.h"
 #include <QDebug>
 AllForcesNode::AllForcesNode(OpenSim::Model *model,NavigatorNode *parentNode,QObject *parent):
     NavigatorNode(nullptr,"Forces",parentNode,parent)
@@ -12,5 +15,13 @@ AllForcesNode::AllForcesNode(OpenSim::Model *model,NavigatorNode *parentNode,QOb
     //  muscles groups display
 
     //loading actuators
+    ActuatorsNode *actuatorNode = new ActuatorsNode(&model->updForceSet(),this,this);
+
+    //contact forces
+    ContactForcesNode *contactForces = new ContactForcesNode(&model->updForceSet(),this,this);
+
+    //other forces
+    OtherForcesNode *otherForcesNode = new OtherForcesNode(&model->updForceSet(),this,this);
+
 
 }

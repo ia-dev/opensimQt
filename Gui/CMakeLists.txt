@@ -60,6 +60,30 @@ if(ANDROID)
 else()
   add_executable(OpensimQtGUI
     main.cpp
+    Modeling/oneprobnode.h
+    Modeling/oneprobnode.cpp
+    Modeling/probesnode.h
+    Modeling/probesnode.cpp
+    Modeling/controlnode.h
+    Modeling/controlnode.cpp
+    Modeling/controlersnode.h
+    Modeling/controlersnode.cpp
+    Modeling/onemarkernode.h
+    Modeling/onemarkernode.cpp
+    Modeling/markersnode.h
+    Modeling/markersnode.cpp
+    Modeling/oneotherforcenode.h
+    Modeling/oneotherforcenode.cpp
+    Modeling/otherforcesnode.h
+    Modeling/otherforcesnode.cpp
+    Modeling/onecontactforcenode.h
+    Modeling/onecontactforcenode.cpp
+    Modeling/contactforcesnode.h
+    Modeling/contactforcesnode.cpp
+    Modeling/oneactuatornode.h
+    Modeling/oneactuatornode.cpp
+    Modeling/actuatorsnode.h
+    Modeling/actuatorsnode.cpp
     Modeling/musclegroupenode.h
     Modeling/musclegroupenode.cpp
     Modeling/onemusclenode.h

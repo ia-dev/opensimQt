@@ -2,9 +2,12 @@
 #include "bodiesnode.h"
 #include "constraintsnode.h"
 #include "contactgeometriesnode.h"
+#include "controlersnode.h"
 #include "groundnode.h"
 #include "jointsnode.h"
+#include "markersnode.h"
 #include "modelnode.h"
+#include "probesnode.h"
 
 ModelNode::ModelNode(OpenSim::Model *model,NavigatorNode *parentNode,QObject *parent):NavigatorNode(model,"",parentNode,parent)
 {
@@ -27,9 +30,16 @@ ModelNode::ModelNode(OpenSim::Model *model,NavigatorNode *parentNode,QObject *pa
     ContactGeometriesNode *contactGeometriesNode = new ContactGeometriesNode(&model->updContactGeometrySet(),this,this);
 
     //loading forces
-
     AllForcesNode *allForcesNode = new AllForcesNode(model,this,this);
 
+    //loading markers
+    MarkersNode *markersNode = new MarkersNode(&model->updMarkerSet(),this,this);
+
+    //loading controlers
+    ControlersNode *controlesNode =new ControlersNode(&model->updControllerSet(),this,this);
+
+    //loading probs
+    ProbesNode *probesNode = new ProbesNode(&model->updProbeSet(),this,this);
 
 
 }
