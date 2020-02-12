@@ -11,6 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setCorner(Qt::BottomLeftCorner,Qt::LeftDockWidgetArea);
+    setCorner(Qt::BottomRightCorner,Qt::RightDockWidgetArea);
+
+    tabifyDockWidget(ui->scriptingDock,ui->messagesDock);
+
     //adding the Simulation Tools Widget to the toolBar
 
     simulationWidget = new SimulationToolsWidget(this);

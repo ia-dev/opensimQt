@@ -60,6 +60,24 @@ if(ANDROID)
 else()
   add_executable(OpensimQtGUI
     main.cpp
+    Modeling/musclegroupenode.h
+    Modeling/musclegroupenode.cpp
+    Modeling/onemusclenode.h
+    Modeling/onemusclenode.cpp
+    Modeling/musclesnode.h
+    Modeling/musclesnode.cpp
+    Modeling/allforcesnode.h
+    Modeling/allforcesnode.cpp
+    Modeling/onecontactgeometrynode.h
+    Modeling/onecontactgeometrynode.cpp
+    Modeling/contactgeometriesnode.h
+    Modeling/contactgeometriesnode.cpp
+    Modeling/oneconstraintnode.h
+    Modeling/oneconstraintnode.cpp
+    Modeling/constraintsnode.h
+    Modeling/constraintsnode.cpp
+    Modeling/bodiesnode.h
+    Modeling/bodiesnode.cpp
     Modeling/onedofnode.h
     Modeling/onedofnode.cpp
     Modeling/onejointnode.h
