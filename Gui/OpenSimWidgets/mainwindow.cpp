@@ -5,6 +5,7 @@
 #include <OpenSim.h>
 #include <QFileDialog>
 #include <QDebug>
+#include <QtWebEngineWidgets/qwebengineview.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
     //setting the navigator
     navigatorModel = new NavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
+
+    //setting the visualizer
+    ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
+    //ui->Visualizer->setUrl(QUrl("http://www.facebook.com"));
+    ui->Visualizer->show();
 }
 
 MainWindow::~MainWindow()

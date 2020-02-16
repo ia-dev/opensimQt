@@ -30,6 +30,7 @@ private:
     NavigatorNode *m_rootNNode;
     OpenSim::Model *m_activeModel;
     QList<OpenSim::Model*>m_openModels;
+    SimTK::Visualizer *m_visualiser;
 
 };
 

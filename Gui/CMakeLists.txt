@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets  LinguistTools REQUIRED)
 
 set(TS_FILES OpensimQtGUI_en_US.ts)
 
@@ -134,6 +134,6 @@ else()
     ${TS_FILES}
   )
 endif()
-target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets ${OpenSim_LIBRARIES})
+target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets  ${OpenSim_LIBRARIES})
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
