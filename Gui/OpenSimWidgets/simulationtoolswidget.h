@@ -15,8 +15,12 @@ public:
     explicit SimulationToolsWidget(QWidget *parent = nullptr);
     ~SimulationToolsWidget();
 
+    // QWidget interface
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+
 private:
     Ui::SimulationToolsWidget *ui;
+
 };
 
 #endif // SIMULATIONTOOLSWIDGET_H

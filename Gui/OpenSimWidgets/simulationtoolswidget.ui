@@ -16,6 +16,12 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -32,7 +38,7 @@
       <string>Undo</string>
      </property>
      <property name="icon">
-      <iconset resource="../resources.qrc">
+      <iconset resource="../resource.qrc">
        <normaloff>:/Data/Images/DefaultIcon/arrow-1-backward.png</normaloff>:/Data/Images/DefaultIcon/arrow-1-backward.png</iconset>
      </property>
      <property name="iconSize">
@@ -55,7 +61,7 @@
       <string>Redo</string>
      </property>
      <property name="icon">
-      <iconset resource="../resources.qrc">
+      <iconset resource="../resource.qrc">
        <normaloff>:/Data/Images/DefaultIcon/arrow-1-forward.png</normaloff>:/Data/Images/DefaultIcon/arrow-1-forward.png</iconset>
      </property>
      <property name="iconSize">
@@ -103,7 +109,7 @@
          <string>Run</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/user-refresh.png</normaloff>:/Data/Images/DefaultIcon/user-refresh.png</iconset>
         </property>
         <property name="iconSize">
@@ -123,7 +129,7 @@
          <string>Stop</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/power-standby.png</normaloff>:/Data/Images/DefaultIcon/power-standby.png</iconset>
         </property>
         <property name="iconSize">
@@ -170,7 +176,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/MD-fast-forward-alt.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-forward-alt.png</iconset>
         </property>
        </widget>
@@ -187,7 +193,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</iconset>
         </property>
        </widget>
@@ -204,7 +210,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
         </property>
        </widget>
@@ -241,7 +247,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/MD-fast-backward-alt.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-backward-alt.png</iconset>
         </property>
        </widget>
@@ -271,7 +277,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/MD-pause.png</normaloff>:/Data/Images/DefaultIcon/MD-pause.png</iconset>
         </property>
        </widget>
@@ -301,7 +307,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/MD-next.png</normaloff>:/Data/Images/DefaultIcon/MD-next.png</iconset>
         </property>
        </widget>
@@ -344,7 +350,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../resources.qrc">
+         <iconset resource="../resource.qrc">
           <normaloff>:/Data/Images/DefaultIcon/MD-previous.png</normaloff>:/Data/Images/DefaultIcon/MD-previous.png</iconset>
         </property>
        </widget>
@@ -371,7 +377,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -10,8 +10,11 @@
     <height>768</height>
    </rect>
   </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
   <property name="acceptDrops">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string notr="true">OpenSim 4.1</string>
@@ -50,8 +53,30 @@
         <string>Visualizer</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>2</number>
+        </property>
+        <property name="topMargin">
+         <number>2</number>
+        </property>
+        <property name="rightMargin">
+         <number>2</number>
+        </property>
+        <property name="bottomMargin">
+         <number>2</number>
+        </property>
         <item>
-         <widget class="QWebEngineView" name="Visualizer" native="true"/>
+         <widget class="QWebEngineView" name="Visualizer" native="true">
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -295,6 +320,12 @@
      </property>
      <item>
       <widget class="QTreeView" name="navigatorTreeView">
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
        <property name="headerHidden">
         <bool>true</bool>
        </property>
@@ -305,7 +336,7 @@
   </widget>
   <widget class="QDockWidget" name="propertiesDock">
    <property name="acceptDrops">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="windowTitle">
     <string>Properties</string>
@@ -421,7 +452,7 @@
    <property name="minimumSize">
     <size>
      <width>100</width>
-     <height>40</height>
+     <height>52</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -430,7 +461,6 @@
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="fileToolBar">
@@ -860,7 +890,7 @@
   <customwidget>
    <class>QWebEngineView</class>
    <extends>QWidget</extends>
-   <header location="global">QtWebEngineWidgets/qwebengineview.h</header>
+   <header>QtWebEngineWidgets/qwebengineview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

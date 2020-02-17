@@ -25,5 +25,11 @@ private:
     Ui::MainWindow *ui;
     SimulationToolsWidget *simulationWidget;
     NavigatorModel *navigatorModel;
+
+    // QWidget interface
+protected:
+    virtual void dropEvent(QDropEvent *event) override;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;
 };
 #endif // MAINWINDOW_H
