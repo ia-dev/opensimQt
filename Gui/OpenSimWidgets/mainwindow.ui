@@ -29,14 +29,14 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
     <property name="topMargin">
      <number>0</number>
     </property>
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="VisualizerLayout">
        <property name="whatsThis">
@@ -80,10 +80,21 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="VtkVisualizerLayout">
+       <property name="whatsThis">
+        <string>VtkVisualizer</string>
+       </property>
+       <property name="accessibleName">
+        <string>VtkVisualizer</string>
+       </property>
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>VtkVisualizer</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QVTKOpenGLWidget" name="vtkVisualiser" native="true"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -891,6 +902,12 @@
    <class>QWebEngineView</class>
    <extends>QWidget</extends>
    <header>QtWebEngineWidgets/qwebengineview.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QVTKOpenGLWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QVTKOpenGLWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

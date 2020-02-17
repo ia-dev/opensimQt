@@ -33,6 +33,22 @@ set(TS_FILES OpensimQtGUI_en_US.ts)
 #to the system path
 find_package(OpenSim REQUIRED)
 
+#adding the vtk modules
+find_package(VTK COMPONENTS
+  vtkCommonCore
+  vtkFiltersCore
+  vtkInfovisCore
+  vtkInteractionStyle
+  vtkViewsQt
+  vtkIOImage
+  vtkIOGeometry
+)
+include(${VTK_USE_FILE})
+
+if("${VTK_QT_VERSION}" STREQUAL "")
+  message(FATAL_ERROR "VTK was not built with Qt")
+endif()
+
 if(ANDROID)
   add_library(OpensimQtGUI SHARED
     main.cpp
@@ -134,6 +150,6 @@ else()
     ${TS_FILES}
   )
 endif()
-target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets  ${OpenSim_LIBRARIES})
+target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
