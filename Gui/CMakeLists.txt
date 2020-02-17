@@ -11,19 +11,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
-# They need to be set before the find_package(Qt5 ...) call.
-
-#if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
-#    endif()
-#endif()
-
 find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets  LinguistTools REQUIRED)
 
 set(TS_FILES OpensimQtGUI_en_US.ts)
@@ -49,107 +36,86 @@ if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")
 endif()
 
-if(ANDROID)
-  add_library(OpensimQtGUI SHARED
-    main.cpp
-    Modeling/onegeometrynode.h
-    Modeling/onegeometrynode.cpp
-    Modeling/onewrapobjectnode.h
-    Modeling/onewrapobjectnode.cpp
-    Modeling/oneframenode.h
-    Modeling/oneframenode.cpp
-    Modeling/modelnode.h
-    Modeling/modelnode.cpp
-    Modeling/navigatornode.h
-    Modeling/navigatornode.cpp
-    Modeling/navigatormodel.h
-    Modeling/navigatormodel.cpp
-    OpenSimWidgets/mainwindow.cpp
-    OpenSimWidgets/mainwindow.h
-    OpenSimWidgets/mainwindow.ui
-    OpenSimWidgets/simulationtoolswidget.cpp
-    OpenSimWidgets/simulationtoolswidget.h
-    OpenSimWidgets/simulationtoolswidget.ui
-    resource.qrc
-    ${TS_FILES}
-  )
-else()
+
   add_executable(OpensimQtGUI
+
     main.cpp
-    Modeling/oneprobnode.h
-    Modeling/oneprobnode.cpp
-    Modeling/probesnode.h
-    Modeling/probesnode.cpp
-    Modeling/controlnode.h
-    Modeling/controlnode.cpp
-    Modeling/controlersnode.h
-    Modeling/controlersnode.cpp
-    Modeling/onemarkernode.h
-    Modeling/onemarkernode.cpp
-    Modeling/markersnode.h
-    Modeling/markersnode.cpp
-    Modeling/oneotherforcenode.h
-    Modeling/oneotherforcenode.cpp
-    Modeling/otherforcesnode.h
-    Modeling/otherforcesnode.cpp
-    Modeling/onecontactforcenode.h
-    Modeling/onecontactforcenode.cpp
-    Modeling/contactforcesnode.h
-    Modeling/contactforcesnode.cpp
-    Modeling/oneactuatornode.h
-    Modeling/oneactuatornode.cpp
-    Modeling/actuatorsnode.h
-    Modeling/actuatorsnode.cpp
-    Modeling/musclegroupenode.h
-    Modeling/musclegroupenode.cpp
-    Modeling/onemusclenode.h
-    Modeling/onemusclenode.cpp
-    Modeling/musclesnode.h
-    Modeling/musclesnode.cpp
-    Modeling/allforcesnode.h
-    Modeling/allforcesnode.cpp
-    Modeling/onecontactgeometrynode.h
-    Modeling/onecontactgeometrynode.cpp
-    Modeling/contactgeometriesnode.h
-    Modeling/contactgeometriesnode.cpp
-    Modeling/oneconstraintnode.h
-    Modeling/oneconstraintnode.cpp
-    Modeling/constraintsnode.h
-    Modeling/constraintsnode.cpp
-    Modeling/bodiesnode.h
-    Modeling/bodiesnode.cpp
-    Modeling/onedofnode.h
-    Modeling/onedofnode.cpp
-    Modeling/onejointnode.h
-    Modeling/onejointnode.cpp
-    Modeling/jointsnode.h
-    Modeling/jointsnode.cpp
-    Modeling/groundnode.h
-    Modeling/groundnode.cpp
-    Modeling/onegeometrynode.h
-    Modeling/onegeometrynode.cpp
-    Modeling/onewrapobjectnode.h
-    Modeling/onewrapobjectnode.cpp
-    Modeling/onebodynode.h
-    Modeling/onebodynode.cpp
-    Modeling/oneframenode.h
-    Modeling/oneframenode.cpp
-    Modeling/modelnode.h
-    Modeling/modelnode.cpp
-    Modeling/navigatornode.h
-    Modeling/navigatornode.cpp
-    Modeling/navigatormodel.h
-    Modeling/navigatormodel.cpp
-    OpenSimWidgets/mainwindow.cpp
-    OpenSimWidgets/mainwindow.h
-    OpenSimWidgets/mainwindow.ui
-    OpenSimWidgets/simulationtoolswidget.cpp
-    OpenSimWidgets/simulationtoolswidget.h
-    OpenSimWidgets/simulationtoolswidget.ui
+   
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneprobnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneprobnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/probesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/probesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/controlnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/controlnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/controlersnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/controlersnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onemarkernode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onemarkernode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/markersnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/markersnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneotherforcenode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneotherforcenode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/otherforcesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/otherforcesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onecontactforcenode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onecontactforcenode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/contactforcesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/contactforcesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneactuatornode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneactuatornode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/actuatorsnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/actuatorsnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/musclegroupenode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/musclegroupenode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onemusclenode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onemusclenode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/musclesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/musclesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/allforcesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/allforcesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onecontactgeometrynode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onecontactgeometrynode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/contactgeometriesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/contactgeometriesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneconstraintnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneconstraintnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/constraintsnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/constraintsnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/bodiesnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/bodiesnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onedofnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onedofnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onejointnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onejointnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/jointsnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/jointsnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/groundnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/groundnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onegeometrynode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onegeometrynode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onewrapobjectnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onewrapobjectnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onebodynode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/onebodynode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneframenode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneframenode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/modelnode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/modelnode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/navigatornode.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/navigatornode.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/navigatormodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/navigatormodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/mainwindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/mainwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/mainwindow.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/simulationtoolswidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/simulationtoolswidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/simulationtoolswidget.ui
+    
     resource.qrc
     ${TS_FILES}
   )
-endif()
+
 target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
