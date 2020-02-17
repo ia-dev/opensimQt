@@ -41,6 +41,8 @@ endif()
 
     main.cpp
    
+    ${CMAKE_CURRENT_SOURCE_DIR}/Visualizer/openglvisualizer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Visualizer/openglvisualizer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneprobnode.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/oneprobnode.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/probesnode.h

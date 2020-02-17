@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QtWebEngineWidgets/qwebengineview.h>
+#include <Visualizer/openglvisualizer.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

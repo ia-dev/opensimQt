@@ -11,7 +11,7 @@
     <message>
         <location filename="OpenSimWidgets/mainwindow.ui" line="46"/>
         <location filename="OpenSimWidgets/mainwindow.ui" line="53"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="801"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="811"/>
         <source>Visualizer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -23,85 +23,90 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="114"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="101"/>
+        <source>OpenGLVisualizer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="124"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="133"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="143"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="141"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="151"/>
         <source>&amp;Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="155"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="165"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="174"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="184"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="190"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="200"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="194"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="204"/>
         <source>Configure Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="224"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="234"/>
         <source>Simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="260"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="806"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="270"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="816"/>
         <source>Messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="291"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="301"/>
         <source>&gt; the default output for the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="310"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="811"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="320"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="821"/>
         <source>Navigator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="353"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="781"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="363"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="791"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="386"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="396"/>
         <source>Scripting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="402"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="412"/>
         <source>output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="433"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="443"/>
         <source>&gt; m= getCurrentModel()</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="449"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="459"/>
         <source>## script history
 #a =10
 # a
@@ -109,269 +114,269 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="470"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="480"/>
         <source>Topologie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="479"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="505"/>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="524"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="489"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="515"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="534"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="539"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="549"/>
         <source>Open Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="548"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="558"/>
         <source>Load Motion...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="553"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="563"/>
         <source>Recent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="562"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="572"/>
         <source>Close Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="571"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="581"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="580"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="590"/>
         <source>Save Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="589"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="599"/>
         <source>Save Model As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="598"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="608"/>
         <source>Save All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="607"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="617"/>
         <source>Preview Experement Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="616"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="626"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="621"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="631"/>
         <source>Excitations...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="626"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="636"/>
         <source>Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="631"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="641"/>
         <source>File (.xml)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="640"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="650"/>
         <source>Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="645"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="655"/>
         <source>Open Recent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="654"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="664"/>
         <source>Run...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="659"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="669"/>
         <source>Run Recent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="668"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="678"/>
         <source>Save Current Script...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="677"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="687"/>
         <source>Run Current Script...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="686"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="696"/>
         <source>Plot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="695"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="705"/>
         <source>Scale Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="704"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="714"/>
         <source>Inverse Kinematics...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="713"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="723"/>
         <source>Inverse Dynamics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="722"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="732"/>
         <source>Static Optimization...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="731"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="741"/>
         <source>Reduce Residuals...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="740"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="750"/>
         <source>Compute Muscle Controle...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="749"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="759"/>
         <source>Forward Dynamics...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="758"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="768"/>
         <source>Analyze...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="767"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="777"/>
         <source>Convert Files ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="776"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="786"/>
         <source>User Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="786"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="796"/>
         <source>ScriptingShell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="791"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="801"/>
         <source>Coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="796"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="806"/>
         <source>Topology View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="816"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="826"/>
         <source>Maximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="821"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="831"/>
         <source>Float</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="826"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="836"/>
         <source>Float Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="831"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="841"/>
         <source>Dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="836"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="846"/>
         <source>Dock Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="841"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="851"/>
         <source>Clone Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="846"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="856"/>
         <source>New Document Tab Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="851"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="861"/>
         <source>Collapse Document Tab Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="856"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="866"/>
         <source>Online Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="861"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="871"/>
         <source>User&apos;s Guide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="866"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="876"/>
         <source>Exemples &amp;&amp; Tutorials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="871"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="881"/>
         <source>XML Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="876"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="886"/>
         <source>Doxygen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="881"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="891"/>
         <source>Scripting help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="886"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="896"/>
         <source>Report Bug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="891"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="901"/>
         <source>Request Feature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.ui" line="896"/>
+        <location filename="OpenSimWidgets/mainwindow.ui" line="906"/>
         <source>About Opensim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/mainwindow.cpp" line="46"/>
+        <location filename="OpenSimWidgets/mainwindow.cpp" line="47"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
