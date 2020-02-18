@@ -36,7 +36,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="VisualizerLayout">
        <property name="whatsThis">
@@ -92,7 +92,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QVTKOpenGLWidget" name="vtkVisualiser" native="true"/>
+         <widget class="VisualizerVTK" name="vtkVisualiser" native="true"/>
         </item>
        </layout>
       </widget>
@@ -915,15 +915,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QVTKOpenGLWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">QVTKOpenGLWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>OpenGLVisualizer</class>
    <extends>QOpenGLWidget</extends>
    <header location="global">Visualizer/openglvisualizer.h</header>
+  </customwidget>
+  <customwidget>
+   <class>VisualizerVTK</class>
+   <extends>QWidget</extends>
+   <header location="global">Visualizer/visualizervtk.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
