@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets OpenGL  LinguistTools REQUIRED)
 
+
 set(TS_FILES OpensimQtGUI_en_US.ts)
 
 #adding opensim to the project
@@ -60,5 +61,6 @@ add_executable(OpensimQtGUI
 )
 
 target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
+
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
