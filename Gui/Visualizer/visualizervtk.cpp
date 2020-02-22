@@ -23,6 +23,7 @@
 #include <vtkPNGReader.h>
 #include <vtkImageFlip.h>
 #include <vtkOpenGLTexture.h>
+#include <Modeling/navigatornode.h>
 
 VisualizerVTK::VisualizerVTK(QWidget *parent):
     QVTKOpenGLWidget(parent)
@@ -37,10 +38,14 @@ VisualizerVTK::VisualizerVTK(QWidget *parent):
 
     //renderingTest();
     addBox();
-    renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
+    //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     //addGround();
     //addSkyBox();
     this->update();
+
+    //setting the renderer for the navigator elements
+    NavigatorNode::visualizerVTK = this;
+
 }
 
 void VisualizerVTK::renderingTest()
@@ -63,9 +68,11 @@ void VisualizerVTK::renderingTest()
 
 }
 
-void VisualizerVTK::renderVtpMesh(QString fileName)
+vtkSmartPointer<vtkActor> VisualizerVTK::renderGeometry(OpenSim::Geometry *geometry)
 {
-    const char *fileNameChar = fileName.toStdString().data();
+    QString meshFile = "F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\"+
+            QString::fromStdString(geometry->getPropertyByName("mesh_file").getValue<std::string>());
+    const char *fileNameChar = meshFile.toStdString().data();
     qDebug() << "the vtp file path" << fileNameChar;
     auto vtpFileReader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
     vtpFileReader->SetFileName(fileNameChar);
@@ -77,10 +84,18 @@ void VisualizerVTK::renderVtpMesh(QString fileName)
     auto vtpActor = vtkSmartPointer<vtkActor>::New();
     vtpActor->SetMapper(vtpMapper);
 
+    auto geometryScale = geometry->get_scale_factors();
+    double geometryScaleDouble[] = {geometryScale.get(0),geometryScale.get(1),geometryScale.get(2)};
+    vtpActor->SetScale(geometryScaleDouble);
+
+    //geometry->getFrame().generateDecorations()
+
+
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
     renderer->ResetCamera(vtpActor->GetBounds());
     this->update();
+    return  vtpActor;
 }
 
 vtkSmartPointer<vtkActor> VisualizerVTK::addBox()
@@ -168,6 +183,12 @@ vtkSmartPointer<vtkActor> VisualizerVTK::addSkyBox()
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(actor);
     return actor;
+}
+
+void VisualizerVTK::addOpenSimModel(OpenSim::Model *model)
+{
+    //loading the bodies
+
 }
 
 BackgroundType VisualizerVTK::backgroundType() const

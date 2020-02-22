@@ -10,6 +10,7 @@ NavigatorModel::NavigatorModel()
 void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
     m_activeModel = openSimModel;
+    m_activeModel->initSystem();
     //loading the model it self
     m_openModels.append(openSimModel);
     //m_rootOpenSimModel->initSystem();

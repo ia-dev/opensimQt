@@ -61,6 +61,7 @@ void MainWindow::dropEvent(QDropEvent *event)
         foreach (QUrl url, pathList) {
            qDebug()<< "Url" << url.path() << " "<< url.toLocalFile();
            OpenSim::Model  *newModel = new OpenSim::Model(url.toLocalFile() .toStdString());
+           //newModel->state
            qDebug() << QString::fromStdString(newModel->getName());
            navigatorModel->loadOpenSimModel(newModel);
            ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
@@ -82,3 +83,5 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
     event->accept();
     event->acceptProposedAction();
 }
+
+//vtkSmartPointer<vtkRenderer> MainWindow::m_renderer = nullptr;
