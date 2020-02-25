@@ -190,30 +190,47 @@ vtkSmartPointer<vtkActor> VisualizerVTK::addSkyBox()
 void VisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
     //visualizer solution
-
-    model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
+    //loading the Components
+    //model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
-    for (SimTK::Stage stage = SimTK::Stage::Topology; stage < model->getWorkingState().getSystemStage(); stage++) {
+
+    model->updDisplayHints().set_show_frames(true);
+    model->updDisplayHints().set_show_path_geometry(true);
+    model->updDisplayHints().set_show_contact_geometry(true);
+    model->updDisplayHints().set_show_wrap_geometry(true);
+    model->updDisplayHints().set_show_markers(true);
+    model->updDisplayHints().set_show_path_points(true);
+    model->updDisplayHints().set_show_debug_geometry(true);
+    const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
+
+    GeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
+
+    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
+    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
+    while (!itr.equals(componentList.end())) {
+        const OpenSim::Component *comp = &itr.deref();
+        SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+        comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
+        comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
+        qDebug() << "the model subcomponents List Count >"<< compDecorations.size()<< " " << QString::fromStdString(itr.deref().getName())
+                 << QString::fromStdString(itr.deref().getConcreteClassName());
+        for (int i = 0; i < compDecorations.size(); ++i) {
+            compDecorations.at(i).implementGeometry(geoImp);
+        }
+
+        itr.next();
+    }
+
+
+    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
         model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
     }
     qDebug() << "the size of the geometry array > " << compDecorations.size();
-    GeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
     for (unsigned i = 0; i < compDecorations.size(); ++i) {
         compDecorations.at(i).implementGeometry(geoImp);
     }
-    //loading the Components
-//    const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
 
-//    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
-//    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
-//    while (!itr.equals(componentList.end())) {
-//        const OpenSim::Component *comp = &itr.deref();
-//        SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
-//        comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
-//        qDebug() << "the model subcomponents List Count >" << QString::fromStdString(itr.deref().getName())
-//                 << QString::fromStdString(itr.deref().getConcreteClassName());
-//        itr.next();
-//    }
+
 }
 
 BackgroundType VisualizerVTK::backgroundType() const
