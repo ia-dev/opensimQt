@@ -10,7 +10,7 @@ NavigatorModel::NavigatorModel()
 void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
     m_activeModel = openSimModel;
-    m_activeModel->initSystem();
+    SimTK::State *stat = &m_activeModel->initSystem();
     //loading the model it self
     m_openModels.append(openSimModel);
     //m_rootOpenSimModel->initSystem();
@@ -20,12 +20,11 @@ void NavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
 
     emit layoutChanged();
-    m_activeModel->setUseVisualizer(true);
+//    m_activeModel->setUseVisualizer(true);
 //    m_activeModel->updMatterSubsystem().setShowDefaultGeometry(true);
-    SimTK::State *stat = &m_activeModel->initSystem();
-    m_visualiser = &openSimModel->updVisualizer().updSimbodyVisualizer();
-    m_visualiser->setBackgroundType(m_visualiser->SolidColor);
-    m_visualiser->setBackgroundColor(SimTK::White);
+//    m_visualiser = &openSimModel->updVisualizer().updSimbodyVisualizer();
+//    m_visualiser->setBackgroundType(m_visualiser->SolidColor);
+//    m_visualiser->setBackgroundColor(SimTK::White);
 
     //OpenSim::simulate(*m_activeModel,*stat,10.0);
 

@@ -11,6 +11,8 @@ OneGeometryNode::OneGeometryNode(OpenSim::Geometry *geometry,NavigatorNode *pare
     //render the geometry
 
 
-    visualizerVTK->renderGeometry(geometry);
+    //visualizerVTK->renderGeometry(geometry);
+    OpenSim::PropertySet properySet = geometry->getPropertySet();
+
 
 }

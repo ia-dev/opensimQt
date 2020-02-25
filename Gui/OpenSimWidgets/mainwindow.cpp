@@ -49,6 +49,7 @@ void MainWindow::on_actionOpen_Model_triggered()
     OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
     qDebug() << QString::fromStdString(newModel->getName());
     navigatorModel->loadOpenSimModel(newModel);
+    //TODO save the state somewhere
     ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 }
 

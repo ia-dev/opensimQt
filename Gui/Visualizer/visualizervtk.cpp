@@ -1,3 +1,4 @@
+#include "geometryimplementationqt.h"
 #include "visualizervtk.h"
 
 #include <QDebug>
@@ -46,6 +47,7 @@ VisualizerVTK::VisualizerVTK(QWidget *parent):
     //setting the renderer for the navigator elements
     NavigatorNode::visualizerVTK = this;
 
+
 }
 
 void VisualizerVTK::renderingTest()
@@ -73,7 +75,7 @@ vtkSmartPointer<vtkActor> VisualizerVTK::renderGeometry(OpenSim::Geometry *geome
     QString meshFile = "F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\"+
             QString::fromStdString(geometry->getPropertyByName("mesh_file").getValue<std::string>());
     const char *fileNameChar = meshFile.toStdString().data();
-    qDebug() << "the vtp file path" << fileNameChar;
+    //qDebug() << "the vtp file path" << fileNameChar;
     auto vtpFileReader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
     vtpFileReader->SetFileName(fileNameChar);
     vtpFileReader->Update();
@@ -187,8 +189,31 @@ vtkSmartPointer<vtkActor> VisualizerVTK::addSkyBox()
 
 void VisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
-    //loading the bodies
+    //visualizer solution
 
+    model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
+    SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+    for (SimTK::Stage stage = SimTK::Stage::Topology; stage < model->getWorkingState().getSystemStage(); stage++) {
+        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
+    }
+    qDebug() << "the size of the geometry array > " << compDecorations.size();
+    GeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
+    for (unsigned i = 0; i < compDecorations.size(); ++i) {
+        compDecorations.at(i).implementGeometry(geoImp);
+    }
+    //loading the Components
+//    const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
+
+//    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
+//    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
+//    while (!itr.equals(componentList.end())) {
+//        const OpenSim::Component *comp = &itr.deref();
+//        SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+//        comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
+//        qDebug() << "the model subcomponents List Count >" << QString::fromStdString(itr.deref().getName())
+//                 << QString::fromStdString(itr.deref().getConcreteClassName());
+//        itr.next();
+//    }
 }
 
 BackgroundType VisualizerVTK::backgroundType() const
