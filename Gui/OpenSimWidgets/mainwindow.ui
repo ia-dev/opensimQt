@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">OpenSim 4.1</string>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>3</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="VisualizerLayout">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="whatsThis">
+        <string>Visuallizer</string>
+       </property>
+       <property name="accessibleName">
+        <string>Visualizer</string>
+       </property>
+       <attribute name="icon">
+        <iconset resource="../resource.qrc">
+         <normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Visualizer</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>2</number>
+        </property>
+        <property name="topMargin">
+         <number>2</number>
+        </property>
+        <property name="rightMargin">
+         <number>2</number>
+        </property>
+        <property name="bottomMargin">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="QWebEngineView" name="Visualizer" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="VtkVisualizerLayout">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="whatsThis">
+        <string>VtkVisualizer</string>
+       </property>
+       <property name="accessibleName">
+        <string>VtkVisualizer</string>
+       </property>
+       <attribute name="title">
+        <string>VtkVisualizer</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="leftMargin">
+         <number>1</number>
+        </property>
+        <property name="topMargin">
+         <number>1</number>
+        </property>
+        <property name="rightMargin">
+         <number>1</number>
+        </property>
+        <property name="bottomMargin">
+         <number>1</number>
+        </property>
+        <item>
+         <widget class="VisualizerVTK" name="vtkVisualiser" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="OpenGLVisualizerLayout">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <attribute name="title">
+        <string>OpenGLVisualizer</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="OpenGLVisualizer" name="openGLVisualizer">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen_Model"/>
+    <addaction name="actionLoad_Motion"/>
+    <addaction name="separator"/>
+    <addaction name="actionRecent_Files"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_Model"/>
+    <addaction name="actionClose_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_Model"/>
+    <addaction name="actionSave_Model_As"/>
+    <addaction name="actionSave_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreview_Experement_Data"/>
+    <addaction name="actionE_xit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionExcitations"/>
+    <addaction name="actionPreferences"/>
+    <addaction name="actionFile_xml"/>
+   </widget>
+   <widget class="QMenu" name="menu_Script">
+    <property name="title">
+     <string>&amp;Script</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionOpen_Recent"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_Current_Script"/>
+    <addaction name="separator"/>
+    <addaction name="actionRun"/>
+    <addaction name="actionRun_Recent"/>
+    <addaction name="separator"/>
+    <addaction name="actionRun_Current_Script"/>
+   </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="actionPlot"/>
+    <addaction name="separator"/>
+    <addaction name="actionScale_Model"/>
+    <addaction name="actionInverse_Kinematics"/>
+    <addaction name="actionInverse_Dynamics"/>
+    <addaction name="actionStatic_Optimization"/>
+    <addaction name="actionReduce_Residuals"/>
+    <addaction name="actionCompute_Muscle_Controle"/>
+    <addaction name="actionForward_Dynamics"/>
+    <addaction name="actionAnalyze"/>
+    <addaction name="separator"/>
+    <addaction name="actionConvert_Files"/>
+    <addaction name="separator"/>
+    <addaction name="actionUser_Plugins"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionOnline_Help"/>
+    <addaction name="actionUser_s_Guide"/>
+    <addaction name="actionExemples_Tutorials"/>
+    <addaction name="actionXML_Browser"/>
+    <addaction name="actionDoxygen"/>
+    <addaction name="actionScripting_help"/>
+    <addaction name="separator"/>
+    <addaction name="actionReport_Bug"/>
+    <addaction name="actionRequest_Feature"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_Opensim"/>
+   </widget>
+   <widget class="QMenu" name="menu_Window">
+    <property name="title">
+     <string>&amp;Window</string>
+    </property>
+    <widget class="QMenu" name="menuConfigure_Window">
+     <property name="title">
+      <string>Configure Window</string>
+     </property>
+     <addaction name="actionMaximize"/>
+     <addaction name="actionFloat"/>
+     <addaction name="actionFloat_Groupe"/>
+     <addaction name="actionDock"/>
+     <addaction name="actionDock_Groupe"/>
+     <addaction name="separator"/>
+     <addaction name="actionClone_Document"/>
+     <addaction name="actionNew_Document_Tab_Groupe"/>
+     <addaction name="actionCollapse_Document_Tab_Groupe"/>
+    </widget>
+    <addaction name="actionProperties"/>
+    <addaction name="actionScriptingShell"/>
+    <addaction name="actionCoordinates"/>
+    <addaction name="actionTopology_View"/>
+    <addaction name="actionVisualizer"/>
+    <addaction name="actionMessages"/>
+    <addaction name="actionNavigator"/>
+    <addaction name="menuConfigure_Window"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Edit"/>
+   <addaction name="menu_Script"/>
+   <addaction name="menu_Tools"/>
+   <addaction name="menu_Window"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QToolBar" name="kinematicToolBar">
+   <property name="windowTitle">
+    <string>Simulation</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPlot"/>
+   <addaction name="actionScale_Model"/>
+   <addaction name="actionInverse_Kinematics"/>
+   <addaction name="actionInverse_Dynamics"/>
+   <addaction name="actionStatic_Optimization"/>
+   <addaction name="actionReduce_Residuals"/>
+   <addaction name="actionCompute_Muscle_Controle"/>
+   <addaction name="actionForward_Dynamics"/>
+   <addaction name="actionAnalyze"/>
+   <addaction name="separator"/>
+   <addaction name="actionConvert_Files"/>
+   <addaction name="separator"/>
+   <addaction name="actionUser_Plugins"/>
+  </widget>
+  <widget class="QDockWidget" name="messagesDock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>1</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>91</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Messages</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_9">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="leftMargin">
+      <number>2</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>2</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="plainText">
+        <string>&gt; the default output for the application</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="navigatorDock">
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>129</height>
+    </size>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/list-unordered.png</normaloff>:/Data/Images/DefaultIcon/list-unordered.png</iconset>
+   </property>
+   <property name="windowTitle">
+    <string>Navigator</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="treeContents">
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>1</number>
+     </property>
+     <property name="topMargin">
+      <number>1</number>
+     </property>
+     <property name="rightMargin">
+      <number>1</number>
+     </property>
+     <property name="bottomMargin">
+      <number>1</number>
+     </property>
+     <item>
+      <widget class="QTreeView" name="navigatorTreeView">
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
+       <property name="headerHidden">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="propertiesDock">
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>1</number>
+     </property>
+     <property name="topMargin">
+      <number>1</number>
+     </property>
+     <property name="rightMargin">
+      <number>1</number>
+     </property>
+     <property name="bottomMargin">
+      <number>1</number>
+     </property>
+     <item>
+      <widget class="QTableView" name="tableView"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="scriptingDock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>1</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>218</width>
+     <height>193</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Scripting</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>output</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QPlainTextEdit" name="plainTextEdit_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string>&gt; m= getCurrentModel()</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="plainText">
+        <string>## script history
+#a =10
+# a
+10</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="topologyDock">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>52</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Topologie</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="fileToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionOpen_Model"/>
+   <addaction name="actionLoad_Motion"/>
+   <addaction name="separator"/>
+   <addaction name="actionClose_Model"/>
+   <addaction name="actionClose_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionSave_Model"/>
+   <addaction name="actionSave_Model_As"/>
+   <addaction name="actionSave_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionPreview_Experement_Data"/>
+   <addaction name="actionE_xit"/>
+  </widget>
+  <widget class="QToolBar" name="scriptToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionRun"/>
+   <addaction name="separator"/>
+   <addaction name="actionSave_Current_Script"/>
+   <addaction name="actionRun_Current_Script"/>
+  </widget>
+  <widget class="QToolBar" name="simulationToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionOpen_Model">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-add.png</normaloff>:/Data/Images/DefaultIcon/file-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Model...</string>
+   </property>
+  </action>
+  <action name="actionLoad_Motion">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/connect.png</normaloff>:/Data/Images/DefaultIcon/connect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Load Motion...</string>
+   </property>
+  </action>
+  <action name="actionRecent_Files">
+   <property name="text">
+    <string>Recent Files</string>
+   </property>
+  </action>
+  <action name="actionClose_Model">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-remove.png</normaloff>:/Data/Images/DefaultIcon/file-remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close Model</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/files.png</normaloff>:/Data/Images/DefaultIcon/files.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionSave_Model">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/save.png</normaloff>:/Data/Images/DefaultIcon/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Model...</string>
+   </property>
+  </action>
+  <action name="actionSave_Model_As">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/file-download-alt.png</normaloff>:/Data/Images/DefaultIcon/file-download-alt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Model As...</string>
+   </property>
+  </action>
+  <action name="actionSave_All">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/files.png</normaloff>:/Data/Images/DefaultIcon/files.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save All</string>
+   </property>
+  </action>
+  <action name="actionPreview_Experement_Data">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/presentation.png</normaloff>:/Data/Images/DefaultIcon/presentation.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preview Experement Data</string>
+   </property>
+  </action>
+  <action name="actionE_xit">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/logout.png</normaloff>:/Data/Images/DefaultIcon/logout.png</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionExcitations">
+   <property name="text">
+    <string>Excitations...</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences...</string>
+   </property>
+  </action>
+  <action name="actionFile_xml">
+   <property name="text">
+    <string>File (.xml)...</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/code.png</normaloff>:/Data/Images/DefaultIcon/code.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionOpen_Recent">
+   <property name="text">
+    <string>Open Recent...</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-play.png</normaloff>:/Data/Images/DefaultIcon/MD-play.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run...</string>
+   </property>
+  </action>
+  <action name="actionRun_Recent">
+   <property name="text">
+    <string>Run Recent...</string>
+   </property>
+  </action>
+  <action name="actionSave_Current_Script">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/save.png</normaloff>:/Data/Images/DefaultIcon/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Current Script...</string>
+   </property>
+  </action>
+  <action name="actionRun_Current_Script">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run Current Script...</string>
+   </property>
+  </action>
+  <action name="actionPlot">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/axis-x-y.png</normaloff>:/Data/Images/DefaultIcon/axis-x-y.png</iconset>
+   </property>
+   <property name="text">
+    <string>Plot</string>
+   </property>
+  </action>
+  <action name="actionScale_Model">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/4-direction.png</normaloff>:/Data/Images/DefaultIcon/4-direction.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scale Model...</string>
+   </property>
+  </action>
+  <action name="actionInverse_Kinematics">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/3D-sphere.png</normaloff>:/Data/Images/DefaultIcon/3D-sphere.png</iconset>
+   </property>
+   <property name="text">
+    <string>Inverse Kinematics...</string>
+   </property>
+  </action>
+  <action name="actionInverse_Dynamics">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/bicycle.png</normaloff>:/Data/Images/DefaultIcon/bicycle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Inverse Dynamics</string>
+   </property>
+  </action>
+  <action name="actionStatic_Optimization">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-knob-increase.png</normaloff>:/Data/Images/DefaultIcon/MD-knob-increase.png</iconset>
+   </property>
+   <property name="text">
+    <string>Static Optimization...</string>
+   </property>
+  </action>
+  <action name="actionReduce_Residuals">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-3-down.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-down.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reduce Residuals...</string>
+   </property>
+  </action>
+  <action name="actionCompute_Muscle_Controle">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/controls.png</normaloff>:/Data/Images/DefaultIcon/controls.png</iconset>
+   </property>
+   <property name="text">
+    <string>Compute Muscle Controle...</string>
+   </property>
+  </action>
+  <action name="actionForward_Dynamics">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-fast-forward.png</normaloff>:/Data/Images/DefaultIcon/MD-fast-forward.png</iconset>
+   </property>
+   <property name="text">
+    <string>Forward Dynamics...</string>
+   </property>
+  </action>
+  <action name="actionAnalyze">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/search-advanced.png</normaloff>:/Data/Images/DefaultIcon/search-advanced.png</iconset>
+   </property>
+   <property name="text">
+    <string>Analyze...</string>
+   </property>
+  </action>
+  <action name="actionConvert_Files">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-circular-alt-1.png</normaloff>:/Data/Images/DefaultIcon/arrow-circular-alt-1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Convert Files ...</string>
+   </property>
+  </action>
+  <action name="actionUser_Plugins">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/plugin.png</normaloff>:/Data/Images/DefaultIcon/plugin.png</iconset>
+   </property>
+   <property name="text">
+    <string>User Plugins</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="text">
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionScriptingShell">
+   <property name="text">
+    <string>ScriptingShell</string>
+   </property>
+  </action>
+  <action name="actionCoordinates">
+   <property name="text">
+    <string>Coordinates</string>
+   </property>
+  </action>
+  <action name="actionTopology_View">
+   <property name="text">
+    <string>Topology View</string>
+   </property>
+  </action>
+  <action name="actionVisualizer">
+   <property name="text">
+    <string>Visualizer</string>
+   </property>
+  </action>
+  <action name="actionMessages">
+   <property name="text">
+    <string>Messages</string>
+   </property>
+  </action>
+  <action name="actionNavigator">
+   <property name="text">
+    <string>Navigator</string>
+   </property>
+  </action>
+  <action name="actionMaximize">
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+  </action>
+  <action name="actionFloat">
+   <property name="text">
+    <string>Float</string>
+   </property>
+  </action>
+  <action name="actionFloat_Groupe">
+   <property name="text">
+    <string>Float Groupe</string>
+   </property>
+  </action>
+  <action name="actionDock">
+   <property name="text">
+    <string>Dock</string>
+   </property>
+  </action>
+  <action name="actionDock_Groupe">
+   <property name="text">
+    <string>Dock Groupe</string>
+   </property>
+  </action>
+  <action name="actionClone_Document">
+   <property name="text">
+    <string>Clone Document</string>
+   </property>
+  </action>
+  <action name="actionNew_Document_Tab_Groupe">
+   <property name="text">
+    <string>New Document Tab Groupe</string>
+   </property>
+  </action>
+  <action name="actionCollapse_Document_Tab_Groupe">
+   <property name="text">
+    <string>Collapse Document Tab Groupe</string>
+   </property>
+  </action>
+  <action name="actionOnline_Help">
+   <property name="text">
+    <string>Online Help</string>
+   </property>
+  </action>
+  <action name="actionUser_s_Guide">
+   <property name="text">
+    <string>User's Guide</string>
+   </property>
+  </action>
+  <action name="actionExemples_Tutorials">
+   <property name="text">
+    <string>Exemples &amp;&amp; Tutorials</string>
+   </property>
+  </action>
+  <action name="actionXML_Browser">
+   <property name="text">
+    <string>XML Browser</string>
+   </property>
+  </action>
+  <action name="actionDoxygen">
+   <property name="text">
+    <string>Doxygen</string>
+   </property>
+  </action>
+  <action name="actionScripting_help">
+   <property name="text">
+    <string>Scripting help</string>
+   </property>
+  </action>
+  <action name="actionReport_Bug">
+   <property name="text">
+    <string>Report Bug</string>
+   </property>
+  </action>
+  <action name="actionRequest_Feature">
+   <property name="text">
+    <string>Request Feature</string>
+   </property>
+  </action>
+  <action name="actionAbout_Opensim">
+   <property name="text">
+    <string>About Opensim</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header>QtWebEngineWidgets/qwebengineview.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>OpenGLVisualizer</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">Visualizer/openglvisualizer.h</header>
+  </customwidget>
+  <customwidget>
+   <class>VisualizerVTK</class>
+   <extends>QWidget</extends>
+   <header location="global">Visualizer/VisualizerVTK.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
