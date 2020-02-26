@@ -692,5 +692,6 @@
         <file>Data/Images/Nodes/torqueNode.png</file>
         <file>Data/Images/Nodes/wrap.png</file>
         <file>Data/Images/Nodes/wrapNode.png</file>
+        <file>Data/Images/View/skybox1.png</file>
     </qresource>
 </RCC>

@@ -1,5 +1,7 @@
 #include "simulationtoolswidget.h"
 #include "ui_simulationtoolswidget.h"
+#include <QDebug>
+#include <QDragEnterEvent>
 
 SimulationToolsWidget::SimulationToolsWidget(QWidget *parent) :
     QWidget(parent),
@@ -12,4 +14,9 @@ SimulationToolsWidget::SimulationToolsWidget(QWidget *parent) :
 SimulationToolsWidget::~SimulationToolsWidget()
 {
     delete ui;
+}
+
+void SimulationToolsWidget::dragEnterEvent(QDragEnterEvent *event)
+{
+
 }

@@ -42,4 +42,6 @@ ModelNode::ModelNode(OpenSim::Model *model,NavigatorNode *parentNode,QObject *pa
     ProbesNode *probesNode = new ProbesNode(&model->updProbeSet(),this,this);
 
 
+    visualizerVTK->addOpenSimModel(model);
+
 }

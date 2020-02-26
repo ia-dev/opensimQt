@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <OpenSim/OpenSim.h>
+#include <Visualizer/VisualizerVTK.h>
 
 class NavigatorNode : public QObject
 {
@@ -17,6 +18,7 @@ public:
     NavigatorNode* parentNode;
     QList<NavigatorNode*> childNodes;
     QString iconPath;
+    static VisualizerVTK *visualizerVTK;
 signals:
 
 };

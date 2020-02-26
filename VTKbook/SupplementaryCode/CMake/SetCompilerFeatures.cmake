@@ -1,0 +1,27 @@
+function(SetCompilerFeatures TGT_NAME)
+  #----------------------------------------------------------
+  # Set C++11 compatibility.
+  #----------------------------------------------------------
+  if (CMAKE_VERSION VERSION_LESS "3.2")
+    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+      if(NOT(TGT_NAME STREQUAL ""))
+        target_compile_features(${TGT_NAME} PUBLIC ${needed_features})
+      endif()
+    elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+      # Pick a MSVC version that supports what you need.
+      if (MSVC_VERSION LESS "1800")
+        message(FATAL_ERROR "No suitable compiler exists.")
+      endif()
+    elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+       set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++" PARENT_SCOPE)
+   else()
+      message(FATAL_ERROR "No suitable compiler exists.")
+    elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+      set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++" PARENT_SCOPE)
+    else()
+      message(FATAL_ERROR "No suitable compiler exists.")
+    endif()
+  else()
+    target_compile_features(${TGT_NAME} PUBLIC ${needed_features})
+  endif()
+endfunction()

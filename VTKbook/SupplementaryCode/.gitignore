@@ -1,0 +1,39 @@
+*.[oa]
+*~
+
+# Temporary working directory
+Working/
+
+[bB]uild/
+[bB]uild[-_]*/
+*.kdev4
+*.kdev4/
+#[eE]xamples
+CMakeLists.txt.user
+.DS_Store
+
+# Python
+*.pyc
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+
+# Visual Studio
+*.pyproj
+*.pyproj.*
+*.sln
+*.suo
+.vs
+
+# QT Creator
+qtcreator-build/
+*-build/
+*.autosave
+
+# Microsoft shortcuts.
+*.lnk
+
+# Kubuntu
+.directory

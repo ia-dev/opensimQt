@@ -1,0 +1,4 @@
+/home/ibr/myGitHub/opensimQt/build/CMakeFiles/rebuild_cache.dir
+/home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI.dir
+/home/ibr/myGitHub/opensimQt/build/CMakeFiles/edit_cache.dir
+/home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI_autogen.dir
