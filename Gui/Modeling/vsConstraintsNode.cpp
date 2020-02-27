@@ -4,7 +4,7 @@
 vsConstraintsNode::vsConstraintsNode(OpenSim::ConstraintSet *constraintSet,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(constraintSet,"",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsConstraintsNode.png";
+    iconPath = ":/Data/Images/Nodes/constraintsNode.png";
 
     //loading constraints
     for (int i = 0; i < constraintSet->getSize(); ++i) {

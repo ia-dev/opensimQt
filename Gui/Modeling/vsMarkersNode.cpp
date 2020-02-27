@@ -4,7 +4,7 @@
 vsMarkersNode::vsMarkersNode(OpenSim::MarkerSet *markerSet,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(markerSet,"markers",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsMarkersNode.png";
+    iconPath = ":/Data/Images/Nodes/markersNode.png";
 
     //adding markers
     for (int i = 0; i < markerSet->getSize(); ++i) {

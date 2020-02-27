@@ -4,7 +4,7 @@
 vsActuatorsNode::vsActuatorsNode(OpenSim::ForceSet *forceSet,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(nullptr,"Actuators",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsActuatorsNode.png";
+    iconPath = ":/Data/Images/Nodes/actuatorsNode.png";
     //loading actuators
     for (int i = 0; i < forceSet->updActuators().getSize(); ++i) {
         OpenSim::Actuator *actuator = &forceSet->updActuators().get(i);

@@ -4,7 +4,7 @@
 vsBodiesNode::vsBodiesNode(OpenSim::BodySet *bodySet,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(bodySet,"Bodies",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsBodiesNode.png";
+    iconPath = ":/Data/Images/Nodes/bodiesNode.png";
 
     //loading bodies
     for (int i = 0; i < bodySet->getSize(); i++) {

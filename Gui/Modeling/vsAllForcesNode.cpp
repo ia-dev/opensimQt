@@ -7,7 +7,7 @@
 vsAllForcesNode::vsAllForcesNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(nullptr,"Forces",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsActuatorsNode.png";
+    iconPath = ":/Data/Images/Nodes/actuatorsNode.png";
 
     //loading Muscles
     model->updMuscles().setName("Muscles");

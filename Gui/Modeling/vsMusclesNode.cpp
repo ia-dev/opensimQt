@@ -5,7 +5,7 @@
 vsMusclesNode::vsMusclesNode(OpenSim::ForceSet *forceSet,OpenSim::Set<OpenSim::Muscle> *muscleSet,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(&forceSet->updMuscles(),"",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsMusclesNode.png";
+    iconPath = ":/Data/Images/Nodes/musclesNode.png";
 
     //loading muscles groupes
     OpenSim::Array<std::string> groups;

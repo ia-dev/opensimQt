@@ -4,7 +4,7 @@
 vsControlersNode::vsControlersNode(OpenSim::ControllerSet *controlSet ,vsNavigatorNode *parentNode,QObject *parent):
     vsNavigatorNode(controlSet,"",parentNode,parent)
 {
-    iconPath = ":/Data/Images/Nodes/vsConstraintsNode.png";
+    iconPath = ":/Data/Images/Nodes/constraintsNode.png";
 
     for (int i = 0; i < controlSet->getSize(); ++i) {
         OpenSim::Controller *control = &controlSet->get(i);
