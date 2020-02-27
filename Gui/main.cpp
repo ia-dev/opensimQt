@@ -1,11 +1,11 @@
-#include "OpenSimWidgets/mainwindow.h"
+#include "OpenSimWidgets/vsMainWindow.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    vsMainWindow w;
     w.showMaximized();
     return a.exec();
 }
