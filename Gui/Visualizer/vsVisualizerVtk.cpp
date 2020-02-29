@@ -204,11 +204,12 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
 
 //    auto geometryScale = mesh_transform.p();
 //    double geometryScaleDouble[] = {geometryScale.get(0),geometryScale.get(1),geometryScale.get(2)};
-    auto geometryPosition = mesh_transform.p();
-    double geometryPositionDouble[] = {geometryPosition.get(0),geometryPosition.get(1),geometryPosition.get(2)};
-    vtpActor->SetPosition(geometryPositionDouble);
+//    auto geometryPosition = mesh_transform.p();
+//    double geometryPositionDouble[] = {geometryPosition.get(0),geometryPosition.get(1),geometryPosition.get(2)};
+//    vtpActor->SetPosition(geometryPositionDouble);
     vtpActor->SetScale(scaleFactors);
 
+    vtpActor->SetUserMatrix(openSimToVtkTransform(mesh_transform));
     //geometry->getFrame().generateDecorations()
 
 
@@ -217,6 +218,17 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
     //renderer->ResetCamera(vtpActor->GetBounds());
     this->update();
     return  vtpActor;
+}
+
+vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
+{
+    vtkSmartPointer<vtkMatrix4x4> retMat = vtkSmartPointer<vtkMatrix4x4>::New();
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            retMat->SetElement(i,j,stkTransform.toMat44()[i][j]);
+        }
+    }
+    return  retMat;
 }
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)

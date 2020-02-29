@@ -25,6 +25,7 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
 
+    vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
 
     BackgroundType backgroundType() const;
