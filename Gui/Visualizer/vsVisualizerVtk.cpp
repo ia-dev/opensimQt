@@ -15,6 +15,7 @@
 #include <vtkXMLPolyDataReader.h>
 #include <vtkCubeSource.h>
 #include <vtkPlaneSource.h>
+#include <vtkSphereSource.h>
 #include <vtkMatrix4x4.h>
 #include <vtkImageReader2Factory.h>
 #include <vtkImageReader2.h>
@@ -69,6 +70,21 @@ void vsVisualizerVTK::renderingTest()
     renderer->AddActor(sphereActor);
 
 }
+
+void vsVisualizerVTK::getDGColor(const SimTK::DecorativeGeometry& geo,double *color_out)
+{
+    if(geo.getColor()[0] >= 0){
+        for (int i = 0; i < 3; ++i) {
+            color_out[i] = geo.getColor()[i];
+        }
+    }
+    else {
+        for (int i = 0; i < 3; ++i) {
+            color_out[i] = 1;
+        }
+    }
+}
+
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderGeometry(OpenSim::Geometry *geometry)
 {
@@ -220,6 +236,29 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
     return  vtpActor;
 }
 
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::DecorativeSphere &sphere, SimTK::Transform sphereTransform, double *scaleFactors)
+{
+    auto sphereSource = vtkSmartPointer<vtkSphereSource>::New();
+    sphereSource->SetRadius(sphere.getRadius());
+    sphereSource->Update();
+
+    auto sphereMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    sphereMapper->SetInputConnection(sphereSource->GetOutputPort());
+
+    auto sphereActor = vtkSmartPointer<vtkActor>::New();
+    sphereActor->SetMapper(sphereMapper);
+    double colorTable[3];
+    getDGColor(sphere,colorTable);
+    sphereActor->GetProperty()->SetColor(colorTable);
+    sphereActor->GetProperty()->SetOpacity(sphere.getOpacity()<0?1:sphere.getOpacity());
+
+    sphereActor->SetScale(scaleFactors);
+    sphereActor->SetUserMatrix(openSimToVtkTransform(sphereTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(sphereActor);
+    return sphereActor;
+}
+
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
 {
     vtkSmartPointer<vtkMatrix4x4> retMat = vtkSmartPointer<vtkMatrix4x4>::New();
@@ -238,13 +277,14 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
-    model->updDisplayHints().set_show_frames(true);
-    model->updDisplayHints().set_show_path_geometry(true);
-    model->updDisplayHints().set_show_contact_geometry(true);
-    model->updDisplayHints().set_show_wrap_geometry(true);
-    model->updDisplayHints().set_show_markers(true);
-    model->updDisplayHints().set_show_path_points(true);
-    model->updDisplayHints().set_show_debug_geometry(true);
+
+//    model->updDisplayHints().set_show_frames(true);
+//    model->updDisplayHints().set_show_path_geometry(true);
+//    model->updDisplayHints().set_show_contact_geometry(true);
+//    model->updDisplayHints().set_show_wrap_geometry(true);
+//    model->updDisplayHints().set_show_markers(true);
+//    model->updDisplayHints().set_show_path_points(true);
+//    model->updDisplayHints().set_show_debug_geometry(true);
     const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
 
     vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());

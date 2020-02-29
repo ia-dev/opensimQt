@@ -18,12 +18,17 @@ class vsVisualizerVTK : public QVTKOpenGLWidget
 public:
     vsVisualizerVTK(QWidget *parent = nullptr);
     void renderingTest();
+
+    void getDGColor(const SimTK::DecorativeGeometry& geo,double *color_out);
+
     vtkSmartPointer<vtkActor> vsVisualizerVTK::renderGeometry(OpenSim::Geometry *geometry);
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
     vtkSmartPointer<vtkActor> addSkyBox();
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
+    vtkSmartPointer<vtkActor> renderDecorativeSphere(const SimTK::DecorativeSphere& sphere, SimTK::Transform sphereTransform,
+                                                     double *scaleFactors);
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);

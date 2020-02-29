@@ -34,6 +34,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //ui->Visualizer->setUrl(QUrl("http://www.facebook.com"));
     //ui->Visualizer->show();
 
+    //setting the model preferences
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("F:/FL/3/opensim-gui/opensim-models/Geometry");
+
 }
 
 vsMainWindow::~vsMainWindow()

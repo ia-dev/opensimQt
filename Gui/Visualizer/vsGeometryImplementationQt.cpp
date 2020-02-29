@@ -29,6 +29,7 @@ void vsGeometryImplementationQt::calculateScaleFactors(double *out,const SimTK::
     }
 }
 
+
 void vsGeometryImplementationQt::implementPointGeometry(const SimTK::DecorativePoint &geom)
 {
     qDebug() << "loading qt geometry Point";
@@ -57,6 +58,9 @@ void vsGeometryImplementationQt::implementCircleGeometry(const SimTK::Decorative
 void vsGeometryImplementationQt::implementSphereGeometry(const SimTK::DecorativeSphere &geom)
 {
     qDebug() << "loading qt geometry Sphere";
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeSphere(geom,calculateTransformForGeo(geom),scal_factores);
 }
 
 void vsGeometryImplementationQt::implementEllipsoidGeometry(const SimTK::DecorativeEllipsoid &geom)

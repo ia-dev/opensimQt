@@ -19,6 +19,7 @@ public:
 
     SimTK::Transform calculateTransformForGeo(const SimTK::DecorativeGeometry &geo);
     void calculateScaleFactors(double *out,const SimTK::DecorativeGeometry &geo);
+
     // DecorativeGeometryImplementation interface
 public:
     virtual void implementPointGeometry(const SimTK::DecorativePoint &geom) override;
