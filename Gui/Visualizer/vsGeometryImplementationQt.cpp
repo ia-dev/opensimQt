@@ -37,6 +37,9 @@ void vsGeometryImplementationQt::implementPointGeometry(const SimTK::DecorativeP
 
 void vsGeometryImplementationQt::implementLineGeometry(const SimTK::DecorativeLine &geom)
 {
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores);
     qDebug() << "loading qt geometry Line";
 }
 

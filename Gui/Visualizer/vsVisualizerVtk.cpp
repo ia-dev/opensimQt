@@ -16,6 +16,7 @@
 #include <vtkCubeSource.h>
 #include <vtkPlaneSource.h>
 #include <vtkSphereSource.h>
+#include <vtkLineSource.h>
 #include <vtkMatrix4x4.h>
 #include <vtkImageReader2Factory.h>
 #include <vtkImageReader2.h>
@@ -231,7 +232,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
 
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
-    //renderer->ResetCamera(vtpActor->GetBounds());
+    renderer->ResetCamera(vtpActor->GetBounds());
     this->update();
     return  vtpActor;
 }
@@ -257,6 +258,31 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::D
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(sphereActor);
     return sphereActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::DecorativeLine &line, SimTK::Transform lineTransform, double *scaleFactors)
+{
+    auto lineSource = vtkSmartPointer<vtkLineSource>::New();
+    lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
+    lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
+    lineSource->Update();
+
+    auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    lineMapper->SetInputConnection(lineSource->GetOutputPort());
+
+    auto lineActor = vtkSmartPointer<vtkActor>::New();
+    lineActor->SetMapper(lineMapper);
+    double colorTable[3];
+    getDGColor(line,colorTable);
+    lineActor->GetProperty()->SetColor(colorTable);
+    lineActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
+    lineActor->GetProperty()->SetLineWidth(line.getLineThickness()<0?1:line.getLineThickness());
+
+    lineActor->SetScale(scaleFactors);
+    lineActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(lineActor);
+    return lineActor;
 }
 
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
