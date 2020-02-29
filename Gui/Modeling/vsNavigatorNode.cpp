@@ -10,7 +10,7 @@ vsNavigatorNode::vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayNa
     if(parentNode != nullptr)
         parentNode->childNodes.append(this);
     iconPath = ":/Data/Images/Nodes/bodyNode.png";
-    qDebug() << "visuazer vtk " <<  vsVisualizerVTK->objectName();
+    qDebug() << "visuazer vtk " <<  visualizerVTK->objectName();
 }
 
-vsVisualizerVTK* vsNavigatorNode::vsVisualizerVTK = nullptr;
+vsVisualizerVTK* vsNavigatorNode::visualizerVTK = nullptr;

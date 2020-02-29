@@ -38,14 +38,14 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     setBackgroundType(BackgroundType::GroundAndSky);
 
     //renderingTest();
-    addBox();
+    //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     //addGround();
     //addSkyBox();
     this->update();
 
     //setting the renderer for the navigator elements
-    vsNavigatorNode::vsVisualizerVTK = this;
+    vsNavigatorNode::visualizerVTK = this;
 
 
 }
@@ -185,6 +185,38 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(actor);
     return actor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK::DecorativeMeshFile &mesh
+                                                                    ,SimTK::Transform mesh_transform ,double *scaleFactors)
+{
+    const char *fileNameChar = mesh.getMeshFile().data();
+    qDebug() << "the vtp file path" << fileNameChar;
+    auto vtpFileReader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
+    vtpFileReader->SetFileName(fileNameChar);
+    vtpFileReader->Update();
+
+    auto vtpMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    vtpMapper->SetInputConnection(vtpFileReader->GetOutputPort());
+
+    auto vtpActor = vtkSmartPointer<vtkActor>::New();
+    vtpActor->SetMapper(vtpMapper);
+
+//    auto geometryScale = mesh_transform.p();
+//    double geometryScaleDouble[] = {geometryScale.get(0),geometryScale.get(1),geometryScale.get(2)};
+    auto geometryPosition = mesh_transform.p();
+    double geometryPositionDouble[] = {geometryPosition.get(0),geometryPosition.get(1),geometryPosition.get(2)};
+    vtpActor->SetPosition(geometryPositionDouble);
+    vtpActor->SetScale(scaleFactors);
+
+    //geometry->getFrame().generateDecorations()
+
+
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(vtpActor);
+    //renderer->ResetCamera(vtpActor->GetBounds());
+    this->update();
+    return  vtpActor;
 }
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)

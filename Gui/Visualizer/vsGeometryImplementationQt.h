@@ -15,8 +15,10 @@
 class vsGeometryImplementationQt : public SimTK::DecorativeGeometryImplementation
 {
 public:
-    vsGeometryImplementationQt(vsVisualizerVTK *vsVisualizerVTK,const SimTK::SimbodyMatterSubsystem& matter,const SimTK::State& state);
+    vsGeometryImplementationQt(vsVisualizerVTK *visualizerVTK,const SimTK::SimbodyMatterSubsystem& matter,const SimTK::State& state);
 
+    SimTK::Transform calculateTransformForGeo(const SimTK::DecorativeGeometry &geo);
+    void calculateScaleFactors(double *out,const SimTK::DecorativeGeometry &geo);
     // DecorativeGeometryImplementation interface
 public:
     virtual void implementPointGeometry(const SimTK::DecorativePoint &geom) override;
@@ -35,7 +37,7 @@ public:
     virtual void implementConeGeometry(const SimTK::DecorativeCone &geom) override;
 
 private:
-    vsVisualizerVTK *m_vsVisualizerVTK;
+    vsVisualizerVTK *m_visualizerVTK;
     const SimTK::State& m_state;
     const SimTK::SimbodyMatterSubsystem& m_matter;
 };

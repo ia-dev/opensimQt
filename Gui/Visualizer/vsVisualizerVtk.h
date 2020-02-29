@@ -22,6 +22,9 @@ public:
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
     vtkSmartPointer<vtkActor> addSkyBox();
+    vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
+                                                       SimTK::Transform mesh_transform, double *scaleFactors);
+
     void addOpenSimModel(OpenSim::Model *model);
 
     BackgroundType backgroundType() const;

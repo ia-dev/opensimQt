@@ -18,7 +18,7 @@ public:
     vsNavigatorNode* parentNode;
     QList<vsNavigatorNode*> childNodes;
     QString iconPath;
-    static vsVisualizerVTK *vsVisualizerVTK;
+    static vsVisualizerVTK *visualizerVTK;
 signals:
 
 };
