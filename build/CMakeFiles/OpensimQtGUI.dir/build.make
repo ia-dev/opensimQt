@@ -787,486 +787,486 @@ CMakeFiles/OpensimQtGUI.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/main.cpp -o CMakeFiles/OpensimQtGUI.dir/main.cpp.s
 
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/mainwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/mainwindow.cpp
-
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/mainwindow.cpp > CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/mainwindow.cpp -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/simulationtoolswidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/simulationtoolswidget.cpp
-
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/simulationtoolswidget.cpp > CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/simulationtoolswidget.cpp -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/actuatorsnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/actuatorsnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/actuatorsnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/actuatorsnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/allforcesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/allforcesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/allforcesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/allforcesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/bodiesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/bodiesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/bodiesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/bodiesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/constraintsnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/constraintsnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/constraintsnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/constraintsnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactforcesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactforcesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactforcesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactforcesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactgeometriesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactgeometriesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactgeometriesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/contactgeometriesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlersnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlersnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlersnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlersnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/controlnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/groundnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/groundnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/groundnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/groundnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/jointsnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/jointsnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/jointsnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/jointsnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/markersnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/markersnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/markersnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/markersnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/modelnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/modelnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/modelnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/modelnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclegroupenode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclegroupenode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclegroupenode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclegroupenode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/musclesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatormodel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatormodel.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatormodel.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatormodel.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatornode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatornode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatornode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/navigatornode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneactuatornode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneactuatornode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneactuatornode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneactuatornode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onebodynode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onebodynode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onebodynode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onebodynode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneconstraintnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneconstraintnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneconstraintnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneconstraintnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactforcenode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactforcenode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactforcenode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactforcenode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactgeometrynode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactgeometrynode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactgeometrynode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onecontactgeometrynode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onedofnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onedofnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onedofnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onedofnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneframenode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneframenode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneframenode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneframenode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onegeometrynode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onegeometrynode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onegeometrynode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onegeometrynode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onejointnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onejointnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onejointnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onejointnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemarkernode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemarkernode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemarkernode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemarkernode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemusclenode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemusclenode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemusclenode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onemusclenode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneotherforcenode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneotherforcenode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneotherforcenode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneotherforcenode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneprobnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneprobnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneprobnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/oneprobnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/onewrapobjectnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/onewrapobjectnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/onewrapobjectnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/onewrapobjectnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/otherforcesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/otherforcesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/otherforcesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/otherforcesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/probesnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/probesnode.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/probesnode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/probesnode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/VisualizerVTK.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/VisualizerVTK.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/VisualizerVTK.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/VisualizerVTK.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/geometryimplementationqt.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/geometryimplementationqt.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/geometryimplementationqt.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/geometryimplementationqt.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.s
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
-CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/openglvisualizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/openglvisualizer.cpp
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/openglvisualizer.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.i
-
-CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/openglvisualizer.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.s
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsMainWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsMainWindow.cpp
+
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsMainWindow.cpp > CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsMainWindow.cpp -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsSimulationtoolsWidget.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsSimulationtoolsWidget.cpp
+
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsSimulationtoolsWidget.cpp > CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/OpenSimWidgets/vsSimulationtoolsWidget.cpp -o CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsActuatorsNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsActuatorsNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsActuatorsNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsActuatorsNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsAllForcesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsAllForcesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsAllForcesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsAllForcesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsBodiesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsBodiesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsBodiesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsBodiesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsConstraintsNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsConstraintsNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsConstraintsNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsConstraintsNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactForcesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactForcesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactForcesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactForcesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactGeometriesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactGeometriesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactGeometriesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsContactGeometriesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlersNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlersNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlersNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsControlersNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsGroundNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsGroundNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsGroundNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsGroundNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsJointsNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsJointsNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsJointsNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsJointsNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMarkersNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMarkersNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMarkersNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMarkersNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsModelNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsModelNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsModelNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsModelNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMuscleGroupeNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMuscleGroupeNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMuscleGroupeNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMuscleGroupeNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMusclesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMusclesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMusclesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsMusclesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorModel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorModel.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorModel.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorModel.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsNavigatorNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneActuatorNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneActuatorNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneActuatorNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneActuatorNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneBodyNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneBodyNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneBodyNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneBodyNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneConstraintNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneConstraintNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneConstraintNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneConstraintNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactForceNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactForceNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactForceNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactForceNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactGeometryNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactGeometryNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactGeometryNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneContactGeometryNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneDofNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneDofNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneDofNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneDofNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneFrameNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneFrameNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneFrameNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneFrameNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneGeometryNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneGeometryNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneGeometryNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneGeometryNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneJointNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneJointNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneJointNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneJointNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMarkerNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMarkerNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMarkerNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMarkerNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMuscleNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMuscleNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMuscleNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneMuscleNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneOtherForceNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneOtherForceNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneOtherForceNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneOtherForceNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneProbNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneProbNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneProbNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneProbNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneWrapObjectNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneWrapObjectNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneWrapObjectNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOneWrapObjectNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOtherForcesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOtherForcesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOtherForcesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsOtherForcesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsProbesNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsProbesNode.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsProbesNode.cpp > CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Modeling/vsProbesNode.cpp -o CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsGeometryImplementationQt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsGeometryImplementationQt.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsGeometryImplementationQt.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsGeometryImplementationQt.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsOpenGLVisualizer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsOpenGLVisualizer.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsOpenGLVisualizer.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsOpenGLVisualizer.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.s
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o: /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsVisualizerVTK.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o -c /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsVisualizerVTK.cpp
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsVisualizerVTK.cpp > CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.i
+
+CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ibr/myGitHub/opensimQt/Gui/Visualizer/vsVisualizerVTK.cpp -o CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.s
 
 CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
 CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp.o: OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp
@@ -1285,43 +1285,43 @@ CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp.s: 
 OpensimQtGUI_OBJECTS = \
 "CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/OpensimQtGUI.dir/main.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o" \
-"CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o" \
+"CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o" \
 "CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp.o"
 
 # External object files for target OpensimQtGUI
@@ -1329,43 +1329,43 @@ OpensimQtGUI_EXTERNAL_OBJECTS =
 
 OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/mocs_compilation.cpp.o
 OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/main.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/mainwindow.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/simulationtoolswidget.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/actuatorsnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/allforcesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/bodiesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/constraintsnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/contactforcesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/contactgeometriesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/controlersnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/controlnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/groundnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/jointsnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/markersnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/modelnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/musclegroupenode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/musclesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/navigatormodel.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/navigatornode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/oneactuatornode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onebodynode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/oneconstraintnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactforcenode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onecontactgeometrynode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onedofnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/oneframenode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onegeometrynode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onejointnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onemarkernode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onemusclenode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/oneotherforcenode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/oneprobnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/onewrapobjectnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/otherforcesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/probesnode.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/VisualizerVTK.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/geometryimplementationqt.cpp.o
-OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/openglvisualizer.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsMainWindow.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpenSimWidgets/vsSimulationtoolsWidget.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsActuatorsNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsAllForcesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsBodiesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsConstraintsNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactForcesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsContactGeometriesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsControlersNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsGroundNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsJointsNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsMarkersNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsModelNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsMuscleGroupeNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsMusclesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorModel.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsNavigatorNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneActuatorNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneBodyNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneConstraintNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactForceNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneContactGeometryNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneDofNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneFrameNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneGeometryNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneJointNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMarkerNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneMuscleNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneOtherForceNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneProbNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOneWrapObjectNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsOtherForcesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Modeling/vsProbesNode.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/vsGeometryImplementationQt.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/vsOpenGLVisualizer.cpp.o
+OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/Visualizer/vsVisualizerVTK.cpp.o
 OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp.o
 OpensimQtGUI: CMakeFiles/OpensimQtGUI.dir/build.make
 OpensimQtGUI: /home/ibr/sw/Qt5.9.5/5.9.5/gcc_64/lib/libQt5WebEngine.so.5.9.5

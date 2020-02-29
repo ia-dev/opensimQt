@@ -1,0 +1,40 @@
+Updating Model file from 20303 to latest format...
+Loaded model arm26 from file /home/ibr/myGitHub/opensimQt/Gui/vsWorkSpace/Models/Arm26/arm26.osim
+Couldn't find file 'ground_ribs.vtp'.
+Couldn't find file 'ground_spine.vtp'.
+Couldn't find file 'ground_skull.vtp'.
+Couldn't find file 'ground_jaw.vtp'.
+Couldn't find file 'ground_r_clavicle.vtp'.
+Couldn't find file 'ground_r_scapula.vtp'.
+Couldn't find file 'arm_r_humerus.vtp'.
+Couldn't find file 'arm_r_ulna.vtp'.
+Couldn't find file 'arm_r_radius.vtp'.
+Couldn't find file 'arm_r_lunate.vtp'.
+Couldn't find file 'arm_r_scaphoid.vtp'.
+Couldn't find file 'arm_r_pisiform.vtp'.
+Couldn't find file 'arm_r_triquetrum.vtp'.
+Couldn't find file 'arm_r_capitate.vtp'.
+Couldn't find file 'arm_r_trapezium.vtp'.
+Couldn't find file 'arm_r_trapezoid.vtp'.
+Couldn't find file 'arm_r_hamate.vtp'.
+Couldn't find file 'arm_r_1mc.vtp'.
+Couldn't find file 'arm_r_2mc.vtp'.
+Couldn't find file 'arm_r_3mc.vtp'.
+Couldn't find file 'arm_r_4mc.vtp'.
+Couldn't find file 'arm_r_5mc.vtp'.
+Couldn't find file 'arm_r_thumbprox.vtp'.
+Couldn't find file 'arm_r_thumbdist.vtp'.
+Couldn't find file 'arm_r_2proxph.vtp'.
+Couldn't find file 'arm_r_2midph.vtp'.
+Couldn't find file 'arm_r_2distph.vtp'.
+Couldn't find file 'arm_r_3proxph.vtp'.
+Couldn't find file 'arm_r_3midph.vtp'.
+Couldn't find file 'arm_r_3distph.vtp'.
+Couldn't find file 'arm_r_4proxph.vtp'.
+Couldn't find file 'arm_r_4midph.vtp'.
+Couldn't find file 'arm_r_4distph.vtp'.
+Couldn't find file 'arm_r_5proxph.vtp'.
+Couldn't find file 'arm_r_5midph.vtp'.
+Couldn't find file 'arm_r_5distph.vtp'.
+ControllerSet 'Controllers' was renamed and is being reset to 'controllerset'.
+ComponentSet 'MiscComponents' was renamed and is being reset to 'componentset'.
