@@ -17,6 +17,8 @@
 #include <vtkPlaneSource.h>
 #include <vtkSphereSource.h>
 #include <vtkLineSource.h>
+#include <vtkCylinderSource.h>
+#include <vtkTubeFilter.h>
 #include <vtkMatrix4x4.h>
 #include <vtkImageReader2Factory.h>
 #include <vtkImageReader2.h>
@@ -267,6 +269,14 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
     lineSource->Update();
 
+//    auto lineSource = vtkSmartPointer<vtkCylinderSource>::New();
+//    lineSource->SetCenter(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
+//    //calculating hight
+//    lineSource->SetRadius(line.getLineThickness());
+//    auto pointDiff = line.getPoint2() - line.getPoint1();
+
+    lineSource->Update();
+
     auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
     lineMapper->SetInputConnection(lineSource->GetOutputPort());
 
@@ -276,12 +286,31 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     getDGColor(line,colorTable);
     lineActor->GetProperty()->SetColor(colorTable);
     lineActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
-    lineActor->GetProperty()->SetLineWidth(line.getLineThickness()<0?1:line.getLineThickness());
-
+    //lineActor->GetProperty()->SetLineWidth(line.getLineThickness()<0?1:line.getLineThickness());
     lineActor->SetScale(scaleFactors);
     lineActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
+
+    vtkSmartPointer<vtkTubeFilter> tubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
+    tubeFilter->SetInputConnection(lineSource->GetOutputPort());
+    tubeFilter->SetRadius(0.006);
+    tubeFilter->SetVaryRadiusToVaryRadiusOff();
+    tubeFilter->SetNumberOfSides(60);
+    tubeFilter->Update();
+
+    qDebug() << "the tickness of the line" << line.getLineThickness();
+
+    vtkSmartPointer<vtkPolyDataMapper> tubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    tubeMapper->SetInputConnection(tubeFilter->GetOutputPort());
+
+    vtkSmartPointer<vtkActor> tubeActor = vtkSmartPointer<vtkActor>::New();
+    tubeActor->SetMapper(tubeMapper);
+    tubeActor->GetProperty()->SetColor(colorTable);
+    tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
+    tubeActor->SetScale(scaleFactors);
+
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(lineActor);
+    renderer->AddActor(tubeActor);
     return lineActor;
 }
 
@@ -332,13 +361,13 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     }
 
 
-    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
-        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
-    }
-    qDebug() << "the size of the geometry array > " << compDecorations.size();
-    for (unsigned i = 0; i < compDecorations.size(); ++i) {
-        compDecorations.at(i).implementGeometry(geoImp);
-    }
+//    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
+//        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
+//    }
+//    qDebug() << "the size of the geometry array > " << compDecorations.size();
+//    for (unsigned i = 0; i < compDecorations.size(); ++i) {
+//        compDecorations.at(i).implementGeometry(geoImp);
+//    }
 
 
 }
