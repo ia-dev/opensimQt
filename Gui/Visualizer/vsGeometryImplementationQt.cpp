@@ -45,6 +45,9 @@ void vsGeometryImplementationQt::implementLineGeometry(const SimTK::DecorativeLi
 
 void vsGeometryImplementationQt::implementBrickGeometry(const SimTK::DecorativeBrick &geom)
 {
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeBrick(geom,calculateTransformForGeo(geom),scal_factores);
     qDebug() << "loading qt geometry Brick";
 }
 
@@ -58,6 +61,9 @@ void vsGeometryImplementationQt::implementCylinderGeometry(const SimTK::Decorati
 
 void vsGeometryImplementationQt::implementCircleGeometry(const SimTK::DecorativeCircle &geom)
 {
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeCircle(geom,calculateTransformForGeo(geom),scal_factores);
     qDebug() << "loading qt geometry Cercle";
 }
 
@@ -71,6 +77,9 @@ void vsGeometryImplementationQt::implementSphereGeometry(const SimTK::Decorative
 
 void vsGeometryImplementationQt::implementEllipsoidGeometry(const SimTK::DecorativeEllipsoid &geom)
 {
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeEllipsoid(geom,calculateTransformForGeo(geom),scal_factores);
     qDebug() << "loading qt geometry Ellipsoid";
 }
 

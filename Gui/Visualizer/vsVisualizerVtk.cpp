@@ -18,6 +18,9 @@
 #include <vtkSphereSource.h>
 #include <vtkLineSource.h>
 #include <vtkCylinderSource.h>
+#include <vtkRegularPolygonSource.h>
+#include <vtkParametricEllipsoid.h>
+#include <vtkParametricFunctionSource.h>
 #include <vtkTubeFilter.h>
 #include <vtkMatrix4x4.h>
 #include <vtkImageReader2Factory.h>
@@ -262,6 +265,36 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::D
     return sphereActor;
 }
 
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeEllipsoid(const SimTK::DecorativeEllipsoid &ellipsoid, SimTK::Transform ellipsoidTransform, double *scaleFactors)
+{
+    auto ellipsoidParameter = vtkSmartPointer<vtkParametricEllipsoid>::New();
+    ellipsoidParameter->SetXRadius(ellipsoid.getRadii()[0]);
+    ellipsoidParameter->SetYRadius(ellipsoid.getRadii()[1]);
+    ellipsoidParameter->SetZRadius(ellipsoid.getRadii()[2]);
+
+
+
+    auto ellipsoidSource = vtkSmartPointer<vtkParametricFunctionSource>::New();
+    ellipsoidSource->SetParametricFunction(ellipsoidParameter);
+    ellipsoidSource->Update();
+
+    auto ellipsoidMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    ellipsoidMapper->SetInputConnection(ellipsoidSource->GetOutputPort());
+
+    auto ellipsoidActor = vtkSmartPointer<vtkActor>::New();
+    ellipsoidActor->SetMapper(ellipsoidMapper);
+    double colorTable[3];
+    getDGColor(ellipsoid,colorTable);
+    ellipsoidActor->GetProperty()->SetColor(colorTable);
+    ellipsoidActor->GetProperty()->SetOpacity(ellipsoid.getOpacity()<0?1:ellipsoid.getOpacity());
+
+    ellipsoidActor->SetScale(scaleFactors);
+    ellipsoidActor->SetUserMatrix(openSimToVtkTransform(ellipsoidTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(ellipsoidActor);
+    return ellipsoidActor;
+}
+
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::DecorativeLine &line, SimTK::Transform lineTransform, double *scaleFactors)
 {
     auto lineSource = vtkSmartPointer<vtkLineSource>::New();
@@ -338,6 +371,56 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCylender(const SimTK:
     return cylenderActor;
 }
 
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeBrick(const SimTK::DecorativeBrick &brick, SimTK::Transform brickTransform, double *scaleFactors)
+{
+    auto brickSource = vtkSmartPointer<vtkCubeSource>::New();
+    brickSource->SetXLength(brick.getHalfLengths()[0]);
+    brickSource->SetYLength(brick.getHalfLengths()[1]);
+    brickSource->SetZLength(brick.getHalfLengths()[2]);
+    brickSource->Update();
+
+    auto brickMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    brickMapper->SetInputConnection(brickSource->GetOutputPort());
+
+    auto brickActor = vtkSmartPointer<vtkActor>::New();
+    brickActor->SetMapper(brickMapper);
+    double colorTable[3];
+    getDGColor(brick,colorTable);
+    brickActor->GetProperty()->SetColor(colorTable);
+    brickActor->GetProperty()->SetOpacity(brick.getOpacity()<0?1:brick.getOpacity());
+
+    brickActor->SetScale(scaleFactors);
+    brickActor->SetUserMatrix(openSimToVtkTransform(brickTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(brickActor);
+    return brickActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCircle(const SimTK::DecorativeCircle &circle, SimTK::Transform brickTransform, double *scaleFactors)
+{
+    auto circleSource = vtkSmartPointer<vtkRegularPolygonSource>::New();
+
+    circleSource->SetRadius(circle.getRadius());
+
+    circleSource->Update();
+
+    auto circleMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    circleMapper->SetInputConnection(circleSource->GetOutputPort());
+
+    auto circleActor = vtkSmartPointer<vtkActor>::New();
+    circleActor->SetMapper(circleMapper);
+    double colorTable[3];
+    getDGColor(circle,colorTable);
+    circleActor->GetProperty()->SetColor(colorTable);
+    circleActor->GetProperty()->SetOpacity(circle.getOpacity()<0?1:circle.getOpacity());
+
+    circleActor->SetScale(scaleFactors);
+    circleActor->SetUserMatrix(openSimToVtkTransform(brickTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(circleActor);
+    return circleActor;
+}
+
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
 {
     vtkSmartPointer<vtkMatrix4x4> retMat = vtkSmartPointer<vtkMatrix4x4>::New();
@@ -357,7 +440,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
 
-//    model->updDisplayHints().set_show_frames(true);
+    model->updDisplayHints().set_show_frames(true);
 //    model->updDisplayHints().set_show_path_geometry(true);
 //    model->updDisplayHints().set_show_contact_geometry(true);
 //    model->updDisplayHints().set_show_wrap_geometry(true);
