@@ -376,7 +376,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="OpenSimWidgets/vsMainwindow.cpp" line="47"/>
+        <location filename="OpenSimWidgets/vsMainwindow.cpp" line="50"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
