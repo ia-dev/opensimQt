@@ -50,6 +50,9 @@ void vsGeometryImplementationQt::implementBrickGeometry(const SimTK::DecorativeB
 
 void vsGeometryImplementationQt::implementCylinderGeometry(const SimTK::DecorativeCylinder &geom)
 {
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    m_visualizerVTK->renderDecorativeCylender(geom,calculateTransformForGeo(geom),scal_factores);
     qDebug() << "loading qt geometry Cylinder";
 }
 

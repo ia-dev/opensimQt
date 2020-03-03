@@ -31,6 +31,9 @@ public:
                                                      double *scaleFactors);
     vtkSmartPointer<vtkActor> renderDecorativeLine(const SimTK::DecorativeLine& line, SimTK::Transform lineTransform,
                                                    double *scaleFactors);
+    vtkSmartPointer<vtkActor> renderDecorativeCylender(const SimTK::DecorativeCylinder& cylender, SimTK::Transform cylanderTransform,
+                                                   double *scaleFactors);
+
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);

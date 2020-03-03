@@ -292,7 +292,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
 
     vtkSmartPointer<vtkTubeFilter> tubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
     tubeFilter->SetInputConnection(lineSource->GetOutputPort());
-    tubeFilter->SetRadius(0.006);
+    tubeFilter->SetRadius(0.004);
     tubeFilter->SetVaryRadiusToVaryRadiusOff();
     tubeFilter->SetNumberOfSides(60);
     tubeFilter->Update();
@@ -312,6 +312,30 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     renderer->AddActor(lineActor);
     renderer->AddActor(tubeActor);
     return lineActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCylender(const SimTK::DecorativeCylinder &cylender, SimTK::Transform cylanderTransform, double *scaleFactors)
+{
+    auto cylenderSource = vtkSmartPointer<vtkCylinderSource>::New();
+    cylenderSource->SetHeight(cylender.getHalfHeight()*2);
+    cylenderSource->SetRadius(cylender.getRadius());
+    cylenderSource->Update();
+
+    auto cylenderMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    cylenderMapper->SetInputConnection(cylenderSource->GetOutputPort());
+
+    auto cylenderActor = vtkSmartPointer<vtkActor>::New();
+    cylenderActor->SetMapper(cylenderMapper);
+    double colorTable[3];
+    getDGColor(cylender,colorTable);
+    cylenderActor->GetProperty()->SetColor(colorTable);
+    cylenderActor->GetProperty()->SetOpacity(cylender.getOpacity()<0?1:cylender.getOpacity());
+
+    cylenderActor->SetScale(scaleFactors);
+    cylenderActor->SetUserMatrix(openSimToVtkTransform(cylanderTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(cylenderActor);
+    return cylenderActor;
 }
 
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
