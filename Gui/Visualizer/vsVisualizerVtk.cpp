@@ -16,10 +16,15 @@
 #include <vtkCubeSource.h>
 #include <vtkPlaneSource.h>
 #include <vtkSphereSource.h>
+#include <vtkTextSource.h>
 #include <vtkLineSource.h>
+#include <vtkPointSource.h>
 #include <vtkCylinderSource.h>
+#include <vtkConeSource.h>
 #include <vtkRegularPolygonSource.h>
 #include <vtkParametricEllipsoid.h>
+#include <vtkArrowSource.h>
+#include <vtkParametricTorus.h>
 #include <vtkParametricFunctionSource.h>
 #include <vtkTubeFilter.h>
 #include <vtkMatrix4x4.h>
@@ -419,6 +424,129 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCircle(const SimTK::D
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(circleActor);
     return circleActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeTorus(const SimTK::DecorativeTorus &torus, SimTK::Transform torusTransform, double *scaleFactors)
+{
+    auto torusParameter = vtkSmartPointer<vtkParametricTorus>::New();
+    torusParameter->SetRingRadius(torus.getTubeRadius());
+    torusParameter->SetCrossSectionRadius(torus.getTorusRadius());
+
+
+
+    auto torusSource = vtkSmartPointer<vtkParametricFunctionSource>::New();
+    torusSource->SetParametricFunction(torusParameter);
+    torusSource->Update();
+
+    auto torusMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    torusMapper->SetInputConnection(torusSource->GetOutputPort());
+
+    auto torusActor = vtkSmartPointer<vtkActor>::New();
+    torusActor->SetMapper(torusMapper);
+    double colorTable[3];
+    getDGColor(torus,colorTable);
+    torusActor->GetProperty()->SetColor(colorTable);
+    torusActor->GetProperty()->SetOpacity(torus.getOpacity()<0?1:torus.getOpacity());
+
+    torusActor->SetScale(scaleFactors);
+    torusActor->SetUserMatrix(openSimToVtkTransform(torusTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(torusActor);
+    return torusActor;
+
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeText(const SimTK::DecorativeText &text, SimTK::Transform textTransform, double *scaleFactors)
+{
+    auto textSource = vtkSmartPointer<vtkTextSource>::New();
+    textSource->SetText(text.getText().data());
+    textSource->Update();
+
+    auto textMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    textMapper->SetInputConnection(textSource->GetOutputPort());
+
+    auto textActor = vtkSmartPointer<vtkActor>::New();
+    textActor->SetMapper(textMapper);
+    double colorTable[3];
+    getDGColor(text,colorTable);
+    textActor->GetProperty()->SetColor(colorTable);
+    textActor->GetProperty()->SetOpacity(text.getOpacity()<0?1:text.getOpacity());
+
+    textActor->SetScale(scaleFactors);
+    textActor->SetUserMatrix(openSimToVtkTransform(textTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(textActor);
+    return textActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeArrow(const SimTK::DecorativeArrow &arrow, SimTK::Transform arrowTransform, double *scaleFactors)
+{
+    auto arrowSource = vtkSmartPointer<vtkArrowSource>::New();
+    arrowSource->SetTipLength(arrow.getTipLength());
+    arrowSource->Update();
+
+    auto arrowMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    arrowMapper->SetInputConnection(arrowSource->GetOutputPort());
+
+    auto arrowActor = vtkSmartPointer<vtkActor>::New();
+    arrowActor->SetMapper(arrowMapper);
+    double colorTable[3];
+    getDGColor(arrow,colorTable);
+    arrowActor->GetProperty()->SetColor(colorTable);
+    arrowActor->GetProperty()->SetOpacity(arrow.getOpacity()<0?1:arrow.getOpacity());
+
+    arrowActor->SetScale(scaleFactors);
+    arrowActor->SetUserMatrix(openSimToVtkTransform(arrowTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(arrowActor);
+    return arrowActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCone(const SimTK::DecorativeCone &cone, SimTK::Transform coneTransform, double *scaleFactors)
+{
+    auto coneSource = vtkSmartPointer<vtkConeSource>::New();
+    coneSource->SetRadius(cone.getBaseRadius());
+    coneSource->SetHeight(cone.getHeight());
+    coneSource->Update();
+
+    auto coneMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    coneMapper->SetInputConnection(coneSource->GetOutputPort());
+
+    auto coneActor = vtkSmartPointer<vtkActor>::New();
+    coneActor->SetMapper(coneMapper);
+    double colorTable[3];
+    getDGColor(cone,colorTable);
+    coneActor->GetProperty()->SetColor(colorTable);
+    coneActor->GetProperty()->SetOpacity(cone.getOpacity()<0?1:cone.getOpacity());
+
+    coneActor->SetScale(scaleFactors);
+    coneActor->SetUserMatrix(openSimToVtkTransform(coneTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(coneActor);
+    return coneActor;
+}
+
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativePoint(const SimTK::DecorativePoint &point, SimTK::Transform coneTransform, double *scaleFactors)
+{
+    auto pointSource = vtkSmartPointer<vtkPointSource>::New();
+    pointSource->SetRadius(point.getLineThickness());
+    pointSource->Update();
+
+    auto pointMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+    pointMapper->SetInputConnection(pointSource->GetOutputPort());
+
+    auto pointActor = vtkSmartPointer<vtkActor>::New();
+    pointActor->SetMapper(pointMapper);
+    double colorTable[3];
+    getDGColor(point,colorTable);
+    pointActor->GetProperty()->SetColor(colorTable);
+    pointActor->GetProperty()->SetOpacity(point.getOpacity()<0?1:point.getOpacity());
+
+    pointActor->SetScale(scaleFactors);
+    pointActor->SetUserMatrix(openSimToVtkTransform(coneTransform));
+    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddActor(pointActor);
+    return pointActor;
 }
 
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
