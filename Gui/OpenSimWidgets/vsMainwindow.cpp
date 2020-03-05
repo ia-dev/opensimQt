@@ -1,4 +1,4 @@
-#include "vsMainwindow.h"
+#include "vsMainWindow.h"
 #include "./ui_vsMainWindow.h"
 
 #include <QLabel>
@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QtWebEngineWidgets/qwebengineview.h>
-#include "Visualizer/vsOpenglVisualizer.h"
+#include "Visualizer/vsOpenGLVisualizer.h"
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
