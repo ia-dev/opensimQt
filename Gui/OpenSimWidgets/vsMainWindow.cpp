@@ -35,7 +35,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //ui->Visualizer->show();
 
     //setting the model preferences
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("/home/ibr/myGitHub/opensimQt/WorkSpace/Geometry");
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
 
 }
 
