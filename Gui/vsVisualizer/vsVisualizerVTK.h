@@ -21,7 +21,7 @@ public:
 
     void getDGColor(const SimTK::DecorativeGeometry& geo,double *color_out);
 
-    vtkSmartPointer<vtkActor> vsVisualizerVTK::renderGeometry(OpenSim::Geometry *geometry);
+    vtkSmartPointer<vtkActor> renderGeometry(OpenSim::Geometry *geometry);
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
     vtkSmartPointer<vtkActor> addSkyBox();
