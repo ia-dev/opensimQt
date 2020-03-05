@@ -45,17 +45,17 @@ if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")
 endif()
 file(GLOB visualizer_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/Visualizer/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Visualizer/*h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsVisualizer/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsVisualizer/*h
     )
 file(GLOB modeling_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Modeling/*h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsModeling/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsModeling/*h
     )
 file(GLOB opensim_widgets_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/*.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/OpenSimWidgets/*.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.ui
     )
 
 

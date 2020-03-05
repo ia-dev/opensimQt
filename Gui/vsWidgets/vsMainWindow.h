@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
-#include <OpenSimWidgets/vsSimulationToolsWidget.h>
-#include <Modeling/vsNavigatorModel.h>
+#include <vsWidgets/vsSimulationToolsWidget.h>
+#include <vsModeling/vsNavigatorModel.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }

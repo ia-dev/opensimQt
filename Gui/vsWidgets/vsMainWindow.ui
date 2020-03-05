@@ -982,12 +982,12 @@
   <customwidget>
    <class>vsOpenGLVisualizer</class>
    <extends>QOpenGLWidget</extends>
-   <header location="global">Visualizer/vsOpenGLVisualizer.h</header>
+   <header location="global">vsVisualizer/vsOpenGLVisualizer.h</header>
   </customwidget>
   <customwidget>
    <class>vsVisualizerVTK</class>
    <extends>QWidget</extends>
-   <header location="global">Visualizer/vsVisualizerVTK.h</header>
+   <header location="global">vsVisualizer/vsVisualizerVTK.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

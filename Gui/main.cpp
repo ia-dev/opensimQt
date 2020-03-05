@@ -1,4 +1,4 @@
-#include "OpenSimWidgets/vsMainWindow.h"
+#include "vsWidgets/vsMainWindow.h"
 
 #include <QApplication>
 
