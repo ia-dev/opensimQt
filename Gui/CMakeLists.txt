@@ -52,6 +52,10 @@ file(GLOB modeling_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/vsModeling/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vsModeling/*h
     )
+file(GLOB tools_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsTools/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsTools/*h
+    )
 file(GLOB opensim_widgets_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.h
@@ -64,6 +68,7 @@ add_executable(OpensimQtGUI
     ${opensim_widgets_sources}
     ${modeling_sources}
     ${visualizer_sources}
+    ${tools_sources}
     resource.qrc
     ${TS_FILES}
 )

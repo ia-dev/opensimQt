@@ -187,6 +187,7 @@
     <addaction name="actionSave_Model"/>
     <addaction name="actionSave_Model_As"/>
     <addaction name="actionSave_All"/>
+    <addaction name="actionReload"/>
     <addaction name="separator"/>
     <addaction name="actionPreview_Experement_Data"/>
     <addaction name="actionE_xit"/>
@@ -571,6 +572,7 @@
    <addaction name="actionSave_Model"/>
    <addaction name="actionSave_Model_As"/>
    <addaction name="actionSave_All"/>
+   <addaction name="actionReload"/>
    <addaction name="separator"/>
    <addaction name="actionPreview_Experement_Data"/>
    <addaction name="actionE_xit"/>
@@ -969,6 +971,18 @@
   <action name="actionAbout_Opensim">
    <property name="text">
     <string>About Opensim</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-reload.png</normaloff>:/Data/Images/DefaultIcon/MD-reload.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>
