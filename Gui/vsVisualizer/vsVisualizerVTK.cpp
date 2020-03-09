@@ -36,7 +36,7 @@
 #include <vtkPNGReader.h>
 #include <vtkImageFlip.h>
 #include <vtkOpenGLTexture.h>
-#include <Modeling/vsNavigatorNode.h>
+#include <vsModeling/vsNavigatorNode.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLWidget(parent)

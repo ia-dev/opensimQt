@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <OpenSim/OpenSim.h>
-#include <Visualizer/vsVisualizerVTK.h>
+#include <vsVisualizer/vsVisualizerVTK.h>
 
 class vsNavigatorNode : public QObject
 {

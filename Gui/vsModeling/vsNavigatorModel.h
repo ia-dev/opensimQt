@@ -3,7 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QObject>
-#include "Modeling/vsNavigatorNode.h"
+#include "vsModeling/vsNavigatorNode.h"
 
 class vsNavigatorModel : public QAbstractItemModel
 {
