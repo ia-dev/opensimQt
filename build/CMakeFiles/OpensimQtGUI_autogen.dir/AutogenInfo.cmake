@@ -26,7 +26,7 @@ set(AM_MOC_OPTIONS "")
 set(AM_MOC_RELAXED_MODE "")
 set(AM_MOC_MACRO_NAMES "Q_OBJECT;Q_GADGET;Q_NAMESPACE")
 set(AM_MOC_DEPEND_FILTERS "")
-set(AM_MOC_PREDEFS_CMD "/usr/bin/c++;-dM;-E;-c;/usr/local/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp")
+set(AM_MOC_PREDEFS_CMD "/usr/bin/c++;-dM;-E;-c;/usr/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp")
 # UIC settings
 set(AM_UIC_SKIP "")
 set(AM_UIC_TARGET_OPTIONS "")

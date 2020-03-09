@@ -33,6 +33,14 @@ find_package(VTK COMPONENTS
 )
 include(${VTK_USE_FILE})
 
+include(cmake/GitUtils.cmake)
+
+git_clone(
+    PROJECT_NAME opensim-models
+    GIT_URL https://github.com/opensim-org/opensim-models.git
+    DIRECTORY ./vsWorkSpace
+    )
+
 if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")
 endif()

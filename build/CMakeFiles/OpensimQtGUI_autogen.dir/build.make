@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -55,7 +55,7 @@ include CMakeFiles/OpensimQtGUI_autogen.dir/progress.make
 
 CMakeFiles/OpensimQtGUI_autogen:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target OpensimQtGUI"
-	/usr/local/bin/cmake -E cmake_autogen /home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI_autogen.dir/AutogenInfo.cmake ""
+	/usr/bin/cmake -E cmake_autogen /home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI_autogen.dir/AutogenInfo.cmake ""
 
 OpensimQtGUI_autogen: CMakeFiles/OpensimQtGUI_autogen
 OpensimQtGUI_autogen: CMakeFiles/OpensimQtGUI_autogen.dir/build.make

@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -759,7 +759,7 @@ OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp: /home/ibr/myGitHub/opensimQt/G
 OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp: /home/ibr/myGitHub/opensimQt/Gui/Data/Images/DefaultIcon/games-alt-2.png
 OpensimQtGUI_autogen/EWIEGA46WW/qrc_resource.cpp: /home/ibr/sw/Qt5.9.5/5.9.5/gcc_64/bin/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ibr/myGitHub/opensimQt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resource.qrc"
-	/usr/local/bin/cmake -E cmake_autorcc /home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI_autogen.dir/RCCresourceInfo.cmake 
+	/usr/bin/cmake -E cmake_autorcc /home/ibr/myGitHub/opensimQt/build/CMakeFiles/OpensimQtGUI_autogen.dir/RCCresourceInfo.cmake 
 
 CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/mocs_compilation.cpp.o: CMakeFiles/OpensimQtGUI.dir/flags.make
 CMakeFiles/OpensimQtGUI.dir/OpensimQtGUI_autogen/mocs_compilation.cpp.o: OpensimQtGUI_autogen/mocs_compilation.cpp
