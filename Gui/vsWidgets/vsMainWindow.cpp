@@ -26,6 +26,10 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     simulationWidget = new vsSimulationToolsWidget(this);
     ui->simulationToolBar->addWidget(simulationWidget);
 
+//    ui->messagesDock->setGeometry(ui->messagesDock->x(),ui->messagesDock->y(),ui->messagesDock->geometry().width(),150);
+//    ui->scriptingDock->setGeometry(ui->messagesDock->x(),ui->messagesDock->y(),ui->messagesDock->geometry().width(),150);
+    resizeDocks({ui->messagesDock,ui->scriptingDock},{150,150},Qt::Vertical);
+
     //setting the navigator
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
@@ -52,16 +56,21 @@ vsMainWindow::~vsMainWindow()
 
 void vsMainWindow::on_actionOpen_Model_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,tr("Open Model From File"),QString());
-    qDebug() << fileName;
-    OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
-    qDebug() << QString::fromStdString(newModel->getName());
-    navigatorModel->loadOpenSimModel(newModel);
-    //TODO save the state somewhere
-    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+    try {
+        QString fileName = QFileDialog::getOpenFileName(this,tr("Open Model From File"),QString());
+        qDebug() << fileName;
+        OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
+        qDebug() << QString::fromStdString(newModel->getName());
+        navigatorModel->loadOpenSimModel(newModel);
+        //TODO save the state somewhere
+        ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 
-    //update the openModelsFile
-    vsOpenSimTools::tools->addToOpenModels(newModel);
+        //update the openModelsFile
+        vsOpenSimTools::tools->addToOpenModels(newModel);
+    } catch (...) {
+        vsOpenSimTools::tools->log("No valid OpenSim model was selected","",vsOpenSimTools::Error,true);
+    }
+
 }
 
 void vsMainWindow::dropEvent(QDropEvent *event)
@@ -97,3 +106,9 @@ void vsMainWindow::dragMoveEvent(QDragMoveEvent *event)
 }
 
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;
+
+void vsMainWindow::on_actionReload_triggered()
+{
+    qDebug()<< "Reloading";
+    ui->vtkVisualiser->showMaximized();
+}
