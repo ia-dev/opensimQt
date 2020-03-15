@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QtWebEngineWidgets/qwebengineview.h>
-#include <vsTools/vsOpenSimTools_.h>
+#include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 
 vsMainWindow::vsMainWindow(QWidget *parent)
@@ -40,7 +40,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
-    vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Good,true);
+    vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
 
 }
 
@@ -59,6 +59,9 @@ void vsMainWindow::on_actionOpen_Model_triggered()
     navigatorModel->loadOpenSimModel(newModel);
     //TODO save the state somewhere
     ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+
+    //update the openModelsFile
+    vsOpenSimTools::tools->addToOpenModels(newModel);
 }
 
 void vsMainWindow::dropEvent(QDropEvent *event)
