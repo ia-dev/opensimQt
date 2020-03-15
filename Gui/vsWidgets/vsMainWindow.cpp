@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QtWebEngineWidgets/qwebengineview.h>
+#include <vsTools/vsOpenSimTools_.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 
 vsMainWindow::vsMainWindow(QWidget *parent)
@@ -36,6 +37,10 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
+
+    //setting the logging
+    connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
+    vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Good,true);
 
 }
 

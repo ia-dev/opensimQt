@@ -17,13 +17,20 @@ class vsOpenSimTools : public QObject
 {
     Q_OBJECT
 public:
+    enum MessageType{
+        Info,Good,Warning,Error
+    };
+    Q_ENUM(MessageType)
     vsOpenSimTools(QObject *parent = nullptr);
-    void logToFile(QString message);
     static vsOpenSimTools *tools;
+    void log(QString message,QString description="",MessageType messageType = MessageType::Info,bool logToConsole = false);
+signals:
+    void messageLogged(QString message);
 
 private:
     QFile *logFile;
     QTextStream *logStream;
+    QMap<MessageType,QString> messageColors;
 
 
 

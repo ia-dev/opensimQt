@@ -5,7 +5,7 @@
  *   Authors: Ibraheem Aldhamari, Yasser Grimes                            *
  *                                                                         *
  ***************************************************************************/
-#include "vsOpenSimTools.h"
+#include "vsOpenSimTools_.h"
 
 #include <QDebug>
 #include <QTime>
@@ -20,4 +20,23 @@ vsOpenSimTools::vsOpenSimTools(QObject *parent):QObject(parent),
     logStream = new QTextStream(logFile);
     *logStream << "Launching OpenSimQt ...";
     logStream->flush();
+
+    messageColors.insert(MessageType::Info,"#000000");
+    messageColors.insert(MessageType::Good,"#55B83B");
+    messageColors.insert(MessageType::Warning,"#ffff00");
+    messageColors.insert(MessageType::Error,"#ff0000");
+}
+
+void vsOpenSimTools::log(QString message, QString description,MessageType messageType,bool logToConsole)
+{
+    QString typeText = QVariant::fromValue(messageType).toString();
+    QString messageLine = (description==""?"":(description+"::")) + message;
+    *logStream << messageLine  ;
+    logStream->flush();
+    QString consoleLine ="<p><span style='color:" + messageColors.value(messageType,"#000000") +"'>#" + typeText +"::</span> "
+                          +  messageLine + "</p>";
+    if(logToConsole)
+        emit messageLogged(consoleLine);
+
+
 }
