@@ -75,21 +75,25 @@ void vsMainWindow::on_actionOpen_Model_triggered()
 
 void vsMainWindow::dropEvent(QDropEvent *event)
 {
-    const QMimeData *mimeData = event->mimeData();
-    if (mimeData->hasUrls()) {
+    try {
+        const QMimeData *mimeData = event->mimeData();
+        if (mimeData->hasUrls()) {
 
-        QList<QUrl> pathList = mimeData->urls();
-        foreach (QUrl url, pathList) {
-           qDebug()<< "Url" << url.path() << " "<< url.toLocalFile();
-           OpenSim::Model  *newModel = new OpenSim::Model(url.toLocalFile() .toStdString());
-           //newModel->state
-           qDebug() << QString::fromStdString(newModel->getName());
-           navigatorModel->loadOpenSimModel(newModel);
-           ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+            QList<QUrl> pathList = mimeData->urls();
+            foreach (QUrl url, pathList) {
+               qDebug()<< "Url" << url.path() << " "<< url.toLocalFile();
+               OpenSim::Model  *newModel = new OpenSim::Model(url.toLocalFile() .toStdString());
+               //newModel->state
+               qDebug() << QString::fromStdString(newModel->getName());
+               navigatorModel->loadOpenSimModel(newModel);
+               ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+            }
+
         }
-
+        event->acceptProposedAction();
+    } catch (...) {
+        vsOpenSimTools::tools->log("The Dragged file does not represent a Model","MainWindow",vsOpenSimTools::Error);
     }
-    event->acceptProposedAction();
 }
 
 void vsMainWindow::dragEnterEvent(QDragEnterEvent *event)
@@ -120,5 +124,10 @@ void vsMainWindow::on_actionReload_triggered()
     ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     //update the opensim library
     //form the tools reopen the models
+    foreach (QString modelPath, vsOpenSimTools::tools->getReloadModelsPaths()) {
+        OpenSim::Model  *newModel = new OpenSim::Model(modelPath.toStdString());
+        navigatorModel->loadOpenSimModel(newModel);
+        ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+    }
 
 }
