@@ -595,7 +595,11 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
         itr.next();
     }
 
-
+    auto renderer  = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->ResetCamera();
+    renderer->Render();
+    GetRenderWindow()->Render();
+    GetRenderWindow()->Finalize();
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
 //    }
@@ -626,4 +630,18 @@ void vsVisualizerVTK::setBackgroundType(const BackgroundType &backgroundType)
         renderer->SetBackground2(0.43,0.62,0.65);
         renderer->SetBackground(0.15,0.18,0.25);
     }
+}
+
+void vsVisualizerVTK::clearTheScene()
+{
+    auto renderer =this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    //TODO remove only the models actors
+    renderer->RemoveAllViewProps();
+
+    renderer->ResetCamera();
+    renderer->Render();
+    GetRenderWindow()->Render();
+    GetRenderWindow()->Finalize();
+
+
 }

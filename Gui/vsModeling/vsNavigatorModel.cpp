@@ -7,6 +7,21 @@ vsNavigatorModel::vsNavigatorModel()
     m_rootNNode = new vsNavigatorNode(nullptr,"the root",nullptr,this);
 }
 
+void vsNavigatorModel::clean()
+{
+    m_activeModel = nullptr;
+    foreach (auto modelNode, m_rootNNode->childNodes) {
+        m_rootNNode->childNodes.removeOne(modelNode);
+        modelNode->deleteLater();
+    }
+    foreach (auto model_, m_openModels) {
+        m_openModels.removeOne(model_);
+        delete model_;
+    }
+    emit layoutChanged();
+
+}
+
 void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
     m_activeModel = openSimModel;

@@ -109,6 +109,16 @@ void vsMainWindow::dragMoveEvent(QDragMoveEvent *event)
 
 void vsMainWindow::on_actionReload_triggered()
 {
+    vsOpenSimTools::tools->log("Reloading");
     qDebug()<< "Reloading";
-    ui->vtkVisualiser->showMaximized();
+    //ui->vtkVisualiser->showMaximized();
+    //remove the actors from the scene
+    ui->vtkVisualiser->clearTheScene();
+    ui->vtkVisualiser->update();
+    //update the treeview model
+    navigatorModel->clean();
+    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+    //update the opensim library
+    //form the tools reopen the models
+
 }

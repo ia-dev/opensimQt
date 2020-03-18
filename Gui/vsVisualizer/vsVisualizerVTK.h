@@ -58,6 +58,9 @@ public:
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
 
+    //operations on the scene
+    void clearTheScene();
+
 private:
     BackgroundType m_backgroundType;
 

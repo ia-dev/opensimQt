@@ -13,6 +13,8 @@ public:
 
     //~vsNavigatorModel();
 
+    void clean();
+
     void loadOpenSimModel(OpenSim::Model *openSimModel);
     // QAbstractItemModel interface
 public:

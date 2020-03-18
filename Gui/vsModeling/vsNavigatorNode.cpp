@@ -13,4 +13,12 @@ vsNavigatorNode::vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayNa
     qDebug() << "visuazer vtk " <<  visualizerVTK->objectName();
 }
 
+vsNavigatorNode::~vsNavigatorNode()
+{
+    foreach (auto node, childNodes) {
+        childNodes.removeOne(node);
+        node->deleteLater();
+    }
+}
+
 vsVisualizerVTK* vsNavigatorNode::visualizerVTK = nullptr;
