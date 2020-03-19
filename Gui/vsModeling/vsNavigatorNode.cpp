@@ -1,5 +1,6 @@
 #include "vsNavigatorNode.h"
 
+#include <QAction>
 #include <qdebug.h>
 
 vsNavigatorNode::vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,vsNavigatorNode *_parentNode,QObject *parent) :QObject(parent),
@@ -19,6 +20,13 @@ vsNavigatorNode::~vsNavigatorNode()
         childNodes.removeOne(node);
         node->deleteLater();
     }
+}
+
+QList<QAction*> vsNavigatorNode::getNodeActions()
+{
+    QList<QAction*> returnList;
+    returnList << new QAction("Display");
+    return returnList;
 }
 
 vsVisualizerVTK* vsNavigatorNode::visualizerVTK = nullptr;

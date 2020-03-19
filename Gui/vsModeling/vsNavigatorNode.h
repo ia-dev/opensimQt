@@ -12,6 +12,8 @@ public:
     explicit vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,vsNavigatorNode *_parentNode,QObject *parent = nullptr);
 
     ~vsNavigatorNode();
+
+    QList<QAction*> getNodeActions();
 public:
     OpenSim::Object *openSimObject;
     QString displayName;

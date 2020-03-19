@@ -20,8 +20,9 @@ public:
 
 private slots:
     void on_actionOpen_Model_triggered();
-
     void on_actionReload_triggered();
+
+    void customMenuRequestedNavigator(const QPoint &point);
 
 private:
     Ui::vsMainWindow *ui;

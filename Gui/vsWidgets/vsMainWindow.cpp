@@ -46,6 +46,10 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
     vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
 
+    //setting up the context menu
+    ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
+    connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
+
 }
 
 vsMainWindow::~vsMainWindow()
@@ -130,4 +134,13 @@ void vsMainWindow::on_actionReload_triggered()
         ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     }
 
+}
+
+void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
+{
+    qDebug() << "popup menu requested !";
+    QModelIndex indexAtPos = ui->navigatorTreeView->indexAt(point);
+    QMenu *nodeMenu = new QMenu(this);
+    nodeMenu->addActions(navigatorModel->getActionsForIndex(indexAtPos));
+    nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
 }
