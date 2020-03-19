@@ -46,3 +46,23 @@ vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObje
 
 
 }
+
+void vsModelNode::setupNodeActions(QMenu *rootMenu)
+{
+    QAction *makeCurrentAction = new QAction("Make Current",rootMenu);
+    QAction *renameAction =  new QAction("Rename...",rootMenu);
+    rootMenu->addActions(QList<QAction*>() << makeCurrentAction << renameAction);
+    vsNavigatorNode::setupNodeActions(rootMenu);
+    QAction *infoAction = new QAction("Info",rootMenu);
+    rootMenu->addAction(infoAction);
+    rootMenu->addSeparator();
+    QAction *saveAction = new QAction("Save...",rootMenu);
+    QAction *saveAsAction = new QAction("Save As...",rootMenu);
+    rootMenu->addActions(QList<QAction*>() << saveAction << saveAsAction);
+    rootMenu->addSeparator();
+    QAction *closeAction = new QAction("Close",rootMenu);
+    rootMenu->addAction(closeAction);
+    rootMenu->addSeparator();
+    QAction* addMotionAction = new QAction("Add Motion...",rootMenu);
+    rootMenu->addAction(addMotionAction);
+}

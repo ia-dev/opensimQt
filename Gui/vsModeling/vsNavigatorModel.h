@@ -2,6 +2,7 @@
 #define vsNavigatorModel_H
 
 #include <QAbstractItemModel>
+#include <QMenu>
 #include <QObject>
 #include "vsModeling/vsNavigatorNode.h"
 
@@ -15,7 +16,7 @@ public:
 
     void clean();
 
-    QList<QAction*> getActionsForIndex(QModelIndex selected_index);
+    void getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu);
 
     void loadOpenSimModel(OpenSim::Model *openSimModel);
     // QAbstractItemModel interface

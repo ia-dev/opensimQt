@@ -1,6 +1,7 @@
 #ifndef vsNavigatorNode_H
 #define vsNavigatorNode_H
 
+#include <QMenu>
 #include <QObject>
 #include <OpenSim/OpenSim.h>
 #include <vsVisualizer/vsVisualizerVTK.h>
@@ -13,13 +14,14 @@ public:
 
     ~vsNavigatorNode();
 
-    QList<QAction*> getNodeActions();
+    virtual void setupNodeActions(QMenu *rootMenu);
 public:
     OpenSim::Object *openSimObject;
     QString displayName;
     vsNavigatorNode* parentNode;
     QList<vsNavigatorNode*> childNodes;
     QString iconPath;
+    QMenu *displayMenu;
     static vsVisualizerVTK *visualizerVTK;
 signals:
 

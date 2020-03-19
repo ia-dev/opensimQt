@@ -22,10 +22,10 @@ void vsNavigatorModel::clean()
 
 }
 
-QList<QAction*> vsNavigatorModel::getActionsForIndex(QModelIndex selected_index)
+void vsNavigatorModel::getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu)
 {
     vsNavigatorNode *selectedNode  = nodeForIndex(selected_index);
-    return selectedNode->getNodeActions();
+    selectedNode->setupNodeActions(rootMenu);
 }
 
 void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)

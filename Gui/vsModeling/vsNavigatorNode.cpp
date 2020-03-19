@@ -22,11 +22,19 @@ vsNavigatorNode::~vsNavigatorNode()
     }
 }
 
-QList<QAction*> vsNavigatorNode::getNodeActions()
+void vsNavigatorNode::setupNodeActions(QMenu *rootMenu)
 {
-    QList<QAction*> returnList;
-    returnList << new QAction("Display");
-    return returnList;
+    displayMenu = new QMenu("Display",rootMenu);
+
+    QAction *showAction= new QAction("Show",displayMenu);
+    QAction *hideAction= new QAction("Hide",displayMenu);
+    QAction *colorAction= new QAction("Color...",displayMenu);
+    QAction *opacityAction= new QAction("Opacity...",displayMenu);
+
+    displayMenu->addActions(QList<QAction*>() << showAction << hideAction << colorAction << opacityAction);
+
+    rootMenu->addMenu(displayMenu);
 }
+
 
 vsVisualizerVTK* vsNavigatorNode::visualizerVTK = nullptr;

@@ -140,7 +140,9 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
 {
     qDebug() << "popup menu requested !";
     QModelIndex indexAtPos = ui->navigatorTreeView->indexAt(point);
-    QMenu *nodeMenu = new QMenu(this);
-    nodeMenu->addActions(navigatorModel->getActionsForIndex(indexAtPos));
-    nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
+    if(indexAtPos.isValid()){
+        QMenu *nodeMenu = new QMenu(this);
+        navigatorModel->getActionsForIndex(indexAtPos,nodeMenu);
+        nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
+    }
 }
