@@ -5,3 +5,8 @@ vsOneDofNode::vsOneDofNode(OpenSim::TransformAxis *tAxis,vsNavigatorNode *parent
 {
     iconPath = ":/Data/Images/Nodes/dofNode.png";
 }
+
+void vsOneDofNode::setupNodeActions(QMenu *rootMenu)
+{
+
+}

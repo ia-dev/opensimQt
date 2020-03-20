@@ -6,7 +6,7 @@ vsMusclesNode::vsMusclesNode(OpenSim::ForceSet *forceSet,OpenSim::Set<OpenSim::M
     vsNavigatorNode(&forceSet->updMuscles(),"",parentNode,parent)
 {
     iconPath = ":/Data/Images/Nodes/musclesNode.png";
-
+    editColorAndOpacity = false;
     //loading muscles groupes
     OpenSim::Array<std::string> groups;
     forceSet->getGroupNames(groups);

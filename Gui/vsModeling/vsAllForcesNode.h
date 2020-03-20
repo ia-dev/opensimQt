@@ -2,10 +2,11 @@
 #define vsAllForcesNode_H
 
 #include "vsNavigatorNode.h"
+#include "vsObjectSetNode.h"
 
 
 
-class vsAllForcesNode : public vsNavigatorNode
+class vsAllForcesNode : public vsObjectSetNode
 {
     Q_OBJECT
 public:

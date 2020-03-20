@@ -5,6 +5,7 @@ vsContactForcesNode::vsContactForcesNode(OpenSim::ForceSet *forceSet,vsNavigator
     vsNavigatorNode(nullptr,"Contact Forces",parentNode,parent)
 {
     iconPath = ":/Data/Images/Nodes/forceNode.png";
+    editColorAndOpacity = false;
     for (int i = 0; i < forceSet->getSize(); ++i) {
         OpenSim::Force *force = &forceSet->get(i);
 

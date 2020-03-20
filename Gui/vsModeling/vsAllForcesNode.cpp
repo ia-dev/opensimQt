@@ -5,8 +5,9 @@
 #include "vsOtherForcesNode.h"
 #include <QDebug>
 vsAllForcesNode::vsAllForcesNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent):
-    vsNavigatorNode(nullptr,"Forces",parentNode,parent)
+    vsObjectSetNode(nullptr,parentNode,parent)
 {
+    displayName = "Forces";
     iconPath = ":/Data/Images/Nodes/actuatorsNode.png";
 
     //loading Muscles

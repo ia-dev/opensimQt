@@ -34,6 +34,17 @@ void vsNavigatorNode::setupNodeActions(QMenu *rootMenu)
     displayMenu->addActions(QList<QAction*>() << showAction << hideAction << colorAction << opacityAction);
 
     rootMenu->addMenu(displayMenu);
+    if(!editColorAndOpacity)
+        disableActionsForSets();
+}
+
+void vsNavigatorNode::disableActionsForSets()
+{
+    QStringList actionsToDisable;
+    actionsToDisable << "Color..." <<"Opacity...";
+    foreach (auto action, displayMenu->actions()) {
+        if(actionsToDisable.contains(action->text())) action->setEnabled(false);
+    }
 }
 
 

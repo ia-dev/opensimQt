@@ -5,7 +5,7 @@ vsControlersNode::vsControlersNode(OpenSim::ControllerSet *controlSet ,vsNavigat
     vsNavigatorNode(controlSet,"",parentNode,parent)
 {
     iconPath = ":/Data/Images/Nodes/constraintsNode.png";
-
+    editColorAndOpacity = false;
     for (int i = 0; i < controlSet->getSize(); ++i) {
         OpenSim::Controller *control = &controlSet->get(i);
         vsControlNode *controleNode = new vsControlNode(control,this,this);

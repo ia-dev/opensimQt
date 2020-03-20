@@ -15,6 +15,8 @@ public:
     ~vsNavigatorNode();
 
     virtual void setupNodeActions(QMenu *rootMenu);
+
+    void disableActionsForSets();
 public:
     OpenSim::Object *openSimObject;
     QString displayName;
@@ -22,6 +24,7 @@ public:
     QList<vsNavigatorNode*> childNodes;
     QString iconPath;
     QMenu *displayMenu;
+    bool editColorAndOpacity = true;
     static vsVisualizerVTK *visualizerVTK;
 signals:
 

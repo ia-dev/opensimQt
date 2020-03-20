@@ -25,3 +25,14 @@ vsOneJointNode::vsOneJointNode(OpenSim::Joint *joint,vsNavigatorNode *parentNode
     }
 
 }
+
+void vsOneJointNode::setupNodeActions(QMenu *rootMenu)
+{
+    QAction *toggleParentFramAction = new QAction("Toggle Parent Fram",rootMenu);
+    QAction *toggleChildFramAction = new QAction("Toggle Child Fram",rootMenu);
+    toggleChildFramAction->setCheckable(true);
+    toggleChildFramAction->setChecked(true);
+    toggleParentFramAction->setCheckable(true);
+    rootMenu->addAction(toggleParentFramAction);
+    rootMenu->addAction(toggleChildFramAction);
+}
