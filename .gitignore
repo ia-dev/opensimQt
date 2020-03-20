@@ -72,3 +72,9 @@ Gui/CMakeLists.txt.user
 *.dll
 *.exe
 
+#Linux
+build
+temp
+
+
+
