@@ -14,3 +14,10 @@ vsOneFrameNode::vsOneFrameNode(OpenSim::Frame *frame,vsNavigatorNode *parentNode
         vsOneGeometryNode *geometryObjectNode = new vsOneGeometryNode(geo,this,this);
     }
 }
+
+void vsOneFrameNode::setupNodeActions(QMenu *rootMenu)
+{
+    vsNavigatorNode::setupNodeActions(rootMenu);
+    QAction *showAxisAction = new QAction("Show Axis",rootMenu);
+    rootMenu->addAction(showAxisAction);
+}

@@ -5,3 +5,13 @@ vsOneWrapObjectNode::vsOneWrapObjectNode(OpenSim::WrapObject *wrapObj,vsNavigato
 {
     iconPath = ":/Data/Images/Nodes/wrapNode.png";
 }
+
+void vsOneWrapObjectNode::setupNodeActions(QMenu *rootMenu)
+{
+    vsNavigatorNode::setupNodeActions(rootMenu);
+    displayMenu->addSeparator();
+    QAction *smoothShadedAction = new QAction("Smooth Shaded",displayMenu);
+    QAction *wireFramAction = new QAction("Wireframe");
+    displayMenu->addAction(smoothShadedAction);
+    displayMenu->addAction(wireFramAction);
+}

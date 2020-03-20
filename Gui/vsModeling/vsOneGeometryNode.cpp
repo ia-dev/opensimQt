@@ -17,3 +17,13 @@ vsOneGeometryNode::vsOneGeometryNode(OpenSim::Geometry *geometry,vsNavigatorNode
     //if(mesh != nullptr) mesh->set_mesh_file("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\"+mesh->get_mesh_file());
 
 }
+
+void vsOneGeometryNode::setupNodeActions(QMenu *rootMenu)
+{
+    vsNavigatorNode::setupNodeActions(rootMenu);
+    displayMenu->addSeparator();
+    QAction *smoothShadedAction = new QAction("Smooth Shaded",displayMenu);
+    QAction *wireFramAction = new QAction("Wireframe");
+    displayMenu->addAction(smoothShadedAction);
+    displayMenu->addAction(wireFramAction);
+}
