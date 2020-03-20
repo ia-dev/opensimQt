@@ -5,7 +5,7 @@ vsJointsNode::vsJointsNode(OpenSim::JointSet *jointSet,vsNavigatorNode* parentNo
     vsNavigatorNode(jointSet,"Joints",parentNode,parent)
 {
     iconPath = ":/Data/Images/Nodes/jointsNode.png";
-
+    editColorAndOpacity = false;
     //loading joints
     for (int i = 0; i < jointSet->getSize(); ++i) {
         OpenSim::Joint *joint = &jointSet->get(i);
