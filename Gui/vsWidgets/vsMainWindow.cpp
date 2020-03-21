@@ -121,11 +121,11 @@ void vsMainWindow::on_actionReload_triggered()
     qDebug()<< "Reloading";
     //ui->vtkVisualiser->showMaximized();
     //remove the actors from the scene
+    navigatorModel->clean();
+    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     ui->vtkVisualiser->clearTheScene();
     ui->vtkVisualiser->update();
     //update the treeview model
-    navigatorModel->clean();
-    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     //update the opensim library
     //form the tools reopen the models
     foreach (QString modelPath, vsOpenSimTools::tools->getReloadModelsPaths()) {

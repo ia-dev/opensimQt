@@ -9,6 +9,9 @@ vsNavigatorModel::vsNavigatorModel()
 
 void vsNavigatorModel::clean()
 {
+    emit layoutAboutToBeChanged();
+    beginResetModel();
+    int rowsToBeRemoved = m_rootNNode->childNodes.size();
     m_activeModel = nullptr;
     foreach (auto modelNode, m_rootNNode->childNodes) {
         m_rootNNode->childNodes.removeOne(modelNode);
@@ -18,8 +21,8 @@ void vsNavigatorModel::clean()
         m_openModels.removeOne(model_);
         delete model_;
     }
+    endResetModel();
     emit layoutChanged();
-
 }
 
 void vsNavigatorModel::getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu)
