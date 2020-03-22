@@ -41,6 +41,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../Gui/vsWorkSpace/opensim-models/Geometry");
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
@@ -121,11 +122,11 @@ void vsMainWindow::on_actionReload_triggered()
     qDebug()<< "Reloading";
     //ui->vtkVisualiser->showMaximized();
     //remove the actors from the scene
+    navigatorModel->clean();
+    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     ui->vtkVisualiser->clearTheScene();
     ui->vtkVisualiser->update();
     //update the treeview model
-    navigatorModel->clean();
-    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     //update the opensim library
     //form the tools reopen the models
     foreach (QString modelPath, vsOpenSimTools::tools->getReloadModelsPaths()) {
@@ -145,4 +146,45 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
         navigatorModel->getActionsForIndex(indexAtPos,nodeMenu);
         nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
     }
+}
+
+void vsMainWindow::on_actionSave_Model_triggered()
+{
+    if(navigatorModel->getActiveModel() != nullptr){
+        navigatorModel->getActiveModel()->print(navigatorModel->getActiveModel()->getInputFileName());
+        vsOpenSimTools::tools->log("Current Model Saved In: "+QString::fromStdString(navigatorModel->
+                                    getActiveModel()->getInputFileName()),"MainWindow",vsOpenSimTools::Info);
+    }else{
+        vsOpenSimTools::tools->log("There Is No Current Model","MainWindow",vsOpenSimTools::Error);
+    }
+
+}
+
+void vsMainWindow::on_actionSave_Model_As_triggered()
+{
+    if(navigatorModel->getActiveModel() != nullptr){
+        QString saveFileName = QFileDialog::
+                getSaveFileName(this,"Save Current Model As",
+                                QString::fromStdString(navigatorModel->getActiveModel()->getName())+".osim","*.osim");
+        if(saveFileName != ""){
+            qDebug() << "Save file Name: " << saveFileName;
+            navigatorModel->getActiveModel()->print(saveFileName.toStdString());
+            vsOpenSimTools::tools->log("Current Model Saved Here: "+saveFileName,"MainWindow",vsOpenSimTools::Success);
+        }
+        else{
+            vsOpenSimTools::tools->log("No Valid File was Selected","MainWindow",vsOpenSimTools::Error);
+        }
+    }else{
+        vsOpenSimTools::tools->log("There Is No Current Model","MainWindow",vsOpenSimTools::Error);
+    }
+
+}
+
+void vsMainWindow::on_actionSave_All_triggered()
+{
+    foreach (OpenSim::Model *oneModel, navigatorModel->getOpenModels()) {
+        vsOpenSimTools::tools->log("Saving "+QString::fromStdString(oneModel->getName()),"MainWindow",vsOpenSimTools::Info);
+        oneModel->print(oneModel->getInputFileName());
+    }
+    vsOpenSimTools::tools->log("All Models are Saved","MainWindow",vsOpenSimTools::Success);
 }

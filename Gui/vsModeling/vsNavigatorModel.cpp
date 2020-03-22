@@ -9,6 +9,9 @@ vsNavigatorModel::vsNavigatorModel()
 
 void vsNavigatorModel::clean()
 {
+    emit layoutAboutToBeChanged();
+    beginResetModel();
+    int rowsToBeRemoved = m_rootNNode->childNodes.size();
     m_activeModel = nullptr;
     foreach (auto modelNode, m_rootNNode->childNodes) {
         m_rootNNode->childNodes.removeOne(modelNode);
@@ -18,8 +21,8 @@ void vsNavigatorModel::clean()
         m_openModels.removeOne(model_);
         delete model_;
     }
+    endResetModel();
     emit layoutChanged();
-
 }
 
 void vsNavigatorModel::getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu)
@@ -90,7 +93,7 @@ QVariant vsNavigatorModel::data(const QModelIndex &index, int role) const
     if(index.isValid() && role==Qt::DisplayRole)
     {
         vsNavigatorNode *nNode = nodeForIndex(index);
-        return  nNode->displayName;
+        return nNode->displayName + (nNode->openSimObject == m_activeModel?"  [Current]":"") ;
     }
     if (index.isValid() && role==Qt::DecorationRole) {
         vsNavigatorNode *nNode = nodeForIndex(index);
@@ -120,4 +123,19 @@ vsNavigatorNode* vsNavigatorModel::nodeForIndex(const QModelIndex &index) const
 int vsNavigatorModel::rowForNode(vsNavigatorNode *node) const
 {
     return node->parentNode->childNodes.indexOf(node);
+}
+
+OpenSim::Model *vsNavigatorModel::getActiveModel() const
+{
+    return m_activeModel;
+}
+
+void vsNavigatorModel::setActiveModel(OpenSim::Model *activeModel)
+{
+    m_activeModel = activeModel;
+}
+
+QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const
+{
+    return m_openModels;
 }

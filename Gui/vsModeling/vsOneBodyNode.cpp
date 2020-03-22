@@ -13,3 +13,14 @@ vsOneBodyNode::vsOneBodyNode(OpenSim::Body *body,vsNavigatorNode *parentNode,QOb
         vsOneWrapObjectNode *wrapObjectNode = new vsOneWrapObjectNode(wrapObject,this,this);
     }
 }
+
+void vsOneBodyNode::setupNodeActions(QMenu *rootMenu)
+{
+    vsOneFrameNode::setupNodeActions(rootMenu);
+    QAction *showMassCenterAction = new QAction("Show Mass Center",rootMenu);
+    QAction *renameAction = new QAction("Rename...",rootMenu);
+    QAction *removeAction = new QAction("Remove",rootMenu);
+
+    rootMenu->addActions(QList<QAction*>() << showMassCenterAction << renameAction << removeAction);
+
+}

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(OpensimQtGUI LANGUAGES CXX)
+project(opensimQt LANGUAGES CXX)
+
+set(TARGET opensimQt CACHE TYPE STRING)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -14,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets OpenGL  LinguistTools REQUIRED)
 
 
-set(TS_FILES OpensimQtGUI_en_US.ts)
+set(TS_FILES ${TARGET}.ts)
 
 #adding opensim to the project
 #after building and installing the project add the /bin
@@ -35,11 +37,19 @@ include(${VTK_USE_FILE})
 
 include(cmake/GitUtils.cmake)
 
-git_clone(
-    PROJECT_NAME opensim-models
-    GIT_URL https://github.com/opensim-org/opensim-models.git
-    DIRECTORY ./vsWorkSpace
+option(Download_Geometry "Download geometry, models, and other files." False)
+
+if (Download_Models)
+   message(STATUS "Downloading geometry, models and other files to vsWorkSpace")
+   git_clone(
+         PROJECT_NAME opensim-models
+         GIT_URL https://github.com/opensim-org/opensim-models.git
+         DIRECTORY ./vsWorkSpace
     )
+else()
+   message(WARNING "Geometry files are not downloaded!")
+endif()
+
 
 if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")
@@ -63,7 +73,7 @@ file(GLOB opensim_widgets_sources
     )
 
 
-add_executable(OpensimQtGUI
+add_executable(${TARGET}
     main.cpp
     ${opensim_widgets_sources}
     ${modeling_sources}
@@ -73,7 +83,6 @@ add_executable(OpensimQtGUI
     ${TS_FILES}
 )
 
-target_link_libraries(OpensimQtGUI PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
-
-
+target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+
