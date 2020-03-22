@@ -27,6 +27,8 @@ public:
     virtual int columnCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
 
+    QList<OpenSim::Model *> getOpenModels() const;
+
 protected:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;

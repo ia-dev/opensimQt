@@ -146,3 +146,12 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
         nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
     }
 }
+
+void vsMainWindow::on_actionSave_Model_triggered()
+{
+    foreach (OpenSim::Model *oneModel, navigatorModel->getOpenModels()) {
+        vsOpenSimTools::tools->log("Saving"+QString::fromStdString(oneModel->getName()),"MainWindow",vsOpenSimTools::Info);
+        oneModel->print(oneModel->getInputFileName());
+    }
+    vsOpenSimTools::tools->log("Saving Completed","MainWindow",vsOpenSimTools::Success);
+}

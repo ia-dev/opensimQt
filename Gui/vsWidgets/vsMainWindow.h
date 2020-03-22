@@ -24,6 +24,8 @@ private slots:
 
     void customMenuRequestedNavigator(const QPoint &point);
 
+    void on_actionSave_Model_triggered();
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;

@@ -124,3 +124,8 @@ int vsNavigatorModel::rowForNode(vsNavigatorNode *node) const
 {
     return node->parentNode->childNodes.indexOf(node);
 }
+
+QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const
+{
+    return m_openModels;
+}
