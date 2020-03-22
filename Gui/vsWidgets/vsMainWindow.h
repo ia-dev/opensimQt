@@ -23,12 +23,14 @@ private slots:
     void on_actionReload_triggered();
 
     void customMenuRequestedNavigator(const QPoint &point);
+    void onExpendIndex(const QModelIndex modelIndex);
 
     void on_actionSave_Model_triggered();
 
     void on_actionSave_Model_As_triggered();
 
     void on_actionSave_All_triggered();
+
 
 private:
     Ui::vsMainWindow *ui;

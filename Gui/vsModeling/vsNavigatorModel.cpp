@@ -42,6 +42,7 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
     vsModelNode *modelNNode = new vsModelNode(m_activeModel,m_rootNNode,this);
 
+    emit expendIndex(indexForNNode(modelNNode));
 
     emit layoutChanged();
 //    m_activeModel->setUseVisualizer(true);

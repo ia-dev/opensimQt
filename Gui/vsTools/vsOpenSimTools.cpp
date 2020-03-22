@@ -77,3 +77,13 @@ QStringList vsOpenSimTools::getReloadModelsPaths()
     }
     return returnList;
 }
+
+void vsOpenSimTools::saveScene(QString savingFilePath)
+{
+    QJsonDocument openModelsDocument = QJsonDocument::fromVariant(this->openModels);
+    QFile openModelsFile(savingFilePath);
+    openModelsFile.open(QFile::WriteOnly|QFile::Text);
+    openModelsFile.write(openModelsDocument.toJson());
+    openModelsFile.close();
+}
+
