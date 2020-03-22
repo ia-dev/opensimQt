@@ -32,6 +32,7 @@ public:
     void removeFromOpenModels(OpenSim::Model *modelToRemove);
     void updateOpenModelsFile();
     QStringList getReloadModelsPaths();
+    void saveScene(QString savingFilePath);
 signals:
     void messageLogged(QString message);
 

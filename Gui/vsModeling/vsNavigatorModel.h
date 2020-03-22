@@ -32,6 +32,9 @@ public:
     OpenSim::Model *getActiveModel() const;
     void setActiveModel(OpenSim::Model *activeModel);
 
+signals:
+    void expendIndex(const QModelIndex modelIndex);
+
 protected:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;

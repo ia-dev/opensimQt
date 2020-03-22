@@ -33,6 +33,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting the navigator
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
+    connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
 
     //setting the visualizer
     ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
@@ -147,6 +148,11 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
     }
 }
 
+void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
+{
+    ui->navigatorTreeView->expand(modelIndex);
+}
+
 void vsMainWindow::on_actionSave_Model_triggered()
 {
     if(navigatorModel->getActiveModel() != nullptr){
@@ -186,4 +192,20 @@ void vsMainWindow::on_actionSave_All_triggered()
         oneModel->print(oneModel->getInputFileName());
     }
     vsOpenSimTools::tools->log("All Models are Saved","MainWindow",vsOpenSimTools::Success);
+    vsOpenSimTools::tools->log("Saving The Scene...","MainWindow",vsOpenSimTools::Info);
+    if(navigatorModel->getActiveModel() != nullptr){
+        QString sceneFileName = QFileDialog::
+                getSaveFileName(this,"Save Current Scene As","SceneName.vs","*.vs");
+        if(sceneFileName != ""){
+            vsOpenSimTools::tools->saveScene(sceneFileName);
+            vsOpenSimTools::tools->log("Scene was Saved Here: "+sceneFileName,"MainWindow",vsOpenSimTools::Success);
+        }
+        else{
+            vsOpenSimTools::tools->log("No Valid File was Selected","MainWindow",vsOpenSimTools::Error);
+        }
+    }else{
+        vsOpenSimTools::tools->log("The Scene is empty","MainWindow",vsOpenSimTools::Info);
+    }
+
+
 }
