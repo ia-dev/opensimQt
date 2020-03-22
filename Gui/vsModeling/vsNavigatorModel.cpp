@@ -93,7 +93,7 @@ QVariant vsNavigatorModel::data(const QModelIndex &index, int role) const
     if(index.isValid() && role==Qt::DisplayRole)
     {
         vsNavigatorNode *nNode = nodeForIndex(index);
-        return  nNode->displayName;
+        return nNode->displayName + (nNode->openSimObject == m_activeModel?"  [Current]":"") ;
     }
     if (index.isValid() && role==Qt::DecorationRole) {
         vsNavigatorNode *nNode = nodeForIndex(index);
@@ -123,6 +123,16 @@ vsNavigatorNode* vsNavigatorModel::nodeForIndex(const QModelIndex &index) const
 int vsNavigatorModel::rowForNode(vsNavigatorNode *node) const
 {
     return node->parentNode->childNodes.indexOf(node);
+}
+
+OpenSim::Model *vsNavigatorModel::getActiveModel() const
+{
+    return m_activeModel;
+}
+
+void vsNavigatorModel::setActiveModel(OpenSim::Model *activeModel)
+{
+    m_activeModel = activeModel;
 }
 
 QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const

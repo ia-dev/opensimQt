@@ -29,6 +29,9 @@ public:
 
     QList<OpenSim::Model *> getOpenModels() const;
 
+    OpenSim::Model *getActiveModel() const;
+    void setActiveModel(OpenSim::Model *activeModel);
+
 protected:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;
