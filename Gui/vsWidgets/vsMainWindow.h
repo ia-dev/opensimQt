@@ -32,6 +32,8 @@ private slots:
     void on_actionSave_All_triggered();
 
 
+    void on_actionE_xit_triggered();
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
@@ -42,5 +44,7 @@ protected:
     virtual void dropEvent(QDropEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
+
+    virtual void closeEvent(QCloseEvent *event) override;
 };
 #endif // vsMainWindow_H

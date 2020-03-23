@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMimeData>
+#include <QMessageBox>
 #include <QtWebEngineWidgets/qwebengineview.h>
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
@@ -115,6 +116,16 @@ void vsMainWindow::dragMoveEvent(QDragMoveEvent *event)
     event->acceptProposedAction();
 }
 
+void vsMainWindow::closeEvent(QCloseEvent *event)
+{
+    if(QMessageBox::warning(this,"Exiting","Do you really want to exit ?",(QMessageBox::Yes|QMessageBox::No)) != QMessageBox::Yes)
+    {
+        qDebug() << "not Exiting";
+    }else{
+        QMainWindow::closeEvent(event);
+    }
+}
+
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;
 
 void vsMainWindow::on_actionReload_triggered()
@@ -212,5 +223,17 @@ void vsMainWindow::on_actionSave_All_triggered()
     }
 
 
+
+}
+
+void vsMainWindow::on_actionE_xit_triggered()
+{
+    if(QMessageBox::warning(this,"Exiting","Do you really want to exit ?",(QMessageBox::Yes|QMessageBox::No)) != QMessageBox::Yes)
+    {
+        qDebug() << "not Exiting";
+    }else{
+        qDebug() << "exiting";
+        QApplication::exit();
+    }
 
 }
