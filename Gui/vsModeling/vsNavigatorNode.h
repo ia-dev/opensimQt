@@ -17,6 +17,8 @@ public:
     virtual void setupNodeActions(QMenu *rootMenu);
 
     void disableActionsForSets();
+
+    void removeNode();
 public:
     OpenSim::Object *openSimObject;
     QString displayName;

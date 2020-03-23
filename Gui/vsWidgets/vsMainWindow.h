@@ -34,6 +34,10 @@ private slots:
 
     void on_actionE_xit_triggered();
 
+    void on_actionClose_Model_triggered();
+
+    void on_actionClose_All_triggered();
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;

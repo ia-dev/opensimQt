@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QObject>
 #include "vsModeling/vsNavigatorNode.h"
+#include "vsModelNode.h"
 
 class vsNavigatorModel : public QAbstractItemModel
 {
@@ -28,6 +29,10 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
 
     QList<OpenSim::Model *> getOpenModels() const;
+
+    void closeCurrentModel();
+    void closeAllModels();
+    vsModelNode  *getNodeForModel(OpenSim::Model *model);
 
     OpenSim::Model *getActiveModel() const;
     void setActiveModel(OpenSim::Model *activeModel);

@@ -47,5 +47,11 @@ void vsNavigatorNode::disableActionsForSets()
     }
 }
 
+void vsNavigatorNode::removeNode()
+{
+    parentNode->childNodes.removeOne(this);
+    this->deleteLater();
+}
+
 
 vsVisualizerVTK* vsNavigatorNode::visualizerVTK = nullptr;

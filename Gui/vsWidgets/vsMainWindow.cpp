@@ -120,9 +120,9 @@ void vsMainWindow::closeEvent(QCloseEvent *event)
 {
     if(QMessageBox::warning(this,"Exiting","Do you really want to exit ?",(QMessageBox::Yes|QMessageBox::No)) != QMessageBox::Yes)
     {
-        qDebug() << "not Exiting";
+        event->ignore();
     }else{
-        QMainWindow::closeEvent(event);
+        event->accept();
     }
 }
 
@@ -236,4 +236,14 @@ void vsMainWindow::on_actionE_xit_triggered()
         QApplication::exit();
     }
 
+}
+
+void vsMainWindow::on_actionClose_Model_triggered()
+{
+    navigatorModel->closeCurrentModel();
+}
+
+void vsMainWindow::on_actionClose_All_triggered()
+{
+    navigatorModel->closeAllModels();
 }
