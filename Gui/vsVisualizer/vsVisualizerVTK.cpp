@@ -347,9 +347,9 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     tubeActor->SetScale(scaleFactors);
 
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
-    renderer->AddActor(lineActor);
+    //renderer->AddActor(lineActor);
     renderer->AddActor(tubeActor);
-    return lineActor;
+    return tubeActor;
 }
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCylender(const SimTK::DecorativeCylinder &cylender, SimTK::Transform cylanderTransform, double *scaleFactors)
@@ -578,6 +578,8 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
 
     vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
+    geoImp.setRenderedModel(model);
+    modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkActor>>());
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
     OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
@@ -609,6 +611,11 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 //    }
 
 
+}
+
+void vsVisualizerVTK::addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor)
+{
+    *modelActorsMap.value(model) << actor;
 }
 
 BackgroundType vsVisualizerVTK::backgroundType() const
@@ -644,4 +651,18 @@ void vsVisualizerVTK::clearTheScene()
     GetRenderWindow()->Finalize();
 
 
+}
+
+void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
+{
+    auto renderer =this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto modelActors = modelActorsMap.value(model);
+    foreach (auto actor, *modelActors) {
+        renderer->RemoveActor(actor);
+    }
+    modelActorsMap.remove(model);
+    renderer->ResetCamera();
+    renderer->Render();
+    GetRenderWindow()->Render();
+    GetRenderWindow()->Finalize();
 }

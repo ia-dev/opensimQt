@@ -149,14 +149,21 @@ void vsNavigatorModel::closeCurrentModel()
         return;
     }
     vsModelNode *activeNode = getNodeForModel(m_activeModel);
+
+    activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));
+
     activeNode->removeNode();
     m_openModels.removeOne(m_activeModel);
+
+
     if(m_openModels.size()>0)
         setActiveModel(m_openModels.first());
     else
         setActiveModel(nullptr);
     vsOpenSimTools::tools->log("Current Model closed","NavigatorModel",vsOpenSimTools::Success);
     emit layoutChanged();
+    //TODO remove the model from the tools
+
 }
 
 void vsNavigatorModel::closeAllModels()

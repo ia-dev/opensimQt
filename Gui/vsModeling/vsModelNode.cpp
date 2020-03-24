@@ -44,7 +44,6 @@ vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObje
 
     visualizerVTK->addOpenSimModel(model);
 
-
 }
 
 void vsModelNode::setupNodeActions(QMenu *rootMenu)

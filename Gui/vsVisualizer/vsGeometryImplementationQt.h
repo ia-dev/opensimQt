@@ -37,10 +37,15 @@ public:
     virtual void implementArrowGeometry(const SimTK::DecorativeArrow &geom) override;
     virtual void implementConeGeometry(const SimTK::DecorativeCone &geom) override;
 
+
+    OpenSim::Model *renderedModel() const;
+    void setRenderedModel(OpenSim::Model *renderedModel);
+
 private:
     vsVisualizerVTK *m_visualizerVTK;
     const SimTK::State& m_state;
     const SimTK::SimbodyMatterSubsystem& m_matter;
+    OpenSim::Model *m_renderedModel;
 };
 
 #endif // vsGeometryImplementationQt_H

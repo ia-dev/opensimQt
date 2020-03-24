@@ -7,6 +7,7 @@
 #include <QVector3D>
 #include <QVector4D>
 #include <OpenSim.h>
+#include <QMap>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -54,15 +55,18 @@ public:
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
+    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
 
     //operations on the scene
     void clearTheScene();
+    void removeModelActors(OpenSim::Model *model);
 
 private:
     BackgroundType m_backgroundType;
+    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
 
 
 };
