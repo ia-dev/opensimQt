@@ -169,10 +169,14 @@ void vsNavigatorModel::closeCurrentModel()
 void vsNavigatorModel::closeAllModels()
 {
     foreach(auto modelNode,m_rootNNode->childNodes){
+        OpenSim::Model *model = static_cast<OpenSim::Model*>(modelNode->openSimObject);
+        modelNode->visualizerVTK->removeModelActors(model);
         modelNode->removeNode();
     }
     setActiveModel(nullptr);
     foreach(auto model , m_openModels){
+        qDebug() << "model to remove :"<< QString::fromStdString(model->getName());
+        m_openModels.removeOne(model);
         delete model;
     }
     vsOpenSimTools::tools->log("All Models are closed","NavigatorModel",vsOpenSimTools::Success);
