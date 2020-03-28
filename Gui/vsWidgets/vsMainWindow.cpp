@@ -122,6 +122,13 @@ void vsMainWindow::closeEvent(QCloseEvent *event)
     {
         event->ignore();
     }else{
+        QString historyPath =QApplication::applicationDirPath()
+                +"/History/"+QDateTime::currentDateTime().toString(Qt::ISODate).replace(":","_");
+        QDir hDir;
+        if(hDir.exists(QApplication::applicationDirPath()+"/History/"))hDir.mkdir(QApplication::applicationDirPath()+"/History/");
+        vsOpenSimTools::tools->saveScene(historyPath+".vs");
+        qDebug() << "exiting" << historyPath;
+        QFile::copy(QApplication::applicationDirPath()+"/OpenSimQtLog_.txt",historyPath+".txt");
         event->accept();
     }
 }
@@ -232,7 +239,15 @@ void vsMainWindow::on_actionE_xit_triggered()
     {
         qDebug() << "not Exiting";
     }else{
-        qDebug() << "exiting";
+        QString historyPath =QApplication::applicationDirPath()
+                +"/History/"+QDateTime::currentDateTime().toString(Qt::ISODate).replace(":","_");
+        QDir hDir;
+        if(hDir.exists(QApplication::applicationDirPath()+"/History/"))hDir.mkdir(QApplication::applicationDirPath()+"/History/");
+        vsOpenSimTools::tools->saveScene(historyPath+".vs");
+        qDebug() << "exiting" << historyPath;
+        QFile::copy(QApplication::applicationDirPath()+"/OpenSimQtLog_.txt",historyPath+".txt");
+        //move the log to the HistoryFolder
+        //save the scene
         QApplication::exit();
     }
 

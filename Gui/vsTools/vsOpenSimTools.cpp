@@ -82,7 +82,7 @@ void vsOpenSimTools::saveScene(QString savingFilePath)
 {
     QJsonDocument openModelsDocument = QJsonDocument::fromVariant(this->openModels);
     QFile openModelsFile(savingFilePath);
-    openModelsFile.open(QFile::WriteOnly|QFile::Text);
+    openModelsFile.open(QIODevice::WriteOnly|QIODevice::Text);
     openModelsFile.write(openModelsDocument.toJson());
     openModelsFile.close();
 }
