@@ -35,10 +35,12 @@ The project has 5 milestones:
    - [MS0104: open file by drag and drop.](https://github.com/VisSimKoblenz/opensimQt/issues/4) 
    - [MS0105: reload current scene function.](https://github.com/VisSimKoblenz/opensimQt/issues/5) 
    - [MS0106: save functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/6) 
-   - [MS0107: close functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/7)    
+   - [MS0107: close functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/7) 
+   - [MMS0108: Visualizer functions](https://github.com/VisSimKoblenz/opensimQt/issues/10)    
 2. [Simulation.](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+2%3A+Simulation%22)
-   - run the simulation and visualise the result
-   - add simulation settings function
+   - [MMS0201: implement load motion](https://github.com/VisSimKoblenz/opensimQt/issues/11)    
+   - [MMS0202: implement the simulation process](https://github.com/VisSimKoblenz/opensimQt/issues/12)    
+   - [MMS0203: Complete simple functions e.g. edit menu and help menu](https://github.com/VisSimKoblenz/opensimQt/issues/13) 
 3. [Tools](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+3%3A+Tools%22)
    - add different tools functions
      - Inverse Kenimatics, Inverse Dynamics, ..etc 
