@@ -11,6 +11,8 @@ class vsModelNode : public vsNavigatorNode
 public:
     vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent=nullptr);
 
+public slots:
+    void onCloseModelClicked();
 
     // vsNavigatorNode interface
 public:

@@ -8,6 +8,8 @@
 #include "vsMarkersNode.h"
 #include "vsModelNode.h"
 #include "vsProbesNode.h"
+#include "vsNavigatorModel.h"
+#include <QDebug>
 
 vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent):vsNavigatorNode(model,"",parentNode,parent)
 {
@@ -46,6 +48,13 @@ vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObje
 
 }
 
+void vsModelNode::onCloseModelClicked()
+{
+    qDebug() << "model  Closing";
+    connectedModel()->closeModel(static_cast<OpenSim::Model*>(this->openSimObject));
+
+}
+
 void vsModelNode::setupNodeActions(QMenu *rootMenu)
 {
     QAction *makeCurrentAction = new QAction("Make Current",rootMenu);
@@ -64,4 +73,6 @@ void vsModelNode::setupNodeActions(QMenu *rootMenu)
     rootMenu->addSeparator();
     QAction* addMotionAction = new QAction("Add Motion...",rootMenu);
     rootMenu->addAction(addMotionAction);
+
+    connect(closeAction,&QAction::triggered,this,&vsModelNode::onCloseModelClicked);
 }

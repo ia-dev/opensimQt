@@ -6,6 +6,7 @@
 vsNavigatorModel::vsNavigatorModel()
 {
     m_rootNNode = new vsNavigatorNode(nullptr,"the root",nullptr,this);
+    m_rootNNode->setConnectedModel(this);
 }
 
 void vsNavigatorModel::clean()
@@ -181,6 +182,26 @@ void vsNavigatorModel::closeAllModels()
     }
     vsOpenSimTools::tools->log("All Models are closed","NavigatorModel",vsOpenSimTools::Success);
     emit layoutChanged();
+}
+
+void vsNavigatorModel::closeModel(OpenSim::Model *model)
+{
+
+    vsModelNode *activeNode = getNodeForModel(model);
+
+    activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));
+
+    activeNode->removeNode();
+    m_openModels.removeOne(model);
+
+
+    if(model == m_activeModel  && m_openModels.size()>0)
+        setActiveModel(m_openModels.first());
+    else
+        setActiveModel(nullptr);
+    vsOpenSimTools::tools->log("Model "+QString::fromStdString(model->getName())+" closed","NavigatorModel",vsOpenSimTools::Success);
+    emit layoutChanged();
+    //TODO remove the model from the tools
 }
 
 vsModelNode *vsNavigatorModel::getNodeForModel(OpenSim::Model *model)

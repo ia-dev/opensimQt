@@ -32,6 +32,7 @@ public:
 
     void closeCurrentModel();
     void closeAllModels();
+    void closeModel(OpenSim::Model *model);
     vsModelNode  *getNodeForModel(OpenSim::Model *model);
 
     OpenSim::Model *getActiveModel() const;

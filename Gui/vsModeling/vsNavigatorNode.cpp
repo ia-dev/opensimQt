@@ -1,17 +1,21 @@
+#include "vsNavigatorModel.h"
 #include "vsNavigatorNode.h"
 
 #include <QAction>
 #include <qdebug.h>
 
 vsNavigatorNode::vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,vsNavigatorNode *_parentNode,QObject *parent) :QObject(parent),
-  openSimObject(_openSimObj),displayName(_displayName),parentNode(_parentNode)
+  openSimObject(_openSimObj),displayName(_displayName),parentNode(_parentNode),m_connectedModel(nullptr)
 {
     if(openSimObject != nullptr)
         displayName = QString::fromStdString(openSimObject->getName());
-    if(parentNode != nullptr)
+    if(parentNode != nullptr){
         parentNode->childNodes.append(this);
+        setConnectedModel(parentNode->connectedModel());
+    }
     iconPath = ":/Data/Images/Nodes/bodyNode.png";
     qDebug() << "visuazer vtk " <<  visualizerVTK->objectName();
+
 }
 
 vsNavigatorNode::~vsNavigatorNode()
@@ -51,6 +55,20 @@ void vsNavigatorNode::removeNode()
 {
     parentNode->childNodes.removeOne(this);
     this->deleteLater();
+}
+
+vsNavigatorModel *vsNavigatorNode::connectedModel() const
+{
+    return m_connectedModel;
+}
+
+void vsNavigatorNode::setConnectedModel(vsNavigatorModel *connectedModel)
+{
+    if (m_connectedModel == connectedModel)
+        return;
+
+    m_connectedModel = connectedModel;
+    emit connectedModelChanged(m_connectedModel);
 }
 
 
