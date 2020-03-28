@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>OpenSim</DisplayName>
+    <Description>OpenSim Simulation Tool</Description>
+    <Version>4.1</Version>
+    <ReleaseDate>2020-03-26</ReleaseDate>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+</Package>
