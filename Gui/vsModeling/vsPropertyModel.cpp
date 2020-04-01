@@ -11,24 +11,25 @@
 vsPropertyModel::vsPropertyModel(QObject *parent):QStandardItemModel(parent)
 {
     QStandardItem  *emptyItem = new QStandardItem("");
-    emptyItem->setBackground(Qt::lightGray);
+    //emptyItem->setBackground(Qt::lightGray);
    setColumnCount(2);
+   setHorizontalHeaderLabels(QStringList() << "Property" << "Value");
    //setting the properties
    m_propertiesItem = new QStandardItem();
    m_propertiesItem->setText("Properties");
-   m_propertiesItem->setBackground(Qt::lightGray);
+   //m_propertiesItem->setBackground(Qt::lightGray);
    appendRow(QList<QStandardItem*>()<< m_propertiesItem << emptyItem);
    //setting the sockets
 
    m_socketsItem = new QStandardItem();
    m_socketsItem->setText("Sockets");
-   m_socketsItem->setBackground(Qt::lightGray);
+   //m_socketsItem->setBackground(Qt::lightGray);
    appendRow(QList<QStandardItem*>()<< m_socketsItem << emptyItem->clone());
 
    //setting the appearance
    m_appearancexItem = new QStandardItem();
    m_appearancexItem->setText("Appearance");
-   m_appearancexItem->setBackground(Qt::lightGray);
+   //m_appearancexItem->setBackground(Qt::lightGray);
    appendRow(QList<QStandardItem*>()<< m_appearancexItem << emptyItem->clone());
 
 }
@@ -44,7 +45,11 @@ void vsPropertyModel::setSelectedNavigarorNode(vsNavigatorNode *selectedNavigaro
 {
     if (m_selectedNavigarorNode == selectedNavigarorNode)
         return;
-
     m_selectedNavigarorNode = selectedNavigarorNode;
+    if(m_propertiesItem->rowCount()>0)m_propertiesItem->removeRows(0,m_propertiesItem->rowCount());
+    m_selectedNavigarorNode->setupPropertiesModel(this);
+
+    emit layoutChanged();
+
     emit selectedNavigarorNodeChanged(m_selectedNavigarorNode);
 }

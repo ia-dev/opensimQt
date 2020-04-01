@@ -24,6 +24,7 @@ private slots:
     void on_actionReload_triggered();
 
     void customMenuRequestedNavigator(const QPoint &point);
+    void onNavigatorClicked(const QModelIndex modelIndex);
     void onExpendIndex(const QModelIndex modelIndex);
 
     void on_actionSave_Model_triggered();

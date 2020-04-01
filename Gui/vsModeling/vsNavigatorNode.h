@@ -1,12 +1,14 @@
 #ifndef vsNavigatorNode_H
 #define vsNavigatorNode_H
 
+
 #include <QMenu>
 #include <QObject>
 #include <OpenSim/OpenSim.h>
 #include <vsVisualizer/vsVisualizerVTK.h>
 
 class vsNavigatorModel;
+class vsPropertyModel;
 
 class vsNavigatorNode : public QObject
 {
@@ -21,6 +23,7 @@ public:
 
     virtual void setupNodeActions(QMenu *rootMenu);
     virtual QVariantMap getNodeProperties();
+    virtual void setupPropertiesModel(vsPropertyModel *model);
 
     void disableActionsForSets();
     vsNavigatorModel* connectedModel() const;

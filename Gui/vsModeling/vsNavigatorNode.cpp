@@ -1,5 +1,7 @@
 #include "vsNavigatorModel.h"
 #include "vsNavigatorNode.h"
+#include "vsPropertyItem.h"
+#include "vsPropertyModel.h"
 
 #include <QAction>
 #include <qdebug.h>
@@ -53,6 +55,30 @@ QVariantMap vsNavigatorNode::getNodeProperties()
         nameProperty.insert("name",QString::fromStdString(openSimObject->getName()));
     }
     return retMap;
+}
+
+void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
+{
+    if(openSimObject != nullptr){
+        //name property
+        vsPropertyItem *nameItem = new vsPropertyItem();
+        nameItem->m_name = "name";
+        nameItem->m_value = QString::fromStdString(openSimObject->getName());
+        nameItem->m_type = vsPropertyItem::Text;
+        nameItem->setText(nameItem->m_value);
+        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("name") << nameItem);
+
+
+        //type property
+        vsPropertyItem *typeItem = new vsPropertyItem();
+        typeItem->m_name = "type";
+        typeItem->m_value = QString::fromStdString(openSimObject->getConcreteClassName());
+        typeItem->m_type = vsPropertyItem::Text;
+        typeItem->setText(typeItem->m_value);
+        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("type") << typeItem);
+        qDebug() << "updated";
+
+    }
 }
 
 void vsNavigatorNode::disableActionsForSets()

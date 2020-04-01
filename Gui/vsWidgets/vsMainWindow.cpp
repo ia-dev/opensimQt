@@ -57,6 +57,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
+    connect(ui->navigatorTreeView,&QTreeView::clicked,this,&vsMainWindow::onNavigatorClicked);
+
 
 }
 
@@ -170,6 +172,14 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
         navigatorModel->getActionsForIndex(indexAtPos,nodeMenu);
         nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
     }
+}
+
+void vsMainWindow::onNavigatorClicked(const QModelIndex modelIndex)
+{
+    vsNavigatorNode *selectedNode = navigatorModel->nodeForIndex(modelIndex);
+    propertiesModel->setSelectedNavigarorNode(selectedNode);
+    ui->propertyTreeView->update(ui->propertyTreeView->rect());
+    ui->propertyTreeView->expandAll();
 }
 
 

@@ -42,7 +42,7 @@ public:
 signals:
     void expendIndex(const QModelIndex modelIndex);
 
-protected:
+public:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;
     int rowForNode(vsNavigatorNode *node) const;

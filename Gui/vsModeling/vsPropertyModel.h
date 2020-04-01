@@ -25,6 +25,7 @@ public:
 
     vsNavigatorNode* selectedNavigarorNode() const;
 
+
     QStandardItem *m_rootItem;
     QStandardItem *m_propertiesItem;
     QStandardItem *m_socketsItem;
