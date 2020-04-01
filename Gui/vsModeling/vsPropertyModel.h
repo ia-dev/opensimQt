@@ -9,7 +9,6 @@
 #define VSPROPERTYMODEL_H
 
 #include "vsNavigatorNode.h"
-#include "vsPropertyNode.h"
 
 #include <QObject>
 #include <QStandardItemModel>

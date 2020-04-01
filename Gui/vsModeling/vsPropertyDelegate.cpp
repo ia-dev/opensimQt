@@ -14,6 +14,7 @@ vsPropertyDelegate::vsPropertyDelegate(QObject *parent)
 
 QWidget *vsPropertyDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+
     return nullptr;
 }
 

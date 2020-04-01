@@ -5,12 +5,29 @@
  *   Authors: Ibraheem Aldhamari, Yasser Grimes                            *
  *                                                                         *
  ***************************************************************************/
-#include "vsPropertyNode.h"
+#ifndef VSPROPERTYITEM_H
+#define VSPROPERTYITEM_H
 
-vsPropertyNode::vsPropertyNode(vsPropertyNode *_parentNode,QObject *parent) : QObject(parent),
-    m_parentNode(_parentNode)
+#include <QObject>
+#include <QStandardItem>
+
+class vsPropertyItem : public QStandardItem
 {
-    if(m_parentNode != nullptr){
-        m_parentNode->m_childNodes.append(this);
-    }
-}
+
+public:
+    enum PropertyType{
+        Text,
+        Check,
+        List,
+        Options,
+        Color,
+        Select
+    };
+    vsPropertyItem();
+
+    QString m_name;
+    QString m_value;
+    PropertyType m_type;
+};
+
+#endif // VSPROPERTYITEM_H
