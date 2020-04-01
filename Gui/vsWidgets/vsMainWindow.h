@@ -5,6 +5,7 @@
 
 #include <vsWidgets/vsSimulationToolsWidget.h>
 #include <vsModeling/vsNavigatorModel.h>
+#include <vsModeling/vsPropertyModel.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -42,6 +43,7 @@ private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
     vsNavigatorModel *navigatorModel;
+    vsPropertyModel *propertiesModel;
 
     // QWidget interface
 protected:

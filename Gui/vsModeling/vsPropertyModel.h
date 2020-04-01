@@ -8,32 +8,37 @@
 #ifndef VSPROPERTYMODEL_H
 #define VSPROPERTYMODEL_H
 
+#include "vsNavigatorNode.h"
 #include "vsPropertyNode.h"
 
-#include <QAbstractItemModel>
 #include <QObject>
+#include <QStandardItemModel>
 
-class vsPropertyModel : public QAbstractItemModel
+class vsPropertyModel : public QStandardItemModel
 {
     Q_OBJECT
-    Q_PROPERTY(vsPropertyNode* rootNode READ rootNode WRITE setRootNode NOTIFY rootNodeChanged)
-    vsPropertyNode* m_rootNode;
+    Q_PROPERTY(vsNavigatorNode* selectedNavigarorNode READ selectedNavigarorNode WRITE setSelectedNavigarorNode NOTIFY selectedNavigarorNodeChanged)
+
+    vsNavigatorNode* m_selectedNavigarorNode;
 
 public:
-    vsPropertyModel();
+    vsPropertyModel(QObject *parent);
+
+    vsNavigatorNode* selectedNavigarorNode() const;
+
+    QStandardItem *m_rootItem;
+    QStandardItem *m_propertiesItem;
+    QStandardItem *m_socketsItem;
+    QStandardItem *m_appearancexItem;
 
 
-
-    virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;
-    virtual QModelIndex parent(const QModelIndex &child) const override;
-    virtual int rowCount(const QModelIndex &parent) const override;
-    virtual int columnCount(const QModelIndex &parent) const override;
-    virtual QVariant data(const QModelIndex &index, int role) const override;
-    vsPropertyNode* rootNode() const;
 public slots:
-    void setRootNode(vsPropertyNode* rootNode);
+
+    void setSelectedNavigarorNode(vsNavigatorNode* selectedNavigarorNode);
+
 signals:
-    void rootNodeChanged(vsPropertyNode* rootNode);
+
+    void selectedNavigarorNodeChanged(vsNavigatorNode* selectedNavigarorNode);
 };
 
 #endif // VSPROPERTYMODEL_H

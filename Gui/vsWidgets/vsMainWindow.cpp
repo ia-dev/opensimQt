@@ -11,6 +11,7 @@
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 
+
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::vsMainWindow)
@@ -35,6 +36,10 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
     connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
+
+    //setting the properties
+    propertiesModel = new vsPropertyModel(this);
+    ui->propertyTreeView->setModel(propertiesModel);
 
     //setting the visualizer
     ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));

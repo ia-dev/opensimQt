@@ -42,6 +42,19 @@ void vsNavigatorNode::setupNodeActions(QMenu *rootMenu)
         disableActionsForSets();
 }
 
+QVariantMap vsNavigatorNode::getNodeProperties()
+{
+    QVariantMap retMap;
+    //adding the properties
+    QVariantList properties;
+
+    if(openSimObject != nullptr){
+        QVariantMap nameProperty;
+        nameProperty.insert("name",QString::fromStdString(openSimObject->getName()));
+    }
+    return retMap;
+}
+
 void vsNavigatorNode::disableActionsForSets()
 {
     QStringList actionsToDisable;

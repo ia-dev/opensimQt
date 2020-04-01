@@ -20,6 +20,7 @@ public:
     ~vsNavigatorNode();
 
     virtual void setupNodeActions(QMenu *rootMenu);
+    virtual QVariantMap getNodeProperties();
 
     void disableActionsForSets();
     vsNavigatorModel* connectedModel() const;
