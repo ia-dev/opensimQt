@@ -10,6 +10,7 @@
 
 #include <QObject>
 #include <QStandardItem>
+#include <OpenSim.h>
 
 class vsPropertyItem : public QStandardItem
 {
@@ -21,13 +22,16 @@ public:
         List,
         Options,
         Color,
-        Select
+        Object,
+        GeometryPath,
+        Function
     };
     vsPropertyItem();
 
     QString m_name;
     QString m_value;
     PropertyType m_type;
+    OpenSim::Object* m_object;
 };
 
 #endif // VSPROPERTYITEM_H

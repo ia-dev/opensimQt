@@ -78,6 +78,67 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
         model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("type") << typeItem);
         qDebug() << "updated";
 
+
+        QRegExp socketsRE("socket_(.*)");
+        QRegExp inputsRE("input_(.*)");
+
+        //the abstract properties
+        for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
+             const OpenSim::AbstractProperty *absProperty = &openSimObject->getPropertyByIndex(i);
+             QString propertyName = QString::fromStdString(absProperty->getName());
+             if (socketsRE.exactMatch(propertyName) || inputsRE.exactMatch(propertyName)) {
+                 continue;
+             }
+             vsPropertyItem *pItem = new vsPropertyItem();
+             QStandardItem *pName = new QStandardItem();
+
+             pItem->m_name = propertyName;
+             pName->setText(propertyName);
+             if(! absProperty->isListProperty()){
+                 //Object property
+                 if(absProperty->isObjectProperty() && absProperty->size() == 1){
+                     const OpenSim::Object *objectFromProperty = &(absProperty->isOptionalProperty()
+                             ?absProperty->getValueAsObject(0):absProperty->getValueAsObject());
+                     auto gp =OpenSim::GeometryPath::safeDownCast(const_cast<OpenSim::Object*>(objectFromProperty));
+                     auto fp =OpenSim::Function::safeDownCast(const_cast<OpenSim::Object*>(objectFromProperty));
+
+                     if (gp != nullptr){
+                        pItem->m_type = vsPropertyItem::GeometryPath;
+                        pItem->m_object = gp;
+                        pItem->m_value = QString::fromStdString(gp->getName());
+                        pItem->setText(pItem->m_name);
+                     }
+                     else{
+
+                         pItem->m_type = vsPropertyItem::Object;
+                         pItem->m_object = const_cast<OpenSim::Object*>(objectFromProperty);
+                         pItem->m_value = QString::fromStdString(pItem->m_object->getName());
+                         pItem->setText(pItem->m_name);
+                     }
+                 }
+                 //others
+                 else{
+                     if(absProperty->isOptionalProperty()){
+                         QString apType = QString::fromStdString(absProperty->getTypeName());
+                         pItem->m_name = propertyName;
+                         if (apType.toLower() == "double"){
+
+                             if(propertyName.contains("color",Qt::CaseInsensitive))
+                             {
+                                 pItem->m_type = vsPropertyItem::Color;
+                                 pItem->m_value = "";
+                                 pItem->setText(pItem->m_name);
+                             }
+                          }
+
+                     }
+                 }
+             }
+             //testing of the a property have been added
+             model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< pName << pItem);
+
+        }
+
     }
 }
 
