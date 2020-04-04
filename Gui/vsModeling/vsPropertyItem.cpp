@@ -7,7 +7,7 @@
  ***************************************************************************/
 #include "vsPropertyItem.h"
 
-vsPropertyItem::vsPropertyItem():QStandardItem(),m_name("name"),m_value("value"),m_type(PropertyType::Text)
+vsPropertyItem::vsPropertyItem():QStandardItem(),m_name("name"),m_value("value"),m_type(PropertyType::Text),m_isEditable(false)
 {
 
 }

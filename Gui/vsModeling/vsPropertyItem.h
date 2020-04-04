@@ -18,6 +18,7 @@ class vsPropertyItem : public QStandardItem
 public:
     enum PropertyType{
         Text,
+        TextObj,
         Check,
         List,
         Options,
@@ -31,6 +32,7 @@ public:
     QString m_name;
     QString m_value;
     PropertyType m_type;
+    bool m_isEditable;
     OpenSim::Object* m_object;
 };
 

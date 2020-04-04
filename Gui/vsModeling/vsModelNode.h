@@ -17,6 +17,7 @@ public slots:
     // vsNavigatorNode interface
 public:
     virtual void setupNodeActions(QMenu *rootMenu) override;
+    virtual void setupPropertiesModel(vsPropertyModel *model) override;
 };
 
 #endif // vsModelNode_H
