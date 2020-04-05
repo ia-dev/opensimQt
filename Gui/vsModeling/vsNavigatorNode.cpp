@@ -86,6 +86,8 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
             vsPropertyItem *apItem = new vsPropertyItem();
             QStandardItem *apNameItem = new QStandardItem(apName);
             qDebug() << apName << QString::fromStdString(ap->getTypeName());
+
+
             if(ap->isListProperty()){
 
                 apItem->m_type = vsPropertyItem::List;
@@ -98,18 +100,70 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
                 listRepresentation += "]";
                 apItem->m_value  = listRepresentation;
                 apItem->setText(apItem->m_value);
-                model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
             }
             else if(ap->isObjectProperty()){
-                apItem->m_type = vsPropertyItem::Object;
-                apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
-                apItem->setText(QString::fromStdString(apItem->m_object->getName()));
-                apItem->setEditable(false);
-                model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
-            }else{
+                if(apName == "Appearance"){
+                    auto _appr = &ap->getValueAsObject();
+                    auto appr = OpenSim::Appearance::safeDownCast(const_cast<OpenSim::Object*>(_appr));
+                    //visible property
+                    auto visibleProp = &appr->getProperty_visible();
+                    vsPropertyItem *visibleItem = new vsPropertyItem();
+                    QStandardItem *visibleNameItem = new QStandardItem("visible");
+                    visibleItem->m_type = vsPropertyItem::Check;
+                    visibleItem->m_value = QString::fromStdString(visibleProp->toString());
+                    visibleItem->setText(visibleItem->m_value);
+                    visibleItem->setEditable(true);
+                    model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< visibleNameItem << visibleItem);
+
+                    //opacity property
+                    auto opacityProp = &appr->getProperty_opacity();
+                    vsPropertyItem *opacityItem = new vsPropertyItem();
+                    QStandardItem *opacityNameItem = new QStandardItem("opacity");
+                    opacityItem->m_type = vsPropertyItem::Text;
+                    opacityItem->m_value = QString::fromStdString(opacityProp->toString());
+                    opacityItem->setText(opacityItem->m_value);
+                    opacityItem->setEditable(true);
+                    model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< opacityNameItem << opacityItem);
+
+                    //color property
+                    auto colorProp = &appr->getProperty_color();
+                    vsPropertyItem *colorItem = new vsPropertyItem();
+                    QStandardItem *colorNameItem = new QStandardItem("color");
+                    colorItem->m_type = vsPropertyItem::Color;
+                    colorItem->m_value = QString::fromStdString(colorProp->toString());
+                    colorItem->setText(colorItem->m_value);
+                    colorItem->setEditable(true);
+                    model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< colorNameItem << colorItem);
+
+                    //color property
+                    auto dpProp = &appr->getProperty_SurfaceProperties();
+                    vsPropertyItem *dpItem = new vsPropertyItem();
+                    QStandardItem *dpNameItem = new QStandardItem("DisplayPreferences");
+                    dpItem->m_type = vsPropertyItem::Text;
+                    dpItem->m_value = QString::fromStdString(dpProp->toString());
+                    dpItem->setText(dpItem->m_value);
+                    dpItem->setEditable(true);
+                    model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< dpNameItem << dpItem);
+
+                    continue;
+                }
+                else{
+                    apItem->m_type = vsPropertyItem::Object;
+                    apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
+                    apItem->setText(QString::fromStdString(apItem->m_object->getName()));
+                    apItem->setEditable(false);
+                }
+            }
+            else{
                 apItem->m_type = vsPropertyItem::Text;
                 apItem->m_value = QString::fromStdString(ap->toStringForDisplay(1));
                 apItem->setText(apItem->m_value);
+            }
+
+            QRegExp socketRegEx("^socket.*");
+            if(socketRegEx.exactMatch(apName)){
+                model->m_socketsItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
+            }else{
                 model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
             }
 
