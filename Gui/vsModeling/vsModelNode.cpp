@@ -85,48 +85,49 @@ void vsModelNode::setupPropertiesModel(vsPropertyModel *model)
     QStringList textObjProperties;
     textObjProperties << "credits" <<  "publications" << "length_units" << "force_units";
     vsNavigatorNode::setupPropertiesModel(model);
-    for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
+//    for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
 
-        bool isModelProperty = false;
+//        bool isModelProperty = false;
 
-        auto ap = &openSimObject->getPropertyByIndex(i);
-        QString apName = QString::fromStdString(ap->getName());
-        vsPropertyItem *apItem = new vsPropertyItem();
-        QStandardItem *apNameItem = new QStandardItem(apName);
-        qDebug() << apName;
-        apItem->m_name = apName;
-        QRegExp setRE(".*Set");
+//        auto ap = &openSimObject->getPropertyByIndex(i);
+//        ap->
+//        QString apName = QString::fromStdString(ap->getName());
+//        vsPropertyItem *apItem = new vsPropertyItem();
+//        QStandardItem *apNameItem = new QStandardItem(apName);
+//        qDebug() << apName << QString::fromStdString(ap->getTypeName());
+//        apItem->m_name = apName;
+//        QRegExp setRE(".*Set");
 
-        if(setRE.exactMatch(apName) || apName == "ground" || apName== "ModelVisualPreferences"){
-            apItem->m_isEditable = false;
-            apItem->m_type = vsPropertyItem::Object;
-            apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
-            apItem->setText(QString::fromStdString(apItem->m_object->getName()));
-            isModelProperty =  true;
-        }
+//        if(setRE.exactMatch(apName) || apName == "ground" || apName== "ModelVisualPreferences"){
+//            apItem->m_isEditable = false;
+//            apItem->m_type = vsPropertyItem::Object;
+//            apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
+//            apItem->setText(QString::fromStdString(apItem->m_object->getName()));
+//            isModelProperty =  true;
+//        }
 
-        else if( textObjProperties.contains(apName)){
-            apItem->m_isEditable = true;
-            apItem->m_type = vsPropertyItem::TextObj;
-            apItem->m_value = QString::fromStdString(ap->getValue<std::string>());
-            apItem->setText(apItem->m_value);
-            isModelProperty =  true;
-        }
-        else if(apName == "assembly_accuracy"){
-            apItem->m_isEditable = true;
-            apItem->m_type = vsPropertyItem::Text;
-            apItem->m_value = QString::number(ap->getValue<double>());
-            apItem->setText(apItem->m_value);
-            isModelProperty =  true;
-        }
-        else if(apName == "gravity"){
-            apItem->m_isEditable = true;
-            apItem->m_type = vsPropertyItem::List;
-            apItem->m_value = QString::fromStdString(ap->getTypeName());
-            apItem->setText(apItem->m_value);
-            isModelProperty =  true;
-        }
-        if(!isModelProperty) continue;
-        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
-    }
+//        else if( textObjProperties.contains(apName)){
+//            apItem->m_isEditable = true;
+//            apItem->m_type = vsPropertyItem::TextObj;
+//            apItem->m_value = QString::fromStdString(ap->getValue<std::string>());
+//            apItem->setText(apItem->m_value);
+//            isModelProperty =  true;
+//        }
+//        else if(apName == "assembly_accuracy"){
+//            apItem->m_isEditable = true;
+//            apItem->m_type = vsPropertyItem::Text;
+//            apItem->m_value = QString::number(ap->getValue<double>());
+//            apItem->setText(apItem->m_value);
+//            isModelProperty =  true;
+//        }
+//        else if(apName == "gravity"){
+//            apItem->m_isEditable = true;
+//            apItem->m_type = vsPropertyItem::List;
+//            apItem->m_value = QString::number(ap->size());
+//            apItem->setText(apItem->m_value);
+//            isModelProperty =  true;
+//        }
+//        if(!isModelProperty) continue;
+//        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
+//    }
 }

@@ -60,6 +60,7 @@ QVariantMap vsNavigatorNode::getNodeProperties()
 void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
 {
     if(openSimObject != nullptr){
+
         //name property
         vsPropertyItem *nameItem = new vsPropertyItem();
         nameItem->m_name = "name";
@@ -78,24 +79,61 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
         typeItem->setText(typeItem->m_value);
         model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("type") << typeItem);
 
-        //components property
-        auto componentsProperty = &openSimObject->getPropertyByName("components");
-        if(componentsProperty != nullptr){
-            QString propertyRepresentation = "[ ";
-            for (int i = 0; i < componentsProperty->size(); ++i) {
-                auto comp = &componentsProperty->getValueAsObject(i);
-                propertyRepresentation += (" "+QString::fromStdString(comp->getName()));
+        for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
+
+            auto ap  = &openSimObject->getPropertyByIndex(i);
+            QString apName = QString::fromStdString(ap->getName());
+            vsPropertyItem *apItem = new vsPropertyItem();
+            QStandardItem *apNameItem = new QStandardItem(apName);
+            qDebug() << apName << QString::fromStdString(ap->getTypeName());
+            if(ap->isListProperty()){
+
+                apItem->m_type = vsPropertyItem::List;
+                QString listRepresentation = "[ ";
+                for (int j = 0; j < ap->size(); ++j) {
+                    listRepresentation += QString::fromStdString(ap->getValueAsObject(j).getConcreteClassName());
+                    listRepresentation += " ";
+                }
+                if(ap->size() == 0) listRepresentation += " empty ";
+                listRepresentation += "]";
+                apItem->m_value  = listRepresentation;
+                apItem->setText(apItem->m_value);
+                model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
             }
-            propertyRepresentation += " ]";
-            if(componentsProperty->size()==0) propertyRepresentation = "[ no component ]";
-            vsPropertyItem *componetsItem = new vsPropertyItem();
-            componetsItem->m_name = "components";
-            componetsItem->m_isEditable = false;
-            componetsItem->m_value = propertyRepresentation;
-            componetsItem->m_type = vsPropertyItem::List;
-            componetsItem->setText(propertyRepresentation);
-            model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("components") << componetsItem);
+            else if(ap->isObjectProperty()){
+                apItem->m_type = vsPropertyItem::Object;
+                apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
+                apItem->setText(QString::fromStdString(apItem->m_object->getName()));
+                apItem->setEditable(false);
+                model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
+            }else{
+                apItem->m_type = vsPropertyItem::Text;
+                apItem->m_value = QString::fromStdString(ap->toStringForDisplay(1));
+                apItem->setText(apItem->m_value);
+                model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
+            }
+
         }
+
+
+//        //components property
+//        auto componentsProperty = &openSimObject->getPropertyByName("components");
+//        if(componentsProperty != nullptr){
+//            QString propertyRepresentation = "[ ";
+//            for (int i = 0; i < componentsProperty->size(); ++i) {
+//                auto comp = &componentsProperty->getValueAsObject(i);
+//                propertyRepresentation += (" "+QString::fromStdString(comp->getName()));
+//            }
+//            propertyRepresentation += " ]";
+//            if(componentsProperty->size()==0) propertyRepresentation = "[ no component ]";
+//            vsPropertyItem *componetsItem = new vsPropertyItem();
+//            componetsItem->m_name = "components";
+//            componetsItem->m_isEditable = false;
+//            componetsItem->m_value = propertyRepresentation;
+//            componetsItem->m_type = vsPropertyItem::List;
+//            componetsItem->setText(propertyRepresentation);
+//            model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("components") << componetsItem);
+//        }
 
 
     }
