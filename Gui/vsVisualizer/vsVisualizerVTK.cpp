@@ -41,11 +41,16 @@
 #include <vtkButtonWidget.h>
 #include <vtkImageData.h>
 #include <vtkCoordinate.h>
+#include <vtkWidgetEvent.h>
+#include <vtkCamera.h>
 #include <vsModeling/vsNavigatorNode.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLWidget(parent)
 {
+
+    connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
+
     vtkNew<vtkNamedColors> namedColors;
     vtkNew<vtkGenericOpenGLRenderWindow> renderWindow;
 
@@ -620,8 +625,9 @@ vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy
       buttonRepresentation->PlaceWidget(bds);
 
       buttonWidget->On();
-
       //renderWindowInteractor->Start();
+
+      connections->Connect(buttonWidget,vtkCommand::StateChangedEvent,this,SLOT(vtkButtonClicked(vtkObject *)));
     return buttonWidget;
 }
 
@@ -743,4 +749,70 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
     renderer->Render();
     GetRenderWindow()->Render();
     GetRenderWindow()->Finalize();
+}
+
+void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
+{
+    auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    //TODO setup the camera to look at the Actor instead of the origin
+    auto currentCamera = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
+    if(clickedObject == pXButton.Get()){
+       //auto fp = currentCamera->GetFocalPoint();
+       double newPos[3] = {2,0.5,0.5};
+       currentCamera->SetPosition(newPos);
+       currentCamera->SetFocalPoint(0,0.5,0.5);
+       currentCamera->SetViewUp(0,1,0);
+       //qDebug() << "the signal is working";
+
+    }
+    else if(clickedObject == mXButton.Get()){
+       //auto fp = currentCamera->GetFocalPoint();
+       double newPos[3] = {-2,0.5,0.5};
+       currentCamera->SetPosition(newPos);
+       currentCamera->SetFocalPoint(0,0.5,0.5);
+       currentCamera->SetViewUp(0,1,0);
+       //qDebug() << "the signal is working";
+
+    }
+    else if(clickedObject == pYButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+        double newPos[3] = {0.5,2,0.5};
+        currentCamera->SetPosition(newPos);
+        currentCamera->SetFocalPoint(0.5,0,0.5);
+        currentCamera->SetViewUp(0,0,-1);
+        //qDebug() << "the signal is working";
+
+    }
+    else if(clickedObject == mYButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+        double newPos[3] = {0.5,-2,0.5};
+        currentCamera->SetPosition(newPos);
+        currentCamera->SetFocalPoint(0.5,0.0,0.5);
+        currentCamera->SetViewUp(0,0,1);
+        //qDebug() << "the signal is working";
+
+    }
+    else if(clickedObject == pZButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+        double newPos[3] = {0.5,0.5,2};
+        currentCamera->SetPosition(newPos);
+        currentCamera->SetFocalPoint(0.5,0.5,0);
+        currentCamera->SetViewUp(0,1,0);
+        //qDebug() << "the signal is working";
+
+    }
+    else if(clickedObject == mZButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+        double newPos[3] = {0.5,0.5,-2};
+        currentCamera->SetPosition(newPos);
+        currentCamera->SetFocalPoint(0.5,0.5,0);
+        currentCamera->SetViewUp(0,1,0);
+        //qDebug() << "the signal is working";
+
+    }
+    renderer->ResetCamera();
+    this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
+    GetRenderWindow()->Render();
+    GetRenderWindow()->Finalize();
+//    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
 }

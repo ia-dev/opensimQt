@@ -10,6 +10,7 @@
 #include <QMap>
 #include <vtkImageData.h>
 #include <vtkButtonWidget.h>
+#include <vtkEventQtSlotConnect.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -71,6 +72,9 @@ public:
     void clearTheScene();
     void removeModelActors(OpenSim::Model *model);
 
+public slots:
+    void vtkButtonClicked(vtkObject *clickedObject);
+
 private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
@@ -78,6 +82,8 @@ private:
     //scene actors
 
     //vtk to qt slots connection
+
+    vtkSmartPointer<vtkEventQtSlotConnect> connections;
 
     //buttons
     vtkSmartPointer<vtkButtonWidget> mXButton;
