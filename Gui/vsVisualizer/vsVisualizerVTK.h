@@ -53,9 +53,9 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativePoint(const SimTK::DecorativePoint& point, SimTK::Transform coneTransform,
                                                    double *scaleFactors);
 
-    void createButton(int posx,int posy,QString imagePath);
+    void updateVtkButtons();
 
-    void createImage(vtkSmartPointer<vtkImageData> imageData,unsigned char* color1, unsigned char* color2);
+    vtkSmartPointer<vtkButtonWidget> createButton(int posx,int posy,QString imagePath);
 
 
 
@@ -75,8 +75,23 @@ private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
 
+    //scene actors
+
+    //vtk to qt slots connection
+
     //buttons
-    vtkSmartPointer<vtkButtonWidget> buttonWidget;
+    vtkSmartPointer<vtkButtonWidget> mXButton;
+    vtkSmartPointer<vtkButtonWidget> pXButton;
+    vtkSmartPointer<vtkButtonWidget> mYButton;
+    vtkSmartPointer<vtkButtonWidget> pYButton;
+    vtkSmartPointer<vtkButtonWidget> mZButton;
+    vtkSmartPointer<vtkButtonWidget> pZButton;
+    vtkSmartPointer<vtkButtonWidget> zoomOutButton;
+    vtkSmartPointer<vtkButtonWidget> zoomInButton;
+    vtkSmartPointer<vtkButtonWidget> fitButton;
+    vtkSmartPointer<vtkButtonWidget> snapShotButton;
+    vtkSmartPointer<vtkButtonWidget> recordButton;
+    vtkSmartPointer<vtkButtonWidget> globalFramButton;
 
 
 };

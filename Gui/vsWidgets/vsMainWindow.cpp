@@ -144,7 +144,13 @@ void vsMainWindow::closeEvent(QCloseEvent *event)
 void vsMainWindow::showEvent(QShowEvent *event)
 {
     QMainWindow::showEvent(event);
-    ui->vtkVisualiser->createButton(0,0,"./skyboxFRONT.png");
+    ui->vtkVisualiser->updateVtkButtons();
+}
+
+void vsMainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    ui->vtkVisualiser->updateVtkButtons();
 }
 
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;
