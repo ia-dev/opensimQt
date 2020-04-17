@@ -60,6 +60,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     connect(ui->navigatorTreeView,&QTreeView::clicked,this,&vsMainWindow::onNavigatorClicked);
 
 
+
 }
 
 vsMainWindow::~vsMainWindow()
@@ -138,6 +139,12 @@ void vsMainWindow::closeEvent(QCloseEvent *event)
         QFile::copy(QApplication::applicationDirPath()+"/OpenSimQtLog_.txt",historyPath+".txt");
         event->accept();
     }
+}
+
+void vsMainWindow::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    ui->vtkVisualiser->createButton(0,0,"./skyboxFRONT.png");
 }
 
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;

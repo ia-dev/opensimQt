@@ -8,6 +8,8 @@
 #include <QVector4D>
 #include <OpenSim.h>
 #include <QMap>
+#include <vtkImageData.h>
+#include <vtkButtonWidget.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -51,6 +53,11 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativePoint(const SimTK::DecorativePoint& point, SimTK::Transform coneTransform,
                                                    double *scaleFactors);
 
+    void createButton(int posx,int posy,QString imagePath);
+
+    void createImage(vtkSmartPointer<vtkImageData> imageData,unsigned char* color1, unsigned char* color2);
+
+
 
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
@@ -67,6 +74,9 @@ public:
 private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
+
+    //buttons
+    vtkSmartPointer<vtkButtonWidget> buttonWidget;
 
 
 };

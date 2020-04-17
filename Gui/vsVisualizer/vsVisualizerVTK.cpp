@@ -35,7 +35,12 @@
 #include <vtkOpenGLSkybox.h>
 #include <vtkPNGReader.h>
 #include <vtkImageFlip.h>
+#include <vtkRenderWindowInteractor.h>
 #include <vtkOpenGLTexture.h>
+#include<vtkTexturedButtonRepresentation2D.h>
+#include <vtkButtonWidget.h>
+#include <vtkImageData.h>
+#include <vtkCoordinate.h>
 #include <vsModeling/vsNavigatorNode.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
@@ -58,6 +63,9 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
 
     //setting the renderer for the navigator elements
     vsNavigatorNode::visualizerVTK = this;
+
+    //Setting Up the TOP Left Buttons
+    //createButton(0,0,"");
 
 
 }
@@ -192,7 +200,6 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
         flip->SetFilteredAxes(1);
         skyTexture->SetInputConnection(i,flip->GetOutputPort());
     }
-
 
 
     auto skySource = vtkSmartPointer<vtkCubeSource>::New();
@@ -547,6 +554,106 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativePoint(const SimTK::De
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(pointActor);
     return pointActor;
+}
+
+void vsVisualizerVTK::createButton(int posx,int posy, QString imagePath)
+{
+
+    vtkSmartPointer<vtkImageData> image1 =
+      vtkSmartPointer<vtkImageData>::New();
+    vtkSmartPointer<vtkImageData> image2 =
+      vtkSmartPointer<vtkImageData>::New();
+    unsigned char banana[3] = { 227, 207, 87 };
+    unsigned char tomato[3] = { 255, 99, 71 };
+    createImage(image1, banana, tomato);
+    createImage(image2, tomato, banana);
+
+    auto skyTexture  = vtkSmartPointer<vtkTexture>::New();
+    //skyTexture->Update();
+    //skyTexture->MipmapOn();
+    //skyTexture->InterpolateOn();
+    //skyTexture->RepeatOff();
+    //skyTexture->EdgeClampOn();
+    //skyTexture->CubeMapOn();
+    auto imgReader = vtkSmartPointer<vtkPNGReader>::New();
+    imgReader->SetFileName(imagePath.toStdString().data());
+    imgReader->Update();
+
+
+      auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+
+      // An interactor
+      vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor =
+      GetRenderWindow()->GetInteractor();
+
+      // Create the widget and its representation
+      vtkSmartPointer<vtkTexturedButtonRepresentation2D> buttonRepresentation =
+        vtkSmartPointer<vtkTexturedButtonRepresentation2D>::New();
+      buttonRepresentation->SetNumberOfStates(1);
+      buttonRepresentation->SetButtonTexture(0,imgReader->GetOutput());
+      //buttonRepresentation->SetButtonTexture(1, image2);
+
+      buttonWidget =
+        vtkSmartPointer<vtkButtonWidget>::New();
+      buttonWidget->SetInteractor(renderWindowInteractor);
+      buttonWidget->SetRepresentation(buttonRepresentation);
+
+
+      GetRenderWindow()->Render();
+
+      vtkSmartPointer<vtkCoordinate> upperLeft =
+        vtkSmartPointer<vtkCoordinate>::New();
+      upperLeft->SetCoordinateSystemToNormalizedDisplay();
+      upperLeft->SetValue(1.0,1.0);
+
+      double bds[6];
+      double sz = 50.0;
+      bds[0] = upperLeft->GetComputedDisplayValue(renderer)[0] - sz;
+      bds[1] = bds[0] + sz;
+      bds[2] = upperLeft->GetComputedDisplayValue(renderer)[1] - sz;
+      bds[3] = bds[2] + sz;
+      bds[4] = bds[5] = 0.0;
+
+      buttonRepresentation->SetPlaceFactor(1);
+      buttonRepresentation->PlaceWidget(bds);
+
+      buttonWidget->On();
+
+      //renderWindowInteractor->Start();
+
+}
+
+void vsVisualizerVTK::createImage(vtkSmartPointer<vtkImageData> image,
+                 unsigned char* color1,
+                 unsigned char* color2)
+{
+  // Specify the size of the image data
+  image->SetDimensions(10, 10, 1);
+  image->AllocateScalars(VTK_UNSIGNED_CHAR, 3);
+
+  int* dims = image->GetDimensions();
+
+  // Fill the image with
+  for (int y = 0; y < dims[1]; y++)
+  {
+    for (int x = 0; x < dims[0]; x++)
+    {
+      unsigned char* pixel =
+        static_cast<unsigned char*>(image->GetScalarPointer(x, y, 0));
+      if (x < 5)
+      {
+        pixel[0] = color1[0];
+        pixel[1] = color1[1];
+        pixel[2] = color1[2];
+      }
+      else
+      {
+        pixel[0] = color2[0];
+        pixel[1] = color2[1];
+        pixel[2] = color2[2];
+      }
+    }
+  }
 }
 
 vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Transform stkTransform)
