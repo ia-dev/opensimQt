@@ -1,7 +1,10 @@
 #include "vsGeometryImplementationQt.h"
 #include "vsVisualizerVTK.h"
 
+#include <QApplication>
 #include <QDebug>
+#include <QDir>
+#include <QTime>
 
 #include <vtkNew.h>
 #include <vtkSphereSource.h>
@@ -43,6 +46,8 @@
 #include <vtkCoordinate.h>
 #include <vtkWidgetEvent.h>
 #include <vtkCamera.h>
+#include <vtkWindowToImageFilter.h>
+#include <vtkPNGWriter.h>
 #include <vsModeling/vsNavigatorNode.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
@@ -63,8 +68,8 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     //addGround();
-    //addSkyBox();
-    this->update();
+    //skyBox = addSkyBox();
+    //this->update();
 
     //setting the renderer for the navigator elements
     vsNavigatorNode::visualizerVTK = this;
@@ -191,15 +196,16 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
 
 
     auto skyTexture  = vtkSmartPointer<vtkTexture>::New();
-    //skyTexture->Update();
+    skyTexture->Update();
     //skyTexture->MipmapOn();
     skyTexture->InterpolateOn();
     skyTexture->RepeatOff();
     skyTexture->EdgeClampOn();
-    //skyTexture->CubeMapOn();
+    skyTexture->CubeMapOn();
     for (int i = 0; i < 6; ++i) {
         auto imgReader = vtkSmartPointer<vtkPNGReader>::New();
         imgReader->SetFileName(texturesPaths[i]);
+        imgReader->Update();
         auto flip = vtkSmartPointer<vtkImageFlip>::New();
         flip->SetInputConnection(imgReader->GetOutputPort());
         flip->SetFilteredAxes(1);
@@ -628,7 +634,31 @@ vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy
       //renderWindowInteractor->Start();
 
       connections->Connect(buttonWidget,vtkCommand::StateChangedEvent,this,SLOT(vtkButtonClicked(vtkObject *)));
-    return buttonWidget;
+      return buttonWidget;
+}
+
+void vsVisualizerVTK::takeSnapShot()
+{
+    //getting the file name
+    QString snapshotPath ="./Snapshots/"+QDateTime::currentDateTime().toString(Qt::ISODate).replace(":","_")+".png";
+    QDir hDir;
+    if(!hDir.exists(QApplication::applicationDirPath()+"/Snapshots/"))
+        hDir.mkdir(QApplication::applicationDirPath()+"/Snapshots/");
+
+    //saving
+    auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkSmartPointer<vtkWindowToImageFilter> snapshotFilter = vtkSmartPointer<vtkWindowToImageFilter>::New();
+    snapshotFilter->SetInput(GetRenderWindow());
+    snapshotFilter->SetInputBufferTypeToRGBA();
+    snapshotFilter->ReadFrontBufferOff();
+    snapshotFilter->Update();
+
+    vtkSmartPointer<vtkPNGWriter> writer =
+    vtkSmartPointer<vtkPNGWriter>::New();
+    writer->SetFileName(snapshotPath.toStdString().data());
+    writer->SetInputConnection(snapshotFilter->GetOutputPort());
+    writer->Write();
+
 }
 
 
@@ -829,6 +859,9 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     else if(clickedObject == fitButton.Get()){
 
         renderer->ResetCamera();
+    }
+    else if(clickedObject == snapShotButton.Get()){
+        takeSnapShot();
     }
 
     this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();

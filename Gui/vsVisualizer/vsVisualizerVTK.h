@@ -55,8 +55,8 @@ public:
                                                    double *scaleFactors);
 
     void updateVtkButtons();
-
     vtkSmartPointer<vtkButtonWidget> createButton(int posx,int posy,QString imagePath);
+    void takeSnapShot();
 
 
 
@@ -80,6 +80,7 @@ private:
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
 
     //scene actors
+    vtkSmartPointer<vtkActor> skyBox;
 
     //vtk to qt slots connection
 
