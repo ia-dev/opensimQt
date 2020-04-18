@@ -567,12 +567,12 @@ void vsVisualizerVTK::updateVtkButtons()
 
     mXButton = createButton(0,0,"./vsWorkSpace/vtk_images/frontView_axes.png");
     pXButton = createButton(0,1,"./vsWorkSpace/vtk_images/backView_axes.png");
-    mYButton = createButton(1,0,"./vsWorkSpace/vtk_images/topView_axes.png");
-    pYButton = createButton(1,1,"./vsWorkSpace/vtk_images/bottomView_axes.png");
+    mYButton = createButton(1,1,"./vsWorkSpace/vtk_images/bottomView_axes.png");
+    pYButton = createButton(1,0,"./vsWorkSpace/vtk_images/topView_axes.png");
     mZButton = createButton(2,0,"./vsWorkSpace/vtk_images/leftView_axes.png");
     pZButton = createButton(2,1,"./vsWorkSpace/vtk_images/rightView_axes.png");
-    zoomOutButton = createButton(0,2,"./vsWorkSpace/vtk_images/zoom-in.png");
-    zoomInButton = createButton(1,2,"./vsWorkSpace/vtk_images/zoom-out.png");
+    zoomInButton = createButton(0,2,"./vsWorkSpace/vtk_images/zoom-in.png");
+    zoomOutButton = createButton(1,2,"./vsWorkSpace/vtk_images/zoom-out.png");
     fitButton = createButton(2,2,"./vsWorkSpace/vtk_images/refit.png");
     snapShotButton = createButton(0,3,"./vsWorkSpace/vtk_images/stillCamera.png");
     recordButton = createButton(1,3,"./vsWorkSpace/vtk_images/movieCamera.png");
@@ -763,7 +763,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
        currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
     else if(clickedObject == mXButton.Get()){
        //auto fp = currentCamera->GetFocalPoint();
@@ -772,7 +772,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
        currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
     else if(clickedObject == pYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -781,7 +781,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         currentCamera->SetFocalPoint(0.5,0,0.5);
         currentCamera->SetViewUp(0,0,-1);
         //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
     else if(clickedObject == mYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -790,7 +790,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         currentCamera->SetFocalPoint(0.5,0.0,0.5);
         currentCamera->SetViewUp(0,0,1);
         //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
     else if(clickedObject == pZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -799,7 +799,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
     else if(clickedObject == mZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -808,9 +808,29 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
-
+        renderer->ResetCamera();
     }
-    renderer->ResetCamera();
+    else if(clickedObject == zoomOutButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+//        double *orientation = currentCamera->GetO
+//        double *position = currentCamera->GetPosition();
+//        double newPos[3] ={ orientation[0]+position[0],orientation[1]+position[1],orientation[2]+position[2]};
+//        currentCamera->SetPosition(newPos);
+        currentCamera->Zoom(0.9);
+    }
+    else if(clickedObject == zoomInButton.Get()){
+        //auto fp = currentCamera->GetFocalPoint();
+//        double *orientation = currentCamera->GetO
+//        double *position = currentCamera->GetPosition();
+//        double newPos[3] ={ orientation[0]+position[0],orientation[1]+position[1],orientation[2]+position[2]};
+//        currentCamera->SetPosition(newPos);
+        currentCamera->Zoom(1.1);
+    }
+    else if(clickedObject == fitButton.Get()){
+
+        renderer->ResetCamera();
+    }
+
     this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
     GetRenderWindow()->Render();
     GetRenderWindow()->Finalize();
