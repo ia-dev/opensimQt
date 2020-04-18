@@ -48,6 +48,8 @@
 #include <vtkCamera.h>
 #include <vtkWindowToImageFilter.h>
 #include <vtkPNGWriter.h>
+#include <vtkTransform.h>
+#include <vtkAxesActor.h>
 #include <vsModeling/vsNavigatorNode.h>
 #include <vsTools/vsOpenSimTools.h>
 
@@ -71,6 +73,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //addGround();
     //skyBox = addSkyBox();
     //this->update();
+    globalFrame = addGlobalFrame();
 
     //setting the renderer for the navigator elements
     vsNavigatorNode::visualizerVTK = this;
@@ -231,6 +234,28 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(actor);
     return actor;
+}
+
+vtkSmartPointer<vtkAxesActor> vsVisualizerVTK::addGlobalFrame()
+{
+    auto renderer = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+
+    vtkSmartPointer<vtkTransform> transform =
+    vtkSmartPointer<vtkTransform>::New();
+
+    vtkSmartPointer<vtkAxesActor> axes =
+    vtkSmartPointer<vtkAxesActor>::New();
+
+    // The axes are positioned with a user transform
+    axes->SetUserTransform(transform);
+    axes->AxisLabelsOff();
+    axes->SetCylinderRadius(0.01);
+    axes->SetShaftTypeToCylinder();
+    axes->SetTotalLength(1,1,1);
+    axes->SetConeRadius(0);
+
+    renderer->AddActor(axes);
+    return axes;
 }
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK::DecorativeMeshFile &mesh
@@ -864,6 +889,9 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     }
     else if(clickedObject == snapShotButton.Get()){
         takeSnapShot();
+    }
+    else if (clickedObject == globalFramButton.Get()) {
+        globalFrame->SetVisibility(!globalFrame->GetVisibility());
     }
 
     this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();

@@ -11,6 +11,7 @@
 #include <vtkImageData.h>
 #include <vtkButtonWidget.h>
 #include <vtkEventQtSlotConnect.h>
+#include <vtkAxesActor.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -29,6 +30,8 @@ public:
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
     vtkSmartPointer<vtkActor> addSkyBox();
+    vtkSmartPointer<vtkAxesActor> addGlobalFrame();
+
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
     vtkSmartPointer<vtkActor> renderDecorativeSphere(const SimTK::DecorativeSphere& sphere, SimTK::Transform sphereTransform,
@@ -81,6 +84,7 @@ private:
 
     //scene actors
     vtkSmartPointer<vtkActor> skyBox;
+    vtkSmartPointer<vtkAxesActor> globalFrame;
 
     //vtk to qt slots connection
 
