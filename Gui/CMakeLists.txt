@@ -50,6 +50,14 @@ else()
    message(WARNING "Geometry files are not downloaded!")
 endif()
 
+#copy the files used by vtk
+file(GLOB VtkImages
+    ${CMAKE_SOURCE_DIR}/Data/Images/vtk_images/*.png
+    ${CMAKE_SOURCE_DIR}/Data/Images/vtk_images/skybox1/*.png
+    )
+file(COPY ${VtkImages}
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/vtk_images)
+
 
 if("${VTK_QT_VERSION}" STREQUAL "")
   message(FATAL_ERROR "VTK was not built with Qt")

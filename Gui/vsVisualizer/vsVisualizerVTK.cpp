@@ -49,6 +49,7 @@
 #include <vtkWindowToImageFilter.h>
 #include <vtkPNGWriter.h>
 #include <vsModeling/vsNavigatorNode.h>
+#include <vsTools/vsOpenSimTools.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLWidget(parent)
@@ -571,18 +572,18 @@ void vsVisualizerVTK::updateVtkButtons()
 {
     //redisplay the buttons inside the vtk visualizer widget
 
-    mXButton = createButton(0,0,"./vsWorkSpace/vtk_images/frontView_axes.png");
-    pXButton = createButton(0,1,"./vsWorkSpace/vtk_images/backView_axes.png");
-    mYButton = createButton(1,1,"./vsWorkSpace/vtk_images/bottomView_axes.png");
-    pYButton = createButton(1,0,"./vsWorkSpace/vtk_images/topView_axes.png");
-    mZButton = createButton(2,0,"./vsWorkSpace/vtk_images/leftView_axes.png");
-    pZButton = createButton(2,1,"./vsWorkSpace/vtk_images/rightView_axes.png");
-    zoomInButton = createButton(0,2,"./vsWorkSpace/vtk_images/zoom-in.png");
-    zoomOutButton = createButton(1,2,"./vsWorkSpace/vtk_images/zoom-out.png");
-    fitButton = createButton(2,2,"./vsWorkSpace/vtk_images/refit.png");
-    snapShotButton = createButton(0,3,"./vsWorkSpace/vtk_images/stillCamera.png");
-    recordButton = createButton(1,3,"./vsWorkSpace/vtk_images/movieCamera.png");
-    globalFramButton = createButton(2,3,"./vsWorkSpace/vtk_images/axes.png");
+    mXButton = createButton(0,0,"./vtk_images/frontView_axes.png");
+    pXButton = createButton(0,1,"./vtk_images/backView_axes.png");
+    mYButton = createButton(1,1,"./vtk_images/bottomView_axes.png");
+    pYButton = createButton(1,0,"./vtk_images/topView_axes.png");
+    mZButton = createButton(2,0,"./vtk_images/leftView_axes.png");
+    pZButton = createButton(2,1,"./vtk_images/rightView_axes.png");
+    zoomInButton = createButton(0,2,"./vtk_images/zoom-in.png");
+    zoomOutButton = createButton(1,2,"./vtk_images/zoom-out.png");
+    fitButton = createButton(2,2,"./vtk_images/refit.png");
+    snapShotButton = createButton(0,3,"./vtk_images/stillCamera.png");
+    recordButton = createButton(1,3,"./vtk_images/movieCamera.png");
+    globalFramButton = createButton(2,3,"./vtk_images/axes.png");
 }
 
 vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy, QString imagePath)
@@ -658,6 +659,7 @@ void vsVisualizerVTK::takeSnapShot()
     writer->SetFileName(snapshotPath.toStdString().data());
     writer->SetInputConnection(snapshotFilter->GetOutputPort());
     writer->Write();
+    vsOpenSimTools::tools->log("snapshot taken : "+snapshotPath,"VisualizerVTK",vsOpenSimTools::Success);
 
 }
 
