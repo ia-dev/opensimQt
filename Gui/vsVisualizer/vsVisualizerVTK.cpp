@@ -34,7 +34,6 @@
 #include <vtkImageReader2Factory.h>
 #include <vtkImageReader2.h>
 #include <vtkTexture.h>
-#include <vtkTextureMapToPlane.h>
 #include <vtkOpenGLSkybox.h>
 #include <vtkPNGReader.h>
 #include <vtkImageFlip.h>
@@ -51,6 +50,7 @@
 #include <vtkTransform.h>
 #include <vtkAxesActor.h>
 #include <vsModeling/vsNavigatorNode.h>
+#include <vtkTextureMapToPlane.h>
 #include <vsTools/vsOpenSimTools.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
@@ -70,7 +70,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //renderingTest();
     //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
-    //addGround();
+    ground  = addGround();
     //skyBox = addSkyBox();
     //this->update();
     globalFrame = addGlobalFrame();
@@ -168,23 +168,73 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
 {
+
     auto planeSource = vtkSmartPointer<vtkPlaneSource>::New();
     planeSource->Update();
-    planeSource->SetCenter(0,0,0);
-    planeSource->SetNormal(0,0,1);
-    planeSource->SetPoint1(0,10000,0);
-    planeSource->SetPoint2(10000,0,0);
+    planeSource->SetNormal(0,1,0);
+    planeSource->SetOrigin(-500,0,-500);
+    planeSource->SetPoint1(500,0,-500);
+    planeSource->SetPoint2(-500,0,500);
+    //planeSource->SetResolution(2000,2000);
+    auto imgReader = vtkSmartPointer<vtkPNGReader>::New();
+    imgReader->SetFileName("./vtk_images/Water004.png");
+    imgReader->Update();
+
+    vtkSmartPointer<vtkImageData> groundData = vtkSmartPointer<vtkImageData>::New();
+    createGroundImage(groundData,1000,1000);
+    //texture
+    vtkSmartPointer<vtkTexture> texture =
+      vtkSmartPointer<vtkTexture>::New();
+    texture->SetInputData(groundData);
+    texture->SetRepeat(true);
+    //texture->SetQuality(32);
+    //texture->InterpolateOn();
+    texture->Update();
+
+    //vtkSmartPointer<vtkTextureMapToPlane> texturePlane = vtkSmartPointer<vtkTextureMapToPlane>::New();
+    //texturePlane->SetInputConnection(planeSource->GetOutputPort());
 
     auto planeMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
     planeMapper->SetInputConnection(planeSource->GetOutputPort());
 
     auto planeActor = vtkSmartPointer<vtkActor>::New();
     planeActor->SetMapper(planeMapper);
-    planeActor->GetProperty()->SetColor(0,1,1);
-
+    planeActor->GetProperty()->SetColor(1,1,1);
+    planeActor->SetTexture(texture);
+    planeActor->SetUseBounds(false);
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(planeActor);
     return planeActor;
+}
+
+void vsVisualizerVTK::createGroundImage(vtkSmartPointer<vtkImageData> groundData, int w, int h)
+{
+    groundData->SetDimensions(w, h, 1);
+    groundData->AllocateScalars(VTK_UNSIGNED_CHAR, 3);
+
+    int* dims = groundData->GetDimensions();
+
+    // Fill the image with
+    for (int y = 0; y < dims[1]; y++)
+    {
+      for (int x = 0; x < dims[0]; x++)
+      {
+        unsigned char* pixel =
+          static_cast<unsigned char*>(groundData->GetScalarPointer(x, y, 0));
+        if ((x+y)%2 == 0 )
+        {
+          pixel[0] = 150;
+          pixel[1] = 150;
+          pixel[2] = 150;
+        }
+        else
+        {
+          pixel[0] = 255;
+          pixel[1] = 255;
+          pixel[2] = 255;
+        }
+      }
+    }
 }
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
@@ -253,6 +303,7 @@ vtkSmartPointer<vtkAxesActor> vsVisualizerVTK::addGlobalFrame()
     axes->SetShaftTypeToCylinder();
     axes->SetTotalLength(1,1,1);
     axes->SetConeRadius(0);
+    axes->SetUseBounds(false);
 
     renderer->AddActor(axes);
     return axes;
@@ -743,6 +794,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     renderer->Render();
     GetRenderWindow()->Render();
     GetRenderWindow()->Finalize();
+    //renderer->GetActiveCamera()->set
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
 //    }
@@ -815,57 +867,57 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     auto currentCamera = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
     if(clickedObject == pXButton.Get()){
        //auto fp = currentCamera->GetFocalPoint();
-       double newPos[3] = {2,0.5,0.5};
+       double newPos[3] = {2,0.5,0};
        currentCamera->SetPosition(newPos);
-       currentCamera->SetFocalPoint(0,0.5,0.5);
+       //currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
         renderer->ResetCamera();
     }
     else if(clickedObject == mXButton.Get()){
        //auto fp = currentCamera->GetFocalPoint();
-       double newPos[3] = {-2,0.5,0.5};
+       double newPos[3] = {-2,0.5,0};
        currentCamera->SetPosition(newPos);
-       currentCamera->SetFocalPoint(0,0.5,0.5);
+       //currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
         renderer->ResetCamera();
     }
     else if(clickedObject == pYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
-        double newPos[3] = {0.5,2,0.5};
+        double newPos[3] = {0,2,0};
         currentCamera->SetPosition(newPos);
-        currentCamera->SetFocalPoint(0.5,0,0.5);
+        //currentCamera->SetFocalPoint(0.5,0,0.5);
         currentCamera->SetViewUp(0,0,-1);
         //qDebug() << "the signal is working";
         renderer->ResetCamera();
     }
     else if(clickedObject == mYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
-        double newPos[3] = {0.5,-2,0.5};
+        double newPos[3] = {0,-2,0};
         currentCamera->SetPosition(newPos);
-        currentCamera->SetFocalPoint(0.5,0.0,0.5);
+        //currentCamera->SetFocalPoint(0.5,0.0,0.5);
         currentCamera->SetViewUp(0,0,1);
         //qDebug() << "the signal is working";
         renderer->ResetCamera();
     }
     else if(clickedObject == pZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
-        double newPos[3] = {0.5,0.5,2};
+        double newPos[3] = {0,0.5,2};
         currentCamera->SetPosition(newPos);
-        currentCamera->SetFocalPoint(0.5,0.5,0);
+        //currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
         renderer->ResetCamera();
     }
     else if(clickedObject == mZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
-        double newPos[3] = {0.5,0.5,-2};
+        double newPos[3] = {0,0.5,-2};
         currentCamera->SetPosition(newPos);
-        currentCamera->SetFocalPoint(0.5,0.5,0);
+        //currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        renderer->ResetCamera(globalFrame->GetBounds());
     }
     else if(clickedObject == zoomOutButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -897,5 +949,11 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
     GetRenderWindow()->Render();
     GetRenderWindow()->Finalize();
-//    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
+    //    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
+}
+
+void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
+{
+    QVTKOpenGLWidget::resizeEvent(event);
+    updateVtkButtons();
 }

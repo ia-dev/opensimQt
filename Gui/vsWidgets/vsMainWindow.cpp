@@ -59,6 +59,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
     connect(ui->navigatorTreeView,&QTreeView::clicked,this,&vsMainWindow::onNavigatorClicked);
 
+    //connecting dock resize events to setup the vtk widget
 
 
 }

@@ -12,6 +12,7 @@
 #include <vtkButtonWidget.h>
 #include <vtkEventQtSlotConnect.h>
 #include <vtkAxesActor.h>
+#include <vtkTextureMapToPlane.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -29,6 +30,7 @@ public:
     vtkSmartPointer<vtkActor> renderGeometry(OpenSim::Geometry *geometry);
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
+    void createGroundImage(vtkSmartPointer<vtkImageData> groundData,int w, int h);
     vtkSmartPointer<vtkActor> addSkyBox();
     vtkSmartPointer<vtkAxesActor> addGlobalFrame();
 
@@ -84,6 +86,7 @@ private:
 
     //scene actors
     vtkSmartPointer<vtkActor> skyBox;
+    vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
 
     //vtk to qt slots connection
@@ -105,6 +108,10 @@ private:
     vtkSmartPointer<vtkButtonWidget> globalFramButton;
 
 
+
+    // QWidget interface
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
 };
 
 #endif // VTKVISUALIZER_H
