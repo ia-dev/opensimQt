@@ -40,12 +40,15 @@ public:
 
     OpenSim::Model *renderedModel() const;
     void setRenderedModel(OpenSim::Model *renderedModel);
+    void setRenderedComponent(OpenSim::Component *renderedComponent);
+    OpenSim::Component *renderedComponent() const;
 
 private:
     vsVisualizerVTK *m_visualizerVTK;
     const SimTK::State& m_state;
     const SimTK::SimbodyMatterSubsystem& m_matter;
     OpenSim::Model *m_renderedModel;
+    OpenSim::Component *m_renderedComponent;
 };
 
 #endif // vsGeometryImplementationQt_H

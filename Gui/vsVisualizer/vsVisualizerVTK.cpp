@@ -769,7 +769,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
-
+    //TODO try to implement frame geometries as Axes
     model->updDisplayHints().set_show_frames(true);
 //    model->updDisplayHints().set_show_path_geometry(true);
 //    model->updDisplayHints().set_show_contact_geometry(true);
@@ -787,11 +787,14 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
     while (!itr.equals(componentList.end())) {
         const OpenSim::Component *comp = &itr.deref();
+        componentActorsMap.insert(const_cast<OpenSim::Component*>(comp),new QList<vtkSmartPointer<vtkActor>>());
         SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+        geoImp.setRenderedComponent(const_cast<OpenSim::Component*>(comp));
         comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
         comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
-        qDebug() << "the model subcomponents List Count >"<< compDecorations.size()<< " " << QString::fromStdString(itr.deref().getName())
-                 << QString::fromStdString(itr.deref().getConcreteClassName());
+        qDebug() << "the model subcomponents List Count >"<< compDecorations.size()<< " "
+        <<QString::fromStdString(itr.deref().getName())
+        << QString::fromStdString(itr.deref().getConcreteClassName());
         for (int i = 0; i < compDecorations.size(); ++i) {
             compDecorations.at(i).implementGeometry(geoImp);
         }
@@ -829,6 +832,32 @@ void vsVisualizerVTK::addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtk
 {
     *modelActorsMap.value(model) << actor;
 }
+
+void vsVisualizerVTK::addVtkActorToComponentMap(OpenSim::Component *component, vtkSmartPointer<vtkActor> actor)
+{
+    *componentActorsMap.value(component) << actor;
+}
+
+OpenSim::Model *vsVisualizerVTK::getModelForActor(vtkSmartPointer<vtkActor> actor)
+{
+    foreach (auto model, modelActorsMap.keys()) {
+        auto actorList = *modelActorsMap.value(model);
+        if(actorList.contains(actor)){
+            qDebug() << "model Name " << QString::fromStdString(model->getName());
+            return model;
+        }
+
+    }
+    return nullptr;
+}
+
+QList<vtkSmartPointer<vtkActor> >* vsVisualizerVTK::getActorForComponent(OpenSim::Component *component)
+{
+    if(componentActorsMap.contains(component))
+        return componentActorsMap.value(component);
+    return nullptr;
+}
+
 
 BackgroundType vsVisualizerVTK::backgroundType() const
 {

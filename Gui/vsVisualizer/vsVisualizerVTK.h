@@ -69,6 +69,9 @@ public:
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
     void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
+    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkActor> actor);
+    OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
+    QList<vtkSmartPointer<vtkActor>>* getActorForComponent(OpenSim::Component *component);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
@@ -85,6 +88,8 @@ public slots:
 private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
+    QMap<OpenSim::Component*, QList<vtkSmartPointer<vtkActor>>*> componentActorsMap;
+
     OpenSim::Model *currentModel;
 
     //scene actors

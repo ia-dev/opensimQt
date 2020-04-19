@@ -25,7 +25,7 @@ public:
     virtual QVariantMap getNodeProperties();
     virtual void setupPropertiesModel(vsPropertyModel *model);
 
-
+    void selectVisualizerActors();
     void disableActionsForSets();
     vsNavigatorModel* connectedModel() const;
     void removeNode();

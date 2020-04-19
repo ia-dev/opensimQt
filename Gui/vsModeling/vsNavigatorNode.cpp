@@ -193,6 +193,20 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
     }
 }
 
+void vsNavigatorNode::selectVisualizerActors()
+{
+    if(openSimObject == nullptr) return;
+    auto objAsCompoent = OpenSim::Component::safeDownCast(this->openSimObject);
+    if(objAsCompoent == nullptr) return;
+    auto componentActors = visualizerVTK->getActorForComponent(objAsCompoent);
+    qDebug() << "actors size " << componentActors->size();
+    if(componentActors == nullptr) return;
+
+    foreach (auto actor, *componentActors) {
+        actor->SetVisibility(false);
+    }
+}
+
 
 void vsNavigatorNode::disableActionsForSets()
 {
