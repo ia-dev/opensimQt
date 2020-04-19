@@ -54,7 +54,7 @@
 #include <vsTools/vsOpenSimTools.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
-    QVTKOpenGLWidget(parent)
+    QVTKOpenGLWidget(parent),currentModel(nullptr)
 {
 
     connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
@@ -74,6 +74,12 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //skyBox = addSkyBox();
     //this->update();
     globalFrame = addGlobalFrame();
+    renderer->GetActiveCamera()->SetPosition(2,2,2);
+    renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
+    //renderer->GetActiveCamera()->SetClippingRange(1000,2000);
+    //renderer->GetActiveCamera()->SetParallelProjection(true);
+    //renderer->GetActiveCamera()->GetClippingRange(ground->GetBounds());
+    //renderer->LightFollowCameraOn();
 
     //setting the renderer for the navigator elements
     vsNavigatorNode::visualizerVTK = this;
@@ -169,6 +175,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
 {
 
+    //TODO make the plane invisible from the -y
     auto planeSource = vtkSmartPointer<vtkPlaneSource>::New();
     planeSource->Update();
     planeSource->SetNormal(0,1,0);
@@ -186,7 +193,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
     vtkSmartPointer<vtkTexture> texture =
       vtkSmartPointer<vtkTexture>::New();
     texture->SetInputData(groundData);
-    texture->SetRepeat(true);
+    //texture->SetRepeat(true);
     //texture->SetQuality(32);
     //texture->InterpolateOn();
     texture->Update();
@@ -201,9 +208,10 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
     planeActor->SetMapper(planeMapper);
     planeActor->GetProperty()->SetColor(1,1,1);
     planeActor->SetTexture(texture);
-    planeActor->SetUseBounds(false);
+    //planeActor->SetUseBounds(false);
     vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(planeActor);
+
     return planeActor;
 }
 
@@ -754,6 +762,8 @@ vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Tran
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
+    auto renderer  = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
     //loading the Components
     model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
@@ -789,11 +799,20 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
         itr.next();
     }
 
-    auto renderer  = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
-    renderer->ResetCamera();
-    renderer->Render();
+    //TODO add the custom Window as in this discussion https://discourse.vtk.org/t/camera-clipping-with-2-renderers/2483/9
+    //renderer->ResetCamera();
+    //renderer->GetActiveCamera()->SetDistance(viewAngle);
+    //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
+    //renderer->SetNearClippingPlaneTolerance(0.5);
+    //renderer->Render();
+    currentModel = model;
+    double bounds[] = {0,0,0,0,0,0};
+    getModelBounds(model,bounds);
+    renderer->ResetCamera(bounds);
     GetRenderWindow()->Render();
-    GetRenderWindow()->Finalize();
+    GetRenderWindow()->Render();
+    //renderer->perspe;
+    //GetRenderWindow()->Finalize();
     //renderer->GetActiveCamera()->set
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
@@ -860,6 +879,31 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
     GetRenderWindow()->Finalize();
 }
 
+void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)
+{
+    if(currentModel == nullptr) return;
+    auto  modelActors = *modelActorsMap.value(model);
+    foreach (vtkSmartPointer<vtkActor> actor, modelActors ) {
+        double *actorBounds = actor->GetBounds();
+        if(actorBounds[0]<bounds[0]) bounds[0] = actorBounds[0];
+        if(actorBounds[1]>bounds[1]) bounds[1] = actorBounds[1];
+        if(actorBounds[2]<bounds[2]) bounds[2] = actorBounds[2];
+        if(actorBounds[3]>bounds[3]) bounds[3] = actorBounds[3];
+        if(actorBounds[4]<bounds[4]) bounds[4] = actorBounds[4];
+        if(actorBounds[5]>bounds[4]) bounds[5] = actorBounds[5];
+    }
+}
+
+void vsVisualizerVTK::focusOnCurrentModel()
+{
+    double modelBounds[6] = {-1,1,-1,1,-1,1};
+    if(currentModel != nullptr){
+        getModelBounds(currentModel,modelBounds);
+    }
+    GetRenderWindow()->GetRenderers()->GetFirstRenderer()->ResetCamera(modelBounds);
+
+}
+
 void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 {
     auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
@@ -872,7 +916,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
        //currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        focusOnCurrentModel();
     }
     else if(clickedObject == mXButton.Get()){
        //auto fp = currentCamera->GetFocalPoint();
@@ -881,7 +925,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
        //currentCamera->SetFocalPoint(0,0.5,0.5);
        currentCamera->SetViewUp(0,1,0);
        //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        //renderer->ResetCamera();
+       focusOnCurrentModel();
     }
     else if(clickedObject == pYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -890,7 +935,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         //currentCamera->SetFocalPoint(0.5,0,0.5);
         currentCamera->SetViewUp(0,0,-1);
         //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        //renderer->ResetCamera();
+        focusOnCurrentModel();
     }
     else if(clickedObject == mYButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -899,7 +945,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         //currentCamera->SetFocalPoint(0.5,0.0,0.5);
         currentCamera->SetViewUp(0,0,1);
         //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        //renderer->ResetCamera();
+        focusOnCurrentModel();
     }
     else if(clickedObject == pZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -908,7 +955,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         //currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
-        renderer->ResetCamera();
+        //renderer->ResetCamera();
+        focusOnCurrentModel();
     }
     else if(clickedObject == mZButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -917,7 +965,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         //currentCamera->SetFocalPoint(0.5,0.5,0);
         currentCamera->SetViewUp(0,1,0);
         //qDebug() << "the signal is working";
-        renderer->ResetCamera(globalFrame->GetBounds());
+        //renderer->ResetCamera(globalFrame->GetBounds());
+        focusOnCurrentModel();
     }
     else if(clickedObject == zoomOutButton.Get()){
         //auto fp = currentCamera->GetFocalPoint();
@@ -925,6 +974,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 //        double *position = currentCamera->GetPosition();
 //        double newPos[3] ={ orientation[0]+position[0],orientation[1]+position[1],orientation[2]+position[2]};
 //        currentCamera->SetPosition(newPos);
+
         currentCamera->Zoom(0.9);
     }
     else if(clickedObject == zoomInButton.Get()){
@@ -937,7 +987,8 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     }
     else if(clickedObject == fitButton.Get()){
 
-        renderer->ResetCamera();
+        //renderer->ResetCamera();
+        focusOnCurrentModel();
     }
     else if(clickedObject == snapShotButton.Get()){
         takeSnapShot();
@@ -946,7 +997,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         globalFrame->SetVisibility(!globalFrame->GetVisibility());
     }
 
-    this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
+    //this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
     GetRenderWindow()->Render();
     GetRenderWindow()->Finalize();
     //    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
@@ -956,4 +1007,11 @@ void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
 {
     QVTKOpenGLWidget::resizeEvent(event);
     updateVtkButtons();
+}
+
+void vsVisualizerVTK::paintEvent(QPaintEvent *event)
+{
+    QVTKOpenGLWidget::paintEvent(event);
+    //auto renderer  = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    //renderer->ResetCameraClippingRange(0.001,10000,0.0001,10000,0.0001,10000);
 }

@@ -76,6 +76,8 @@ public:
     //operations on the scene
     void clearTheScene();
     void removeModelActors(OpenSim::Model *model);
+    void getModelBounds(OpenSim::Model *model,double *bounds);
+    void focusOnCurrentModel();
 
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);
@@ -83,8 +85,10 @@ public slots:
 private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
+    OpenSim::Model *currentModel;
 
     //scene actors
+    vtkSmartPointer<vtkRenderer> backgroundRenderer;
     vtkSmartPointer<vtkActor> skyBox;
     vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
@@ -112,6 +116,7 @@ private:
     // QWidget interface
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // VTKVISUALIZER_H
