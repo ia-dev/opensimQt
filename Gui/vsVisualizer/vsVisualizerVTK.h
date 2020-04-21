@@ -13,12 +13,13 @@
 #include <vtkAxesActor.h>
 #include <vtkTextureMapToPlane.h>
 #include <QVTKOpenGLStereoWidget.h>
+#include <QVTKOpenGLNativeWidget.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLStereoWidget
+class vsVisualizerVTK : public QVTKOpenGLNativeWidget
 {
     Q_OBJECT
 public:

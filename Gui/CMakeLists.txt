@@ -36,6 +36,7 @@ find_package(VTK COMPONENTS
   vtkCommonDataModel
   vtkCommonTransforms
   vtkFiltersSources
+  vtkFiltersTexture
   vtkRenderingAnnotation
   vtkRenderingCore
   vtkRenderingFreeType

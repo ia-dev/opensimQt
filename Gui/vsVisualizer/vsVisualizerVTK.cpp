@@ -54,7 +54,7 @@
 #include <vsTools/vsOpenSimTools.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
-    QVTKOpenGLStereoWidget(parent),currentModel(nullptr)
+    QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
 {
 
     connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
@@ -86,8 +86,6 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
 
     //Setting Up the TOP Left Buttons
     //createButton(0,0,"");
-
-
 }
 
 void vsVisualizerVTK::renderingTest()
@@ -182,27 +180,29 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
     planeSource->SetOrigin(-500,0,-500);
     planeSource->SetPoint1(500,0,-500);
     planeSource->SetPoint2(-500,0,500);
-    //planeSource->SetResolution(2000,2000);
+    //planeSource->SetResolution(1000,1000);
     auto imgReader = vtkSmartPointer<vtkPNGReader>::New();
-    imgReader->SetFileName("./vtk_images/Water004.png");
+    imgReader->SetFileName("./vtk_images/Floor05-rsr-a.png");
     imgReader->Update();
 
     vtkSmartPointer<vtkImageData> groundData = vtkSmartPointer<vtkImageData>::New();
     createGroundImage(groundData,1000,1000);
-    //texture
     vtkSmartPointer<vtkTexture> texture =
       vtkSmartPointer<vtkTexture>::New();
-    texture->SetInputData(groundData);
-    //texture->SetRepeat(true);
+    //texture->SetInputData(groundData);
+    texture->SetInputData(imgReader->GetOutput());
+    texture->SetRepeat(true);
     //texture->SetQuality(32);
     //texture->InterpolateOn();
     texture->Update();
 
-    //vtkSmartPointer<vtkTextureMapToPlane> texturePlane = vtkSmartPointer<vtkTextureMapToPlane>::New();
-    //texturePlane->SetInputConnection(planeSource->GetOutputPort());
-
+    vtkSmartPointer<vtkTextureMapToPlane> texturePlane = vtkSmartPointer<vtkTextureMapToPlane>::New();
+    texturePlane->SetInputConnection(planeSource->GetOutputPort());
+    //texturePlane->SetAutomaticPlaneGeneration(true);
+    texturePlane->SetSRange(0,1200);
+    texturePlane->SetTRange(0,1200);
     auto planeMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
-    planeMapper->SetInputConnection(planeSource->GetOutputPort());
+    planeMapper->SetInputConnection(texturePlane->GetOutputPort());
 
     auto planeActor = vtkSmartPointer<vtkActor>::New();
     planeActor->SetMapper(planeMapper);
@@ -1034,13 +1034,13 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
 {
-    QVTKOpenGLStereoWidget::resizeEvent(event);
+    QVTKOpenGLNativeWidget::resizeEvent(event);
     updateVtkButtons();
 }
 
 void vsVisualizerVTK::paintEvent(QPaintEvent *event)
 {
-    QVTKOpenGLStereoWidget::paintEvent(event);
+    QVTKOpenGLNativeWidget::paintEvent(event);
     //auto renderer  = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //renderer->ResetCameraClippingRange(0.001,10000,0.0001,10000,0.0001,10000);
 }
