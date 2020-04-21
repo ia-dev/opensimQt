@@ -14,7 +14,6 @@
 
 class vsVTKWindow
 {
-    Q_OBJECT
 public:
     vsVTKWindow();
 };

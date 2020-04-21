@@ -32,6 +32,18 @@ find_package(VTK COMPONENTS
   vtkViewsQt
   vtkIOImage
   vtkIOGeometry
+  vtkCommonColor
+  vtkCommonDataModel
+  vtkCommonTransforms
+  vtkFiltersSources
+  vtkRenderingAnnotation
+  vtkRenderingCore
+  vtkRenderingFreeType
+  vtkIOXML
+  vtkCommonComputationalGeometry
+  vtkCommonDataModel
+
+  QUIET
 )
 include(${VTK_USE_FILE})
 
@@ -58,10 +70,10 @@ file(GLOB VtkImages
 file(COPY ${VtkImages}
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/vtk_images)
 
-
-if("${VTK_QT_VERSION}" STREQUAL "")
-  message(FATAL_ERROR "VTK was not built with Qt")
-endif()
+#activate this when working with 8.2 vtk version
+#if("${VTK_QT_VERSION}" STREQUAL "")
+#  message(FATAL_ERROR "VTK was not built with Qt")
+#endif()
 file(GLOB visualizer_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/vsVisualizer/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vsVisualizer/*h
@@ -93,4 +105,9 @@ add_executable(${TARGET}
 
 target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES})
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+
+vtk_module_autoinit(
+  TARGETS ${TARGET}
+  MODULES ${VTK_LIBRARIES}
+)
 

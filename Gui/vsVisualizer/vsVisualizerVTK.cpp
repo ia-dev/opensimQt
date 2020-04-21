@@ -54,7 +54,7 @@
 #include <vsTools/vsOpenSimTools.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
-    QVTKOpenGLWidget(parent),currentModel(nullptr)
+    QVTKOpenGLStereoWidget(parent),currentModel(nullptr)
 {
 
     connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
@@ -63,8 +63,8 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     vtkNew<vtkGenericOpenGLRenderWindow> renderWindow;
 
     auto renderer = vtkSmartPointer<vtkRenderer>::New();
-    this->SetRenderWindow(renderWindow);
-    this->GetRenderWindow()->AddRenderer(renderer);
+    this->setRenderWindow(renderWindow);
+    this->renderWindow()->AddRenderer(renderer);
     setBackgroundType(BackgroundType::GroundAndSky);
 
     //renderingTest();
@@ -105,7 +105,7 @@ void vsVisualizerVTK::renderingTest()
     auto sphereActor = vtkSmartPointer<vtkActor>::New();
     sphereActor->SetMapper(sphereMapper);
     sphereActor->GetProperty()->SetColor(namedColors->GetColor4d("Tomato").GetData());
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(sphereActor);
 
 }
@@ -148,7 +148,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderGeometry(OpenSim::Geometry *geo
     //geometry->getFrame().generateDecorations()
 
 
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
     renderer->ResetCamera(vtpActor->GetBounds());
     this->update();
@@ -167,7 +167,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
     boxActor->SetMapper(boxMapper);
     boxActor->GetProperty()->SetColor(0,1,0);
     boxActor->SetPosition(4,0,0);
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(boxActor);
     return boxActor;
 }
@@ -209,7 +209,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
     planeActor->GetProperty()->SetColor(1,1,1);
     planeActor->SetTexture(texture);
     //planeActor->SetUseBounds(false);
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(planeActor);
 
     return planeActor;
@@ -289,14 +289,14 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
     actor->SetMapper(skyMapper);
     actor->SetTexture(skyTexture);
 
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(actor);
     return actor;
 }
 
 vtkSmartPointer<vtkAxesActor> vsVisualizerVTK::addGlobalFrame()
 {
-    auto renderer = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer = renderWindow()->GetRenderers()->GetFirstRenderer();
 
     vtkSmartPointer<vtkTransform> transform =
     vtkSmartPointer<vtkTransform>::New();
@@ -343,7 +343,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
     //geometry->getFrame().generateDecorations()
 
 
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
     renderer->ResetCamera(vtpActor->GetBounds());
     this->update();
@@ -368,7 +368,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::D
 
     sphereActor->SetScale(scaleFactors);
     sphereActor->SetUserMatrix(openSimToVtkTransform(sphereTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(sphereActor);
     return sphereActor;
 }
@@ -398,7 +398,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeEllipsoid(const SimTK
 
     ellipsoidActor->SetScale(scaleFactors);
     ellipsoidActor->SetUserMatrix(openSimToVtkTransform(ellipsoidTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(ellipsoidActor);
     return ellipsoidActor;
 }
@@ -449,7 +449,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
     tubeActor->SetScale(scaleFactors);
 
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //renderer->AddActor(lineActor);
     renderer->AddActor(tubeActor);
     return tubeActor;
@@ -474,7 +474,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCylender(const SimTK:
 
     cylenderActor->SetScale(scaleFactors);
     cylenderActor->SetUserMatrix(openSimToVtkTransform(cylanderTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(cylenderActor);
     return cylenderActor;
 }
@@ -499,7 +499,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeBrick(const SimTK::De
 
     brickActor->SetScale(scaleFactors);
     brickActor->SetUserMatrix(openSimToVtkTransform(brickTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(brickActor);
     return brickActor;
 }
@@ -524,7 +524,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCircle(const SimTK::D
 
     circleActor->SetScale(scaleFactors);
     circleActor->SetUserMatrix(openSimToVtkTransform(brickTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(circleActor);
     return circleActor;
 }
@@ -553,7 +553,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeTorus(const SimTK::De
 
     torusActor->SetScale(scaleFactors);
     torusActor->SetUserMatrix(openSimToVtkTransform(torusTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(torusActor);
     return torusActor;
 
@@ -577,7 +577,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeText(const SimTK::Dec
 
     textActor->SetScale(scaleFactors);
     textActor->SetUserMatrix(openSimToVtkTransform(textTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(textActor);
     return textActor;
 }
@@ -600,7 +600,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeArrow(const SimTK::De
 
     arrowActor->SetScale(scaleFactors);
     arrowActor->SetUserMatrix(openSimToVtkTransform(arrowTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(arrowActor);
     return arrowActor;
 }
@@ -624,7 +624,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeCone(const SimTK::Dec
 
     coneActor->SetScale(scaleFactors);
     coneActor->SetUserMatrix(openSimToVtkTransform(coneTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(coneActor);
     return coneActor;
 }
@@ -647,7 +647,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativePoint(const SimTK::De
 
     pointActor->SetScale(scaleFactors);
     pointActor->SetUserMatrix(openSimToVtkTransform(coneTransform));
-    vtkRenderer *renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(pointActor);
     return pointActor;
 }
@@ -678,11 +678,11 @@ vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy
     imgReader->Update();
 
 
-      auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+      auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
 
       // An interactor
       vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor =
-      GetRenderWindow()->GetInteractor();
+      renderWindow()->GetInteractor();
 
       // Create the widget and its representation
       vtkSmartPointer<vtkTexturedButtonRepresentation2D> buttonRepresentation =
@@ -697,7 +697,7 @@ vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy
       buttonWidget->SetRepresentation(buttonRepresentation);
 
 
-      GetRenderWindow()->Render();
+      renderWindow()->Render();
 
       vtkSmartPointer<vtkCoordinate> upperLeft =
         vtkSmartPointer<vtkCoordinate>::New();
@@ -731,9 +731,9 @@ void vsVisualizerVTK::takeSnapShot()
         hDir.mkdir(QApplication::applicationDirPath()+"/Snapshots/");
 
     //saving
-    auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     vtkSmartPointer<vtkWindowToImageFilter> snapshotFilter = vtkSmartPointer<vtkWindowToImageFilter>::New();
-    snapshotFilter->SetInput(GetRenderWindow());
+    snapshotFilter->SetInput(renderWindow());
     snapshotFilter->SetInputBufferTypeToRGBA();
     snapshotFilter->ReadFrontBufferOff();
     snapshotFilter->Update();
@@ -762,7 +762,7 @@ vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Tran
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
-    auto renderer  = GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer  = renderWindow()->GetRenderers()->GetFirstRenderer();
     auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
     //loading the Components
@@ -773,7 +773,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     model->updDisplayHints().set_show_frames(true);
 //    model->updDisplayHints().set_show_path_geometry(true);
 //    model->updDisplayHints().set_show_contact_geometry(true);
-//    model->updDisplayHints().set_show_wrap_geometry(true);
+    model->updDisplayHints().set_show_wrap_geometry(true);
 //    model->updDisplayHints().set_show_markers(true);
 //    model->updDisplayHints().set_show_path_points(true);
 //    model->updDisplayHints().set_show_debug_geometry(true);
@@ -812,10 +812,10 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     double bounds[] = {0,0,0,0,0,0};
     getModelBounds(model,bounds);
     renderer->ResetCamera(bounds);
-    GetRenderWindow()->Render();
-    GetRenderWindow()->Render();
+    renderWindow()->Render();
+    renderWindow()->Render();
     //renderer->perspe;
-    //GetRenderWindow()->Finalize();
+    //renderWindow()->Finalize();
     //renderer->GetActiveCamera()->set
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
@@ -851,7 +851,7 @@ OpenSim::Model *vsVisualizerVTK::getModelForActor(vtkSmartPointer<vtkActor> acto
     return nullptr;
 }
 
-QList<vtkSmartPointer<vtkActor> >* vsVisualizerVTK::getActorForComponent(OpenSim::Component *component)
+QList<vtkSmartPointer<vtkActor> >* vsVisualizerVTK::getActorForComponent(OpenSim::Object *component)
 {
     if(componentActorsMap.contains(component))
         return componentActorsMap.value(component);
@@ -867,7 +867,7 @@ BackgroundType vsVisualizerVTK::backgroundType() const
 void vsVisualizerVTK::setBackgroundType(const BackgroundType &backgroundType)
 {
     vtkNew<vtkNamedColors> namedColors;
-    auto renderer =this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     m_backgroundType = backgroundType;
     if (m_backgroundType == BackgroundType::Solid) {
         renderer->SetGradientBackground(false);
@@ -882,21 +882,21 @@ void vsVisualizerVTK::setBackgroundType(const BackgroundType &backgroundType)
 
 void vsVisualizerVTK::clearTheScene()
 {
-    auto renderer =this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //TODO remove only the models actors
     renderer->RemoveAllViewProps();
 
     renderer->ResetCamera();
     renderer->Render();
-    GetRenderWindow()->Render();
-    GetRenderWindow()->Finalize();
+    renderWindow()->Render();
+    renderWindow()->Finalize();
 
 
 }
 
 void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
 {
-    auto renderer =this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     auto modelActors = modelActorsMap.value(model);
     foreach (auto actor, *modelActors) {
         renderer->RemoveActor(actor);
@@ -904,8 +904,8 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
     modelActorsMap.remove(model);
     renderer->ResetCamera();
     renderer->Render();
-    GetRenderWindow()->Render();
-    GetRenderWindow()->Finalize();
+    renderWindow()->Render();
+    renderWindow()->Finalize();
 }
 
 void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)
@@ -929,15 +929,15 @@ void vsVisualizerVTK::focusOnCurrentModel()
     if(currentModel != nullptr){
         getModelBounds(currentModel,modelBounds);
     }
-    GetRenderWindow()->GetRenderers()->GetFirstRenderer()->ResetCamera(modelBounds);
+    renderWindow()->GetRenderers()->GetFirstRenderer()->ResetCamera(modelBounds);
 
 }
 
 void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 {
-    auto renderer = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //TODO setup the camera to look at the Actor instead of the origin
-    auto currentCamera = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
+    auto currentCamera = this->renderWindow()->GetRenderers()->GetFirstRenderer()->GetActiveCamera();
     if(clickedObject == pXButton.Get()){
        //auto fp = currentCamera->GetFocalPoint();
        double newPos[3] = {2,0.5,0};
@@ -1026,21 +1026,21 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
         globalFrame->SetVisibility(!globalFrame->GetVisibility());
     }
 
-    //this->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->Render();
-    GetRenderWindow()->Render();
-    GetRenderWindow()->Finalize();
+    //this->renderWindow()->GetRenderers()->GetFirstRenderer()->Render();
+    renderWindow()->Render();
+    renderWindow()->Finalize();
     //    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
 }
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
 {
-    QVTKOpenGLWidget::resizeEvent(event);
+    QVTKOpenGLStereoWidget::resizeEvent(event);
     updateVtkButtons();
 }
 
 void vsVisualizerVTK::paintEvent(QPaintEvent *event)
 {
-    QVTKOpenGLWidget::paintEvent(event);
-    //auto renderer  = this->GetRenderWindow()->GetRenderers()->GetFirstRenderer();
+    QVTKOpenGLStereoWidget::paintEvent(event);
+    //auto renderer  = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //renderer->ResetCameraClippingRange(0.001,10000,0.0001,10000,0.0001,10000);
 }

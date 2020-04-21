@@ -1,7 +1,6 @@
 #ifndef VTKVISUALIZER_H
 #define VTKVISUALIZER_H
 
-#include <QVTKOpenGLWidget.h>
 #include <vtkSmartPointer.h>
 #include <vtkActor.h>
 #include <QVector3D>
@@ -13,12 +12,13 @@
 #include <vtkEventQtSlotConnect.h>
 #include <vtkAxesActor.h>
 #include <vtkTextureMapToPlane.h>
+#include <QVTKOpenGLStereoWidget.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLWidget
+class vsVisualizerVTK : public QVTKOpenGLStereoWidget
 {
     Q_OBJECT
 public:
@@ -71,7 +71,7 @@ public:
     void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
     void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkActor> actor);
     OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
-    QList<vtkSmartPointer<vtkActor>>* getActorForComponent(OpenSim::Component *component);
+    QList<vtkSmartPointer<vtkActor>>* getActorForComponent(OpenSim::Object *component);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
@@ -88,7 +88,7 @@ public slots:
 private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
-    QMap<OpenSim::Component*, QList<vtkSmartPointer<vtkActor>>*> componentActorsMap;
+    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkActor>>*> componentActorsMap;
 
     OpenSim::Model *currentModel;
 
