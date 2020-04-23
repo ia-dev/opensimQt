@@ -1,4 +1,5 @@
 #include "vsGeometryImplementationQt.h"
+#include "vsInteractorStyle.h"
 #include "vsVisualizerVTK.h"
 
 #include <QApplication>
@@ -52,6 +53,7 @@
 #include <vsModeling/vsNavigatorNode.h>
 #include <vtkTextureMapToPlane.h>
 #include <vsTools/vsOpenSimTools.h>
+#include <vtkPropPicker.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
@@ -86,6 +88,14 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
 
     //Setting Up the TOP Left Buttons
     //createButton(0,0,"");
+
+    //interaction to select actors in the sceen
+
+    //vtkSmartPointer<vsInteractorStyle> interactor = vtkSmartPointer<vsInteractorStyle>::New();
+    //interactor->setVisualizer(this);
+    connections->Connect(interactor(),vtkCommand::LeftButtonPressEvent,this,SLOT(onVtkDoubleClicked(vtkObject *)));
+    connections->Connect(interactor(),vtkCommand::StartPickEvent,this,SLOT(onInteractorPick(vtkObject *)));
+
 }
 
 void vsVisualizerVTK::renderingTest()
@@ -1033,6 +1043,32 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     renderWindow()->Render();
     renderWindow()->Finalize();
     //    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
+}
+
+void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
+{
+    vtkSmartPointer<vtkPropPicker> propPicker = vtkSmartPointer<vtkPropPicker>::New();
+
+    int x = 0;
+    int y = 0;
+    interactor()->GetEventPosition(x,y);
+    //interactor()->GetMousePosition(&x,&y);
+    int picked = propPicker->PickProp(x,y,renderWindow()->GetRenderers()->GetFirstRenderer());
+    if(picked == 1){
+        qDebug() << "item picked " << x << " " << y;
+        if(propPicker->GetProp3D() == globalFrame.Get()){
+            qDebug() << "global fram selected ";
+        }
+    }
+    else{
+        qDebug() << "not picked " << x << " " << y;
+    }
+
+}
+
+void vsVisualizerVTK::onInteractorPick(vtkObject *obj)
+{
+    qDebug() << "double clicked ";
 }
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)

@@ -11,19 +11,28 @@
 #include "vsVisualizerVTK.h"
 
 #include <vtkInteractorStyleTrackballActor.h>
-
-class vsInteractorStyle : public vtkInteractorStyleTrackballActor
+#include <vtkObjectFactory.h>
+#include <QVTKInteractor.h>
+class vsInteractorStyle : public QVTKInteractor
 {
 public:
-    vsInteractorStyle(vsVisualizerVTK* visualizerVTK);
+    static vsInteractorStyle* New();
+    vsInteractorStyle();
+    vtkTypeMacro(vsInteractorStyle,QVTKInteractor)
 
     // vtkInteractorStyle interface
 public:
-    virtual void OnLeftButtonDown() override;
+
+    void setVisualizer(vsVisualizerVTK *visualizer);
 
 private:
     vsVisualizerVTK *m_visualizer;
 
+
+    // vtkRenderWindowInteractor interface
+public:
+    virtual void LeftButtonPressEvent() override;
 };
+
 
 #endif // VSINTERACTORSTYLE_H

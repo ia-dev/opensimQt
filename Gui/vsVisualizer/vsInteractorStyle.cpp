@@ -7,12 +7,22 @@
  ***************************************************************************/
 #include "vsInteractorStyle.h"
 
-vsInteractorStyle::vsInteractorStyle(vsVisualizerVTK *visulizerVTK):vtkInteractorStyleTrackballActor(),m_visualizer(visulizerVTK)
+#include <QDebug>
+vtkStandardNewMacro(vsInteractorStyle);
+
+vsInteractorStyle::vsInteractorStyle():QVTKInteractor(),m_visualizer(nullptr)
 {
 
 }
 
-void vsInteractorStyle::OnLeftButtonDown()
-{
 
+void vsInteractorStyle::setVisualizer(vsVisualizerVTK *visualizer)
+{
+    m_visualizer = visualizer;
+}
+
+void vsInteractorStyle::LeftButtonPressEvent()
+{
+    vtkRenderWindowInteractor::LeftButtonPressEvent();
+    qDebug() << "actor clicked" ;
 }

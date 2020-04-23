@@ -85,6 +85,8 @@ public:
 
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);
+    void onVtkDoubleClicked(vtkObject *obj);
+    void onInteractorPick(vtkObject *obj);
 
 private:
     BackgroundType m_backgroundType;
