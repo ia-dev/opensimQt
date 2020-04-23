@@ -155,6 +155,8 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderGeometry(OpenSim::Geometry *geo
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
 {
+
+
     auto boxSource = vtkSmartPointer<vtkCubeSource>::New();
     boxSource->Update();
 
@@ -248,28 +250,29 @@ void vsVisualizerVTK::createGroundImage(vtkSmartPointer<vtkImageData> groundData
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addSkyBox()
 {
     const char *texturesPaths[] ={
-        "./skyboxFRONT.png",
-        "./skyboxBACK.png",
-        "./skyboxRIGHT.png",
-        "./skyboxLEFT.png",
-        "./skyboxUP.png",
-        "./skyboxDOWN.png"
+        "./vtk_images/skyboxFRONT.png",
+        "./vtk_images/skyboxBACK.png",
+        "./vtk_images/skyboxRIGHT.png",
+        "./vtk_images/skyboxLEFT.png",
+        "./vtk_images/skyboxUP.png",
+        "./vtk_images/skyboxDOWN.png"
     };
 
 
     auto skyTexture  = vtkSmartPointer<vtkTexture>::New();
-    skyTexture->Update();
+    //skyTexture->Update();
+    skyTexture->CubeMapOn();
     //skyTexture->MipmapOn();
     skyTexture->InterpolateOn();
     skyTexture->RepeatOff();
     skyTexture->EdgeClampOn();
-    skyTexture->CubeMapOn();
+    skyTexture->Update();
     for (int i = 0; i < 6; ++i) {
         auto imgReader = vtkSmartPointer<vtkPNGReader>::New();
         imgReader->SetFileName(texturesPaths[i]);
         imgReader->Update();
         auto flip = vtkSmartPointer<vtkImageFlip>::New();
-        flip->SetInputConnection(imgReader->GetOutputPort());
+        flip->SetInputConnection(imgReader->GetOutputPort(0));
         flip->SetFilteredAxes(1);
         skyTexture->SetInputConnection(i,flip->GetOutputPort());
     }

@@ -4,6 +4,7 @@
 #include "vsPropertyModel.h"
 
 #include <QAction>
+#include <QString>
 #include <qdebug.h>
 
 vsNavigatorNode::vsNavigatorNode(OpenSim::Object *_openSimObj,QString _displayName,vsNavigatorNode *_parentNode,QObject *parent) :QObject(parent),
@@ -62,9 +63,13 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
     if(openSimObject != nullptr){
 
         //name property
+        qDebug() << QString::fromStdString(openSimObject->getName());
         vsPropertyItem *nameItem = new vsPropertyItem();
+        //qDebug() << QString::fromLatin1(openSimObject->getName(),(int)openSimObject->getName().size());
         nameItem->m_name = "name";
-        nameItem->m_value = QString::fromStdString(openSimObject->getName());
+        std::string nameTmp = openSimObject->getName();
+        nameItem->m_value =  QString::fromStdString(nameTmp);
+        qDebug() << nameItem->m_value;
         nameItem->m_type = vsPropertyItem::Text;
         nameItem->setText(nameItem->m_value);
         model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("name") << nameItem);
@@ -74,7 +79,8 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
         vsPropertyItem *typeItem = new vsPropertyItem();
         typeItem->m_name = "type";
         typeItem->m_isEditable = false;
-        typeItem->m_value = QString::fromStdString(openSimObject->getConcreteClassName());
+        std::string typeTmp = openSimObject->getConcreteClassName();
+        typeItem->m_value =  QString::fromStdString(typeTmp);
         typeItem->m_type = vsPropertyItem::Text;
         typeItem->setText(typeItem->m_value);
         model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("type") << typeItem);
@@ -86,7 +92,6 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
             vsPropertyItem *apItem = new vsPropertyItem();
             QStandardItem *apNameItem = new QStandardItem(apName);
             qDebug() << apName << QString::fromStdString(ap->getTypeName());
-
 
             if(ap->isListProperty()){
 
@@ -101,8 +106,16 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
                 apItem->m_value  = listRepresentation;
                 apItem->setText(apItem->m_value);
             }
+//            else if(ap->isOptionalProperty()){
+
+//            }
+//            else if(ap->isUnnamedProperty()){\
+//            }
             else if(ap->isObjectProperty()){
-                if(apName == "Appearance"){
+                if(OpenSim::Function::safeDownCast(const_cast<OpenSim::Object*>(&ap->getValueAsObject()))){
+                    qDebug() << "it is a function indeed";
+                }
+                else if(apName == "Appearance"){
                     auto _appr = &ap->getValueAsObject();
                     auto appr = OpenSim::Appearance::safeDownCast(const_cast<OpenSim::Object*>(_appr));
                     //visible property

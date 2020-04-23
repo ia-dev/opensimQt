@@ -191,10 +191,10 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
 void vsMainWindow::onNavigatorClicked(const QModelIndex modelIndex)
 {
     vsNavigatorNode *selectedNode = navigatorModel->nodeForIndex(modelIndex);
-    selectedNode->selectVisualizerActors();
     propertiesModel->setSelectedNavigarorNode(selectedNode);
-    ui->propertyTreeView->update(ui->propertyTreeView->rect());
+    //ui->propertyTreeView->update(ui->propertyTreeView->rect());
     ui->propertyTreeView->expandAll();
+    selectedNode->selectVisualizerActors();
 }
 
 

@@ -51,8 +51,6 @@ void vsPropertyModel::setSelectedNavigarorNode(vsNavigatorNode *selectedNavigaro
     if(m_socketsItem->rowCount()>0)m_socketsItem->removeRows(0,m_socketsItem->rowCount());
     if(m_appearancexItem->rowCount()>0)m_appearancexItem->removeRows(0,m_appearancexItem->rowCount());
     m_selectedNavigarorNode->setupPropertiesModel(this);
-
     emit layoutChanged();
-
     emit selectedNavigarorNodeChanged(m_selectedNavigarorNode);
 }
