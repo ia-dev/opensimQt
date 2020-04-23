@@ -61,6 +61,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //connecting dock resize events to setup the vtk widget
 
+    //connecting actor selection in the visualizer
+    connect(ui->vtkVisualiser,&vsVisualizerVTK::objectSelectedInNavigator,this,&vsMainWindow::onSelectedObjectActor);
+
 
 }
 
@@ -201,6 +204,16 @@ void vsMainWindow::onNavigatorClicked(const QModelIndex modelIndex)
 void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
 {
     ui->navigatorTreeView->expand(modelIndex);
+}
+
+void vsMainWindow::onSelectedObjectActor(OpenSim::Object *object)
+{
+    QModelIndex selectedIndex = navigatorModel->selectObject(object);
+    if(!selectedIndex.isValid()) return;
+    ui->navigatorTreeView->setCurrentIndex(selectedIndex);
+    ui->navigatorTreeView->scrollTo(selectedIndex);
+    propertiesModel->setSelectedNavigarorNode(navigatorModel->nodeForIndex(selectedIndex));
+    ui->propertyTreeView->expandAll();
 }
 
 

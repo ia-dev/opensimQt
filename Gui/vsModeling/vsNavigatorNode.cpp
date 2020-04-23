@@ -234,6 +234,18 @@ void vsNavigatorNode::removeNode()
     this->deleteLater();
 }
 
+vsNavigatorNode *vsNavigatorNode::getNodeForObj(OpenSim::Object *object)
+{
+    //return the node for the given object
+    if(object == openSimObject) return this;
+    if(childNodes.size() == 0) return nullptr;
+    foreach (auto childNode, childNodes) {
+        vsNavigatorNode *selectedNode = childNode->getNodeForObj(object);
+        if(selectedNode != nullptr) return selectedNode;
+    }
+    return nullptr;
+}
+
 vsNavigatorModel *vsNavigatorNode::connectedModel() const
 {
     return m_connectedModel;

@@ -26,6 +26,7 @@ private slots:
     void customMenuRequestedNavigator(const QPoint &point);
     void onNavigatorClicked(const QModelIndex modelIndex);
     void onExpendIndex(const QModelIndex modelIndex);
+    void onSelectedObjectActor(OpenSim::Object *object);
 
     void on_actionSave_Model_triggered();
 

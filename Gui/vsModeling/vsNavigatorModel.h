@@ -20,6 +20,7 @@ public:
     void getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu);
 
     void loadOpenSimModel(OpenSim::Model *openSimModel);
+    QModelIndex selectObject(OpenSim::Object *obj);
     // QAbstractItemModel interface
 public:
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;

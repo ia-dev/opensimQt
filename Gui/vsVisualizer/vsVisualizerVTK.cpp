@@ -90,7 +90,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //createButton(0,0,"");
 
     //interaction to select actors in the sceen
-
+    propPicker = vtkSmartPointer<vtkPropPicker>::New();
     //vtkSmartPointer<vsInteractorStyle> interactor = vtkSmartPointer<vsInteractorStyle>::New();
     //interactor->setVisualizer(this);
     connections->Connect(interactor(),vtkCommand::LeftButtonPressEvent,this,SLOT(onVtkDoubleClicked(vtkObject *)));
@@ -946,6 +946,24 @@ void vsVisualizerVTK::focusOnCurrentModel()
 
 }
 
+void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
+{
+    OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
+    if(selectedObject == nullptr) return;
+    emit this->objectSelectedInNavigator(selectedObject);
+    qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
+}
+
+OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor)
+{
+    foreach (OpenSim::Object *obj, componentActorsMap.keys()) {
+        if(componentActorsMap.value(obj)->contains(actor.Get())){
+            return  obj;
+        }
+    }
+    return nullptr;
+}
+
 void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 {
     auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
@@ -1047,21 +1065,16 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 
 void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
 {
-    vtkSmartPointer<vtkPropPicker> propPicker = vtkSmartPointer<vtkPropPicker>::New();
-
     int x = 0;
     int y = 0;
     interactor()->GetEventPosition(x,y);
     //interactor()->GetMousePosition(&x,&y);
     int picked = propPicker->PickProp(x,y,renderWindow()->GetRenderers()->GetFirstRenderer());
     if(picked == 1){
-        qDebug() << "item picked " << x << " " << y;
-        if(propPicker->GetProp3D() == globalFrame.Get()){
-            qDebug() << "global fram selected ";
+        if(propPicker->GetProp3D() == ground.Get() || propPicker->GetProp3D() == globalFrame.Get()){
+            return;
         }
-    }
-    else{
-        qDebug() << "not picked " << x << " " << y;
+        selectActorInNavigator(propPicker->GetActor());
     }
 
 }

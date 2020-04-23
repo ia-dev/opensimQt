@@ -14,6 +14,7 @@
 #include <vtkTextureMapToPlane.h>
 #include <QVTKOpenGLStereoWidget.h>
 #include <QVTKOpenGLNativeWidget.h>
+#include <vtkPropPicker.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -82,6 +83,8 @@ public:
     void removeModelActors(OpenSim::Model *model);
     void getModelBounds(OpenSim::Model *model,double *bounds);
     void focusOnCurrentModel();
+    void selectActorInNavigator(vtkSmartPointer<vtkActor> actor);
+    OpenSim::Object* getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor);
 
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);
@@ -100,6 +103,7 @@ private:
     vtkSmartPointer<vtkActor> skyBox;
     vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
+    vtkSmartPointer<vtkPropPicker> propPicker;
 
     //vtk to qt slots connection
 
@@ -125,6 +129,11 @@ private:
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+
+signals:
+    // signal to inform the MainWindow which OpenSim Object is selected
+    void objectSelectedInNavigator(OpenSim::Object *obj);
+
 };
 
 #endif // VTKVISUALIZER_H

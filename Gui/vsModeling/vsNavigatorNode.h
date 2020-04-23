@@ -29,6 +29,8 @@ public:
     void disableActionsForSets();
     vsNavigatorModel* connectedModel() const;
     void removeNode();
+
+    vsNavigatorNode* getNodeForObj(OpenSim::Object *object);
 public:
     OpenSim::Object *openSimObject;
     QString displayName;
