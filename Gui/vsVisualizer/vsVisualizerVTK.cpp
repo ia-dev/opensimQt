@@ -665,6 +665,38 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativePoint(const SimTK::De
     return pointActor;
 }
 
+vtkSmartPointer<vtkProp> vsVisualizerVTK::renderDecorativeFrame(const SimTK::DecorativeFrame &frame, SimTK::Transform frameTransform, double *scaleFactors)
+{
+
+    auto renderer = renderWindow()->GetRenderers()->GetFirstRenderer();
+
+    vtkSmartPointer<vtkTransform> transform =
+    vtkSmartPointer<vtkTransform>::New();
+
+    vtkSmartPointer<vtkAxesActor> frameActor =
+    vtkSmartPointer<vtkAxesActor>::New();
+
+    // The axes are positioned with a user transform
+    frameActor->SetUserTransform(transform);
+    frameActor->AxisLabelsOff();
+    //frameActor->SetCylinderRadius(0.02);
+    //frameActor->SetShaftTypeToCylinder();
+    frameActor->SetTotalLength(0.2,0.2,0.2);
+    //frameActor->SetConeRadius(0.01);
+    frameActor->SetUseBounds(false);
+
+
+    double colorTable[3];
+    getDGColor(frame,colorTable);
+//    frameActor->GetProperty()->SetColor(colorTable);
+//    frameActor->GetProperty()->SetOpacity(frame.getOpacity()<0?1:frame.getOpacity());
+
+    frameActor->SetScale(scaleFactors);
+    frameActor->SetUserMatrix(openSimToVtkTransform(frameTransform));
+    renderer->AddActor(frameActor);
+    return frameActor;
+}
+
 void vsVisualizerVTK::updateVtkButtons()
 {
     //redisplay the buttons inside the vtk visualizer widget
@@ -794,13 +826,13 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 
     vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
     geoImp.setRenderedModel(model);
-    modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkActor>>());
+    modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
     OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
     while (!itr.equals(componentList.end())) {
         const OpenSim::Component *comp = &itr.deref();
-        componentActorsMap.insert(const_cast<OpenSim::Component*>(comp),new QList<vtkSmartPointer<vtkActor>>());
+        componentActorsMap.insert(const_cast<OpenSim::Component*>(comp),new QList<vtkSmartPointer<vtkProp>>());
         SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
         geoImp.setRenderedComponent(const_cast<OpenSim::Component*>(comp));
         comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
@@ -841,12 +873,12 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 
 }
 
-void vsVisualizerVTK::addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor)
+void vsVisualizerVTK::addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkProp> actor)
 {
     *modelActorsMap.value(model) << actor;
 }
 
-void vsVisualizerVTK::addVtkActorToComponentMap(OpenSim::Component *component, vtkSmartPointer<vtkActor> actor)
+void vsVisualizerVTK::addVtkActorToComponentMap(OpenSim::Component *component, vtkSmartPointer<vtkProp> actor)
 {
     *componentActorsMap.value(component) << actor;
 }
@@ -864,7 +896,7 @@ OpenSim::Model *vsVisualizerVTK::getModelForActor(vtkSmartPointer<vtkActor> acto
     return nullptr;
 }
 
-QList<vtkSmartPointer<vtkActor> >* vsVisualizerVTK::getActorForComponent(OpenSim::Object *component)
+QList<vtkSmartPointer<vtkProp> >* vsVisualizerVTK::getActorForComponent(OpenSim::Object *component)
 {
     if(componentActorsMap.contains(component))
         return componentActorsMap.value(component);
@@ -925,7 +957,7 @@ void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)
 {
     if(currentModel == nullptr) return;
     auto  modelActors = *modelActorsMap.value(model);
-    foreach (vtkSmartPointer<vtkActor> actor, modelActors ) {
+    foreach (vtkSmartPointer<vtkProp> actor, modelActors ) {
         double *actorBounds = actor->GetBounds();
         if(actorBounds[0]<bounds[0]) bounds[0] = actorBounds[0];
         if(actorBounds[1]>bounds[1]) bounds[1] = actorBounds[1];

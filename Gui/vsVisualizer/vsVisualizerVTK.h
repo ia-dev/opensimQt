@@ -61,6 +61,10 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativePoint(const SimTK::DecorativePoint& point, SimTK::Transform coneTransform,
                                                    double *scaleFactors);
 
+    vtkSmartPointer<vtkProp> renderDecorativeFrame(const SimTK::DecorativeFrame& frame, SimTK::Transform frameTransform,
+                                                   double *scaleFactors);
+
+
     void updateVtkButtons();
     vtkSmartPointer<vtkButtonWidget> createButton(int posx,int posy,QString imagePath);
     void takeSnapShot();
@@ -70,10 +74,10 @@ public:
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
-    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
-    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkActor> actor);
+    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkProp> actor);
+    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkProp> actor);
     OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
-    QList<vtkSmartPointer<vtkActor>>* getActorForComponent(OpenSim::Object *component);
+    QList<vtkSmartPointer<vtkProp>>* getActorForComponent(OpenSim::Object *component);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
@@ -93,8 +97,8 @@ public slots:
 
 private:
     BackgroundType m_backgroundType;
-    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
-    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkActor>>*> componentActorsMap;
+    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkProp>>*> modelActorsMap;
+    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
 
     OpenSim::Model *currentModel;
 

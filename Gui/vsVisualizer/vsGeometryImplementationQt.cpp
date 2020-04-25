@@ -102,7 +102,12 @@ void vsGeometryImplementationQt::implementEllipsoidGeometry(const SimTK::Decorat
 
 void vsGeometryImplementationQt::implementFrameGeometry(const SimTK::DecorativeFrame &geom)
 {
-    //we will be using vtk frames instead
+    double scal_factores[3];
+    calculateScaleFactors(scal_factores,geom);
+    vtkSmartPointer<vtkProp> frameActor =
+            m_visualizerVTK->renderDecorativeFrame(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,frameActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,frameActor);
     qDebug() << "loading qt geometry Frame";
 }
 
