@@ -36,62 +36,8 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="VisualizerLayout">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>Visuallizer</string>
-       </property>
-       <property name="accessibleName">
-        <string>Visualizer</string>
-       </property>
-       <attribute name="icon">
-        <iconset resource="../resource.qrc">
-         <normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Visualizer</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>2</number>
-        </property>
-        <property name="topMargin">
-         <number>2</number>
-        </property>
-        <property name="rightMargin">
-         <number>2</number>
-        </property>
-        <property name="bottomMargin">
-         <number>2</number>
-        </property>
-        <item>
-         <widget class="QWebEngineView" name="Visualizer" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="mouseTracking">
-           <bool>false</bool>
-          </property>
-          <property name="acceptDrops">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="VtkVisualizerLayout">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -105,8 +51,12 @@
        <property name="accessibleName">
         <string>VtkVisualizer</string>
        </property>
+       <attribute name="icon">
+        <iconset resource="../resource.qrc">
+         <normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</normaloff>:/Data/Images/DefaultIcon/4-direction-alt.png</iconset>
+       </attribute>
        <attribute name="title">
-        <string>VtkVisualizer</string>
+        <string>Visualizer</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
@@ -126,29 +76,6 @@
         </property>
         <item>
          <widget class="vsVisualizerVTK" name="vtkVisualiser" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="openGLVisualizerLayout">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <attribute name="title">
-        <string>vsOpenGLVisualizer</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
-         <widget class="vsOpenGLVisualizer" name="openGLVisualizer">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -1042,17 +969,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QWebEngineView</class>
-   <extends>QWidget</extends>
-   <header>QtWebEngineWidgets/qwebengineview.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>vsOpenGLVisualizer</class>
-   <extends>QOpenGLWidget</extends>
-   <header location="global">vsVisualizer/vsOpenGLVisualizer.h</header>
-  </customwidget>
   <customwidget>
    <class>vsVisualizerVTK</class>
    <extends>QWidget</extends>

@@ -5,103 +5,99 @@
     <name>vsMainWindow</name>
     <message>
         <location filename="vsWidgets/vsMainWindow.ui" line="49"/>
-        <source>Visuallizer</source>
+        <location filename="vsWidgets/vsMainWindow.ui" line="52"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="59"/>
+        <source>VtkVisualizer</source>
+        <oldsource>Visuallizer</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="52"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="59"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="933"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="860"/>
         <source>Visualizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="103"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="106"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="109"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="49"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="52"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="59"/>
         <source>VtkVisualizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="147"/>
-        <source>vsOpenGLVisualizer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="177"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="104"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="197"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="124"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="205"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="132"/>
         <source>&amp;Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="219"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="146"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="238"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="165"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="254"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="181"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="258"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="185"/>
         <source>Configure Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="288"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="215"/>
         <source>Simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="330"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="938"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="257"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="865"/>
         <source>Messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="383"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="943"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="310"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="870"/>
         <source>Navigator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="432"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="913"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="359"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="840"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="487"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="414"/>
         <source>Scripting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="515"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="442"/>
         <source>output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="558"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="485"/>
         <source>&gt; m= getCurrentModel()</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="580"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="507"/>
         <source>## script history
 #a =10
 # a
@@ -109,279 +105,279 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="601"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="528"/>
         <source>Topologie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="610"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="637"/>
-        <location filename="vsWidgets/vsMainWindow.ui" line="656"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="537"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="564"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="583"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="671"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="598"/>
         <source>Open Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="680"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="607"/>
         <source>Load Motion...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="685"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="612"/>
         <source>Recent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="694"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="621"/>
         <source>Close Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="703"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="630"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="712"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="639"/>
         <source>Save Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="721"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="648"/>
         <source>Save Model As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="730"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="657"/>
         <source>Save All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="739"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="666"/>
         <source>Preview Experement Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="748"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="675"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="753"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="680"/>
         <source>Excitations...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="758"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="685"/>
         <source>Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="763"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="690"/>
         <source>File (.xml)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="772"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="699"/>
         <source>Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="777"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="704"/>
         <source>Open Recent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="786"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="713"/>
         <source>Run...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="791"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="718"/>
         <source>Run Recent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="800"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="727"/>
         <source>Save Current Script...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="809"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="736"/>
         <source>Run Current Script...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="818"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="745"/>
         <source>Plot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="827"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="754"/>
         <source>Scale Model...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="836"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="763"/>
         <source>Inverse Kinematics...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="845"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="772"/>
         <source>Inverse Dynamics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="854"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="781"/>
         <source>Static Optimization...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="863"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="790"/>
         <source>Reduce Residuals...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="872"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="799"/>
         <source>Compute Muscle Controle...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="881"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="808"/>
         <source>Forward Dynamics...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="890"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="817"/>
         <source>Analyze...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="899"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="826"/>
         <source>Convert Files ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="908"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="835"/>
         <source>User Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="918"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="845"/>
         <source>ScriptingShell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="923"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="850"/>
         <source>Coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="928"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="855"/>
         <source>Topology View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="948"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="875"/>
         <source>Maximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="953"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="880"/>
         <source>Float</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="958"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="885"/>
         <source>Float Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="963"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="890"/>
         <source>Dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="968"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="895"/>
         <source>Dock Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="973"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="900"/>
         <source>Clone Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="978"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="905"/>
         <source>New Document Tab Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="983"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="910"/>
         <source>Collapse Document Tab Groupe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="988"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="915"/>
         <source>Online Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="993"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="920"/>
         <source>User&apos;s Guide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="998"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="925"/>
         <source>Exemples &amp;&amp; Tutorials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1003"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="930"/>
         <source>XML Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1008"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="935"/>
         <source>Doxygen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1013"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="940"/>
         <source>Scripting help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1018"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="945"/>
         <source>Report Bug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1023"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="950"/>
         <source>Request Feature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1028"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="955"/>
         <source>About Opensim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1037"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="964"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.ui" line="1040"/>
+        <location filename="vsWidgets/vsMainWindow.ui" line="967"/>
         <source>F5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="76"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="79"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>

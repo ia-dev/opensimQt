@@ -42,7 +42,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->propertyTreeView->setModel(propertiesModel);
 
     //setting the visualizer
-    ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
+    //ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
     //ui->Visualizer->setUrl(QUrl("http://www.facebook.com"));
     //ui->Visualizer->show();
 
