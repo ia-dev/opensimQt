@@ -56,7 +56,7 @@
 #include <vtkPropPicker.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
-    QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
+    QVTKOpenGLStereoWidget(parent),currentModel(nullptr)
 {
 
     connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
@@ -746,8 +746,9 @@ vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy
 
       vtkSmartPointer<vtkCoordinate> upperLeft =
         vtkSmartPointer<vtkCoordinate>::New();
-      upperLeft->SetCoordinateSystemToNormalizedDisplay();
-      upperLeft->SetValue(0.0,1.0);
+      upperLeft->SetCoordinateSystemToNormalizedViewport();
+      //upperLeft.set
+      upperLeft->SetValue(0,1);
 
       double bds[6];
       double sz = 20.0;
@@ -815,10 +816,10 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
     //TODO try to implement frame geometries as Axes
-    model->updDisplayHints().set_show_frames(true);
-//    model->updDisplayHints().set_show_path_geometry(true);
+    model->updDisplayHints().set_show_frames(false);
+    //model->updDisplayHints().set_show_path_geometry(true);
 //    model->updDisplayHints().set_show_contact_geometry(true);
-    model->updDisplayHints().set_show_wrap_geometry(true);
+//    model->updDisplayHints().set_show_wrap_geometry(true);
 //    model->updDisplayHints().set_show_markers(true);
 //    model->updDisplayHints().set_show_path_points(true);
 //    model->updDisplayHints().set_show_debug_geometry(true);
@@ -929,10 +930,26 @@ void vsVisualizerVTK::clearTheScene()
 {
     auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //TODO remove only the models actors
-    renderer->RemoveAllViewProps();
+    //TODO removing the component map
+    foreach(auto component , componentActorsMap.keys()){
+        auto actorLists = componentActorsMap.value(component);
+        componentActorsMap.remove(component);
+        delete actorLists;
+    }
+    componentActorsMap.clear();
+    foreach (auto modelObj, modelActorsMap.keys()) {
+        foreach (auto actorObj, *modelActorsMap.value(modelObj)) {
+            actorObj->SetVisibility(false);
+            modelActorsMap.value(modelObj)->removeOne(actorObj);
+            renderer->RemoveActor(actorObj);
+            //actorObj->Delete();
+        }
+    }
 
-    renderer->ResetCamera();
-    renderer->Render();
+    //renderer->RemoveAllViewProps();
+
+    renderer->ResetCamera(globalFrame->GetBounds());
+    //renderer->Render();
     renderWindow()->Render();
     renderWindow()->Finalize();
 
@@ -1118,13 +1135,19 @@ void vsVisualizerVTK::onInteractorPick(vtkObject *obj)
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
 {
-    QVTKOpenGLNativeWidget::resizeEvent(event);
+    QVTKOpenGLStereoWidget::resizeEvent(event);
     updateVtkButtons();
 }
 
 void vsVisualizerVTK::paintEvent(QPaintEvent *event)
 {
-    QVTKOpenGLNativeWidget::paintEvent(event);
+    QVTKOpenGLStereoWidget::paintEvent(event);
     //auto renderer  = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //renderer->ResetCameraClippingRange(0.001,10000,0.0001,10000,0.0001,10000);
+}
+
+void vsVisualizerVTK::showEvent(QShowEvent *event)
+{
+    QVTKOpenGLStereoWidget::showEvent(event);
+    updateVtkButtons();
 }

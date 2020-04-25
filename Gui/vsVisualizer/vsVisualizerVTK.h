@@ -20,7 +20,7 @@ enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLNativeWidget
+class vsVisualizerVTK : public QVTKOpenGLStereoWidget
 {
     Q_OBJECT
 public:
@@ -133,7 +133,7 @@ private:
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-
+    virtual void showEvent(QShowEvent *event) override;
 signals:
     // signal to inform the MainWindow which OpenSim Object is selected
     void objectSelectedInNavigator(OpenSim::Object *obj);
