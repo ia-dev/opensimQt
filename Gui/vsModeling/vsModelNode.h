@@ -11,10 +11,13 @@ class vsModelNode : public vsNavigatorNode
 public:
     vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent=nullptr);
 
+public slots:
+    void onCloseModelClicked();
 
     // vsNavigatorNode interface
 public:
     virtual void setupNodeActions(QMenu *rootMenu) override;
+    virtual void setupPropertiesModel(vsPropertyModel *model) override;
 };
 
 #endif // vsModelNode_H

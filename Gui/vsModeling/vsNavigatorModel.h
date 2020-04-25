@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QObject>
 #include "vsModeling/vsNavigatorNode.h"
+#include "vsModelNode.h"
 
 class vsNavigatorModel : public QAbstractItemModel
 {
@@ -19,6 +20,7 @@ public:
     void getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu);
 
     void loadOpenSimModel(OpenSim::Model *openSimModel);
+    QModelIndex selectObject(OpenSim::Object *obj);
     // QAbstractItemModel interface
 public:
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;
@@ -29,10 +31,19 @@ public:
 
     QList<OpenSim::Model *> getOpenModels() const;
 
+    void closeCurrentModel();
+    void closeAllModels();
+    void closeModel(OpenSim::Model *model);
+    vsModelNode  *getNodeForModel(OpenSim::Model *model);
+
     OpenSim::Model *getActiveModel() const;
     void setActiveModel(OpenSim::Model *activeModel);
 
-protected:
+
+signals:
+    void expendIndex(const QModelIndex modelIndex);
+
+public:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;
     int rowForNode(vsNavigatorNode *node) const;

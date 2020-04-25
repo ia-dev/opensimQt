@@ -34,7 +34,9 @@ void vsGeometryImplementationQt::implementPointGeometry(const SimTK::DecorativeP
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativePoint(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> pointActor = m_visualizerVTK->renderDecorativePoint(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,pointActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,pointActor);
     qDebug() << "loading qt geometry Point";
 }
 
@@ -42,7 +44,9 @@ void vsGeometryImplementationQt::implementLineGeometry(const SimTK::DecorativeLi
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> lineActor = m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,lineActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,lineActor);
     qDebug() << "loading qt geometry Line";
 }
 
@@ -50,7 +54,9 @@ void vsGeometryImplementationQt::implementBrickGeometry(const SimTK::DecorativeB
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeBrick(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> brickActor = m_visualizerVTK->renderDecorativeBrick(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,brickActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,brickActor);
     qDebug() << "loading qt geometry Brick";
 }
 
@@ -58,7 +64,9 @@ void vsGeometryImplementationQt::implementCylinderGeometry(const SimTK::Decorati
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeCylender(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> cylenderActor = m_visualizerVTK->renderDecorativeCylender(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,cylenderActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,cylenderActor);
     qDebug() << "loading qt geometry Cylinder";
 }
 
@@ -66,7 +74,9 @@ void vsGeometryImplementationQt::implementCircleGeometry(const SimTK::Decorative
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeCircle(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> circleActor = m_visualizerVTK->renderDecorativeCircle(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,circleActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,circleActor);
     qDebug() << "loading qt geometry Cercle";
 }
 
@@ -75,14 +85,18 @@ void vsGeometryImplementationQt::implementSphereGeometry(const SimTK::Decorative
     qDebug() << "loading qt geometry Sphere";
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeSphere(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> sphereActor = m_visualizerVTK->renderDecorativeSphere(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,sphereActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,sphereActor);
 }
 
 void vsGeometryImplementationQt::implementEllipsoidGeometry(const SimTK::DecorativeEllipsoid &geom)
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeEllipsoid(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> ellipsoidActor = m_visualizerVTK->renderDecorativeEllipsoid(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,ellipsoidActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,ellipsoidActor);
     qDebug() << "loading qt geometry Ellipsoid";
 }
 
@@ -97,7 +111,9 @@ void vsGeometryImplementationQt::implementTextGeometry(const SimTK::DecorativeTe
     qDebug() << "loading qt geometry text";
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeText(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> textActor = m_visualizerVTK->renderDecorativeText(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,textActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,textActor);
 }
 
 void vsGeometryImplementationQt::implementMeshGeometry(const SimTK::DecorativeMesh &geom)
@@ -111,14 +127,18 @@ void vsGeometryImplementationQt::implementMeshFileGeometry(const SimTK::Decorati
     qDebug() << " from qt geometry "<< QString::fromStdString(geom.getMeshFile());
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeMeshFile(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> meshFileActor = m_visualizerVTK->renderDecorativeMeshFile(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,meshFileActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,meshFileActor);
 }
 
 void vsGeometryImplementationQt::implementTorusGeometry(const SimTK::DecorativeTorus &geom)
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeTorus(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> torusActor = m_visualizerVTK->renderDecorativeTorus(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,torusActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,torusActor);
     qDebug() << "loading qt geometry Torus";
 }
 
@@ -126,7 +146,9 @@ void vsGeometryImplementationQt::implementArrowGeometry(const SimTK::DecorativeA
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeArrow(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> arrowActor = m_visualizerVTK->renderDecorativeArrow(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,arrowActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,arrowActor);
     qDebug() << "loading qt geometry Arrow";
 }
 
@@ -134,7 +156,29 @@ void vsGeometryImplementationQt::implementConeGeometry(const SimTK::DecorativeCo
 {
     double scal_factores[3];
     calculateScaleFactors(scal_factores,geom);
-    m_visualizerVTK->renderDecorativeCone(geom,calculateTransformForGeo(geom),scal_factores);
+    vtkSmartPointer<vtkActor> coneActor = m_visualizerVTK->renderDecorativeCone(geom,calculateTransformForGeo(geom),scal_factores);
+    m_visualizerVTK->addVtkActorToMap(m_renderedModel,coneActor);
+    m_visualizerVTK->addVtkActorToComponentMap(m_renderedComponent,coneActor);
     qDebug() << "loading qt geometry Cone";
+}
+
+OpenSim::Model *vsGeometryImplementationQt::renderedModel() const
+{
+    return m_renderedModel;
+}
+
+void vsGeometryImplementationQt::setRenderedModel(OpenSim::Model *renderedModel)
+{
+    m_renderedModel = renderedModel;
+}
+
+void vsGeometryImplementationQt::setRenderedComponent(OpenSim::Component *renderedComponent)
+{
+    m_renderedComponent = renderedComponent;
+}
+
+OpenSim::Component *vsGeometryImplementationQt::renderedComponent() const
+{
+    return m_renderedComponent;
 }
 

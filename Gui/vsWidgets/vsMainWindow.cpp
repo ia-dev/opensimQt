@@ -6,9 +6,11 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMimeData>
+#include <QMessageBox>
 #include <QtWebEngineWidgets/qwebengineview.h>
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
+
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,15 +35,20 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting the navigator
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
+    connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
+
+    //setting the properties
+    propertiesModel = new vsPropertyModel(this);
+    ui->propertyTreeView->setModel(propertiesModel);
 
     //setting the visualizer
-    ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
+    //ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
     //ui->Visualizer->setUrl(QUrl("http://www.facebook.com"));
     //ui->Visualizer->show();
 
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../Gui/vsWorkSpace/opensim-models/Geometry");
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
@@ -50,6 +57,13 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
+    connect(ui->navigatorTreeView,&QTreeView::clicked,this,&vsMainWindow::onNavigatorClicked);
+
+    //connecting dock resize events to setup the vtk widget
+
+    //connecting actor selection in the visualizer
+    connect(ui->vtkVisualiser,&vsVisualizerVTK::objectSelectedInNavigator,this,&vsMainWindow::onSelectedObjectActor);
+
 
 }
 
@@ -114,6 +128,35 @@ void vsMainWindow::dragMoveEvent(QDragMoveEvent *event)
     event->acceptProposedAction();
 }
 
+void vsMainWindow::closeEvent(QCloseEvent *event)
+{
+    if(QMessageBox::warning(this,"Exiting","Do you really want to exit ?",(QMessageBox::Yes|QMessageBox::No)) != QMessageBox::Yes)
+    {
+        event->ignore();
+    }else{
+        QString historyPath =QApplication::applicationDirPath()
+                +"/History/"+QDateTime::currentDateTime().toString(Qt::ISODate).replace(":","_");
+        QDir hDir;
+        if(hDir.exists(QApplication::applicationDirPath()+"/History/"))hDir.mkdir(QApplication::applicationDirPath()+"/History/");
+        vsOpenSimTools::tools->saveScene(historyPath+".vs");
+        qDebug() << "exiting" << historyPath;
+        QFile::copy(QApplication::applicationDirPath()+"/OpenSimQtLog_.txt",historyPath+".txt");
+        event->accept();
+    }
+}
+
+void vsMainWindow::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    ui->vtkVisualiser->updateVtkButtons();
+}
+
+void vsMainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    ui->vtkVisualiser->updateVtkButtons();
+}
+
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;
 
 void vsMainWindow::on_actionReload_triggered()
@@ -147,6 +190,32 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
         nodeMenu->popup(ui->navigatorTreeView->viewport()->mapToGlobal(point));
     }
 }
+
+void vsMainWindow::onNavigatorClicked(const QModelIndex modelIndex)
+{
+    vsNavigatorNode *selectedNode = navigatorModel->nodeForIndex(modelIndex);
+    propertiesModel->setSelectedNavigarorNode(selectedNode);
+    //ui->propertyTreeView->update(ui->propertyTreeView->rect());
+    ui->propertyTreeView->expandAll();
+    selectedNode->selectVisualizerActors();
+}
+
+
+void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
+{
+    ui->navigatorTreeView->expand(modelIndex);
+}
+
+void vsMainWindow::onSelectedObjectActor(OpenSim::Object *object)
+{
+    QModelIndex selectedIndex = navigatorModel->selectObject(object);
+    if(!selectedIndex.isValid()) return;
+    ui->navigatorTreeView->setCurrentIndex(selectedIndex);
+    ui->navigatorTreeView->scrollTo(selectedIndex);
+    propertiesModel->setSelectedNavigarorNode(navigatorModel->nodeForIndex(selectedIndex));
+    ui->propertyTreeView->expandAll();
+}
+
 
 void vsMainWindow::on_actionSave_Model_triggered()
 {
@@ -187,4 +256,52 @@ void vsMainWindow::on_actionSave_All_triggered()
         oneModel->print(oneModel->getInputFileName());
     }
     vsOpenSimTools::tools->log("All Models are Saved","MainWindow",vsOpenSimTools::Success);
+
+    vsOpenSimTools::tools->log("Saving The Scene...","MainWindow",vsOpenSimTools::Info);
+    if(navigatorModel->getActiveModel() != nullptr){
+        QString sceneFileName = QFileDialog::
+                getSaveFileName(this,"Save Current Scene As","SceneName.vs","*.vs");
+        if(sceneFileName != ""){
+            vsOpenSimTools::tools->saveScene(sceneFileName);
+            vsOpenSimTools::tools->log("Scene was Saved Here: "+sceneFileName,"MainWindow",vsOpenSimTools::Success);
+        }
+        else{
+            vsOpenSimTools::tools->log("No Valid File was Selected","MainWindow",vsOpenSimTools::Error);
+        }
+    }else{
+        vsOpenSimTools::tools->log("The Scene is empty","MainWindow",vsOpenSimTools::Info);
+    }
+
+
+
+}
+
+void vsMainWindow::on_actionE_xit_triggered()
+{
+    if(QMessageBox::warning(this,"Exiting","Do you really want to exit ?",(QMessageBox::Yes|QMessageBox::No)) != QMessageBox::Yes)
+    {
+        qDebug() << "not Exiting";
+    }else{
+        QString historyPath =QApplication::applicationDirPath()
+                +"/History/"+QDateTime::currentDateTime().toString(Qt::ISODate).replace(":","_");
+        QDir hDir;
+        if(hDir.exists(QApplication::applicationDirPath()+"/History/"))hDir.mkdir(QApplication::applicationDirPath()+"/History/");
+        vsOpenSimTools::tools->saveScene(historyPath+".vs");
+        qDebug() << "exiting" << historyPath;
+        QFile::copy(QApplication::applicationDirPath()+"/OpenSimQtLog_.txt",historyPath+".txt");
+        //move the log to the HistoryFolder
+        //save the scene
+        QApplication::exit();
+    }
+
+}
+
+void vsMainWindow::on_actionClose_Model_triggered()
+{
+    navigatorModel->closeCurrentModel();
+}
+
+void vsMainWindow::on_actionClose_All_triggered()
+{
+    navigatorModel->closeAllModels();
 }

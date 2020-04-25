@@ -2,9 +2,11 @@
 #include "vsNavigatorModel.h"
 #include <QDebug>
 #include <QIcon>
+#include <vsTools/vsOpenSimTools.h>
 vsNavigatorModel::vsNavigatorModel()
 {
     m_rootNNode = new vsNavigatorNode(nullptr,"the root",nullptr,this);
+    m_rootNNode->setConnectedModel(this);
 }
 
 void vsNavigatorModel::clean()
@@ -42,6 +44,7 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
     vsModelNode *modelNNode = new vsModelNode(m_activeModel,m_rootNNode,this);
 
+    emit expendIndex(indexForNNode(modelNNode));
 
     emit layoutChanged();
 //    m_activeModel->setUseVisualizer(true);
@@ -52,6 +55,16 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
     //OpenSim::simulate(*m_activeModel,*stat,10.0);
 
+}
+
+QModelIndex vsNavigatorModel::selectObject(OpenSim::Object *obj)
+{
+    vsNavigatorNode *selectedObjNode  = m_rootNNode->getNodeForObj(obj);
+    if(selectedObjNode == nullptr) return QModelIndex() ;
+    qDebug() << "selected Node " << selectedObjNode->displayName;
+    auto index = indexForNNode(selectedObjNode);
+    emit this->expendIndex(index);
+    return index;
 }
 
 QModelIndex vsNavigatorModel::index(int row, int column, const QModelIndex &parent) const
@@ -138,4 +151,75 @@ void vsNavigatorModel::setActiveModel(OpenSim::Model *activeModel)
 QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const
 {
     return m_openModels;
+}
+
+void vsNavigatorModel::closeCurrentModel()
+{
+    if(m_activeModel == nullptr){
+        vsOpenSimTools::tools->log("No Current Model to be closed","NavigatorModel",vsOpenSimTools::Error);
+        return;
+    }
+    vsModelNode *activeNode = getNodeForModel(m_activeModel);
+
+    activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));
+
+    activeNode->removeNode();
+    m_openModels.removeOne(m_activeModel);
+
+
+    if(m_openModels.size()>0)
+        setActiveModel(m_openModels.first());
+    else
+        setActiveModel(nullptr);
+    vsOpenSimTools::tools->log("Current Model closed","NavigatorModel",vsOpenSimTools::Success);
+    emit layoutChanged();
+    //TODO remove the model from the tools
+
+}
+
+void vsNavigatorModel::closeAllModels()
+{
+    foreach(auto modelNode,m_rootNNode->childNodes){
+        OpenSim::Model *model = static_cast<OpenSim::Model*>(modelNode->openSimObject);
+        modelNode->visualizerVTK->removeModelActors(model);
+        modelNode->removeNode();
+    }
+    setActiveModel(nullptr);
+    foreach(auto model , m_openModels){
+        qDebug() << "model to remove :"<< QString::fromStdString(model->getName());
+        m_openModels.removeOne(model);
+        delete model;
+    }
+    vsOpenSimTools::tools->log("All Models are closed","NavigatorModel",vsOpenSimTools::Success);
+    emit layoutChanged();
+}
+
+void vsNavigatorModel::closeModel(OpenSim::Model *model)
+{
+
+    vsModelNode *activeNode = getNodeForModel(model);
+
+    activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));
+
+    activeNode->removeNode();
+    m_openModels.removeOne(model);
+
+
+    if(model == m_activeModel  && m_openModels.size()>0)
+        setActiveModel(m_openModels.first());
+    else
+        setActiveModel(nullptr);
+    vsOpenSimTools::tools->log("Model "+QString::fromStdString(model->getName())+" closed","NavigatorModel",vsOpenSimTools::Success);
+    emit layoutChanged();
+    //TODO remove the model from the tools
+}
+
+vsModelNode *vsNavigatorModel::getNodeForModel(OpenSim::Model *model)
+{
+    foreach (auto *nNode, m_rootNNode->childNodes) {
+        vsModelNode *modelNode = static_cast<vsModelNode*>(nNode);
+        if(modelNode->openSimObject == model)
+            return static_cast<vsModelNode*>(nNode);
+    }
+    return nullptr;
 }
