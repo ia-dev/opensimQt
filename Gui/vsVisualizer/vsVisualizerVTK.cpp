@@ -54,6 +54,9 @@
 #include <vtkTextureMapToPlane.h>
 #include <vsTools/vsOpenSimTools.h>
 #include <vtkPropPicker.h>
+#include <vtkOBJReader.h>
+#include <vtkSTLReader.h>
+#include <vtkPolyDataReader.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLStereoWidget(parent),currentModel(nullptr)
@@ -330,20 +333,53 @@ vtkSmartPointer<vtkAxesActor> vsVisualizerVTK::addGlobalFrame()
     return axes;
 }
 
+vtkSmartPointer<vtkPolyDataMapper> vsVisualizerVTK::getMeshDataMapper(std::string fileName)
+{
+    //Here you can add support for mesh format
+
+    QString fileExtention = QString::fromStdString(fileName).right(3);
+    const char *fileNameChar = fileName.data();
+    qDebug() << "the "<< fileExtention << " file path" << fileNameChar;
+
+    auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+
+    if(fileExtention.toLower() == "obj"){
+        vtkSmartPointer<vtkOBJReader> objReader =
+          vtkSmartPointer<vtkOBJReader>::New();
+        objReader->SetFileName(fileNameChar);
+        objReader->Update();
+        mapper->SetInputConnection(objReader->GetOutputPort());
+    }
+    else if (fileExtention.toLower() == "stl"){
+        vtkSmartPointer<vtkSTLReader> stlReader =
+                vtkSmartPointer<vtkSTLReader>::New();
+        stlReader->SetFileName(fileNameChar);
+        stlReader->Update();
+        mapper->SetInputConnection(stlReader->GetOutputPort());
+    }
+    else if (fileExtention.toLower() == "vtk"){
+        vtkSmartPointer<vtkPolyDataReader> vtkReader =
+                vtkSmartPointer<vtkPolyDataReader>::New();
+        vtkReader->SetFileName(fileNameChar);
+        vtkReader->Update();
+        mapper->SetInputConnection(vtkReader->GetOutputPort());
+    }
+    else {
+        // vtp
+        auto vtpFileReader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
+        vtpFileReader->SetFileName(fileNameChar);
+        vtpFileReader->Update();
+        mapper->SetInputConnection(vtpFileReader->GetOutputPort());
+    }
+    return mapper;
+}
+
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK::DecorativeMeshFile &mesh
                                                                     ,SimTK::Transform mesh_transform ,double *scaleFactors)
 {
-    const char *fileNameChar = mesh.getMeshFile().data();
-    qDebug() << "the vtp file path" << fileNameChar;
-    auto vtpFileReader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
-    vtpFileReader->SetFileName(fileNameChar);
-    vtpFileReader->Update();
-
-    auto vtpMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-    vtpMapper->SetInputConnection(vtpFileReader->GetOutputPort());
-
+    vtkSmartPointer<vtkPolyDataMapper> meshMapper = getMeshDataMapper(mesh.getMeshFile());
     auto vtpActor = vtkSmartPointer<vtkActor>::New();
-    vtpActor->SetMapper(vtpMapper);
+    vtpActor->SetMapper(meshMapper);
 
 //    auto geometryScale = mesh_transform.p();
 //    double geometryScaleDouble[] = {geometryScale.get(0),geometryScale.get(1),geometryScale.get(2)};
@@ -930,7 +966,7 @@ void vsVisualizerVTK::clearTheScene()
 {
     auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //TODO remove only the models actors
-    //TODO removing the component map
+    //removing the component map
     foreach(auto component , componentActorsMap.keys()){
         auto actorLists = componentActorsMap.value(component);
         componentActorsMap.remove(component);
@@ -945,7 +981,7 @@ void vsVisualizerVTK::clearTheScene()
             //actorObj->Delete();
         }
     }
-
+    modelActorsMap.clear();
     //renderer->RemoveAllViewProps();
 
     renderer->ResetCamera(globalFrame->GetBounds());

@@ -15,6 +15,7 @@
 #include <QVTKOpenGLStereoWidget.h>
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkPropPicker.h>
+#include <vtkPolyDataMapper.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -35,6 +36,7 @@ public:
     void createGroundImage(vtkSmartPointer<vtkImageData> groundData,int w, int h);
     vtkSmartPointer<vtkActor> addSkyBox();
     vtkSmartPointer<vtkAxesActor> addGlobalFrame();
+    vtkSmartPointer<vtkPolyDataMapper> getMeshDataMapper(std::string fileName);
 
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
