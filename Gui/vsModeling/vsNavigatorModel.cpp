@@ -57,6 +57,16 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
 }
 
+QModelIndex vsNavigatorModel::selectObject(OpenSim::Object *obj)
+{
+    vsNavigatorNode *selectedObjNode  = m_rootNNode->getNodeForObj(obj);
+    if(selectedObjNode == nullptr) return QModelIndex() ;
+    qDebug() << "selected Node " << selectedObjNode->displayName;
+    auto index = indexForNNode(selectedObjNode);
+    emit this->expendIndex(index);
+    return index;
+}
+
 QModelIndex vsNavigatorModel::index(int row, int column, const QModelIndex &parent) const
 {
     if(hasIndex(row,column,parent))

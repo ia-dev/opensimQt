@@ -5,6 +5,7 @@
 
 #include <vsWidgets/vsSimulationToolsWidget.h>
 #include <vsModeling/vsNavigatorModel.h>
+#include <vsModeling/vsPropertyModel.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -23,7 +24,9 @@ private slots:
     void on_actionReload_triggered();
 
     void customMenuRequestedNavigator(const QPoint &point);
+    void onNavigatorClicked(const QModelIndex modelIndex);
     void onExpendIndex(const QModelIndex modelIndex);
+    void onSelectedObjectActor(OpenSim::Object *object);
 
     void on_actionSave_Model_triggered();
 
@@ -42,6 +45,7 @@ private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
     vsNavigatorModel *navigatorModel;
+    vsPropertyModel *propertiesModel;
 
     // QWidget interface
 protected:
@@ -50,5 +54,7 @@ protected:
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
 
     virtual void closeEvent(QCloseEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
 };
 #endif // vsMainWindow_H

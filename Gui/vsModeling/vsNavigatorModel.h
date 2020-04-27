@@ -20,6 +20,7 @@ public:
     void getActionsForIndex(QModelIndex selected_index,QMenu *rootMenu);
 
     void loadOpenSimModel(OpenSim::Model *openSimModel);
+    QModelIndex selectObject(OpenSim::Object *obj);
     // QAbstractItemModel interface
 public:
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;
@@ -42,7 +43,7 @@ public:
 signals:
     void expendIndex(const QModelIndex modelIndex);
 
-protected:
+public:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
     vsNavigatorNode* nodeForIndex(const QModelIndex &index) const;
     int rowForNode(vsNavigatorNode *node) const;

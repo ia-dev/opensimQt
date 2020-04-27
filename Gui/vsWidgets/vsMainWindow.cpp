@@ -11,6 +11,7 @@
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 
+
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::vsMainWindow)
@@ -36,14 +37,19 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->navigatorTreeView->setModel(navigatorModel);
     connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
 
+    //setting the properties
+    propertiesModel = new vsPropertyModel(this);
+    ui->propertyTreeView->setModel(propertiesModel);
+
     //setting the visualizer
-    ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
+    //ui->Visualizer->load(QUrl("http:/localhost:8002/threejs/editor/index.html"));
     //ui->Visualizer->setUrl(QUrl("http://www.facebook.com"));
     //ui->Visualizer->show();
 
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../Gui/vsWorkSpace/opensim-models/Geometry");
+	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");                       //linux build
+	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../../../opensim-gui/opensim-models/Geometry");    //Windows build
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
@@ -52,6 +58,13 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
+    connect(ui->navigatorTreeView,&QTreeView::clicked,this,&vsMainWindow::onNavigatorClicked);
+
+    //connecting dock resize events to setup the vtk widget
+
+    //connecting actor selection in the visualizer
+    connect(ui->vtkVisualiser,&vsVisualizerVTK::objectSelectedInNavigator,this,&vsMainWindow::onSelectedObjectActor);
+
 
 }
 
@@ -133,6 +146,18 @@ void vsMainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
+void vsMainWindow::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    ui->vtkVisualiser->updateVtkButtons();
+}
+
+void vsMainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    ui->vtkVisualiser->updateVtkButtons();
+}
+
 //vtkSmartPointer<vtkRenderer> vsMainWindow::m_renderer = nullptr;
 
 void vsMainWindow::on_actionReload_triggered()
@@ -167,10 +192,29 @@ void vsMainWindow::customMenuRequestedNavigator(const QPoint &point)
     }
 }
 
+void vsMainWindow::onNavigatorClicked(const QModelIndex modelIndex)
+{
+    vsNavigatorNode *selectedNode = navigatorModel->nodeForIndex(modelIndex);
+    propertiesModel->setSelectedNavigarorNode(selectedNode);
+    //ui->propertyTreeView->update(ui->propertyTreeView->rect());
+    ui->propertyTreeView->expandAll();
+    selectedNode->selectVisualizerActors();
+}
+
 
 void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
 {
     ui->navigatorTreeView->expand(modelIndex);
+}
+
+void vsMainWindow::onSelectedObjectActor(OpenSim::Object *object)
+{
+    QModelIndex selectedIndex = navigatorModel->selectObject(object);
+    if(!selectedIndex.isValid()) return;
+    ui->navigatorTreeView->setCurrentIndex(selectedIndex);
+    ui->navigatorTreeView->scrollTo(selectedIndex);
+    propertiesModel->setSelectedNavigarorNode(navigatorModel->nodeForIndex(selectedIndex));
+    ui->propertyTreeView->expandAll();
 }
 
 

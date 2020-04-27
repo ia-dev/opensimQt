@@ -1,19 +1,27 @@
 #ifndef VTKVISUALIZER_H
 #define VTKVISUALIZER_H
 
-#include <QVTKOpenGLWidget.h>
 #include <vtkSmartPointer.h>
 #include <vtkActor.h>
 #include <QVector3D>
 #include <QVector4D>
 #include <OpenSim.h>
 #include <QMap>
+#include <vtkImageData.h>
+#include <vtkButtonWidget.h>
+#include <vtkEventQtSlotConnect.h>
+#include <vtkAxesActor.h>
+#include <vtkTextureMapToPlane.h>
+#include <QVTKOpenGLStereoWidget.h>
+#include <QVTKOpenGLNativeWidget.h>
+#include <vtkPropPicker.h>
+#include <vtkPolyDataMapper.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLWidget
+class vsVisualizerVTK : public QVTKOpenGLStereoWidget
 {
     Q_OBJECT
 public:
@@ -25,7 +33,11 @@ public:
     vtkSmartPointer<vtkActor> renderGeometry(OpenSim::Geometry *geometry);
     vtkSmartPointer<vtkActor> addBox();
     vtkSmartPointer<vtkActor> addGround();
+    void createGroundImage(vtkSmartPointer<vtkImageData> groundData,int w, int h);
     vtkSmartPointer<vtkActor> addSkyBox();
+    vtkSmartPointer<vtkAxesActor> addGlobalFrame();
+    vtkSmartPointer<vtkPolyDataMapper> getMeshDataMapper(std::string fileName);
+
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
     vtkSmartPointer<vtkActor> renderDecorativeSphere(const SimTK::DecorativeSphere& sphere, SimTK::Transform sphereTransform,
@@ -51,11 +63,23 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativePoint(const SimTK::DecorativePoint& point, SimTK::Transform coneTransform,
                                                    double *scaleFactors);
 
+    vtkSmartPointer<vtkProp> renderDecorativeFrame(const SimTK::DecorativeFrame& frame, SimTK::Transform frameTransform,
+                                                   double *scaleFactors);
+
+
+    void updateVtkButtons();
+    vtkSmartPointer<vtkButtonWidget> createButton(int posx,int posy,QString imagePath);
+    void takeSnapShot();
+
+
 
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
-    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
+    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkProp> actor);
+    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkProp> actor);
+    OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
+    QList<vtkSmartPointer<vtkProp>>* getActorForComponent(OpenSim::Object *component);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
@@ -63,11 +87,58 @@ public:
     //operations on the scene
     void clearTheScene();
     void removeModelActors(OpenSim::Model *model);
+    void getModelBounds(OpenSim::Model *model,double *bounds);
+    void focusOnCurrentModel();
+    void selectActorInNavigator(vtkSmartPointer<vtkActor> actor);
+    OpenSim::Object* getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor);
+
+public slots:
+    void vtkButtonClicked(vtkObject *clickedObject);
+    void onVtkDoubleClicked(vtkObject *obj);
+    void onInteractorPick(vtkObject *obj);
 
 private:
     BackgroundType m_backgroundType;
-    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
+    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkProp>>*> modelActorsMap;
+    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
 
+    OpenSim::Model *currentModel;
+
+    //scene actors
+    vtkSmartPointer<vtkRenderer> backgroundRenderer;
+    vtkSmartPointer<vtkActor> skyBox;
+    vtkSmartPointer<vtkActor> ground;
+    vtkSmartPointer<vtkAxesActor> globalFrame;
+    vtkSmartPointer<vtkPropPicker> propPicker;
+
+    //vtk to qt slots connection
+
+    vtkSmartPointer<vtkEventQtSlotConnect> connections;
+
+    //buttons
+    vtkSmartPointer<vtkButtonWidget> mXButton;
+    vtkSmartPointer<vtkButtonWidget> pXButton;
+    vtkSmartPointer<vtkButtonWidget> mYButton;
+    vtkSmartPointer<vtkButtonWidget> pYButton;
+    vtkSmartPointer<vtkButtonWidget> mZButton;
+    vtkSmartPointer<vtkButtonWidget> pZButton;
+    vtkSmartPointer<vtkButtonWidget> zoomOutButton;
+    vtkSmartPointer<vtkButtonWidget> zoomInButton;
+    vtkSmartPointer<vtkButtonWidget> fitButton;
+    vtkSmartPointer<vtkButtonWidget> snapShotButton;
+    vtkSmartPointer<vtkButtonWidget> recordButton;
+    vtkSmartPointer<vtkButtonWidget> globalFramButton;
+
+
+
+    // QWidget interface
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
+signals:
+    // signal to inform the MainWindow which OpenSim Object is selected
+    void objectSelectedInNavigator(OpenSim::Object *obj);
 
 };
 
