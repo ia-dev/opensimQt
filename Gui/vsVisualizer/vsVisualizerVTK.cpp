@@ -749,6 +749,7 @@ void vsVisualizerVTK::updateVtkButtons()
     snapShotButton = createButton(0,3,"./vtk_images/stillCamera.png");
     recordButton = createButton(1,3,"./vtk_images/movieCamera.png");
     globalFramButton = createButton(2,3,"./vtk_images/axes.png");
+    toggleGroundButton = createButton(0,4,"./vtk_images/toggle_ground.png");
 }
 
 vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy, QString imagePath)
@@ -1140,6 +1141,9 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     }
     else if (clickedObject == globalFramButton.Get()) {
         globalFrame->SetVisibility(!globalFrame->GetVisibility());
+    }
+    else if(clickedObject == toggleGroundButton.Get()){
+        ground->SetVisibility(!ground->GetVisibility());
     }
 
     //this->renderWindow()->GetRenderers()->GetFirstRenderer()->Render();

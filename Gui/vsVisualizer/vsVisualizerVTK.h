@@ -128,6 +128,7 @@ private:
     vtkSmartPointer<vtkButtonWidget> snapShotButton;
     vtkSmartPointer<vtkButtonWidget> recordButton;
     vtkSmartPointer<vtkButtonWidget> globalFramButton;
+    vtkSmartPointer<vtkButtonWidget> toggleGroundButton;
 
 
 
