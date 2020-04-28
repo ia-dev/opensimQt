@@ -110,6 +110,8 @@ private:
     vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
     vtkSmartPointer<vtkPropPicker> propPicker;
+    vtkSmartPointer<vtkActor> selectedActor;
+    double selectedActorColorBackup[3];
 
     //vtk to qt slots connection
 

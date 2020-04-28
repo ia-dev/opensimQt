@@ -1164,6 +1164,17 @@ void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
             return;
         }
         selectActorInNavigator(propPicker->GetActor());
+
+        //updating the selected actor pointer and color
+        if(propPicker->GetActor()){
+            if(selectedActor){
+                selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+            }
+            selectedActor =  propPicker->GetActor();
+            selectedActor->GetProperty()->GetColor(selectedActorColorBackup);
+            selectedActor->GetProperty()->SetColor(1,.6,0);
+        }
+
     }
 
 }
