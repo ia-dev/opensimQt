@@ -204,11 +204,11 @@ void vsNavigatorNode::selectVisualizerActors()
     if(openSimObject == nullptr) return;
     auto componentActors = visualizerVTK->getActorForComponent(openSimObject);
     if(componentActors == nullptr) return;
-    qDebug() << "actors size " << componentActors->size();
+//    qDebug() << "actors size " << componentActors->size();
 
-    foreach (auto actor, *componentActors) {
-        actor->SetVisibility(false);
-    }
+//    foreach (auto actor, *componentActors) {
+//        actor->SetVisibility(false);
+//    }
 }
 
 

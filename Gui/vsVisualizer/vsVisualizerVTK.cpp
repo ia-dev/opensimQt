@@ -1061,6 +1061,11 @@ void vsVisualizerVTK::setComponetVisibility(OpenSim::Object *obj, bool visible)
     renderWindow()->Render();
 }
 
+void vsVisualizerVTK::highlightComponentsProps(OpenSim::Object *obj)
+{
+    //TODO save components colors and apply the selection color
+}
+
 void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 {
     auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();

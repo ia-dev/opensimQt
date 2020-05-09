@@ -94,6 +94,7 @@ public:
 
     //Navigator Actions
     void setComponetVisibility(OpenSim::Object *obj,bool visible);
+    void highlightComponentsProps(OpenSim::Object *obj);
 
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);

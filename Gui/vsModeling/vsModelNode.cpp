@@ -12,7 +12,10 @@
 #include "vsPropertyItem.h"
 #include "vsPropertyModel.h"
 #include <QDebug>
+#include <QInputDialog>
 #include <QRegularExpression>
+#include <qdialog.h>
+#include <vsTools/vsXmlUtils.h>
 
 vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent):vsNavigatorNode(model,"",parentNode,parent)
 {
@@ -58,6 +61,17 @@ void vsModelNode::onCloseModelClicked()
 
 }
 
+void vsModelNode::onRenameModelTriggered()
+{
+    qDebug() << "renaming model";
+    auto modelObj = OpenSim::Model::safeDownCast(openSimObject);
+    if(!modelObj) return;
+    QString newName = QInputDialog::getText(nullptr,"Rename","New Model Name: ");
+    vsXmlUtils::changeModelName(modelObj->getInputFileName(),newName.toStdString());
+    //modelObj->readObjectFromXMLNodeOrFile(newModelNode);
+    //reload the model afterword
+}
+
 void vsModelNode::setupNodeActions(QMenu *rootMenu)
 {
     QAction *makeCurrentAction = new QAction("Make Current",rootMenu);
@@ -78,6 +92,7 @@ void vsModelNode::setupNodeActions(QMenu *rootMenu)
     rootMenu->addAction(addMotionAction);
 
     connect(closeAction,&QAction::triggered,this,&vsModelNode::onCloseModelClicked);
+    connect(renameAction,&QAction::triggered,this,&vsModelNode::onRenameModelTriggered);
 }
 
 void vsModelNode::setupPropertiesModel(vsPropertyModel *model)
