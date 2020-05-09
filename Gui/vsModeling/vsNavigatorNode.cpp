@@ -40,6 +40,10 @@ void vsNavigatorNode::setupNodeActions(QMenu *rootMenu)
 
     displayMenu->addActions(QList<QAction*>() << showAction << hideAction << colorAction << opacityAction);
 
+    //connecting actions
+    connect(showAction,&QAction::triggered,this,&vsNavigatorNode::onShowNodeTriggerd);
+    connect(hideAction,&QAction::triggered,this,&vsNavigatorNode::onHideNodeTriggerd);
+
     rootMenu->addMenu(displayMenu);
     if(!editColorAndOpacity)
         disableActionsForSets();
@@ -247,6 +251,27 @@ void vsNavigatorNode::setConnectedModel(vsNavigatorModel *connectedModel)
 
     m_connectedModel = connectedModel;
     emit connectedModelChanged(m_connectedModel);
+}
+
+void vsNavigatorNode::onShowNodeTriggerd()
+{
+    //call the visualizer to change the visibility for the probs
+    //representing the openSimObject that can be extracted from componentActorsMap
+    //and that apply for all the childrens of this node
+    visualizerVTK->setComponetVisibility(this->openSimObject,true);
+    foreach (auto childNode, childNodes) {
+        childNode->onShowNodeTriggerd();
+    }
+}
+
+void vsNavigatorNode::onHideNodeTriggerd()
+{
+    //call the visualizer to change the visibility for the probs
+    //representing the openSimObject that can be extracted from componentActorsMap
+    visualizerVTK->setComponetVisibility(this->openSimObject,false);
+    foreach (auto childNode, childNodes) {
+        childNode->onHideNodeTriggerd();
+    }
 }
 
 

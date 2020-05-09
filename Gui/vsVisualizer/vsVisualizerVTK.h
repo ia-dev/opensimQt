@@ -92,6 +92,9 @@ public:
     void selectActorInNavigator(vtkSmartPointer<vtkActor> actor);
     OpenSim::Object* getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor);
 
+    //Navigator Actions
+    void setComponetVisibility(OpenSim::Object *obj,bool visible);
+
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);
     void onVtkDoubleClicked(vtkObject *obj);

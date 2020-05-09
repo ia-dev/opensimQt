@@ -44,6 +44,9 @@ public:
 public slots:
     void setConnectedModel(vsNavigatorModel* connectedModel);
 
+    void onShowNodeTriggerd();
+    void onHideNodeTriggerd();
+
 signals:
 
     void connectedModelChanged(vsNavigatorModel* connectedModel);

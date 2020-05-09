@@ -1050,6 +1050,17 @@ OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkAc
     return nullptr;
 }
 
+void vsVisualizerVTK::setComponetVisibility(OpenSim::Object *obj, bool visible)
+{
+    auto componentProbs = componentActorsMap.value(obj);
+    if(componentProbs){
+        foreach (auto prop, *componentProbs) {
+            prop->SetVisibility(visible);
+        }
+    }
+    renderWindow()->Render();
+}
+
 void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
 {
     auto renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
