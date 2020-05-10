@@ -865,12 +865,14 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
     geoImp.setRenderedModel(model);
     modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
+    actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
     OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
     while (!itr.equals(componentList.end())) {
         const OpenSim::Component *comp = &itr.deref();
         componentActorsMap.insert(const_cast<OpenSim::Component*>(comp),new QList<vtkSmartPointer<vtkProp>>());
+        actorObjectsMap.value(model)->append(const_cast<OpenSim::Component*>(comp));
         SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
         geoImp.setRenderedComponent(const_cast<OpenSim::Component*>(comp));
         comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
@@ -997,14 +999,21 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
 {
     auto renderer =this->renderWindow()->GetRenderers()->GetFirstRenderer();
     auto modelActors = modelActorsMap.value(model);
+    foreach (auto obj, *actorObjectsMap.value(model)) {
+
+        //TODO create a map for actor--component to faster the search
+        componentActorsMap.value(obj)->clear();
+        componentActorsMap.remove(obj);
+    }
     foreach (auto actor, *modelActors) {
         renderer->RemoveActor(actor);
+        actor->Delete();
     }
     modelActorsMap.remove(model);
-    renderer->ResetCamera();
-    renderer->Render();
+    //renderer->ResetCamera();
+    //renderer->Render();
     renderWindow()->Render();
-    renderWindow()->Finalize();
+    //renderWindow()->Finalize();
 }
 
 void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)

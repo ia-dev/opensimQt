@@ -224,6 +224,9 @@ void vsNavigatorNode::disableActionsForSets()
 void vsNavigatorNode::removeNode()
 {
     parentNode->childNodes.removeOne(this);
+    foreach (auto nodec, childNodes) {
+        nodec->removeNode();
+    }
     this->deleteLater();
 }
 

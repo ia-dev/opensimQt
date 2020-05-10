@@ -5,6 +5,7 @@
  *   Authors: Ibraheem Aldhamari, Yasser Grimes                            *
  *                                                                         *
  ***************************************************************************/
+#include "vsOpenSimTools.h"
 #include "vsXmlUtils.h"
 #include <QDebug>
 
@@ -19,7 +20,10 @@ void vsXmlUtils::changeModelName(std::string modelFileName,std::string newName)
     auto modelElement = doc->getRootElement().getRequiredElement("Model");
     qDebug() <<"model tag/name :" << modelElement.getElementTag()
              << modelElement.getOptionalAttributeValue("name","name not fount") ;
+    auto oldName = modelElement.getRequiredAttributeValue("name");
     modelElement.getRequiredAttribute("name").setValue(newName);
+    vsOpenSimTools::tools->log(QString(oldName)+" Model renamed to : "+QString::fromStdString(newName)
+                               ,"vsXmlUtils",vsOpenSimTools::Success);
     doc->writeToFile(modelFileName);
     //return modelElement;
 }
@@ -42,6 +46,8 @@ void vsXmlUtils::changeBodyName(std::string modelFileName,std::string currentNam
                i->setValue("/bodyset/"+newName);
            }
            qDebug() << "element with reference"<< elemList.size();
+           vsOpenSimTools::tools->log(QString::fromStdString(currentName)+" Body renamed to : "+QString::fromStdString(newName)
+                                      ,"vsXmlUtils",vsOpenSimTools::Success);
            break;
         }
     }

@@ -105,6 +105,7 @@ private:
     BackgroundType m_backgroundType;
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkProp>>*> modelActorsMap;
     QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
+    QMap<OpenSim::Model*, QList<OpenSim::Object*>*> actorObjectsMap;
 
     OpenSim::Model *currentModel;
 
