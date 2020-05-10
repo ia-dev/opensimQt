@@ -68,7 +68,11 @@ void vsModelNode::onRenameModelTriggered()
     if(!modelObj) return;
     QString newName = QInputDialog::getText(nullptr,"Rename","New Model Name: ");
     vsXmlUtils::changeModelName(modelObj->getInputFileName(),newName.toStdString());
-    //modelObj->readObjectFromXMLNodeOrFile(newModelNode);
+    modelObj->setName(newName.toStdString());
+    displayName = newName;
+    //TODO reload the model
+    //modelObj->readObjectFromXMLNodeOrFile(modelElement,modelObj->getDocumentFileVersion());
+    emit connectedModel()->layoutChanged();
     //reload the model afterword
 }
 

@@ -9,6 +9,10 @@
 #define VSXMLUTILS_H
 
 #include <QObject>
+#include <OpenSim.h>
+
+using namespace OpenSim;
+using namespace SimTK;
 
 class vsXmlUtils : public QObject
 {
@@ -17,6 +21,7 @@ public:
     explicit vsXmlUtils(QObject *parent = nullptr);
 
     static void changeModelName(std::string modelFileName,std::string newName);
+    static void changeBodyName(std::string modelFileName,std::string currentName,std::string newName);
 
 signals:
 

@@ -14,6 +14,9 @@ public:
     // vsNavigatorNode interface
 public:
     virtual void setupNodeActions(QMenu *rootMenu) override;
+
+public slots:
+    void onRenameActionTriggered();
 };
 
 #endif // vsOneBodyNode_H
