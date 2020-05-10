@@ -107,6 +107,7 @@ private:
     QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
     QMap<OpenSim::Model*, QList<OpenSim::Object*>*> actorObjectsMap;
 
+
     OpenSim::Model *currentModel;
 
     //scene actors
@@ -115,6 +116,7 @@ private:
     vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
     vtkSmartPointer<vtkPropPicker> propPicker;
+
     vtkSmartPointer<vtkActor> selectedActor;
     double selectedActorColorBackup[3];
 
@@ -135,7 +137,9 @@ private:
     vtkSmartPointer<vtkButtonWidget> snapShotButton;
     vtkSmartPointer<vtkButtonWidget> recordButton;
     vtkSmartPointer<vtkButtonWidget> globalFramButton;
+
     vtkSmartPointer<vtkButtonWidget> toggleGroundButton;
+
 
 
 

@@ -76,6 +76,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     ground  = addGround();
+
     //skyBox = addSkyBox();
     //this->update();
     globalFrame = addGlobalFrame();
@@ -750,6 +751,7 @@ void vsVisualizerVTK::updateVtkButtons()
     recordButton = createButton(1,3,"./vtk_images/movieCamera.png");
     globalFramButton = createButton(2,3,"./vtk_images/axes.png");
     toggleGroundButton = createButton(0,4,"./vtk_images/toggle_ground.png");
+
 }
 
 vtkSmartPointer<vtkButtonWidget> vsVisualizerVTK::createButton(int posx,int posy, QString imagePath)
@@ -866,6 +868,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     geoImp.setRenderedModel(model);
     modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
+
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
     OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
@@ -1014,6 +1017,7 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
     //renderer->Render();
     renderWindow()->Render();
     //renderWindow()->Finalize();
+
 }
 
 void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)
@@ -1170,6 +1174,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     else if(clickedObject == toggleGroundButton.Get()){
         ground->SetVisibility(!ground->GetVisibility());
     }
+
 
     //this->renderWindow()->GetRenderers()->GetFirstRenderer()->Render();
     renderWindow()->Render();

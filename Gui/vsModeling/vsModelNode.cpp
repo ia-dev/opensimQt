@@ -17,6 +17,7 @@
 #include <qdialog.h>
 #include <vsTools/vsXmlUtils.h>
 
+
 vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObject *parent):vsNavigatorNode(model,"",parentNode,parent)
 {
 
@@ -150,3 +151,4 @@ void vsModelNode::setupPropertiesModel(vsPropertyModel *model)
 //        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
 //    }
 }
+
