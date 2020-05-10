@@ -22,6 +22,8 @@ public:
 
     static void changeModelName(std::string modelFileName,std::string newName);
     static void changeBodyName(std::string modelFileName,std::string currentName,std::string newName);
+    static QList<Xml::Element> findElementsWithContent(Xml::Element elem,std::string content);
+
 
 signals:
 
