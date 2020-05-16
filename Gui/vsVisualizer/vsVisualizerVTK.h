@@ -15,12 +15,13 @@
 #include <QVTKOpenGLStereoWidget.h>
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkPropPicker.h>
+#include <vtkPolyDataMapper.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLNativeWidget
+class vsVisualizerVTK : public QVTKOpenGLStereoWidget
 {
     Q_OBJECT
 public:
@@ -35,6 +36,7 @@ public:
     void createGroundImage(vtkSmartPointer<vtkImageData> groundData,int w, int h);
     vtkSmartPointer<vtkActor> addSkyBox();
     vtkSmartPointer<vtkAxesActor> addGlobalFrame();
+    vtkSmartPointer<vtkPolyDataMapper> getMeshDataMapper(std::string fileName);
 
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
@@ -61,6 +63,10 @@ public:
     vtkSmartPointer<vtkActor> renderDecorativePoint(const SimTK::DecorativePoint& point, SimTK::Transform coneTransform,
                                                    double *scaleFactors);
 
+    vtkSmartPointer<vtkProp> renderDecorativeFrame(const SimTK::DecorativeFrame& frame, SimTK::Transform frameTransform,
+                                                   double *scaleFactors);
+
+
     void updateVtkButtons();
     vtkSmartPointer<vtkButtonWidget> createButton(int posx,int posy,QString imagePath);
     void takeSnapShot();
@@ -70,10 +76,10 @@ public:
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
-    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkActor> actor);
-    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkActor> actor);
+    void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkProp> actor);
+    void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkProp> actor);
     OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
-    QList<vtkSmartPointer<vtkActor>>* getActorForComponent(OpenSim::Object *component);
+    QList<vtkSmartPointer<vtkProp>>* getActorForComponent(OpenSim::Object *component);
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);
@@ -86,6 +92,10 @@ public:
     void selectActorInNavigator(vtkSmartPointer<vtkActor> actor);
     OpenSim::Object* getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor);
 
+    //Navigator Actions
+    void setComponetVisibility(OpenSim::Object *obj,bool visible);
+    void highlightComponentsProps(OpenSim::Object *obj);
+
 public slots:
     void vtkButtonClicked(vtkObject *clickedObject);
     void onVtkDoubleClicked(vtkObject *obj);
@@ -93,8 +103,10 @@ public slots:
 
 private:
     BackgroundType m_backgroundType;
-    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkActor>>*> modelActorsMap;
-    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkActor>>*> componentActorsMap;
+    QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkProp>>*> modelActorsMap;
+    QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
+    QMap<OpenSim::Model*, QList<OpenSim::Object*>*> actorObjectsMap;
+
 
     OpenSim::Model *currentModel;
 
@@ -104,6 +116,9 @@ private:
     vtkSmartPointer<vtkActor> ground;
     vtkSmartPointer<vtkAxesActor> globalFrame;
     vtkSmartPointer<vtkPropPicker> propPicker;
+
+    vtkSmartPointer<vtkActor> selectedActor;
+    double selectedActorColorBackup[3];
 
     //vtk to qt slots connection
 
@@ -123,13 +138,16 @@ private:
     vtkSmartPointer<vtkButtonWidget> recordButton;
     vtkSmartPointer<vtkButtonWidget> globalFramButton;
 
+    vtkSmartPointer<vtkButtonWidget> toggleGroundButton;
+
+
 
 
     // QWidget interface
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-
+    virtual void showEvent(QShowEvent *event) override;
 signals:
     // signal to inform the MainWindow which OpenSim Object is selected
     void objectSelectedInNavigator(OpenSim::Object *obj);

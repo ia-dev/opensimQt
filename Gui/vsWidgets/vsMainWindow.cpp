@@ -48,7 +48,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");
+	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");                       //linux build
+	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../../../opensim-gui/opensim-models/Geometry");    //Windows build
+
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);

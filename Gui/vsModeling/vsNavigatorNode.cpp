@@ -40,6 +40,10 @@ void vsNavigatorNode::setupNodeActions(QMenu *rootMenu)
 
     displayMenu->addActions(QList<QAction*>() << showAction << hideAction << colorAction << opacityAction);
 
+    //connecting actions
+    connect(showAction,&QAction::triggered,this,&vsNavigatorNode::onShowNodeTriggerd);
+    connect(hideAction,&QAction::triggered,this,&vsNavigatorNode::onHideNodeTriggerd);
+
     rootMenu->addMenu(displayMenu);
     if(!editColorAndOpacity)
         disableActionsForSets();
@@ -58,154 +62,164 @@ QVariantMap vsNavigatorNode::getNodeProperties()
     return retMap;
 }
 
-void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model)
-{
-    bool isEmptyName = true;
-    if(openSimObject != nullptr){
-        try {
-        //name property
-        //qDebug() << QString::fromStdString(openSimObject->getName());
-        std::cout<<"bug here ================================ start"<<std::endl;
-        std::cout<<openSimObject->getClassName()<<std::endl;
-        //std::cout<<openSimObject->getPropertyByIndex(0)<<std::endl;
 
-        std::cout<<openSimObject->getName()<<std::endl;
-        isEmptyName = (openSimObject->getName()=="");
-        std::cout<<isEmptyName<<std::endl;
+void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model){
+	bool isEmptyName = true;
+	if (openSimObject != nullptr) {
+		//name property
+		//qDebug() << QString::fromStdString(openSimObject->getName());
+		//qDebug() << QString::fromStdString(openSimObject->getName());
+		std::cout << "bug here ================================ start" << std::endl;
+		std::cout << openSimObject->getClassName() << std::endl;
+		std::cout << openSimObject->getNumProperties() << std::endl;
+		//std::cout << openSimObject->getName() << std::endl;
+		//isEmptyName = (openSimObject->getName() == "");
+		isEmptyName = (openSimObject->getNumProperties()<=0) | (openSimObject->getNumProperties() > 1000);
+		std::cout << isEmptyName << std::endl;
+		std::cout << "bug here ================================ end" << std::endl;
+		/* windows test
+           bodyset ---->base ----> Trilongglen  name ="" ok
+		   jointset ---->r_elbow ----> rotation1, can not get the name, "Segmentation Fault"  
 
-        std::cout<<"bug here ================================ end"<<std::endl;
-        }catch (const std::exception& e){
-            // open arm model, select joint set r_elbow then rotation1
-            std::cout<<"bug handled correctly  ................ start"<<std::endl;
-            std::cout<<e.what()<<std::endl;
-            std::cout<<"bug handled correctly  ................ end"<<std::endl;
-        }
-        vsPropertyItem *nameItem = new vsPropertyItem();
-        //qDebug() << QString::fromLatin1(openSimObject->getName(),(int)openSimObject->getName().size());
-        nameItem->m_name = "name";
-        std::string nameTmp = openSimObject->getName();
-        nameItem->m_value =  QString::fromStdString(nameTmp);
-        qDebug() << nameItem->m_value;
-        nameItem->m_type = vsPropertyItem::Text;
-        nameItem->setText(nameItem->m_value);
-        model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("name") << nameItem);
-        std::cout<<"VisSim: line 92 ........................"<<std::endl;
-        if (not isEmptyName ){
-            std::cout<<"VisSim: Getting object prperties ........................"<<std::endl;
-            //type property
-            vsPropertyItem *typeItem = new vsPropertyItem();
-            typeItem->m_name = "type";
-            typeItem->m_isEditable = false;
-            std::string typeTmp = openSimObject->getConcreteClassName();
-            typeItem->m_value =  QString::fromStdString(typeTmp);
-            typeItem->m_type = vsPropertyItem::Text;
-            typeItem->setText(typeItem->m_value);
-            model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< new QStandardItem("type") << typeItem);
+		*/
+		vsPropertyItem *nameItem = new vsPropertyItem();
+		//qDebug() << QString::fromLatin1(openSimObject->getName(),(int)openSimObject->getName().size());
 
-            for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
+		if (! isEmptyName) {
+				std::cout << "VisSim: Getting object prperties ........................" << std::endl;
+				nameItem->m_name = "name";
+				std::string nameTmp = openSimObject->getName();
+				nameItem->m_value = QString::fromStdString(nameTmp);
+				qDebug() << nameItem->m_value;
+				nameItem->m_type = vsPropertyItem::Text;
+				nameItem->setText(nameItem->m_value);
+				model->m_propertiesItem->appendRow(QList<QStandardItem*>() << new QStandardItem("name") << nameItem);
 
-                auto ap  = &openSimObject->getPropertyByIndex(i);
-                QString apName = QString::fromStdString(ap->getName());
-                vsPropertyItem *apItem = new vsPropertyItem();
-                QStandardItem *apNameItem = new QStandardItem(apName);
-                qDebug() << apName << QString::fromStdString(ap->getTypeName());
+				//type property
+				vsPropertyItem *typeItem = new vsPropertyItem();
+				typeItem->m_name = "type";
+				typeItem->m_isEditable = false;
+				std::string typeTmp = openSimObject->getConcreteClassName();
+				typeItem->m_value = QString::fromStdString(typeTmp);
+				typeItem->m_type = vsPropertyItem::Text;
+				typeItem->setText(typeItem->m_value);
+				model->m_propertiesItem->appendRow(QList<QStandardItem*>() << new QStandardItem("type") << typeItem);
 
-                if(ap->isListProperty()){
+				for (int i = 0; i < openSimObject->getNumProperties(); ++i) {
 
-                    apItem->m_type = vsPropertyItem::List;
-                    QString listRepresentation = "[ ";
-                    for (int j = 0; j < ap->size(); ++j) {
-                        listRepresentation += QString::fromStdString(ap->getValueAsObject(j).getConcreteClassName());
-                        listRepresentation += " ";
-                    }
-                    if(ap->size() == 0) listRepresentation += " empty ";
-                    listRepresentation += "]";
-                    apItem->m_value  = listRepresentation;
-                    apItem->setText(apItem->m_value);
-                } else if(ap->isObjectProperty()){
-                    if(OpenSim::Function::safeDownCast(const_cast<OpenSim::Object*>(&ap->getValueAsObject()))){
-                        qDebug() << "it is a function indeed";
-                    }else if(apName == "Appearance"){
-                        auto _appr = &ap->getValueAsObject();
-                        auto appr = OpenSim::Appearance::safeDownCast(const_cast<OpenSim::Object*>(_appr));
-                        //visible property
-                        auto visibleProp = &appr->getProperty_visible();
-                        vsPropertyItem *visibleItem = new vsPropertyItem();
-                        QStandardItem *visibleNameItem = new QStandardItem("visible");
-                        visibleItem->m_type = vsPropertyItem::Check;
-                        visibleItem->m_value = QString::fromStdString(visibleProp->toString());
-                        visibleItem->setText(visibleItem->m_value);
-                        visibleItem->setEditable(true);
-                        model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< visibleNameItem << visibleItem);
+					auto ap = &openSimObject->getPropertyByIndex(i);
+					QString apName = QString::fromStdString(ap->getName());
+					vsPropertyItem *apItem = new vsPropertyItem();
+					QStandardItem *apNameItem = new QStandardItem(apName);
+					qDebug() << apName << QString::fromStdString(ap->getTypeName());
 
-                        //opacity property
-                        auto opacityProp = &appr->getProperty_opacity();
-                        vsPropertyItem *opacityItem = new vsPropertyItem();
-                        QStandardItem *opacityNameItem = new QStandardItem("opacity");
-                        opacityItem->m_type = vsPropertyItem::Text;
-                        opacityItem->m_value = QString::fromStdString(opacityProp->toString());
-                        opacityItem->setText(opacityItem->m_value);
-                        opacityItem->setEditable(true);
-                        model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< opacityNameItem << opacityItem);
+					if (ap->isListProperty()) {
 
-                        //color property
-                        auto colorProp = &appr->getProperty_color();
-                        vsPropertyItem *colorItem = new vsPropertyItem();
-                        QStandardItem *colorNameItem = new QStandardItem("color");
-                        colorItem->m_type = vsPropertyItem::Color;
-                        colorItem->m_value = QString::fromStdString(colorProp->toString());
-                        colorItem->setText(colorItem->m_value);
-                        colorItem->setEditable(true);
-                        model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< colorNameItem << colorItem);
+						apItem->m_type = vsPropertyItem::List;
+						QString listRepresentation = "[ ";
+						for (int j = 0; j < ap->size(); ++j) {
+							listRepresentation += QString::fromStdString(ap->getValueAsObject(j).getConcreteClassName());
+							listRepresentation += " ";
+						}
+						if (ap->size() == 0) listRepresentation += " empty ";
+						listRepresentation += "]";
+						apItem->m_value = listRepresentation;
+						apItem->setText(apItem->m_value);
+					}
+					//            else if(ap->isOptionalProperty()){
 
-                        //color property
-                        auto dpProp = &appr->getProperty_SurfaceProperties();
-                        vsPropertyItem *dpItem = new vsPropertyItem();
-                        QStandardItem *dpNameItem = new QStandardItem("DisplayPreferences");
-                        dpItem->m_type = vsPropertyItem::Text;
-                        dpItem->m_value = QString::fromStdString(dpProp->toString());
-                        dpItem->setText(dpItem->m_value);
-                        dpItem->setEditable(true);
-                        model->m_appearancexItem->appendRow(QList<QStandardItem*>()<< dpNameItem << dpItem);
-                        continue;
-                    }else{
-                        apItem->m_type = vsPropertyItem::Object;
-                        apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
-                        apItem->setText(QString::fromStdString(apItem->m_object->getName()));
-                        apItem->setEditable(false);
-                    }
-                }else{
-                    apItem->m_type = vsPropertyItem::Text;
-                    apItem->m_value = QString::fromStdString(ap->toStringForDisplay(1));
-                    apItem->setText(apItem->m_value);
-                }
-                QRegExp socketRegEx("^socket.*");
-                if(socketRegEx.exactMatch(apName)){
-                    model->m_socketsItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
-                }else{
-                    model->m_propertiesItem->appendRow(QList<QStandardItem*>()<< apNameItem << apItem);
-                }
-            }//endfor
-    }else{
-      std::cout<<"VisSim Error: object has no properties ........................"<<std::endl;
-    }//endif isEmptyName
-  }else{
-      std::cout<<"VisSim Error: openSimObject is NULL ........................"<<std::endl;
-    } //if openSimObject
-    std::cout<<"VisSim: setupPropertiesModel is completed ..................."<<std::endl;
-}//function
+					//            }
+					//            else if(ap->isUnnamedProperty()){\
+					//            }
+					else if (ap->isObjectProperty()) {
+						if (OpenSim::Function::safeDownCast(const_cast<OpenSim::Object*>(&ap->getValueAsObject()))) {
+							qDebug() << "it is a function indeed";
+						}
+						else if (apName == "Appearance") {
+							auto _appr = &ap->getValueAsObject();
+							auto appr = OpenSim::Appearance::safeDownCast(const_cast<OpenSim::Object*>(_appr));
+							//visible property
+							auto visibleProp = &appr->getProperty_visible();
+							vsPropertyItem *visibleItem = new vsPropertyItem();
+							QStandardItem *visibleNameItem = new QStandardItem("visible");
+							visibleItem->m_type = vsPropertyItem::Check;
+							visibleItem->m_value = QString::fromStdString(visibleProp->toString());
+							visibleItem->setText(visibleItem->m_value);
+							visibleItem->setEditable(true);
+							model->m_appearancexItem->appendRow(QList<QStandardItem*>() << visibleNameItem << visibleItem);
 
+							//opacity property
+							auto opacityProp = &appr->getProperty_opacity();
+							vsPropertyItem *opacityItem = new vsPropertyItem();
+							QStandardItem *opacityNameItem = new QStandardItem("opacity");
+							opacityItem->m_type = vsPropertyItem::Text;
+							opacityItem->m_value = QString::fromStdString(opacityProp->toString());
+							opacityItem->setText(opacityItem->m_value);
+							opacityItem->setEditable(true);
+							model->m_appearancexItem->appendRow(QList<QStandardItem*>() << opacityNameItem << opacityItem);
+
+							//color property
+							auto colorProp = &appr->getProperty_color();
+							vsPropertyItem *colorItem = new vsPropertyItem();
+							QStandardItem *colorNameItem = new QStandardItem("color");
+							colorItem->m_type = vsPropertyItem::Color;
+							colorItem->m_value = QString::fromStdString(colorProp->toString());
+							colorItem->setText(colorItem->m_value);
+							colorItem->setEditable(true);
+							model->m_appearancexItem->appendRow(QList<QStandardItem*>() << colorNameItem << colorItem);
+
+							//color property
+							auto dpProp = &appr->getProperty_SurfaceProperties();
+							vsPropertyItem *dpItem = new vsPropertyItem();
+							QStandardItem *dpNameItem = new QStandardItem("DisplayPreferences");
+							dpItem->m_type = vsPropertyItem::Text;
+							dpItem->m_value = QString::fromStdString(dpProp->toString());
+							dpItem->setText(dpItem->m_value);
+							dpItem->setEditable(true);
+							model->m_appearancexItem->appendRow(QList<QStandardItem*>() << dpNameItem << dpItem);
+
+							continue;
+						}
+						else {
+							apItem->m_type = vsPropertyItem::Object;
+							apItem->m_object = const_cast<OpenSim::Object*>(&ap->getValueAsObject());
+							apItem->setText(QString::fromStdString(apItem->m_object->getName()));
+							apItem->setEditable(false);
+						}
+					}
+					else {
+						apItem->m_type = vsPropertyItem::Text;
+						apItem->m_value = QString::fromStdString(ap->toStringForDisplay(1));
+						apItem->setText(apItem->m_value);
+					}
+
+					QRegExp socketRegEx("^socket.*");
+					if (socketRegEx.exactMatch(apName)) {
+						model->m_socketsItem->appendRow(QList<QStandardItem*>() << apNameItem << apItem);
+					}
+					else {
+						model->m_propertiesItem->appendRow(QList<QStandardItem*>() << apNameItem << apItem);
+					}
+
+				}
+
+		}
+    }
+	std::cout << "VisSim: Getting object prperties is done ........................" << std::endl;
+
+}
 
 void vsNavigatorNode::selectVisualizerActors()
 {
     if(openSimObject == nullptr) return;
     auto componentActors = visualizerVTK->getActorForComponent(openSimObject);
     if(componentActors == nullptr) return;
-    qDebug() << "actors size " << componentActors->size();
+//    qDebug() << "actors size " << componentActors->size();
 
-    foreach (auto actor, *componentActors) {
-        actor->SetVisibility(false);
-    }
+//    foreach (auto actor, *componentActors) {
+//        actor->SetVisibility(false);
+//    }
+
 }
 
 
@@ -221,6 +235,9 @@ void vsNavigatorNode::disableActionsForSets()
 void vsNavigatorNode::removeNode()
 {
     parentNode->childNodes.removeOne(this);
+    foreach (auto nodec, childNodes) {
+        nodec->removeNode();
+    }
     this->deleteLater();
 }
 
@@ -248,6 +265,27 @@ void vsNavigatorNode::setConnectedModel(vsNavigatorModel *connectedModel)
 
     m_connectedModel = connectedModel;
     emit connectedModelChanged(m_connectedModel);
+}
+
+void vsNavigatorNode::onShowNodeTriggerd()
+{
+    //call the visualizer to change the visibility for the probs
+    //representing the openSimObject that can be extracted from componentActorsMap
+    //and that apply for all the childrens of this node
+    visualizerVTK->setComponetVisibility(this->openSimObject,true);
+    foreach (auto childNode, childNodes) {
+        childNode->onShowNodeTriggerd();
+    }
+}
+
+void vsNavigatorNode::onHideNodeTriggerd()
+{
+    //call the visualizer to change the visibility for the probs
+    //representing the openSimObject that can be extracted from componentActorsMap
+    visualizerVTK->setComponetVisibility(this->openSimObject,false);
+    foreach (auto childNode, childNodes) {
+        childNode->onHideNodeTriggerd();
+    }
 }
 
 

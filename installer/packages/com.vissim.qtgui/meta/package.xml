@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>OpenSimQtGui</DisplayName>
+    <Description>OpenSim Qt Gui Tool</Description>
+    <Version>0.1</Version>
+    <ReleaseDate>2020-03-26</ReleaseDate>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+</Package>

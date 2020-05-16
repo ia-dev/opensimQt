@@ -13,6 +13,7 @@ public:
 
 public slots:
     void onCloseModelClicked();
+    void onRenameModelTriggered();
 
     // vsNavigatorNode interface
 public:

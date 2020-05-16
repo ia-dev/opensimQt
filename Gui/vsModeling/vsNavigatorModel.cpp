@@ -201,9 +201,10 @@ void vsNavigatorModel::closeModel(OpenSim::Model *model)
 
     activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));
 
+    beginRemoveRows(indexForNNode(activeNode->parentNode),rowForNode(activeNode),rowForNode(activeNode));
     activeNode->removeNode();
     m_openModels.removeOne(model);
-
+    endRemoveRows();
 
     if(model == m_activeModel  && m_openModels.size()>0)
         setActiveModel(m_openModels.first());
