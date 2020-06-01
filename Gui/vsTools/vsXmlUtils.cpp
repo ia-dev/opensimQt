@@ -40,7 +40,11 @@ void vsXmlUtils::changeBodyName(std::string modelFileName,std::string currentNam
         auto body = bodies.at(i);
         if(body.getRequiredAttributeValue("name")== currentName){
            body.setAttributeValue("name",newName);
-            //TODO change the properties or reload the model
+
+           //TODO change the properties or reload the model
+           doc->writeToFile(modelFileName);
+           modelElement = doc->getRootElement().getRequiredElement("Model");
+
            auto elemList = findElementsWithContent(modelElement,"/bodyset/"+currentName);
            for(auto i = elemList.begin();i != elemList.end();i++){
                i->setValue("/bodyset/"+newName);
@@ -51,6 +55,24 @@ void vsXmlUtils::changeBodyName(std::string modelFileName,std::string currentNam
            break;
         }
     }
+
+    // for now, replace everything with the current model name through the new name
+    auto elemList = findElementsWithContent(modelElement,currentName);
+    for(auto i = elemList.begin();i != elemList.end();i++){
+        i->setValue(newName);
+    }
+
+    vsOpenSimTools::tools->log(QString::fromStdString(currentName)+" Renamed missing changes to : "+QString::fromStdString(newName)
+                                      ,"vsXmlUtils",vsOpenSimTools::Success);
+
+    // ForceSet -> objects -> Thelen2003Muscle -> GeometryPath -> PathPointSet -> objects -> PathPoint -> body
+    // MarkerSet -> objects
+    
+    // Alternative for more precise search for tags and change of name?
+    // ----------------------------------
+    // y = x.elementsByTagName("...");
+    // for (...)
+    // z = y.at(...);
 
     doc->writeToFile(modelFileName);
 
