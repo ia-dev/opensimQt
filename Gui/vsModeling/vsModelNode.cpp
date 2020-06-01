@@ -12,9 +12,12 @@
 #include "vsPropertyItem.h"
 #include "vsPropertyModel.h"
 #include <QDebug>
+#include <QFileDialog>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <QRegularExpression>
 #include <qdialog.h>
+#include <vsTools/vsOpenSimTools.h>
 #include <vsTools/vsXmlUtils.h>
 
 
@@ -77,6 +80,17 @@ void vsModelNode::onRenameModelTriggered()
     //reload the model afterword
 }
 
+void vsModelNode::onAddMotionTriggered()
+{
+    try {
+        QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
+        if(motionFile == "") throw  QString("error");
+        vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
+    } catch (...) {
+        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
+    }
+}
+
 void vsModelNode::setupNodeActions(QMenu *rootMenu)
 {
     QAction *makeCurrentAction = new QAction("Make Current",rootMenu);
@@ -98,6 +112,7 @@ void vsModelNode::setupNodeActions(QMenu *rootMenu)
 
     connect(closeAction,&QAction::triggered,this,&vsModelNode::onCloseModelClicked);
     connect(renameAction,&QAction::triggered,this,&vsModelNode::onRenameModelTriggered);
+    connect(addMotionAction,&QAction::triggered,this,&vsModelNode::onAddMotionTriggered);
 }
 
 void vsModelNode::setupPropertiesModel(vsPropertyModel *model)

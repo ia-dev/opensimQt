@@ -307,3 +307,11 @@ void vsMainWindow::on_actionClose_All_triggered()
 {
     navigatorModel->closeAllModels();
 }
+
+void vsMainWindow::on_actionLoad_Motion_triggered()
+{
+    //calling the action for LoadMotion for the active model node
+    auto currentModelNode = navigatorModel->getNodeForModel(navigatorModel->getActiveModel());
+    if(!currentModelNode) return vsOpenSimTools::tools->log("No Active Model is present","vsMainWindow");
+    currentModelNode->onAddMotionTriggered();
+}
