@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <qdialog.h>
+#include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 #include <vsTools/vsXmlUtils.h>
 
@@ -58,6 +59,7 @@ vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObje
 
 }
 
+
 void vsModelNode::onCloseModelClicked()
 {
     qDebug() << "model  Closing";
@@ -82,13 +84,7 @@ void vsModelNode::onRenameModelTriggered()
 
 void vsModelNode::onAddMotionTriggered()
 {
-    try {
-        QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
-        if(motionFile == "") throw  QString("error");
-        vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
-    } catch (...) {
-        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
-    }
+    vsMotionsUtils::getInstance()->openLoadMotionDialog(OpenSim::Model::safeDownCast(openSimObject));
 }
 
 void vsModelNode::setupNodeActions(QMenu *rootMenu)

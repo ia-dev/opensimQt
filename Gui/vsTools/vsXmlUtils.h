@@ -1,6 +1,6 @@
 /***************************************************************************
  *                                                                         *
- *   Copyright (C) 2020 by VisSim                                        *
+ *   Copyright (C) 2020 by VisSim                                          *
  *                                                                         *
  *   Authors: Ibraheem Aldhamari, Yasser Grimes                            *
  *                                                                         *

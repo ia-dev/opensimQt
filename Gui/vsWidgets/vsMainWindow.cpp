@@ -8,6 +8,7 @@
 #include <QMimeData>
 #include <QMessageBox>
 #include <QtWebEngineWidgets/qwebengineview.h>
+#include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 
@@ -311,7 +312,9 @@ void vsMainWindow::on_actionClose_All_triggered()
 void vsMainWindow::on_actionLoad_Motion_triggered()
 {
     //calling the action for LoadMotion for the active model node
-    auto currentModelNode = navigatorModel->getNodeForModel(navigatorModel->getActiveModel());
-    if(!currentModelNode) return vsOpenSimTools::tools->log("No Active Model is present","vsMainWindow");
-    currentModelNode->onAddMotionTriggered();
+    if(navigatorModel->getActiveModel()){
+        vsMotionsUtils::getInstance()->openLoadMotionDialog(navigatorModel->getActiveModel());
+    }
+    else return vsOpenSimTools::tools->log("No Active Model is present","vsMainWindow");
+
 }
