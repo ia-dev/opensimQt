@@ -15,6 +15,10 @@
 #include <OpenSim.h>
 #include <QVariantMap>
 
+class vsNavigatorModel;
+class vsNavigatorNode;
+class vsModelNode;
+
 class vsOpenSimTools : public QObject
 {
     Q_OBJECT
@@ -33,6 +37,13 @@ public:
     void updateOpenModelsFile();
     QStringList getReloadModelsPaths();
     void saveScene(QString savingFilePath);
+
+    //operations on the navigator
+    vsNavigatorNode* getObjectNode(OpenSim::Object *obj);
+
+    vsNavigatorModel *getNavigatorModel() const;
+    void setNavigatorModel(vsNavigatorModel *navigatorModel);
+
 signals:
     void messageLogged(QString message);
 
@@ -40,6 +51,7 @@ private:
     QFile *logFile;
     QTextStream *logStream;
     QMap<MessageType,QString> messageColors;
+    vsNavigatorModel *m_navigatorModel;
 
     //open_models variables
     QVariantMap openModels;

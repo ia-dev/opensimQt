@@ -253,6 +253,14 @@ vsNavigatorNode *vsNavigatorNode::getNodeForObj(OpenSim::Object *object)
     return nullptr;
 }
 
+vsNavigatorNode *vsNavigatorNode::findChildNode(QString childName)
+{
+    foreach (auto child, this->childNodes) {
+        if(child->displayName == childName) return child;
+    }
+    return nullptr;
+}
+
 vsNavigatorModel *vsNavigatorNode::connectedModel() const
 {
     return m_connectedModel;

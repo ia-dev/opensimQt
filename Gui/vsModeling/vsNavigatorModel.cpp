@@ -224,3 +224,9 @@ vsModelNode *vsNavigatorModel::getNodeForModel(OpenSim::Model *model)
     }
     return nullptr;
 }
+
+vsNavigatorNode *vsNavigatorModel::getNodeForObject(OpenSim::Object *obj)
+{
+    return  m_rootNNode->getNodeForObj(obj);
+}
+

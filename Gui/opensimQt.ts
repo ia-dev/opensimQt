@@ -7,7 +7,6 @@
         <location filename="vsWidgets/vsMainWindow.ui" line="49"/>
         <location filename="vsWidgets/vsMainWindow.ui" line="52"/>
         <source>VtkVisualizer</source>
-        <oldsource>Visuallizer</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -370,7 +369,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="81"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="82"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>

@@ -35,6 +35,7 @@ public:
     void closeAllModels();
     void closeModel(OpenSim::Model *model);
     vsModelNode  *getNodeForModel(OpenSim::Model *model);
+    vsNavigatorNode *getNodeForObject(OpenSim::Object *obj);
 
     OpenSim::Model *getActiveModel() const;
     void setActiveModel(OpenSim::Model *activeModel);

@@ -31,7 +31,7 @@ public:
     void removeNode();
 
     vsNavigatorNode* getNodeForObj(OpenSim::Object *object);
-public:
+    vsNavigatorNode *findChildNode(QString childName);
     OpenSim::Object *openSimObject;
     QString displayName;
     vsNavigatorNode* parentNode;

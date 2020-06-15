@@ -7,14 +7,18 @@
  ***************************************************************************/
 #include "vsMotionsUtils.h"
 
+#include <QBitArray>
+#include <QDebug>
 #include <QFileDialog>
 #include "vsOpenSimTools.h"
+#include <vsModeling/vsOneMotionNode.h>
 
 vsMotionsUtils* vsMotionsUtils::instance = nullptr;
 
 vsMotionsUtils::vsMotionsUtils(QObject *parent) : QObject(parent)
 {
-
+    //handle the changes in this class too
+    connect(this,&vsMotionsUtils::notifyObservers,this,&vsMotionsUtils::update);
 }
 
 vsMotionsUtils *vsMotionsUtils::getInstance()
@@ -30,7 +34,10 @@ void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
         if(motionFile == "") throw  QString("error");
 
         OpenSim::Storage *storage = new OpenSim::Storage(motionFile.toStdString());
-        // testing the possibility to associate the motion
+
+        activeModel = model;
+
+        loadMotionStorage(storage,true,motionFile.toStdString());
         vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
     }
     catch (QString s) {
@@ -48,7 +55,16 @@ void vsMotionsUtils::loadMotionFile(std::string fileName)
 
 void vsMotionsUtils::loadMotionStorage(OpenSim::Storage *newMotion, bool primary, std::string filePath)
 {
-
+    if(!activeModel) return;
+    if(testMotionAssociationPossible(activeModel,newMotion)){
+        addMotion(activeModel,newMotion,nullptr);
+        vsOpenSimTools::tools->log("Motion : "+QString::fromStdString(newMotion->getName())+
+                                   " Loaded to model : "+QString::fromStdString(activeModel->getName()),
+                                   "vsMotionUtils",vsOpenSimTools::Success);
+    }
+    else{
+        vsOpenSimTools::tools->log("Could not apply motion to active model","vsMotionUtils",vsOpenSimTools::Error);
+    }
 }
 
 bool vsMotionsUtils::testMotionAssociationPossible(OpenSim::Model *model, OpenSim::Storage *storage)
@@ -78,5 +94,55 @@ bool vsMotionsUtils::testMotionAssociationPossible(OpenSim::Model *model, OpenSi
 
 void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotion, OpenSim::Storage *parentMotion)
 {
+    //test for the Model For Experement Data
+    bool convertAngels = newMotion->isInDegrees();
+    if(convertAngels) model->getSimbodyEngine().convertDegreesToRadians(*newMotion);
+
+    auto modelMotions = mapModelsToMotions.value(model,nullptr);
+    if(!modelMotions){
+        modelMotions = new QList<OpenSim::Storage*>();
+        mapModelsToMotions.insert(model,modelMotions);
+    }
+
+    modelMotions->append(newMotion);
+    //TODO change 4 to bitnumbers
+    mapMotionToBitArray.insert(newMotion,new QBitArray(4));
+    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
+    emit notifyObservers(evntObj);
+
+    if(parentMotion == nullptr) setCurrentMotion(model,newMotion);
+}
+
+void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *motion)
+{
+    //TODO add multiple motions support
+    currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
+    MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
+    emit notifyObservers(evntObj);
+}
+
+void vsMotionsUtils::update(MotionEventObject eventObj)
+{
+    //TODO support other events
+    qDebug()<< "motion is being updated";
+
+    //motion event
+    switch (eventObj.m_motionOperation) {
+    case MotionOperation::Open:{
+        vsNavigatorNode *modelNode = vsOpenSimTools::tools->getObjectNode(eventObj.m_model);
+        vsNavigatorNode *motionsNode = modelNode->findChildNode("Motions");
+        if(motionsNode == nullptr){
+            motionsNode = new vsNavigatorNode(nullptr,"Motions",modelNode,modelNode);
+            motionsNode->iconPath = ":/Data/Images/Nodes/motionsNode.png";
+        }
+
+        //TODO add suppoet for experemental data model
+        vsOneMotionNode *newMotionNode = new vsOneMotionNode(eventObj.m_storage,motionsNode,motionsNode);
+        qDebug()<< "Motion Name : " << QString::fromStdString(eventObj.m_storage->getName());
+    }break;
+
+    default:
+        break;
+    }
 
 }

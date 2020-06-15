@@ -38,6 +38,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->navigatorTreeView->setModel(navigatorModel);
     connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
 
+    vsOpenSimTools::tools->setNavigatorModel(navigatorModel);
+
     //setting the properties
     propertiesModel = new vsPropertyModel(this);
     ui->propertyTreeView->setModel(propertiesModel);

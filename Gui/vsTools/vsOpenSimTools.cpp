@@ -12,10 +12,12 @@
 #include <QTextEdit>
 #include <QTime>
 
+#include "vsModeling/vsNavigatorModel.h"
+
 vsOpenSimTools* vsOpenSimTools::tools = new vsOpenSimTools();
 
 vsOpenSimTools::vsOpenSimTools(QObject *parent):QObject(parent),
-    logFile(new QFile("OpenSimQtLog_.txt"))
+    logFile(new QFile("OpenSimQtLog_.txt")),m_navigatorModel(nullptr)
 {
     logFile->open(QFile::WriteOnly|QFile::Text);
     if(logFile->isOpen()) qDebug() << "it is open , the file";
@@ -86,4 +88,22 @@ void vsOpenSimTools::saveScene(QString savingFilePath)
     openModelsFile.write(openModelsDocument.toJson());
     openModelsFile.close();
 }
+
+vsNavigatorNode *vsOpenSimTools::getObjectNode(OpenSim::Object *obj)
+{
+    return m_navigatorModel->getNodeForObject(obj);
+}
+
+vsNavigatorModel *vsOpenSimTools::getNavigatorModel() const
+{
+    return m_navigatorModel;
+}
+
+void vsOpenSimTools::setNavigatorModel(vsNavigatorModel *navigatorModel)
+{
+    m_navigatorModel = navigatorModel;
+}
+
+
+
 
