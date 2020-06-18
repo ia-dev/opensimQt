@@ -45,6 +45,7 @@ public:
     bool testMotionAssociationPossible(OpenSim::Model *model,OpenSim::Storage *storage);
     void addMotion(OpenSim::Model *model , OpenSim::Storage *newMotion , OpenSim::Storage *parentMotion);
     void setCurrentMotion(OpenSim::Model *model,OpenSim::Storage *motion);
+    void applyTimeToModel(OpenSim::Model *model,OpenSim::Storage *motion,double time);
 
 public slots:
     void update(MotionEventObject eventObj);

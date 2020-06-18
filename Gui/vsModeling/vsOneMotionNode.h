@@ -18,6 +18,7 @@ class vsOneMotionNode : public vsNavigatorNode
 public:
     vsOneMotionNode(OpenSim::Storage *motion ,vsNavigatorNode *parentNode,QObject *parent);
     OpenSim::Storage *m_motion;
+    //TODO add the action for the motion node
 };
 
 #endif // VSONEMOTIONNODE_H

@@ -106,9 +106,9 @@ void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotio
 
     modelMotions->append(newMotion);
     //TODO change 4 to bitnumbers
-    mapMotionToBitArray.insert(newMotion,new QBitArray(4));
-    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
-    emit notifyObservers(evntObj);
+//    mapMotionToBitArray.insert(newMotion,new QBitArray(4));
+//    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
+//    emit notifyObservers(evntObj);
 
     if(parentMotion == nullptr) setCurrentMotion(model,newMotion);
 }
@@ -117,8 +117,23 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
 {
     //TODO add multiple motions support
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
+    applyTimeToModel(model,motion,0);
     MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
     emit notifyObservers(evntObj);
+}
+
+void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *motion,double time)
+{
+    SimTK::Vector stateData(motion->getColumnLabels().getSize());
+    //double ** stateData;
+    //the minus one is to exclude the time column
+    motion->getDataAtTime(motion->getFirstTime(),motion->getColumnLabels().getSize()-1,stateData);
+    //auto stateVector = motion->getStateVector(time);
+    //motion->get
+    model->setStateVariableValues(model->updWorkingState(),stateData);
+    //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
+    vsNavigatorNode::visualizerVTK->removeModelActors(model);
+    vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
 }
 
 void vsMotionsUtils::update(MotionEventObject eventObj)
