@@ -69,6 +69,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //connecting actor selection in the visualizer
     connect(ui->vtkVisualiser,&vsVisualizerVTK::objectSelectedInNavigator,this,&vsMainWindow::onSelectedObjectActor);
 
+    //the sumulation configs
+    connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
+
 
 }
 

@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include "vsOpenSimTools.h"
+#include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsOneMotionNode.h>
 
 vsMotionsUtils* vsMotionsUtils::instance = nullptr;
@@ -106,9 +107,9 @@ void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotio
 
     modelMotions->append(newMotion);
     //TODO change 4 to bitnumbers
-//    mapMotionToBitArray.insert(newMotion,new QBitArray(4));
-//    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
-//    emit notifyObservers(evntObj);
+    //mapMotionToBitArray.insert(newMotion,new QBitArray(4));
+    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
+    emit notifyObservers(evntObj);
 
     if(parentMotion == nullptr) setCurrentMotion(model,newMotion);
 }
@@ -117,9 +118,10 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
 {
     //TODO add multiple motions support
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
-    applyTimeToModel(model,motion,0);
+    applyTimeToModel(model,motion,motion->getFirstTime());
     MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
     emit notifyObservers(evntObj);
+    emit currentMotionChanged();
 }
 
 void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *motion,double time)
@@ -127,11 +129,13 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     SimTK::Vector stateData(motion->getColumnLabels().getSize());
     //double ** stateData;
     //the minus one is to exclude the time column
-    motion->getDataAtTime(motion->getFirstTime(),motion->getColumnLabels().getSize()-1,stateData);
+    motion->getDataAtTime(time,motion->getColumnLabels().getSize(),stateData);
     //auto stateVector = motion->getStateVector(time);
     //motion->get
     model->setStateVariableValues(model->updWorkingState(),stateData);
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
+    //TODO update the decorations instead of removing
+    //model->realizeDynamics(model->updWorkingState());
     vsNavigatorNode::visualizerVTK->removeModelActors(model);
     vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
 }
@@ -154,6 +158,7 @@ void vsMotionsUtils::update(MotionEventObject eventObj)
         //TODO add suppoet for experemental data model
         vsOneMotionNode *newMotionNode = new vsOneMotionNode(eventObj.m_storage,motionsNode,motionsNode);
         qDebug()<< "Motion Name : " << QString::fromStdString(eventObj.m_storage->getName());
+        emit vsOpenSimTools::tools->getNavigatorModel()->layoutChanged();
     }break;
 
     default:

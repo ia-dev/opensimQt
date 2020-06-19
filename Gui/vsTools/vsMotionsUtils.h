@@ -51,6 +51,7 @@ public slots:
     void update(MotionEventObject eventObj);
 signals:
     void notifyObservers(MotionEventObject eventObj);
+    void currentMotionChanged();
 
 
 };
