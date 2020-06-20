@@ -28,6 +28,8 @@ public:
     vsVisualizerVTK(QWidget *parent = nullptr);
     void renderingTest();
 
+    bool updating = false;
+
     void getDGColor(const SimTK::DecorativeGeometry& geo,double *color_out);
 
     vtkSmartPointer<vtkActor> renderGeometry(OpenSim::Geometry *geometry);
@@ -37,6 +39,8 @@ public:
     vtkSmartPointer<vtkActor> addSkyBox();
     vtkSmartPointer<vtkAxesActor> addGlobalFrame();
     vtkSmartPointer<vtkPolyDataMapper> getMeshDataMapper(std::string fileName);
+
+    void updateDecorativeGeometry(OpenSim::Object *obj,int actorIndex,const SimTK::DecorativeGeometry& geo,SimTK::Transform geometryTransform,double *scaleFactors);
 
     vtkSmartPointer<vtkActor> renderDecorativeMeshFile(const SimTK::DecorativeMeshFile& mesh,
                                                        SimTK::Transform mesh_transform, double *scaleFactors);
@@ -76,10 +80,12 @@ public:
 
     vtkSmartPointer<vtkMatrix4x4> openSimToVtkTransform(SimTK::Transform stkTransform);
     void addOpenSimModel(OpenSim::Model *model);
+    void updateModelDecorations(OpenSim::Model *model);
     void addVtkActorToMap(OpenSim::Model *model,vtkSmartPointer<vtkProp> actor);
     void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkProp> actor);
     OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
     QList<vtkSmartPointer<vtkProp>>* getActorForComponent(OpenSim::Object *component);
+
 
     BackgroundType backgroundType() const;
     void setBackgroundType(const BackgroundType &backgroundType);

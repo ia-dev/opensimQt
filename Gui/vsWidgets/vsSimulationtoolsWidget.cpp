@@ -57,6 +57,11 @@ void vsSimulationToolsWidget::setCurrentTime(int currentTime)
     }
     ui->currentTime->setText(QString::number((float)m_currentTime/1000.0));
     ui->horizontalSlider->setValue(m_currentTime);
+    //vsMotionsUtils::getInstance()->currentMotion->first-
+    vsMotionsUtils::getInstance()->applyTimeToModel(
+                vsMotionsUtils::getInstance()->currentMotion->first,
+                vsMotionsUtils::getInstance()->currentMotion->second,
+                m_currentTime);
 
     emit currentTimeChanged(m_currentTime);
 }
@@ -89,10 +94,10 @@ void vsSimulationToolsWidget::on_horizontalSlider_sliderReleased()
     if(!vsMotionsUtils::getInstance()->currentMotion) return;
     double newTime = (double)ui->horizontalSlider->value()/1000;
     setCurrentTime(newTime*1000);
-    vsMotionsUtils::getInstance()->applyTimeToModel(
-                vsMotionsUtils::getInstance()->currentMotion->first,
-                vsMotionsUtils::getInstance()->currentMotion->second,
-                newTime);
+//    vsMotionsUtils::getInstance()->applyTimeToModel(
+//                vsMotionsUtils::getInstance()->currentMotion->first,
+//                vsMotionsUtils::getInstance()->currentMotion->second,
+//                newTime);
 }
 
 void vsSimulationToolsWidget::on_horizontalSlider_valueChanged(int value)

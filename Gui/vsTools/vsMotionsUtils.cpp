@@ -30,6 +30,7 @@ vsMotionsUtils *vsMotionsUtils::getInstance()
 
 void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 {
+    model->realizePosition(model->getWorkingState());
     try {
         QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
         if(motionFile == "") throw  QString("error");
@@ -131,13 +132,15 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     //the minus one is to exclude the time column
     motion->getDataAtTime(time,motion->getColumnLabels().getSize(),stateData);
     //auto stateVector = motion->getStateVector(time);
-    //motion->get
+    model->updWorkingState().setTime(time);
     model->setStateVariableValues(model->updWorkingState(),stateData);
+    model->realizeVelocity(model->updWorkingState());
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
     //TODO update the decorations instead of removing
-    //model->realizeDynamics(model->updWorkingState());
-    vsNavigatorNode::visualizerVTK->removeModelActors(model);
-    vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
+    model->realizeDynamics(model->updWorkingState());
+    vsNavigatorNode::visualizerVTK->updating = true;
+    //vsNavigatorNode::visualizerVTK->removeModelActors(model);
+    vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
 }
 
 void vsMotionsUtils::update(MotionEventObject eventObj)

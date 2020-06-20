@@ -43,12 +43,20 @@ public:
     void setRenderedComponent(OpenSim::Component *renderedComponent);
     OpenSim::Component *renderedComponent() const;
 
+    int getComponentActorIndex() const;
+    void setComponentActorIndex(int value);
+
+    bool getIsUpdate() const;
+    void setIsUpdate(bool value);
+
 private:
     vsVisualizerVTK *m_visualizerVTK;
     const SimTK::State& m_state;
     const SimTK::SimbodyMatterSubsystem& m_matter;
     OpenSim::Model *m_renderedModel;
     OpenSim::Component *m_renderedComponent;
+    int componentActorIndex = -1;
+    bool isUpdate = false;
 };
 
 #endif // vsGeometryImplementationQt_H

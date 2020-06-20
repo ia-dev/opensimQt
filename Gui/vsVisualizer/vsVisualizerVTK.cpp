@@ -375,6 +375,29 @@ vtkSmartPointer<vtkPolyDataMapper> vsVisualizerVTK::getMeshDataMapper(std::strin
     return mapper;
 }
 
+void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIndex, const SimTK::DecorativeGeometry &geo, SimTK::Transform geometryTransform, double *scaleFactors)
+{
+    auto probList = componentActorsMap.value(obj,nullptr);
+    if(!probList){
+        qDebug() << "no prob detected.";
+        return;
+    };
+    vtkSmartPointer<vtkProp> prop = nullptr;
+    vtkSmartPointer<vtkActor> actor = nullptr;
+    try {
+      prop = probList->at(actorIndex);
+      actor = vtkActor::SafeDownCast(prop);
+    } catch (...) {
+        qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
+        return;
+    }
+    actor->SetScale(scaleFactors);
+    actor->SetUserMatrix(openSimToVtkTransform(geometryTransform));
+
+}
+
+
+
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK::DecorativeMeshFile &mesh
                                                                     ,SimTK::Transform mesh_transform ,double *scaleFactors)
 {
@@ -851,7 +874,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
     //loading the Components
-    model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
+    if(!updating)model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
     //TODO try to implement frame geometries as Axes
@@ -866,6 +889,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 
     vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
     geoImp.setRenderedModel(model);
+    geoImp.setIsUpdate(false);
     modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
 
@@ -880,10 +904,11 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
         geoImp.setRenderedComponent(const_cast<OpenSim::Component*>(comp));
         comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
         comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
-        qDebug() << "the model subcomponents List Count >"<< compDecorations.size()<< " "
-        <<QString::fromStdString(itr.deref().getName())
-        << QString::fromStdString(itr.deref().getConcreteClassName());
+        //qDebug() << "the model subcomponents List Count >"<< compDecorations.size()<< " "
+        //<<QString::fromStdString(itr.deref().getName())
+        //<< QString::fromStdString(itr.deref().getConcreteClassName());
         for (int i = 0; i < compDecorations.size(); ++i) {
+            geoImp.setComponentActorIndex(i);
             compDecorations.at(i).implementGeometry(geoImp);
         }
 
@@ -913,6 +938,70 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 //        compDecorations.at(i).implementGeometry(geoImp);
 //    }
 
+
+}
+
+void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
+{
+    auto renderer  = renderWindow()->GetRenderers()->GetFirstRenderer();
+
+    //model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
+    SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+    const OpenSim::ModelDisplayHints displayHints = model->getDisplayHints();
+
+    vsGeometryImplementationQt geoImp(this,model->getSystem().getMatterSubsystem(),model->getWorkingState());
+    geoImp.setRenderedModel(model);
+    geoImp.setIsUpdate(true);
+    //model->updWorkingState().
+    //checking that the model geometries already exist
+    if(!modelActorsMap.contains(model)){
+        qDebug() << "cant update model as No geometries are found";
+        return;
+    }
+    //auto modelActors = modelActorsMap.value(model);
+    //modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
+    //actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
+
+    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
+    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
+    while (!itr.equals(componentList.end())) {
+        const OpenSim::Component *comp = &itr.deref();
+        SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
+        geoImp.setRenderedComponent(const_cast<OpenSim::Component*>(comp));
+        comp->generateDecorations(false,displayHints,model->getWorkingState(),compDecorations);
+        comp->generateDecorations(true,displayHints,model->getWorkingState(),compDecorations);
+
+        for (int i = 0; i < compDecorations.size(); ++i) {
+            geoImp.setComponentActorIndex(i);
+            compDecorations.at(i).implementGeometry(geoImp);
+            //compDecorations.at(i).
+        }
+
+        itr.next();
+    }
+
+    //TODO add the custom Window as in this discussion https://discourse.vtk.org/t/camera-clipping-with-2-renderers/2483/9
+    //renderer->ResetCamera();
+    //renderer->GetActiveCamera()->SetDistance(viewAngle);
+    //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
+    //renderer->SetNearClippingPlaneTolerance(0.5);
+    //renderer->Render();
+    //currentModel = model;
+    //double bounds[] = {0,0,0,0,0,0};
+    //getModelBounds(model,bounds);
+    //renderer->ResetCamera(bounds);
+    //renderWindow()->Render();
+    renderWindow()->Render();
+    //renderer->perspe;
+    //renderWindow()->Finalize();
+    //renderer->GetActiveCamera()->set
+//    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
+//        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
+//    }
+//    qDebug() << "the size of the geometry array > " << compDecorations.size();
+//    for (unsigned i = 0; i < compDecorations.size(); ++i) {
+//        compDecorations.at(i).implementGeometry(geoImp);
+//    }
 
 }
 
