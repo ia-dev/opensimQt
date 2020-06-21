@@ -13,6 +13,7 @@ class vsSimulationToolsWidget : public QWidget
     Q_OBJECT
     Q_PROPERTY(int currentTime READ currentTime WRITE setCurrentTime NOTIFY currentTimeChanged)
     Q_PROPERTY(bool repeatSimulaiton READ repeatSimulaiton WRITE setRepeatSimulaiton NOTIFY repeatSimulaitonChanged)
+    Q_PROPERTY(int currentFrame READ currentFrame WRITE setCurrentFrame NOTIFY currentFrameChanged)
 
 public:
     explicit vsSimulationToolsWidget(QWidget *parent = nullptr);
@@ -27,6 +28,8 @@ public:
     
     bool repeatSimulaiton() const;
 
+    int currentFrame() const;
+
 public slots:
     void setCurrentTime(int currentTime);
     void onCurrentMotionChanged();
@@ -38,11 +41,15 @@ public slots:
 
     void setRepeatSimulaiton(bool repeatSimulaiton);
 
+    void setCurrentFrame(int currentFrame);
+
 signals:
     void currentTimeChanged(int currentTime);
 
     void repeatSimulaitonChanged(bool repeatSimulaiton);
 
+
+    void currentFrameChanged(int currentFrame);
 
 private:
     Ui::vsSimulationToolsWidget *ui;
@@ -50,6 +57,7 @@ private:
     int m_currentTime;
     //the Model and motion are from the MotionsUtil
     bool m_repeatSimulaiton;
+    int m_currentFrame;
 };
 
 #endif // vsSimulationToolsWidget_H

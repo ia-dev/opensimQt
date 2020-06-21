@@ -127,19 +127,45 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
 
 void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *motion,double time)
 {
-    SimTK::Vector stateData(motion->getColumnLabels().getSize());
+    auto stateData = motion->getStateVector(time)->getData();
+    int numbCoordinates = model->getNumCoordinates();
+    for (int i = 0; i < numbCoordinates; ++i) {
+        auto coordValue = stateData.get(i);
+        model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+    }
+
+    //SimTK::Vector stateData(motion->getColumnLabels().getSize()-1);
     //double ** stateData;
     //the minus one is to exclude the time column
-    motion->getDataAtTime(time,motion->getColumnLabels().getSize(),stateData);
+    //motion->getDataAtTime(time,motion->getColumnLabels().getSize()-1,stateData);
     //auto stateVector = motion->getStateVector(time);
-    model->updWorkingState().setTime(time);
-    model->setStateVariableValues(model->updWorkingState(),stateData);
-    model->realizeVelocity(model->updWorkingState());
+    //model->updWorkingState().setTime(time);
+
+    //int numberOfCoordinates = model->getcoo
+
+    //model->setStateVariableValues(model->updWorkingState(),stateData);
+    //model->realizeTime(model->updWorkingState());
+    model->realizePosition(model->updWorkingState());
+    //model->realizeVelocity(model->updWorkingState());
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
     //TODO update the decorations instead of removing
-    model->realizeDynamics(model->updWorkingState());
+    //model->realizeDynamics(model->updWorkingState());
     vsNavigatorNode::visualizerVTK->updating = true;
     //vsNavigatorNode::visualizerVTK->removeModelActors(model);
+    //vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
+    vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
+}
+
+void vsMotionsUtils::applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion, int framNumber)
+{
+    auto stateData = motion->getStateVector(framNumber)->getData();
+    int numbCoordinates = model->getNumCoordinates();
+    for (int i = 0; i < numbCoordinates; ++i) {
+        auto coordValue = stateData.get(i);
+        model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+    }
+    model->realizePosition(model->updWorkingState());
+    vsNavigatorNode::visualizerVTK->updating = true;
     vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
 }
 

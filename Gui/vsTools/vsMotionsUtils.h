@@ -46,6 +46,7 @@ public:
     void addMotion(OpenSim::Model *model , OpenSim::Storage *newMotion , OpenSim::Storage *parentMotion);
     void setCurrentMotion(OpenSim::Model *model,OpenSim::Storage *motion);
     void applyTimeToModel(OpenSim::Model *model,OpenSim::Storage *motion,double time);
+    void applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion,int framNumber);
 
 public slots:
     void update(MotionEventObject eventObj);
