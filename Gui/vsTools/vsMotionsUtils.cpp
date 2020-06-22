@@ -127,7 +127,11 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
 
 void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *motion,double time)
 {
-    auto stateData = motion->getStateVector(time)->getData();
+    int startFrame = 0;
+    int endFrame = 0;
+    //TODO Use the timer step
+    motion->findFrameRange(time,time+30,startFrame,endFrame);
+    auto stateData = motion->getStateVector(startFrame)->getData();
     int numbCoordinates = model->getNumCoordinates();
     for (int i = 0; i < numbCoordinates; ++i) {
         auto coordValue = stateData.get(i);

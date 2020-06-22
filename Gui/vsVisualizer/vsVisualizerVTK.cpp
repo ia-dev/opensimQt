@@ -401,6 +401,7 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK::DecorativeMeshFile &mesh
                                                                     ,SimTK::Transform mesh_transform ,double *scaleFactors)
 {
+
     vtkSmartPointer<vtkPolyDataMapper> meshMapper = getMeshDataMapper(mesh.getMeshFile());
     auto vtpActor = vtkSmartPointer<vtkActor>::New();
     vtpActor->SetMapper(meshMapper);
