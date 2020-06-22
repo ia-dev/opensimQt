@@ -340,7 +340,7 @@ vtkSmartPointer<vtkPolyDataMapper> vsVisualizerVTK::getMeshDataMapper(std::strin
 
     QString fileExtention = QString::fromStdString(fileName).right(3);
     const char *fileNameChar = fileName.data();
-    qDebug() << "the "<< fileExtention << " file path" << fileNameChar;
+    //qDebug() << "the "<< fileExtention << " file path" << fileNameChar;
 
     auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 
@@ -379,7 +379,7 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
 {
     auto probList = componentActorsMap.value(obj,nullptr);
     if(!probList){
-        qDebug() << "no prob detected.";
+        //qDebug() << "no prob detected.";
         return;
     };
     vtkSmartPointer<vtkProp> prop = nullptr;
@@ -388,7 +388,7 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
       prop = probList->at(actorIndex);
       actor = vtkActor::SafeDownCast(prop);
     } catch (...) {
-        qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
+        //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
         return;
     }
     actor->SetScale(scaleFactors);
@@ -477,7 +477,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeEllipsoid(const SimTK
     return ellipsoidActor;
 }
 
-vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::DecorativeLine &line, SimTK::Transform lineTransform, double *scaleFactors)
+vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::DecorativeLine &line, SimTK::Transform lineTransform, double *scaleFactors,OpenSim::Object *obj,int actorIndex)
 {
     auto lineSource = vtkSmartPointer<vtkLineSource>::New();
     lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
@@ -512,12 +512,30 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     tubeFilter->SetNumberOfSides(60);
     tubeFilter->Update();
 
-    qDebug() << "the tickness of the line" << line.getLineThickness();
+    //qDebug() << "the tickness of the line" << line.getLineThickness();
 
     vtkSmartPointer<vtkPolyDataMapper> tubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
     tubeMapper->SetInputConnection(tubeFilter->GetOutputPort());
 
-    vtkSmartPointer<vtkActor> tubeActor = vtkSmartPointer<vtkActor>::New();
+    //updating tube actors;
+    vtkSmartPointer<vtkActor> tubeActor = nullptr;
+    if(!updating){
+        tubeActor = vtkSmartPointer<vtkActor>::New();
+    }else{
+        auto probList = componentActorsMap.value(obj,nullptr);
+        if(!probList){
+            //qDebug() << "no prob list detected for line";
+            return nullptr;
+        };
+        vtkSmartPointer<vtkProp> prop = nullptr;
+        try {
+          prop = probList->at(actorIndex);
+          tubeActor = vtkActor::SafeDownCast(prop);
+        } catch (...) {
+            //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
+            return nullptr;
+        }
+    }
     tubeActor->SetMapper(tubeMapper);
     tubeActor->GetProperty()->SetColor(colorTable);
     tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
@@ -934,7 +952,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
 //    }
-//    qDebug() << "the size of the geometry array > " << compDecorations.size();
+//    //qDebug() << "the size of the geometry array > " << compDecorations.size();
 //    for (unsigned i = 0; i < compDecorations.size(); ++i) {
 //        compDecorations.at(i).implementGeometry(geoImp);
 //    }
@@ -956,7 +974,7 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //model->updWorkingState().
     //checking that the model geometries already exist
     if(!modelActorsMap.contains(model)){
-        qDebug() << "cant update model as No geometries are found";
+        //qDebug() << "cant update model as No geometries are found";
         return;
     }
     //auto modelActors = modelActorsMap.value(model);
@@ -999,7 +1017,7 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
 //    for (SimTK::Stage stage = SimTK::Stage::Empty; stage <= model->getWorkingState().getSystemStage(); stage++) {
 //        model->getSystem().calcDecorativeGeometryAndAppend(model->getWorkingState(),stage,compDecorations);
 //    }
-//    qDebug() << "the size of the geometry array > " << compDecorations.size();
+//    //qDebug() << "the size of the geometry array > " << compDecorations.size();
 //    for (unsigned i = 0; i < compDecorations.size(); ++i) {
 //        compDecorations.at(i).implementGeometry(geoImp);
 //    }
@@ -1021,7 +1039,7 @@ OpenSim::Model *vsVisualizerVTK::getModelForActor(vtkSmartPointer<vtkActor> acto
     foreach (auto model, modelActorsMap.keys()) {
         auto actorList = *modelActorsMap.value(model);
         if(actorList.contains(actor)){
-            qDebug() << "model Name " << QString::fromStdString(model->getName());
+            //qDebug() << "model Name " << QString::fromStdString(model->getName());
             return model;
         }
 
@@ -1140,7 +1158,7 @@ void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
     OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
     if(selectedObject == nullptr) return;
     emit this->objectSelectedInNavigator(selectedObject);
-    qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
+    //qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
 }
 
 OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor)
@@ -1269,7 +1287,7 @@ void vsVisualizerVTK::vtkButtonClicked(vtkObject *clickedObject)
     //this->renderWindow()->GetRenderers()->GetFirstRenderer()->Render();
     renderWindow()->Render();
     renderWindow()->Finalize();
-    //    qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
+    //    //qDebug() << "the signal is working" << (clickedObject == pXButton.Get());
 }
 
 void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
@@ -1301,7 +1319,7 @@ void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
 
 void vsVisualizerVTK::onInteractorPick(vtkObject *obj)
 {
-    qDebug() << "double clicked ";
+    //qDebug() << "double clicked ";
 }
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
