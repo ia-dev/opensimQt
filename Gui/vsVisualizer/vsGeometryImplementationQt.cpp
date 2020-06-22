@@ -55,8 +55,7 @@ void vsGeometryImplementationQt::implementLineGeometry(const SimTK::DecorativeLi
         //get the component and update it
         //m_visualizerVTK->updateDecorativeGeometry(m_renderedComponent,componentActorIndex,geom,
         //                                          calculateTransformForGeo(geom),scal_factores);
-        vtkSmartPointer<vtkActor> lineActor =
-                m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores,
+        vtkSmartPointer<vtkActor> lineActor =m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores,
                                                       m_renderedComponent,componentActorIndex);
     }else{
     vtkSmartPointer<vtkActor> lineActor = m_visualizerVTK->renderDecorativeLine(geom,calculateTransformForGeo(geom),scal_factores);

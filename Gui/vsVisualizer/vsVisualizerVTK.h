@@ -21,7 +21,7 @@ enum class BackgroundType{
     Solid,GroundAndSky
 };
 
-class vsVisualizerVTK : public QVTKOpenGLStereoWidget
+class vsVisualizerVTK : public QVTKOpenGLNativeWidget
 {
     Q_OBJECT
 public:
@@ -111,6 +111,9 @@ private:
     QMap<OpenSim::Model*, QList<vtkSmartPointer<vtkProp>>*> modelActorsMap;
     QMap<OpenSim::Object*, QList<vtkSmartPointer<vtkProp>>*> componentActorsMap;
     QMap<OpenSim::Model*, QList<OpenSim::Object*>*> actorObjectsMap;
+
+    //optimizing performance
+    QMap<vtkSmartPointer<vtkActor>,vtkSmartPointer<vtkLineSource>> muscleActorLineSourceMap;
 
 
     OpenSim::Model *currentModel;

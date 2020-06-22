@@ -59,7 +59,7 @@
 #include <vtkPolyDataReader.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
-    QVTKOpenGLStereoWidget(parent),currentModel(nullptr)
+    QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
 {
 
     connections = vtkSmartPointer<vtkEventQtSlotConnect>::New();
@@ -479,48 +479,59 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeEllipsoid(const SimTK
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::DecorativeLine &line, SimTK::Transform lineTransform, double *scaleFactors,OpenSim::Object *obj,int actorIndex)
 {
-    auto lineSource = vtkSmartPointer<vtkLineSource>::New();
-    lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
-    lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
-    lineSource->Update();
-
-//    auto lineSource = vtkSmartPointer<vtkCylinderSource>::New();
-//    lineSource->SetCenter(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
-//    //calculating hight
-//    lineSource->SetRadius(line.getLineThickness());
-//    auto pointDiff = line.getPoint2() - line.getPoint1();
-
-    lineSource->Update();
-
-    auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
-    lineMapper->SetInputConnection(lineSource->GetOutputPort());
-
-    auto lineActor = vtkSmartPointer<vtkActor>::New();
-    lineActor->SetMapper(lineMapper);
-    double colorTable[3];
-    getDGColor(line,colorTable);
-    lineActor->GetProperty()->SetColor(colorTable);
-    lineActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
-    //lineActor->GetProperty()->SetLineWidth(line.getLineThickness()<0?1:line.getLineThickness());
-    lineActor->SetScale(scaleFactors);
-    lineActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
-
-    vtkSmartPointer<vtkTubeFilter> tubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
-    tubeFilter->SetInputConnection(lineSource->GetOutputPort());
-    tubeFilter->SetRadius(0.004);
-    tubeFilter->SetVaryRadiusToVaryRadiusOff();
-    tubeFilter->SetNumberOfSides(60);
-    tubeFilter->Update();
-
-    //qDebug() << "the tickness of the line" << line.getLineThickness();
-
-    vtkSmartPointer<vtkPolyDataMapper> tubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-    tubeMapper->SetInputConnection(tubeFilter->GetOutputPort());
 
     //updating tube actors;
     vtkSmartPointer<vtkActor> tubeActor = nullptr;
+    double colorTable[3];
+    getDGColor(line,colorTable);
+
     if(!updating){
         tubeActor = vtkSmartPointer<vtkActor>::New();
+
+        auto lineSource = vtkSmartPointer<vtkLineSource>::New();
+        lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
+        lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
+        lineSource->Update();
+
+    //    auto lineSource = vtkSmartPointer<vtkCylinderSource>::New();
+    //    lineSource->SetCenter(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
+    //    //calculating hight
+    //    lineSource->SetRadius(line.getLineThickness());
+    //    auto pointDiff = line.getPoint2() - line.getPoint1();
+
+        lineSource->Update();
+
+        auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
+        lineMapper->SetInputConnection(lineSource->GetOutputPort());
+
+    //    auto lineActor = vtkSmartPointer<vtkActor>::New();
+    //    lineActor->SetMapper(lineMapper);
+    //    lineActor->GetProperty()->SetColor(colorTable);
+    //    lineActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
+    //    //lineActor->GetProperty()->SetLineWidth(line.getLineThickness()<0?1:line.getLineThickness());
+    //    lineActor->SetScale(scaleFactors);
+    //    lineActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
+
+        vtkSmartPointer<vtkTubeFilter> tubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
+        tubeFilter->SetInputConnection(lineSource->GetOutputPort());
+        tubeFilter->SetRadius(0.004);
+        tubeFilter->SetVaryRadiusToVaryRadiusOff();
+        tubeFilter->SetNumberOfSides(60);
+        tubeFilter->Update();
+
+        //qDebug() << "the tickness of the line" << line.getLineThickness();
+
+        vtkSmartPointer<vtkPolyDataMapper> tubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+        tubeMapper->SetInputConnection(tubeFilter->GetOutputPort());
+        tubeMapper->GetInput();
+
+        tubeActor->SetMapper(tubeMapper);
+        vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
+        //tubeActor->getInp
+        //renderer->AddActor(lineActor);
+        renderer->AddActor(tubeActor);
+        muscleActorLineSourceMap.insert(tubeActor,lineSource);
+
     }else{
         auto probList = componentActorsMap.value(obj,nullptr);
         if(!probList){
@@ -531,19 +542,20 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         try {
           prop = probList->at(actorIndex);
           tubeActor = vtkActor::SafeDownCast(prop);
+          auto lineSource = muscleActorLineSourceMap.value(tubeActor);
+          lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
+          lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
+          lineSource->Update();
+
         } catch (...) {
             //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
             return nullptr;
         }
     }
-    tubeActor->SetMapper(tubeMapper);
     tubeActor->GetProperty()->SetColor(colorTable);
     tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
     tubeActor->SetScale(scaleFactors);
 
-    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
-    //renderer->AddActor(lineActor);
-    renderer->AddActor(tubeActor);
     return tubeActor;
 }
 
@@ -779,7 +791,7 @@ vtkSmartPointer<vtkProp> vsVisualizerVTK::renderDecorativeFrame(const SimTK::Dec
 void vsVisualizerVTK::updateVtkButtons()
 {
     //redisplay the buttons inside the vtk visualizer widget
-
+    //return;
     mXButton = createButton(0,0,"./vtk_images/frontView_axes.png");
     pXButton = createButton(0,1,"./vtk_images/backView_axes.png");
     mYButton = createButton(1,1,"./vtk_images/bottomView_axes.png");
@@ -1324,19 +1336,19 @@ void vsVisualizerVTK::onInteractorPick(vtkObject *obj)
 
 void vsVisualizerVTK::resizeEvent(QResizeEvent *event)
 {
-    QVTKOpenGLStereoWidget::resizeEvent(event);
+    QVTKOpenGLNativeWidget::resizeEvent(event);
     updateVtkButtons();
 }
 
 void vsVisualizerVTK::paintEvent(QPaintEvent *event)
 {
-    QVTKOpenGLStereoWidget::paintEvent(event);
+    QVTKOpenGLNativeWidget::paintEvent(event);
     //auto renderer  = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     //renderer->ResetCameraClippingRange(0.001,10000,0.0001,10000,0.0001,10000);
 }
 
 void vsVisualizerVTK::showEvent(QShowEvent *event)
 {
-    QVTKOpenGLStereoWidget::showEvent(event);
+    QVTKOpenGLNativeWidget::showEvent(event);
     updateVtkButtons();
 }

@@ -4,7 +4,7 @@
 #include <QDragEnterEvent>
 #include <vsTools/vsMotionsUtils.h>
 
-int vsSimulationToolsWidget::TimerStep = 50;
+int vsSimulationToolsWidget::TimerStep = 20;
 
 vsSimulationToolsWidget::vsSimulationToolsWidget(QWidget *parent) :
     QWidget(parent),
