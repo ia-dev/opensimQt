@@ -407,28 +407,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="182"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="199"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="216"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="256"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="286"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="316"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="195"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="238"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="271"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="288"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="325"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="342"/>
         <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="359"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="386"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="273"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="225"/>
         <source>Time :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="333"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="305"/>
         <source>Motion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="346"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="212"/>
         <source>Speed :</source>
         <translation type="unfinished"></translation>
     </message>

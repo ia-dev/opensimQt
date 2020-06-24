@@ -4,12 +4,12 @@
 #include <QDragEnterEvent>
 #include <vsTools/vsMotionsUtils.h>
 
-int vsSimulationToolsWidget::TimerStep = 20;
+int vsSimulationToolsWidget::TimerStep = 33;
 
 vsSimulationToolsWidget::vsSimulationToolsWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::vsSimulationToolsWidget),
-    m_currentTime(0)
+    m_currentTime(0),m_repeatSimulaiton(true),m_bPlayInReverse(false),m_speedFactor(1.0)
 {
     ui->setupUi(this);
 
@@ -43,6 +43,16 @@ int vsSimulationToolsWidget::currentFrame() const
     return m_currentFrame;
 }
 
+bool vsSimulationToolsWidget::bPlayInReverse() const
+{
+    return m_bPlayInReverse;
+}
+
+double vsSimulationToolsWidget::speedFactor() const
+{
+    return m_speedFactor;
+}
+
 void vsSimulationToolsWidget::setCurrentTime(int currentTime)
 {
     if (m_currentTime == currentTime)
@@ -56,9 +66,13 @@ void vsSimulationToolsWidget::setCurrentTime(int currentTime)
     if(currentTime > motion->getLastTime()*1000){
         m_currentTime = repeatSimulaiton()?motion->getFirstTime()*1000:motion->getLastTime()*1000;
         if(!repeatSimulaiton())m_simulationTimer.stop();
-    }else{
-        //it is not possible for the current time to be less then the firsttime
-        m_currentTime = currentTime;
+    }
+    else if(currentTime < motion->getFirstTime()*1000){
+        m_currentTime = repeatSimulaiton()?motion->getLastTime()*1000:motion->getFirstTime()*1000;
+        if(!repeatSimulaiton())m_simulationTimer.stop();
+    }
+    else{
+         m_currentTime = currentTime;
     }
     ui->currentTime->setText(QString::number((double)m_currentTime/1000.0));
     ui->horizontalSlider->setValue(m_currentTime);
@@ -78,6 +92,8 @@ void vsSimulationToolsWidget::onCurrentMotionChanged()
     //test if the motion is present
     if(!vsMotionsUtils::getInstance()->currentMotion) return;
     //update the display times/labels
+    ui->motionGroupBox->setEnabled(true);
+    ui->speedSpinBox->setEnabled(true);
     ui->motinNameEdit->setText(QString::fromStdString(vsMotionsUtils::getInstance()->currentMotion->second->getName()));
     ui->currentTime->setText(QString::number(vsMotionsUtils::getInstance()->currentMotion->second->getFirstTime()));
     //m_currentTime = motion->getFirstTime()*1000;
@@ -96,7 +112,7 @@ void vsSimulationToolsWidget::onCurrentMotionChanged()
 void vsSimulationToolsWidget::onTimerTimout()
 {
     //advanceTime
-    setCurrentTime(m_currentTime+TimerStep);
+    setCurrentTime(m_currentTime+m_speedFactor*(double)(m_bPlayInReverse?-TimerStep:TimerStep));
     //setCurrentFrame(m_currentFrame+1);
 
 }
@@ -122,7 +138,69 @@ void vsSimulationToolsWidget::on_horizontalSlider_valueChanged(int value)
 void vsSimulationToolsWidget::on_playButton_clicked()
 {
     //m_simulationTimer.setSingleShot(false);
+    setBPlayInReverse(false);
     m_simulationTimer.start();
+}
+
+void vsSimulationToolsWidget::on_stopToolButton_clicked()
+{
+    m_simulationTimer.stop();
+}
+
+void vsSimulationToolsWidget::on_playBackwordToolButton_clicked()
+{
+    setBPlayInReverse(true);
+    m_simulationTimer.start();
+}
+
+void vsSimulationToolsWidget::on_loopToolButton_toggled(bool checked)
+{
+    setRepeatSimulaiton(checked);
+}
+
+void vsSimulationToolsWidget::on_nextFrameToolButton_clicked()
+{
+    if(!vsMotionsUtils::getInstance()->currentMotion) return;
+    auto currentMotion = vsMotionsUtils::getInstance()->currentMotion->second;
+    setCurrentTime(m_currentTime+currentMotion->getMinTimeStep()*1000);
+//    int startFrame = 0;
+//    int endFrame = 0;
+//    //currentMotion->findFrameRange(((double)m_currentTime/1000.0),((double)m_currentTime/1000.0)+currentMotion->getMinTimeStep()
+//    //                              startFrame,endFrame);
+//    int currentFrameIndex =  currentMotion->findIndex((double)m_currentTime/1000.0);
+//    //OpenSim::Array<double> timeColumn;
+//    //currentMotion->getTimeColumn(timeColumn);
+//    double nextFrameTime = 0;
+//    currentMotion->getTime(currentFrameIndex+1,nextFrameTime);
+//    qDebug() << "current frameIndex " << currentFrameIndex << "nextFrameTime " <<nextFrameTime;
+//    setCurrentTime(nextFrameTime*1000);
+//    //currentMotion->findFrameRange(,(double)m_currentTime/1000.0+)
+    //setCurrentTime(vsMotionsUtils::getInstance()->currentMotion->second->getLastTime()*1000);
+
+}
+
+void vsSimulationToolsWidget::on_toEndToolButton_clicked()
+{
+    if(!vsMotionsUtils::getInstance()->currentMotion) return;
+    setCurrentTime(vsMotionsUtils::getInstance()->currentMotion->second->getLastTime()*1000);
+}
+
+void vsSimulationToolsWidget::on_previousFrameToolButton_clicked()
+{
+    if(!vsMotionsUtils::getInstance()->currentMotion) return;
+    auto currentMotion = vsMotionsUtils::getInstance()->currentMotion->second;
+    setCurrentTime(m_currentTime-currentMotion->getMinTimeStep()*1000);
+}
+
+void vsSimulationToolsWidget::on_restartToolButton_clicked()
+{
+    if(!vsMotionsUtils::getInstance()->currentMotion) return;
+    setCurrentTime(vsMotionsUtils::getInstance()->currentMotion->second->getFirstTime()*1000);
+}
+
+void vsSimulationToolsWidget::on_speedSpinBox_valueChanged(double arg1)
+{
+    setSpeedFactor(arg1);
 }
 
 void vsSimulationToolsWidget::setRepeatSimulaiton(bool repeatSimulaiton)
@@ -160,4 +238,23 @@ void vsSimulationToolsWidget::setCurrentFrame(int currentFrame)
                 m_currentFrame);
 
     emit currentFrameChanged(m_currentFrame);
+}
+
+void vsSimulationToolsWidget::setBPlayInReverse(bool bPlayInReverse)
+{
+    if (m_bPlayInReverse == bPlayInReverse)
+        return;
+
+    m_bPlayInReverse = bPlayInReverse;
+    emit bPlayInReverseChanged(m_bPlayInReverse);
+}
+
+void vsSimulationToolsWidget::setSpeedFactor(double speedFactor)
+{
+    qWarning("Floating point comparison needs context sanity check");
+    if (qFuzzyCompare(m_speedFactor, speedFactor))
+        return;
+
+    m_speedFactor = speedFactor;
+    emit speedFactorChanged(m_speedFactor);
 }
