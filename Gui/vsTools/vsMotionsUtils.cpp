@@ -132,11 +132,25 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     //TODO Use the timer step
     motion->findFrameRange(time,time+30,startFrame,endFrame);
     auto stateData = motion->getStateVector(startFrame)->getData();
-    int numbCoordinates = model->getNumCoordinates();
-    for (int i = 0; i < numbCoordinates; ++i) {
-        auto coordValue = stateData.get(i);
+//    int numbCoordinates = model->getNumCoordinates();
+//    for (int i = 0; i < numbCoordinates; ++i) {
+//        auto coordValue = stateData.get(i);
+//        model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+//    }
+    //qDebug("printing coordinate names in OpenSim");
+    for (int i= 0;i < model->getNumCoordinates(); i++) {
+        auto coordinateName = model->updCoordinateSet().get(i).getName();
+        int stateIndex = motion->getStateIndex(coordinateName);
+        auto coordValue = stateData.get(stateIndex);
         model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+        qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
     }
+//    qDebug() << endl << endl << "printing names in the motion file";
+//    for (int i = 0; i < motion->getColumnLabels().getSize(); ++i) {
+//        qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i));
+//    }
+    //get the coordinates using names
+    //model->upd_ComponentSet().get
 
     //SimTK::Vector stateData(motion->getColumnLabels().getSize()-1);
     //double ** stateData;
