@@ -1,4 +1,4 @@
-This is a new cpp interface for the simulation tool [opensim](). This interface uses Qt and VTk instead of the current Java netbeans interface. This makes it easier for cpp developers to help with extending and improving this interface as Qt and VTK have better support in the opens-source community.  
+This is a new cpp interface for the simulation tool [opensim](https://github.com/opensim-org/opensim-core). This interface uses Qt and VTk instead of the current Java netbeans interface. This makes it easier for cpp developers to help with extending and improving this interface as Qt and VTK have better support in the opens-source community.  
 
 Note:
 
@@ -9,26 +9,26 @@ Note:
 4. The goal is to simplify the interface developement and extension.
 5. Installation should package OpenSim, models and examples.  
 6. suggested folders structure
-   - Main
+   - vsMain
      - The main interface elements
-   - Common
+   - vsCommon
       - Elements needed by different tools 
-   - Simulation
+   - vsSimulation
       - Simulation and Tools    
-   - Visualiser
+   - vsVisualiser
       - VTK related elements
-   - Scripting
+   - vsScripting
       - Using PythonQt and VTK python 
       - Python related elements
-   - External
+   - vsExternal
       - Eexternal tools element 
-   -Docs    
+   -vsDocs    
       - Documentation 
 TODOs:
 
 The project has 5 milestones:
 
-1. [Building current interface](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+1%3A+Building+the+main+interface%22)
+1. [Building current interface](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+1%3A+Building+the+main+interface%22). (Completed) 
    - [MS0101 create the main qt project with an interface similar to the one in opensim-gui.](https://github.com/VisSimKoblenz/opensimQt/issues/1) 
    - [MS0102: open a .osim file and load its elements to the navigator](https://github.com/VisSimKoblenz/opensimQt/issues/2) 
    - [MS0103: open a .osim file and load its elements to the visualizer.](https://github.com/VisSimKoblenz/opensimQt/issues/3) 
@@ -37,7 +37,7 @@ The project has 5 milestones:
    - [MS0106: save functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/6) 
    - [MS0107: close functions: scene, model, element.](https://github.com/VisSimKoblenz/opensimQt/issues/7) 
    - [MMS0108: Visualizer functions](https://github.com/VisSimKoblenz/opensimQt/issues/10)    
-2. [Simulation.](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+2%3A+Simulation%22)
+2. [Simulation.](https://github.com/VisSimKoblenz/opensimQt/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22MileStone+2%3A+Simulation%22).(In Progress)
    - [MMS0201: implement load motion](https://github.com/VisSimKoblenz/opensimQt/issues/11)    
    - [MMS0202: implement the simulation process](https://github.com/VisSimKoblenz/opensimQt/issues/12)    
    - [MMS0203: Complete simple functions e.g. edit menu and help menu](https://github.com/VisSimKoblenz/opensimQt/issues/13) 
@@ -65,5 +65,5 @@ Future work:
      - libraries for Windows, Linux and Mac are built (manually or automatic by a server).
   
 
-
+If you like and/or using this project, your support is appreciated, (please cleck Sponsor button above for options). 
  
