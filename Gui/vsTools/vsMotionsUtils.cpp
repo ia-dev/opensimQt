@@ -203,7 +203,7 @@ void vsMotionsUtils::update(MotionEventObject eventObj)
         }
 
         //TODO add suppoet for experemental data model
-        vsOneMotionNode *newMotionNode = new vsOneMotionNode(eventObj.m_storage,motionsNode,motionsNode);
+        vsOneMotionNode *newMotionNode = new vsOneMotionNode(eventObj.m_storage,eventObj.m_model,motionsNode,motionsNode);
         qDebug()<< "Motion Name : " << QString::fromStdString(eventObj.m_storage->getName());
         emit vsOpenSimTools::tools->getNavigatorModel()->layoutChanged();
     }break;

@@ -377,64 +377,64 @@
 <context>
     <name>vsSimulationToolsWidget</name>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="32"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="35"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="44"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="47"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="67"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="70"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="108"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="111"/>
         <source>Simulate :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="115"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="118"/>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="135"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="138"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="195"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="238"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="271"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="288"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="325"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="342"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="359"/>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="386"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="201"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="244"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="280"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="297"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="334"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="351"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="368"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="395"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="225"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="231"/>
         <source>Time :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="305"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="314"/>
         <source>Motion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="212"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="218"/>
         <source>Speed :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="379"/>
+        <location filename="vsWidgets/vsSimulationToolsWidget.ui" line="388"/>
         <source>No Motion</source>
         <translation type="unfinished"></translation>
     </message>
