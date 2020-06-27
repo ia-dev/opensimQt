@@ -52,6 +52,7 @@ public slots:
     void on_previousFrameToolButton_clicked();
     void on_restartToolButton_clicked();
     void on_speedSpinBox_valueChanged(double arg1);
+    void on_spinBox_valueChanged(int arg1);
 
     void on_runSimulaitonButton_clicked();
 
@@ -73,6 +74,9 @@ signals:
     void bPlayInReverseChanged(bool bPlayInReverse);
 
     void speedFactorChanged(double speedFactor);
+
+
+private slots:
 
 
 private:

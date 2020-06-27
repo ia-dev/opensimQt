@@ -142,19 +142,19 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
             int stateIndex = motion->getStateIndex(coordinateName);
             auto coordValue = stateData.get(stateIndex);
             model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-            qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
+            //qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
         }
     } catch (...) {
-        vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
+        //vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
         try {
             int numbCoordinates = model->getNumCoordinates();
             for (int i = 0; i < numbCoordinates; ++i) {
                 auto coordValue = stateData.get(i);
                 model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-                qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
+                //qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
             }
         } catch (...) {
-            vsOpenSimTools::tools->log("both names and indicies solutions didnt work","vsMotionsUtils",vsOpenSimTools::Error);
+            //vsOpenSimTools::tools->log("both names and indicies solutions didnt work","vsMotionsUtils",vsOpenSimTools::Error);
         }
     }
 

@@ -4,6 +4,8 @@
 #include <QDragEnterEvent>
 #include <vsTools/vsMotionsUtils.h>
 
+//Q_DECLARE_METATYPE(OpenSim::Manager::IntegratorMethod)
+
 int vsSimulationToolsWidget::TimerStep = 33;
 
 vsSimulationToolsWidget::vsSimulationToolsWidget(QWidget *parent) :
@@ -16,6 +18,16 @@ vsSimulationToolsWidget::vsSimulationToolsWidget(QWidget *parent) :
     m_simulationTimer.setInterval(TimerStep);
     connect(&m_simulationTimer,&QTimer::timeout,this,&vsSimulationToolsWidget::onTimerTimout);
 
+    //setting up integrator options
+    QStringList integratorModel ;
+    integratorModel << "Explicit Euler" << "Runge Kutta2" << "Runge Kutta3"
+                    << "Runge Kutta Feldberg" <<"Runge Kutta Merson" << "Semi Explicit Euler2 "
+                    << "Verlet";
+
+    ui->integratorComboBox->addItems(integratorModel);
+    ui->integratorComboBox->setCurrentIndex(4);
+
+    ui->accuracySpinBox->setValue(0.0000001);
 }
 
 vsSimulationToolsWidget::~vsSimulationToolsWidget()
@@ -203,10 +215,17 @@ void vsSimulationToolsWidget::on_speedSpinBox_valueChanged(double arg1)
     setSpeedFactor(arg1);
 }
 
+void vsSimulationToolsWidget::on_spinBox_valueChanged(int arg1)
+{
+    TimerStep = 1000/arg1;
+    m_simulationTimer.setInterval(TimerStep);
+}
+
 void vsSimulationToolsWidget::on_runSimulaitonButton_clicked()
 {
     //run the simulation
     vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
+    on_playButton_clicked();
 
 
 }
