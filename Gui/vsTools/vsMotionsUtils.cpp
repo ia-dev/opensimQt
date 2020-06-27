@@ -7,6 +7,7 @@
  ***************************************************************************/
 #include "vsMotionsUtils.h"
 
+#include <QApplication>
 #include <QBitArray>
 #include <QDebug>
 #include <QFileDialog>
@@ -30,7 +31,7 @@ vsMotionsUtils *vsMotionsUtils::getInstance()
 
 void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 {
-    model->realizePosition(model->getWorkingState());
+    //model->realizePosition(model->getWorkingState());
     try {
         QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
         if(motionFile == "") throw  QString("error");
@@ -58,7 +59,7 @@ void vsMotionsUtils::loadMotionFile(std::string fileName)
 void vsMotionsUtils::loadMotionStorage(OpenSim::Storage *newMotion, bool primary, std::string filePath)
 {
     if(!activeModel) return;
-    if(testMotionAssociationPossible(activeModel,newMotion)){
+    if(true){//testMotionAssociationPossible(activeModel,newMotion)){
         addMotion(activeModel,newMotion,nullptr);
         vsOpenSimTools::tools->log("Motion : "+QString::fromStdString(newMotion->getName())+
                                    " Loaded to model : "+QString::fromStdString(activeModel->getName()),
@@ -83,6 +84,7 @@ bool vsMotionsUtils::testMotionAssociationPossible(OpenSim::Model *model, OpenSi
     }
 
     OpenSim::Array<std::string> markersNames;
+
     model->getMarkerSet().getNames(markersNames);
 
     for(int i=0; i<markersNames.getSize(); i++){
@@ -132,20 +134,32 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     //TODO Use the timer step
     motion->findFrameRange(time,time+30,startFrame,endFrame);
     auto stateData = motion->getStateVector(startFrame)->getData();
-//    int numbCoordinates = model->getNumCoordinates();
-//    for (int i = 0; i < numbCoordinates; ++i) {
-//        auto coordValue = stateData.get(i);
-//        model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-//    }
-    //qDebug("printing coordinate names in OpenSim");
-    for (int i= 0;i < model->getNumCoordinates(); i++) {
-        auto coordinateName = model->updCoordinateSet().get(i).getName();
-        int stateIndex = motion->getStateIndex(coordinateName);
-        auto coordValue = stateData.get(stateIndex);
-        model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-        qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
+    try {
+        //trying to use names to access coordinades
+        //qDebug("printing coordinate names in OpenSim");
+        for (int i= 0;i < model->getNumCoordinates(); i++) {
+            auto coordinateName = model->updCoordinateSet().get(i).getName();
+            int stateIndex = motion->getStateIndex(coordinateName);
+            auto coordValue = stateData.get(stateIndex);
+            model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+            qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
+        }
+    } catch (...) {
+        vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
+        try {
+            int numbCoordinates = model->getNumCoordinates();
+            for (int i = 0; i < numbCoordinates; ++i) {
+                auto coordValue = stateData.get(i);
+                model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+                qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
+            }
+        } catch (...) {
+            vsOpenSimTools::tools->log("both names and indicies solutions didnt work","vsMotionsUtils",vsOpenSimTools::Error);
+        }
     }
-//    qDebug() << endl << endl << "printing names in the motion file";
+
+
+    //qDebug() << endl << endl << "printing names in the motion file";
 //    for (int i = 0; i < motion->getColumnLabels().getSize(); ++i) {
 //        qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i));
 //    }
@@ -163,7 +177,7 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
 
     //model->setStateVariableValues(model->updWorkingState(),stateData);
     //model->realizeTime(model->updWorkingState());
-    model->realizePosition(model->updWorkingState());
+    model->realizeDynamics(model->updWorkingState());
     //model->realizeVelocity(model->updWorkingState());
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
     //TODO update the decorations instead of removing
@@ -185,6 +199,36 @@ void vsMotionsUtils::applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *
     model->realizePosition(model->updWorkingState());
     vsNavigatorNode::visualizerVTK->updating = true;
     vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
+}
+
+void vsMotionsUtils::applySimulationToCurrentModel(double endTime)
+{
+    auto model = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    applySimulationToModel(model,endTime);
+}
+
+void vsMotionsUtils::applySimulationToModel(OpenSim::Model *model, double endTime)
+{
+    qDebug() << "applying simulation to this model " << QString::fromStdString(model->getName());
+    OpenSim::simulate(*model,model->updWorkingState(),endTime,true);
+    qDebug() << "simulation ended playing results for: " << QString::fromStdString(model->getName());
+    //moving the motion file to a motions folder
+
+    //load it from the the storage file
+    try {
+        QString motionFile = QApplication::applicationDirPath()+"/"+QString::fromStdString(model->getName())+"_states.sto";
+        if(motionFile == "") throw  QString("error");
+
+        OpenSim::Storage *storage = new OpenSim::Storage(motionFile.toStdString());
+
+        activeModel = model;
+
+        loadMotionStorage(storage,true,motionFile.toStdString());
+        vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
+    }
+    catch (QString s) {
+        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
+    }
 }
 
 void vsMotionsUtils::update(MotionEventObject eventObj)

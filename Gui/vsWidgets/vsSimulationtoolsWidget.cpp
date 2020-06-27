@@ -206,8 +206,8 @@ void vsSimulationToolsWidget::on_speedSpinBox_valueChanged(double arg1)
 void vsSimulationToolsWidget::on_runSimulaitonButton_clicked()
 {
     //run the simulation
-    //load it from the the storage file
-    //add the motion file
+    vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
+
 
 }
 

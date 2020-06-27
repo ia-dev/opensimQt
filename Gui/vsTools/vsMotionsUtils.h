@@ -48,6 +48,10 @@ public:
     void applyTimeToModel(OpenSim::Model *model,OpenSim::Storage *motion,double time);
     void applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion,int framNumber);
 
+    //simulation functions
+    void applySimulationToCurrentModel(double endTime);
+    void applySimulationToModel(OpenSim::Model *model,double endTime);
+
 public slots:
     void update(MotionEventObject eventObj);
 signals:
