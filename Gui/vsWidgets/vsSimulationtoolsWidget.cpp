@@ -203,6 +203,14 @@ void vsSimulationToolsWidget::on_speedSpinBox_valueChanged(double arg1)
     setSpeedFactor(arg1);
 }
 
+void vsSimulationToolsWidget::on_runSimulaitonButton_clicked()
+{
+    //run the simulation
+    //load it from the the storage file
+    //add the motion file
+
+}
+
 void vsSimulationToolsWidget::setRepeatSimulaiton(bool repeatSimulaiton)
 {
     if (m_repeatSimulaiton == repeatSimulaiton)

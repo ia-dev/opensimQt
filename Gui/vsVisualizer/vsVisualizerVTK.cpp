@@ -499,7 +499,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     //    lineSource->SetRadius(line.getLineThickness());
     //    auto pointDiff = line.getPoint2() - line.getPoint1();
 
-        lineSource->Update();
+        //lineSource->Update();
 
         auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
         lineMapper->SetInputConnection(lineSource->GetOutputPort());
@@ -516,7 +516,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         tubeFilter->SetInputConnection(lineSource->GetOutputPort());
         tubeFilter->SetRadius(0.004);
         tubeFilter->SetVaryRadiusToVaryRadiusOff();
-        tubeFilter->SetNumberOfSides(60);
+        tubeFilter->SetNumberOfSides(20);
         tubeFilter->Update();
 
         //qDebug() << "the tickness of the line" << line.getLineThickness();
@@ -546,12 +546,14 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
           lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
           lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
           lineSource->Update();
+          //lineSource->UpdateWholeExtent();
 
         } catch (...) {
             //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
             return nullptr;
         }
     }
+    tubeActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
     tubeActor->GetProperty()->SetColor(colorTable);
     tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
     tubeActor->SetScale(scaleFactors);
@@ -1016,7 +1018,8 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //renderer->GetActiveCamera()->SetDistance(viewAngle);
     //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
     //renderer->SetNearClippingPlaneTolerance(0.5);
-    //renderer->Render();
+
+    renderer->Render();
     //currentModel = model;
     //double bounds[] = {0,0,0,0,0,0};
     //getModelBounds(model,bounds);
@@ -1170,7 +1173,7 @@ void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
     OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
     if(selectedObject == nullptr) return;
     emit this->objectSelectedInNavigator(selectedObject);
-    //qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
+    qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
 }
 
 OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor)

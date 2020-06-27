@@ -53,6 +53,8 @@ public slots:
     void on_restartToolButton_clicked();
     void on_speedSpinBox_valueChanged(double arg1);
 
+    void on_runSimulaitonButton_clicked();
+
     void setRepeatSimulaiton(bool repeatSimulaiton);
 
     void setCurrentFrame(int currentFrame);
@@ -70,9 +72,8 @@ signals:
 
     void bPlayInReverseChanged(bool bPlayInReverse);
 
-
-
     void speedFactorChanged(double speedFactor);
+
 
 private:
     Ui::vsSimulationToolsWidget *ui;

@@ -33,7 +33,7 @@ void vsOneMotionNode::setupNodeActions(QMenu *rootMenu)
                          << colorMusclesFromFileAction << syncMotionsAction << saveAsAction << closeAction);
 
     connect(makeCurrentAction,&QAction::triggered,this,&vsOneMotionNode::onMakeCurrentTriggered);
-    connect(makeCurrentAction,&QAction::triggered,[](){qDebug() << "motion made current";});
+    //connect(makeCurrentAction,&QAction::triggered,[](){qDebug() << "motion made current";});
 }
 
 void vsOneMotionNode::onMakeCurrentTriggered()
