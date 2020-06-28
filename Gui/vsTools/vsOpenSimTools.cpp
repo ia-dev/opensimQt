@@ -45,6 +45,11 @@ void vsOpenSimTools::log(QString message, QString description,MessageType messag
 
 }
 
+void vsOpenSimTools::logPlainText(QString message)
+{
+       emit messageLoggedPlain(message);
+}
+
 void vsOpenSimTools::addToOpenModels(OpenSim::Model *newModel)
 {
     QVariantMap modelVariant;

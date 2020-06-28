@@ -11,6 +11,7 @@
 #include <QBitArray>
 #include <QDebug>
 #include <QFileDialog>
+#include <QTextEdit>
 #include "vsOpenSimTools.h"
 #include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsOneMotionNode.h>
@@ -270,8 +271,8 @@ void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, d
     managerOutput << std::endl;
 
     manager.initialize(model->updWorkingState());
-    managerOutput << endl;
-    managerOutput << "integrating from" << QString::number(0).toStdString() << " to " << QString::number(endTime).toStdString();
+    managerOutput << "\n";
+    managerOutput << "integrating from " << QString::number(0).toStdString() << " to " << QString::number(endTime).toStdString();
     manager.integrate(endTime);
     QDir simulationsDir(QApplication::applicationDirPath());
     if(!simulationsDir.exists(simulationsDir.path()+"Simulations"))simulationsDir.mkdir("Simulations");
@@ -281,8 +282,8 @@ void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, d
     int kR = bKinematics->printResults(model->getName(),simulationsDir.path().toStdString(),stepSize);
 
     std::string reporterOutput;
-
-    vsOpenSimTools::tools->log(QString::fromStdString(managerOutput.str()),"vsMotionUtils");
+    QString outputStringQt(QString::fromStdString(managerOutput.str()));
+    vsOpenSimTools::tools->logPlainText(outputStringQt);
     //vsOpenSimTools::tools->log(QString::fromStdString(),"vsMotionUtils");
     activeModel = model;
     loadMotionStorage(&manager.getStateStorage(),true,"");

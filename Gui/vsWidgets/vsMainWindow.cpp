@@ -57,6 +57,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
+    connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLoggedPlain,ui->messagesTextEdit,&QTextEdit::insertPlainText);
     vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
 
     //setting up the context menu

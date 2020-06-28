@@ -30,6 +30,7 @@ public:
     vsOpenSimTools(QObject *parent = nullptr);
     static vsOpenSimTools *tools;
     void log(QString message,QString description="",MessageType messageType = MessageType::Info,bool logToConsole = true);
+    void logPlainText(QString message);
 
     //openModels functions
     void addToOpenModels(OpenSim::Model *newModel);
@@ -46,6 +47,7 @@ public:
 
 signals:
     void messageLogged(QString message);
+    void messageLoggedPlain(QString message);
 
 private:
     QFile *logFile;
