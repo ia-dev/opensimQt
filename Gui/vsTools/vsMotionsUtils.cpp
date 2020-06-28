@@ -120,6 +120,7 @@ void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotio
 void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *motion)
 {
     //TODO add multiple motions support
+    activeModel = model;
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
     applyTimeToModel(model,motion,motion->getFirstTime());
     MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
@@ -207,6 +208,12 @@ void vsMotionsUtils::applySimulationToCurrentModel(double endTime)
     applySimulationToModel(model,endTime);
 }
 
+void vsMotionsUtils::applySimulationToCurrentModelM(double endTime, double accuracy, double stepSize, OpenSim::Manager::IntegratorMethod integrator)
+{
+    auto model = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    applySimulaitonToModelUsingManager(model,endTime,accuracy,stepSize,integrator);
+}
+
 void vsMotionsUtils::applySimulationToModel(OpenSim::Model *model, double endTime)
 {
     qDebug() << "applying simulation to this model " << QString::fromStdString(model->getName());
@@ -229,6 +236,57 @@ void vsMotionsUtils::applySimulationToModel(OpenSim::Model *model, double endTim
     catch (QString s) {
         vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
     }
+}
+
+void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, double endTime, double accuracy, double stepSize, OpenSim::Manager::IntegratorMethod integrator)
+{
+    OpenSim::Storage *outputStorage = new OpenSim::Storage();
+
+    OpenSim::ForceReporter* fReporter    = new OpenSim::ForceReporter(model);
+    OpenSim::StatesReporter* sReporter   = new OpenSim::StatesReporter(model);
+    OpenSim::BodyKinematics* bKinematics = new OpenSim::BodyKinematics(model, true);
+
+    OpenSim::ConsoleReporter *cReporter = new OpenSim::ConsoleReporter();
+
+    OpenSim::Array<std::string> bodiesToRecord ;
+    bKinematics->setModel(*model);
+    bKinematics->setBodiesToRecord(bodiesToRecord);
+    model->addAnalysis(fReporter);
+    model->addAnalysis(sReporter);
+    model->addAnalysis(bKinematics);
+
+    //model->addComponent(cReporter);
+
+    OpenSim::Manager manager(*model);
+    manager.setWriteToStorage(true);
+    manager.setIntegratorMethod(integrator);
+    manager.setIntegratorAccuracy(accuracy);
+    manager.setIntegratorMaximumStepSize(stepSize);
+
+    std::ostringstream managerOutput;
+
+    model->updWorkingState().setTime(0.0);
+    model->printDetailedInfo(model->updWorkingState(),managerOutput);
+    managerOutput << std::endl;
+
+    manager.initialize(model->updWorkingState());
+    managerOutput << endl;
+    managerOutput << "integrating from" << QString::number(0).toStdString() << " to " << QString::number(endTime).toStdString();
+    manager.integrate(endTime);
+    QDir simulationsDir(QApplication::applicationDirPath());
+    if(!simulationsDir.exists(simulationsDir.path()+"Simulations"))simulationsDir.mkdir("Simulations");
+    simulationsDir.cd("Simulations");
+    int fR = fReporter->printResults(model->getName(),  simulationsDir.path().toStdString(),stepSize);
+    int sR = sReporter->printResults(model->getName(),  simulationsDir.path().toStdString(),stepSize);
+    int kR = bKinematics->printResults(model->getName(),simulationsDir.path().toStdString(),stepSize);
+
+    std::string reporterOutput;
+
+    vsOpenSimTools::tools->log(QString::fromStdString(managerOutput.str()),"vsMotionUtils");
+    //vsOpenSimTools::tools->log(QString::fromStdString(),"vsMotionUtils");
+    activeModel = model;
+    loadMotionStorage(&manager.getStateStorage(),true,"");
+
 }
 
 void vsMotionsUtils::update(MotionEventObject eventObj)

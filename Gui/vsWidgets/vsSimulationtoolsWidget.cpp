@@ -75,6 +75,8 @@ void vsSimulationToolsWidget::setCurrentTime(int currentTime)
     }
 
     auto motion = vsMotionsUtils::getInstance()->currentMotion->second;
+    qDebug() << "last time " << motion->getLastTime();
+    if(!motion) qDebug() << "the motion is null";
     if(currentTime > motion->getLastTime()*1000){
         m_currentTime = repeatSimulaiton()?motion->getFirstTime()*1000:motion->getLastTime()*1000;
         if(!repeatSimulaiton())m_simulationTimer.stop();
@@ -223,9 +225,12 @@ void vsSimulationToolsWidget::on_spinBox_valueChanged(int arg1)
 
 void vsSimulationToolsWidget::on_runSimulaitonButton_clicked()
 {
+    OpenSim::Manager::IntegratorMethod integratorMethod = (OpenSim::Manager::IntegratorMethod)ui->integratorComboBox->currentIndex();
     //run the simulation
-    vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
-    on_playButton_clicked();
+    //vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
+    vsMotionsUtils::getInstance()->applySimulationToCurrentModelM(ui->endTimeSpinBox->value(),ui->accuracySpinBox->value()
+                                                                  , ui->stepSizeSpinBox->value(),integratorMethod);
+    //on_playButton_clicked();
 
 
 }

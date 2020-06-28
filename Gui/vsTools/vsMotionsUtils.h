@@ -50,7 +50,11 @@ public:
 
     //simulation functions
     void applySimulationToCurrentModel(double endTime);
+    void applySimulationToCurrentModelM(double endTime,double accuracy, double stepSize,
+                                        OpenSim::Manager::IntegratorMethod integrator);
     void applySimulationToModel(OpenSim::Model *model,double endTime);
+    void applySimulaitonToModelUsingManager(OpenSim::Model *model, double endTime,double accuracy,
+                                            double stepSize,OpenSim::Manager::IntegratorMethod integrator);
 
 public slots:
     void update(MotionEventObject eventObj);
