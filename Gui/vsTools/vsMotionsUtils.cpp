@@ -18,7 +18,7 @@
 
 vsMotionsUtils* vsMotionsUtils::instance = nullptr;
 
-vsMotionsUtils::vsMotionsUtils(QObject *parent) : QObject(parent)
+vsMotionsUtils::vsMotionsUtils(QObject *parent) : QObject(parent),currentManager(nullptr)
 {
     //handle the changes in this class too
     connect(this,&vsMotionsUtils::notifyObservers,this,&vsMotionsUtils::update);
@@ -135,17 +135,26 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     int endFrame = 0;
     //TODO Use the timer step
     motion->findFrameRange(time,time+30,startFrame,endFrame);
+
     auto stateData = motion->getStateVector(startFrame)->getData();
     try {
         //trying to use names to access coordinades
         //qDebug("printing coordinate names in OpenSim");
-        for (int i= 0;i < model->getNumCoordinates(); i++) {
-            auto coordinateName = model->updCoordinateSet().get(i).getName();
-            int stateIndex = motion->getStateIndex(coordinateName);
+//        for (int i= 0;i < model->getNumCoordinates(); i++) {
+//            auto coordinateName = model->updCoordinateSet().get(i).getName();
+//            int stateIndex = motion->getStateIndex(coordinateName);
+//            auto coordValue = stateData.get(stateIndex);
+//            model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+//            qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
+//        }
+        for (int i = 0; i < model->getStateVariableNames().getSize(); ++i) {
+            std::string stateName = model->getStateVariableNames().get(i);
+            int stateIndex = motion->getStateIndex(stateName);
             auto coordValue = stateData.get(stateIndex);
             model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-            //qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
+            qDebug() << "coordinate name : " << QString::fromStdString(stateName) << "found with index: " << stateIndex;
         }
+
     } catch (...) {
         //vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
         try {
@@ -184,10 +193,10 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
     //TODO update the decorations instead of removing
     //model->realizeDynamics(model->updWorkingState());
-    vsNavigatorNode::visualizerVTK->updating = true;
-    //vsNavigatorNode::visualizerVTK->removeModelActors(model);
-    //vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
-    vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
+    //vsNavigatorNode::visualizerVTK->updating = true;
+    vsNavigatorNode::visualizerVTK->removeModelActors(model);
+    vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
+    //vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
 }
 
 void vsMotionsUtils::applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion, int framNumber)
@@ -258,11 +267,11 @@ void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, d
 
     //model->addComponent(cReporter);
 
-    OpenSim::Manager manager(*model);
-    manager.setWriteToStorage(true);
-    manager.setIntegratorMethod(integrator);
-    manager.setIntegratorAccuracy(accuracy);
-    manager.setIntegratorMaximumStepSize(stepSize);
+    currentManager = new OpenSim::Manager(*model);
+    currentManager->setWriteToStorage(true);
+    currentManager->setIntegratorMethod(integrator);
+    currentManager->setIntegratorAccuracy(accuracy);
+    currentManager->setIntegratorMaximumStepSize(stepSize);
 
     std::ostringstream managerOutput;
 
@@ -270,10 +279,10 @@ void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, d
     model->printDetailedInfo(model->updWorkingState(),managerOutput);
     managerOutput << std::endl;
 
-    manager.initialize(model->updWorkingState());
+    currentManager->initialize(model->updWorkingState());
     managerOutput << "\n";
     managerOutput << "integrating from " << QString::number(0).toStdString() << " to " << QString::number(endTime).toStdString();
-    manager.integrate(endTime);
+    currentManager->integrate(endTime);
     QDir simulationsDir(QApplication::applicationDirPath());
     if(!simulationsDir.exists(simulationsDir.path()+"Simulations"))simulationsDir.mkdir("Simulations");
     simulationsDir.cd("Simulations");
@@ -286,7 +295,7 @@ void vsMotionsUtils::applySimulaitonToModelUsingManager(OpenSim::Model *model, d
     vsOpenSimTools::tools->logPlainText(outputStringQt);
     //vsOpenSimTools::tools->log(QString::fromStdString(),"vsMotionUtils");
     activeModel = model;
-    loadMotionStorage(&manager.getStateStorage(),true,"");
+    loadMotionStorage(&currentManager->getStateStorage(),true,"");
 
 }
 

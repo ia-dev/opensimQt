@@ -75,7 +75,7 @@ void vsSimulationToolsWidget::setCurrentTime(int currentTime)
     }
 
     auto motion = vsMotionsUtils::getInstance()->currentMotion->second;
-    qDebug() << "last time " << motion->getLastTime();
+    qDebug() << "last time " << QString::fromStdString(motion->getName());
     if(!motion) qDebug() << "the motion is null";
     if(currentTime > motion->getLastTime()*1000){
         m_currentTime = repeatSimulaiton()?motion->getFirstTime()*1000:motion->getLastTime()*1000;

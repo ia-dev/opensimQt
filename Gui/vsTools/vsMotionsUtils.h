@@ -36,6 +36,7 @@ public:
     QMap<OpenSim::Model*,QList<OpenSim::Storage*>*> mapModelsToMotions;
     QMap<OpenSim::Storage*,QBitArray*> mapMotionToBitArray;
     QPair<OpenSim::Model*,OpenSim::Storage*> *currentMotion;
+    OpenSim::Manager *currentManager;
 
 
     //motion functions

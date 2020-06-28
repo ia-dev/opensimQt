@@ -385,6 +385,7 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
     vtkSmartPointer<vtkProp> prop = nullptr;
     vtkSmartPointer<vtkActor> actor = nullptr;
     try {
+      if(probList->size()<actorIndex+1) return;
       prop = probList->at(actorIndex);
       actor = vtkActor::SafeDownCast(prop);
     } catch (...) {
