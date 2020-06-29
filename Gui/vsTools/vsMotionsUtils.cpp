@@ -33,7 +33,7 @@ vsMotionsUtils *vsMotionsUtils::getInstance()
 void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 {
     //model->realizePosition(model->getWorkingState());
-//    try {
+    try {
         QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
         if(motionFile == "") throw  QString("error");
 
@@ -43,13 +43,13 @@ void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 
         loadMotionStorage(storage,true,motionFile.toStdString());
         vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
-//    }
-//    catch (QString s) {
-//        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
-//    }
-//    catch(...){
-//        vsOpenSimTools::tools->log("loading motion file failed :","vsModelNode",vsOpenSimTools::Error);
-//    }
+    }
+    catch (QString s) {
+        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
+    }
+    catch(...){
+        vsOpenSimTools::tools->log("loading motion file failed :","vsModelNode",vsOpenSimTools::Error);
+    }
 }
 
 void vsMotionsUtils::loadMotionFile(std::string fileName)
@@ -167,34 +167,17 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     } catch (...) {
         //vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
 //        try {
+            //positional states
             int numbCoordinates = model->getNumCoordinates();
             int numbMotionStates = motion->getColumnLabels().getSize();
             qDebug() << "number of coordinates " << numbCoordinates << " motion states " << numbMotionStates;
 
-            if((numbCoordinates*2+1) < numbMotionStates){
-                //loading the satetes that does not contain speed;
-                for (int i = 0; i < numbCoordinates; ++i) {
-                    //i+1 for the time column
-                    auto coordValue = stateData.get(i);
-                    model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-                    qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
-                    qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i+1));
-                }
-            }
-            else{
-                for(int i = 0; i < numbCoordinates; i++) {
-                    //i+1 for the time column , *2 for the speed and value
-                    auto coordValue = stateData.get(i*2);
-                    auto speedValue = stateData.get((i*2)+1);
-                    model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-                    model->updCoordinateSet().get(i).setSpeedValue(model->updWorkingState(),speedValue);
-                    //model->updCoordinateSet().get(i).set(model->updWorkingState(),speedValue);
-                    qDebug() << "corrdinate name,valuename,speedname in model : "
-                             << QString::fromStdString(model->updCoordinateSet().get(i).getName())
-                             << " " << QString::fromStdString(motion->getColumnLabels().get(i*2+1))
-                             << " " << QString::fromStdString(motion->getColumnLabels().get(i*2+1+1));
-                    //qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i+1));
-                }
+            for (int i = 0; i < numbCoordinates; ++i) {
+                //i+1 for the time column
+                auto coordValue = stateData.get(i);
+                model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+                qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
+                qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i+1));
             }
 
 //        } catch (...) {
