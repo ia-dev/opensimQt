@@ -379,13 +379,16 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
 {
     auto probList = componentActorsMap.value(obj,nullptr);
     if(!probList){
-        //qDebug() << "no prob detected.";
+        qDebug() << "no prob detected.";
         return;
     };
     vtkSmartPointer<vtkProp> prop = nullptr;
     vtkSmartPointer<vtkActor> actor = nullptr;
     try {
-      if(probList->size()<actorIndex+1) return;
+      if(probList->size()<actorIndex+1){
+          qDebug() << "actor index not found";
+          return;
+      }
       prop = probList->at(actorIndex);
       actor = vtkActor::SafeDownCast(prop);
     } catch (...) {
@@ -541,6 +544,9 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         };
         vtkSmartPointer<vtkProp> prop = nullptr;
         try {
+          if(probList->size()<actorIndex+1){
+              return nullptr;
+          }
           prop = probList->at(actorIndex);
           tubeActor = vtkActor::SafeDownCast(prop);
           auto lineSource = muscleActorLineSourceMap.value(tubeActor);

@@ -33,7 +33,7 @@ vsMotionsUtils *vsMotionsUtils::getInstance()
 void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 {
     //model->realizePosition(model->getWorkingState());
-    try {
+//    try {
         QString motionFile = QFileDialog::getOpenFileName(nullptr,"Load Motion File To Current Model","","Motions (*.mot *.sto)");
         if(motionFile == "") throw  QString("error");
 
@@ -43,13 +43,13 @@ void vsMotionsUtils::openLoadMotionDialog(OpenSim::Model *model)
 
         loadMotionStorage(storage,true,motionFile.toStdString());
         vsOpenSimTools::tools->log("motion file selected :"+motionFile,"vsModelNode");
-    }
-    catch (QString s) {
-        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
-    }
-    catch(...){
-        vsOpenSimTools::tools->log("loading motion file failed :","vsModelNode",vsOpenSimTools::Error);
-    }
+//    }
+//    catch (QString s) {
+//        vsOpenSimTools::tools->log("no file was selected :","vsModelNode",vsOpenSimTools::Error);
+//    }
+//    catch(...){
+//        vsOpenSimTools::tools->log("loading motion file failed :","vsModelNode",vsOpenSimTools::Error);
+//    }
 }
 
 void vsMotionsUtils::loadMotionFile(std::string fileName)
@@ -147,26 +147,60 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
 //            model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
 //            qDebug() << "coordinate name : " << QString::fromStdString(coordinateName) << "found with index: " << stateIndex;
 //        }
-        for (int i = 0; i < model->getStateVariableNames().getSize(); ++i) {
-            std::string stateName = model->getStateVariableNames().get(i);
-            int stateIndex = motion->getStateIndex(stateName);
-            auto coordValue = stateData.get(stateIndex);
-            model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-            qDebug() << "coordinate name : " << QString::fromStdString(stateName) << "found with index: " << stateIndex;
+        qDebug() << "number of state variables " << model->getNumStateVariables();
+
+        for (int i = 0; i < model->getNumStateVariables(); ++i) {
+            auto stateName =  model->getStateVariableNames().get(i);
+            qDebug() << "state variable name " << QString::fromStdString(stateName);
+            model->setStateVariableValue(model->updWorkingState(),stateName,stateData.get(motion->getStateIndex(stateName)));
         }
+
+//        throw QString("");
+//        for (int i = 0; i < model->getStateVariableNames().getSize(); ++i) {
+//            std::string stateName = model->getStateVariableNames().get(i);
+//            int stateIndex = motion->getStateIndex(stateName);
+//            auto coordValue = stateData.get(stateIndex);
+//            model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+//            qDebug() << "coordinate name : " << QString::fromStdString(stateName) << "found with index: " << stateIndex;
+//        }
 
     } catch (...) {
         //vsOpenSimTools::tools->log("coordinates names are mismatch, switching to indices","vsMotionUtils",vsOpenSimTools::Warning);
-        try {
+//        try {
             int numbCoordinates = model->getNumCoordinates();
-            for (int i = 0; i < numbCoordinates; ++i) {
-                auto coordValue = stateData.get(i);
-                model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
-                //qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
+            int numbMotionStates = motion->getColumnLabels().getSize();
+            qDebug() << "number of coordinates " << numbCoordinates << " motion states " << numbMotionStates;
+
+            if((numbCoordinates*2+1) < numbMotionStates){
+                //loading the satetes that does not contain speed;
+                for (int i = 0; i < numbCoordinates; ++i) {
+                    //i+1 for the time column
+                    auto coordValue = stateData.get(i);
+                    model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+                    qDebug() << "corrdinate name in model : " << QString::fromStdString(model->updCoordinateSet().get(i).getName());
+                    qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i+1));
+                }
             }
-        } catch (...) {
-            //vsOpenSimTools::tools->log("both names and indicies solutions didnt work","vsMotionsUtils",vsOpenSimTools::Error);
-        }
+            else{
+                for(int i = 0; i < numbCoordinates; i++) {
+                    //i+1 for the time column , *2 for the speed and value
+                    auto coordValue = stateData.get(i*2);
+                    auto speedValue = stateData.get((i*2)+1);
+                    model->updCoordinateSet().get(i).setValue(model->updWorkingState(),coordValue);
+                    model->updCoordinateSet().get(i).setSpeedValue(model->updWorkingState(),speedValue);
+                    //model->updCoordinateSet().get(i).set(model->updWorkingState(),speedValue);
+                    qDebug() << "corrdinate name,valuename,speedname in model : "
+                             << QString::fromStdString(model->updCoordinateSet().get(i).getName())
+                             << " " << QString::fromStdString(motion->getColumnLabels().get(i*2+1))
+                             << " " << QString::fromStdString(motion->getColumnLabels().get(i*2+1+1));
+                    //qDebug() << "corrdinate name in motion : " << QString::fromStdString(motion->getColumnLabels().get(i+1));
+                }
+            }
+
+//        } catch (...) {
+//            //vsOpenSimTools::tools->log("both names and indicies solutions didnt work","vsMotionsUtils",vsOpenSimTools::Error);
+//            qDebug() << "something about the second state";
+//        }
     }
 
 
@@ -193,10 +227,10 @@ void vsMotionsUtils::applyTimeToModel(OpenSim::Model *model, OpenSim::Storage *m
     //qDebug() << "the state of the model is updated" << motion->getColumnLabels().getSize();
     //TODO update the decorations instead of removing
     //model->realizeDynamics(model->updWorkingState());
-    //vsNavigatorNode::visualizerVTK->updating = true;
-    vsNavigatorNode::visualizerVTK->removeModelActors(model);
-    vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
-    //vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
+    vsNavigatorNode::visualizerVTK->updating = true;
+    //vsNavigatorNode::visualizerVTK->removeModelActors(model);
+    //vsNavigatorNode::visualizerVTK->addOpenSimModel(model);
+    vsNavigatorNode::visualizerVTK->updateModelDecorations(model);
 }
 
 void vsMotionsUtils::applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion, int framNumber)
