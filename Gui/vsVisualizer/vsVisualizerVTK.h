@@ -84,6 +84,7 @@ public:
     void addVtkActorToComponentMap(OpenSim::Component *compoenent,vtkSmartPointer<vtkProp> actor);
     OpenSim::Model* getModelForActor(vtkSmartPointer<vtkActor> actor);
     QList<vtkSmartPointer<vtkProp>>* getActorForComponent(OpenSim::Object *component);
+    void clearModelUpdateIndices(OpenSim::Model *model);
 
 
     BackgroundType backgroundType() const;
@@ -127,6 +128,9 @@ private:
 
     vtkSmartPointer<vtkActor> selectedActor;
     double selectedActorColorBackup[3];
+
+    //updating index
+    QMap<OpenSim::Model*,QMap<vtkSmartPointer<vtkProp>,bool>*> updateIndecies;
 
     //vtk to qt slots connection
 

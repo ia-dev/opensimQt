@@ -391,12 +391,14 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
       }
       prop = probList->at(actorIndex);
       actor = vtkActor::SafeDownCast(prop);
+      updateIndecies.value(currentModel)->insert(actor,true);
     } catch (...) {
         //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
         return;
     }
     actor->SetScale(scaleFactors);
     actor->SetUserMatrix(openSimToVtkTransform(geometryTransform));
+
 
 }
 
@@ -421,6 +423,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
     //geometry->getFrame().generateDecorations()
 
 
+    updateIndecies.value(currentModel)->insert(vtpActor,false);
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
     renderer->ResetCamera(vtpActor->GetBounds());
@@ -448,6 +451,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::D
     sphereActor->SetUserMatrix(openSimToVtkTransform(sphereTransform));
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(sphereActor);
+    updateIndecies.value(currentModel)->insert(sphereActor,false);
     return sphereActor;
 }
 
@@ -535,6 +539,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         //renderer->AddActor(lineActor);
         renderer->AddActor(tubeActor);
         muscleActorLineSourceMap.insert(tubeActor,lineSource);
+        updateIndecies.value(currentModel)->insert(tubeActor,false);
 
     }else{
         auto probList = componentActorsMap.value(obj,nullptr);
@@ -554,6 +559,8 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
           lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
           lineSource->Update();
           //lineSource->UpdateWholeExtent();
+
+          updateIndecies.value(currentModel)->insert(tubeActor,true);
 
         } catch (...) {
             //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
@@ -910,6 +917,7 @@ vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Tran
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
+    currentModel = model;
     auto renderer  = renderWindow()->GetRenderers()->GetFirstRenderer();
     auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
@@ -932,6 +940,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     geoImp.setIsUpdate(false);
     modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
+    updateIndecies.insert(model,new QMap<vtkSmartPointer<vtkProp>,bool>());
 
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
@@ -961,7 +970,6 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
     //renderer->SetNearClippingPlaneTolerance(0.5);
     //renderer->Render();
-    currentModel = model;
     double bounds[] = {0,0,0,0,0,0};
     getModelBounds(model,bounds);
     renderer->ResetCamera(bounds);
@@ -1025,6 +1033,7 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //renderer->GetActiveCamera()->SetDistance(viewAngle);
     //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
     //renderer->SetNearClippingPlaneTolerance(0.5);
+    clearModelUpdateIndices(model);
 
     renderer->Render();
     //currentModel = model;
@@ -1074,6 +1083,20 @@ QList<vtkSmartPointer<vtkProp> >* vsVisualizerVTK::getActorForComponent(OpenSim:
     if(componentActorsMap.contains(component))
         return componentActorsMap.value(component);
     return nullptr;
+}
+
+void vsVisualizerVTK::clearModelUpdateIndices(OpenSim::Model *model)
+{
+    auto map_ = updateIndecies.value(currentModel);
+    foreach (auto k, map_->keys()) {
+        //disabling when not updated
+        if(!map_->value(k)){
+            k->SetVisibility(false);
+        }else{
+            k->SetVisibility(true);
+        }
+        map_->insert(k,false);
+    }
 }
 
 
