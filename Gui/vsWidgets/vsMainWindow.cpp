@@ -15,7 +15,7 @@
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::vsMainWindow)
+    , ui(new Ui::vsMainWindow),coordinatesWidget(new vsCoordinatesWidget(this))
 {
     ui->setupUi(this);
 
@@ -63,6 +63,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
 
     //setting the update of the coordintaes dock
+    ui->scrollArea->setWidget(coordinatesWidget);
     connect(vsOpenSimTools::tools,&vsOpenSimTools::currentModelUpdated,this,&vsMainWindow::onCurrentModelUpdated);
 
     //setting up the context menu
@@ -90,7 +91,9 @@ void vsMainWindow::onCurrentModelUpdated()
 {
     //update the coordinates tab
     foreach (auto deleg, currentCoordinatesDelegates) {
-        ui->coordinatesLayout->removeWidget(deleg);
+        //ui->coordinatesLayout->removeWidget(deleg);
+        //ui->scrollAreaLayout->removeWidget(deleg);
+        coordinatesWidget->removeCoordinateDelegate(deleg);
         currentCoordinatesDelegates.removeOne(deleg);
         deleg->deleteLater();
     }
@@ -100,7 +103,9 @@ void vsMainWindow::onCurrentModelUpdated()
     for (int i = 0; i < currentModel->updCoordinateSet().getSize(); ++i) {
         auto coordinate = currentModel->updCoordinateSet().get(i);
         auto coordinateDelegate =  new vsCoordinateDelegate(&coordinate,this);
-        ui->coordinatesLayout->addWidget(coordinateDelegate);
+        //ui->coordinatesLayout->addWidget(coordinateDelegate);
+        //ui->scrollAreaLayout->addWidget(coordinateDelegate);
+        coordinatesWidget->addCoordinateDelegate(coordinateDelegate);
         currentCoordinatesDelegates.append(coordinateDelegate);
     }
 }

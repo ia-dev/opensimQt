@@ -2,6 +2,7 @@
 #define vsMainWindow_H
 
 #include "vsCoordinateDelegate.h"
+#include "vsCoordinatesWidget.h"
 
 #include <QMainWindow>
 
@@ -56,6 +57,7 @@ private:
 
     //Coordinates variables
     QList<vsCoordinateDelegate *> currentCoordinatesDelegates;
+    vsCoordinatesWidget *coordinatesWidget;
 
     // QWidget interface
 protected:
