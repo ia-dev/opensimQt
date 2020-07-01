@@ -1,3 +1,13 @@
+------------------------
+
+**Important note:**
+
+The project is still under development and is not recommend to use it in its current state. Stable version will be in the Tags tab and links to the binaries will be added. 
+
+------------------------
+
+# About this project:
+
 This is a new cpp interface for the simulation tool [opensim](https://github.com/opensim-org/opensim-core). This interface uses Qt and VTk instead of the current Java netbeans interface. This makes it easier for cpp developers to help with extending and improving this interface as Qt and VTK have better support in the opens-source community.  
 
 Note:
