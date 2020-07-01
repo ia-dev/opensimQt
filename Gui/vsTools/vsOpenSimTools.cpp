@@ -107,6 +107,12 @@ vsNavigatorModel *vsOpenSimTools::getNavigatorModel() const
 void vsOpenSimTools::setNavigatorModel(vsNavigatorModel *navigatorModel)
 {
     m_navigatorModel = navigatorModel;
+    connect(m_navigatorModel,&vsNavigatorModel::activeModelUpdated,this,&vsOpenSimTools::onCurrentModelUpdated);
+}
+
+void vsOpenSimTools::onCurrentModelUpdated()
+{
+   emit currentModelUpdated();
 }
 
 

@@ -10,9 +10,10 @@
 #include "vsCoordinateDelegate.h"
 #include "ui_vsCoordinateDelegate.h"
 
-vsCoordinateDelegate::vsCoordinateDelegate(QWidget *parent) :
+vsCoordinateDelegate::vsCoordinateDelegate(OpenSim::Coordinate *coordinate,QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::vsCoordinateDelegate)
+    ui(new Ui::vsCoordinateDelegate),
+    m_connectedCoordinate(coordinate)
 {
     ui->setupUi(this);
 }

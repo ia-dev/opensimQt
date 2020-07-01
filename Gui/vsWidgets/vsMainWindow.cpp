@@ -62,6 +62,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLoggedPlain,ui->messagesTextEdit,&QTextEdit::insertPlainText);
     vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
 
+    //setting the update of the coordintaes dock
+    connect(vsOpenSimTools::tools,&vsOpenSimTools::currentModelUpdated,this,&vsMainWindow::onCurrentModelUpdated);
+
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
@@ -81,6 +84,25 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 vsMainWindow::~vsMainWindow()
 {
     delete ui;
+}
+
+void vsMainWindow::onCurrentModelUpdated()
+{
+    //update the coordinates tab
+    foreach (auto deleg, currentCoordinatesDelegates) {
+        ui->coordinatesLayout->removeWidget(deleg);
+        currentCoordinatesDelegates.removeOne(deleg);
+        deleg->deleteLater();
+    }
+    auto currentModel = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!currentModel) return;
+    qDebug() << "creating coordinates delegates";
+    for (int i = 0; i < currentModel->updCoordinateSet().getSize(); ++i) {
+        auto coordinate = currentModel->updCoordinateSet().get(i);
+        auto coordinateDelegate =  new vsCoordinateDelegate(&coordinate,this);
+        ui->coordinatesLayout->addWidget(coordinateDelegate);
+        currentCoordinatesDelegates.append(coordinateDelegate);
+    }
 }
 
 

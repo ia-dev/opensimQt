@@ -11,6 +11,7 @@
 #define VSCOORDINATEDELEGATE_H
 
 #include <QWidget>
+#include <OpenSim.h>
 
 namespace Ui {
 class vsCoordinateDelegate;
@@ -21,11 +22,12 @@ class vsCoordinateDelegate : public QWidget
     Q_OBJECT
 
 public:
-    explicit vsCoordinateDelegate(QWidget *parent = nullptr);
+    explicit vsCoordinateDelegate(OpenSim::Coordinate *connectedCoordinate,QWidget *parent = nullptr);
     ~vsCoordinateDelegate();
 
 private:
     Ui::vsCoordinateDelegate *ui;
+    OpenSim::Coordinate *m_connectedCoordinate;
 };
 
 #endif // VSCOORDINATEDELEGATE_H

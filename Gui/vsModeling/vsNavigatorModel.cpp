@@ -35,7 +35,7 @@ void vsNavigatorModel::getActionsForIndex(QModelIndex selected_index,QMenu *root
 
 void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
-    m_activeModel = openSimModel;
+    setActiveModel(openSimModel);
     SimTK::State *stat = &m_activeModel->initSystem();
     //loading the model it self
     m_openModels.append(openSimModel);
@@ -146,6 +146,7 @@ OpenSim::Model *vsNavigatorModel::getActiveModel() const
 void vsNavigatorModel::setActiveModel(OpenSim::Model *activeModel)
 {
     m_activeModel = activeModel;
+    emit activeModelUpdated();
 }
 
 QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const

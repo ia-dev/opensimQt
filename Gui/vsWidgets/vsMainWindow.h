@@ -1,6 +1,8 @@
 #ifndef vsMainWindow_H
 #define vsMainWindow_H
 
+#include "vsCoordinateDelegate.h"
+
 #include <QMainWindow>
 
 #include <vsWidgets/vsSimulationToolsWidget.h>
@@ -20,6 +22,9 @@ public:
     ~vsMainWindow();
 
 private slots:
+
+    void onCurrentModelUpdated();
+
     void on_actionOpen_Model_triggered();
     void on_actionReload_triggered();
 
@@ -48,6 +53,9 @@ private:
     vsSimulationToolsWidget *simulationWidget;
     vsNavigatorModel *navigatorModel;
     vsPropertyModel *propertiesModel;
+
+    //Coordinates variables
+    QList<vsCoordinateDelegate *> currentCoordinatesDelegates;
 
     // QWidget interface
 protected:

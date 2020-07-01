@@ -46,7 +46,7 @@
     <widget class="Line" name="line">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>1</horstretch>
+       <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
@@ -160,7 +160,7 @@
     <widget class="Line" name="line_2">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>1</horstretch>
+       <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>

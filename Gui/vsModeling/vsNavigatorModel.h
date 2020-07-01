@@ -43,6 +43,7 @@ public:
 
 signals:
     void expendIndex(const QModelIndex modelIndex);
+    void activeModelUpdated();
 
 public:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);

@@ -45,9 +45,13 @@ public:
     vsNavigatorModel *getNavigatorModel() const;
     void setNavigatorModel(vsNavigatorModel *navigatorModel);
 
+public slots:
+    void onCurrentModelUpdated();
+
 signals:
     void messageLogged(QString message);
     void messageLoggedPlain(QString message);
+    void currentModelUpdated();
 
 private:
     QFile *logFile;
