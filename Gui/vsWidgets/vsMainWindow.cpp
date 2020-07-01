@@ -23,6 +23,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     setCorner(Qt::BottomRightCorner,Qt::RightDockWidgetArea);
 
     tabifyDockWidget(ui->scriptingDock,ui->messagesDock);
+    tabifyDockWidget(ui->navigatorDock,ui->coordinatesDock);
+    ui->navigatorDock->raise();
 
     //adding the Simulation Tools Widget to the toolBar
 
