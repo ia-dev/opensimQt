@@ -102,20 +102,32 @@ void vsMainWindow::onCurrentModelUpdated()
     qDebug() << "creating coordinates delegates";
 //    currentModel->updCoordinateSet().so
     ui->modelLabel->setText("Model : "+QString::fromStdString(currentModel->getName()));
+
+    //OpenSim::Array<std::string> coordinateNames;
+    //currentModel->updCoordinateSet().getNames(coordinateNames)
     for (int i = 0; i < currentModel->getNumCoordinates(); ++i) {
-        auto coordinate = currentModel->getCoordinateSet().get(i);
-        auto coordinateDelegate =  new vsCoordinateDelegate(coordinate,currentModel,this);
+
+        //TODO the function get return a variable that is not complete and need to be investigated.
+        //for now only the index will be supplimented
+
+        //OpenSim::Coordinate coordinate = currentModel->updCoordinateSet().get;
+
+        //qDebug() << "coordinate name: " << QString::fromStdString(coordinate.getName()) << "value: " << coordinate.getValue(currentModel->updWorkingState());
+         //qDebug() << "coordinate name: " << QString::fromStdString(currentModel->getCoordinateSet().get(i).getName()) << "value: " << currentModel->getCoordinateSet().get(i).getValue(currentModel->updWorkingState());
+        auto coordinateDelegate =  new vsCoordinateDelegate(i,currentModel,this);
         //ui->coordinatesLayout->addWidget(coordinateDelegate);
         //ui->scrollAreaLayout->addWidget(coordinateDelegate);
         coordinatesWidget->addCoordinateDelegate(coordinateDelegate);
         currentCoordinatesDelegates.append(coordinateDelegate);
     }
+
+    //using the group solution
 }
 
 
 void vsMainWindow::on_actionOpen_Model_triggered()
 {
-//    try {
+    try {
         QString fileName = QFileDialog::getOpenFileName(this,tr("Open Model From File"),QString());
         qDebug() << fileName;
         OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
@@ -126,9 +138,9 @@ void vsMainWindow::on_actionOpen_Model_triggered()
 
         //update the openModelsFile
         vsOpenSimTools::tools->addToOpenModels(newModel);
-//    } catch (...) {
-//        vsOpenSimTools::tools->log("No valid OpenSim model was selected","",vsOpenSimTools::Error,true);
-//    }
+    } catch (...) {
+        vsOpenSimTools::tools->log("No valid OpenSim model was selected","",vsOpenSimTools::Error,true);
+    }
 
 }
 

@@ -12,19 +12,22 @@
 
 #include <vsTools/vsOpenSimTools.h>
 
-vsCoordinateDelegate::vsCoordinateDelegate(OpenSim::Coordinate& coordinate,OpenSim::Model *model,QWidget *parent) :
+#define _COORDINATE m_model->updCoordinateSet().get(m_coordinateIndex)
+
+vsCoordinateDelegate::vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordinate& coordinate*/,OpenSim::Model *model,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::vsCoordinateDelegate),
-    m_connectedCoordinate(coordinate),
-    m_model(model)
+    m_connectedCoordinate(nullptr),
+    m_model(model),
+    m_coordinateIndex(coordinate_index)
 {
     ui->setupUi(this);
 
-    ui->nameLabel->setText(QString::fromStdString(coordinate.getName()).left(10));
-    ui->nameLabel->setToolTip(QString::fromStdString(coordinate.getName()));
-    ui->valueSpinBox->setValue(coordinate.getValue(model->updWorkingState()));
-    //ui->speedSpinBox->setValue(coordinate->getSpeedValue(coordinate->getModel().getWorkingState()));
-    //ui->lockButton->setChecked(coordinate->getLocked(coordinate->getModel().getWorkingState()));
+    ui->nameLabel->setText(QString::fromStdString(_COORDINATE.getName()).left(10));
+    ui->nameLabel->setToolTip(QString::fromStdString(_COORDINATE.getName()));
+    ui->valueSpinBox->setValue(_COORDINATE.getValue(model->updWorkingState()));
+    ui->speedSpinBox->setValue(_COORDINATE.getSpeedValue(m_model->getWorkingState()));
+    ui->lockButton->setChecked(_COORDINATE.getLocked(m_model->getWorkingState()));
 }
 
 vsCoordinateDelegate::~vsCoordinateDelegate()

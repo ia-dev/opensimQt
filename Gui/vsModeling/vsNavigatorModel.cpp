@@ -36,13 +36,13 @@ void vsNavigatorModel::getActionsForIndex(QModelIndex selected_index,QMenu *root
 void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 {
     SimTK::State *stat = &openSimModel->initSystem();
-    openSimModel->realizePosition(openSimModel->updWorkingState());
-    openSimModel->realizeVelocity(openSimModel->updWorkingState());
-    openSimModel->realizeAcceleration(openSimModel->updWorkingState());
+    //openSimModel->realizePosition(openSimModel->updWorkingState());
+    //openSimModel->realizeVelocity(openSimModel->updWorkingState());
+    //openSimModel->realizeAcceleration(openSimModel->updWorkingState());
     //openSimModel-
     //openSimModel->buildSystem();
     //SimTK::State *stat = &openSimModel->initializeState();
-    openSimModel->realizeDynamics(openSimModel->updWorkingState());
+   // openSimModel->realizeDynamics(openSimModel->updWorkingState());
     vsOpenSimTools::tools->modelStateMap.insert(openSimModel,stat);
     m_openModels.append(openSimModel);
     setActiveModel(openSimModel);

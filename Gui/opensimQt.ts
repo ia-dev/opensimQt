@@ -432,7 +432,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="119"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="120"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>

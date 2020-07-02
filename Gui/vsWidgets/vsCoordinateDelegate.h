@@ -22,13 +22,15 @@ class vsCoordinateDelegate : public QWidget
     Q_OBJECT
 
 public:
-    explicit vsCoordinateDelegate(OpenSim::Coordinate& connectedCoordinate,OpenSim::Model *model,QWidget *parent = nullptr);
+    explicit vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordinate& coordinate */,OpenSim::Model *model,QWidget *parent = nullptr);
     ~vsCoordinateDelegate();
 
 private:
     Ui::vsCoordinateDelegate *ui;
-    OpenSim::Coordinate m_connectedCoordinate;
+    OpenSim::Coordinate *m_connectedCoordinate;
     OpenSim::Model *m_model;
+    //using the index instead of the Coordinate untill the OpenSim bug is fixed.
+    int m_coordinateIndex;
 };
 
 #endif // VSCOORDINATEDELEGATE_H
