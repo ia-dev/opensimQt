@@ -39,7 +39,6 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
     //openSimModel->realizePosition(openSimModel->updWorkingState());
     //openSimModel->realizeVelocity(openSimModel->updWorkingState());
     //openSimModel->realizeAcceleration(openSimModel->updWorkingState());
-    //openSimModel-
     //openSimModel->buildSystem();
     //SimTK::State *stat = &openSimModel->initializeState();
    // openSimModel->realizeDynamics(openSimModel->updWorkingState());
