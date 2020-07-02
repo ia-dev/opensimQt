@@ -100,9 +100,11 @@ void vsMainWindow::onCurrentModelUpdated()
     auto currentModel = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
     if(!currentModel) return;
     qDebug() << "creating coordinates delegates";
-    for (int i = 0; i < currentModel->updCoordinateSet().getSize(); ++i) {
-        auto coordinate = currentModel->updCoordinateSet().get(i);
-        auto coordinateDelegate =  new vsCoordinateDelegate(&coordinate,this);
+//    currentModel->updCoordinateSet().so
+    ui->modelLabel->setText("Model : "+QString::fromStdString(currentModel->getName()));
+    for (int i = 0; i < currentModel->getNumCoordinates(); ++i) {
+        auto coordinate = currentModel->getCoordinateSet().get(i);
+        auto coordinateDelegate =  new vsCoordinateDelegate(coordinate,currentModel,this);
         //ui->coordinatesLayout->addWidget(coordinateDelegate);
         //ui->scrollAreaLayout->addWidget(coordinateDelegate);
         coordinatesWidget->addCoordinateDelegate(coordinateDelegate);
@@ -113,7 +115,7 @@ void vsMainWindow::onCurrentModelUpdated()
 
 void vsMainWindow::on_actionOpen_Model_triggered()
 {
-    try {
+//    try {
         QString fileName = QFileDialog::getOpenFileName(this,tr("Open Model From File"),QString());
         qDebug() << fileName;
         OpenSim::Model  *newModel = new OpenSim::Model(fileName.toStdString());
@@ -124,9 +126,9 @@ void vsMainWindow::on_actionOpen_Model_triggered()
 
         //update the openModelsFile
         vsOpenSimTools::tools->addToOpenModels(newModel);
-    } catch (...) {
-        vsOpenSimTools::tools->log("No valid OpenSim model was selected","",vsOpenSimTools::Error,true);
-    }
+//    } catch (...) {
+//        vsOpenSimTools::tools->log("No valid OpenSim model was selected","",vsOpenSimTools::Error,true);
+//    }
 
 }
 

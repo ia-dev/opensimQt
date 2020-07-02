@@ -22,12 +22,13 @@ class vsCoordinateDelegate : public QWidget
     Q_OBJECT
 
 public:
-    explicit vsCoordinateDelegate(OpenSim::Coordinate *connectedCoordinate,QWidget *parent = nullptr);
+    explicit vsCoordinateDelegate(OpenSim::Coordinate& connectedCoordinate,OpenSim::Model *model,QWidget *parent = nullptr);
     ~vsCoordinateDelegate();
 
 private:
     Ui::vsCoordinateDelegate *ui;
-    OpenSim::Coordinate *m_connectedCoordinate;
+    OpenSim::Coordinate m_connectedCoordinate;
+    OpenSim::Model *m_model;
 };
 
 #endif // VSCOORDINATEDELEGATE_H
