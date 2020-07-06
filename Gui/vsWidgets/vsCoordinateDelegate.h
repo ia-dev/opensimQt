@@ -22,6 +22,16 @@ class vsCoordinateDelegate : public QWidget
 public:
     explicit vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordinate& coordinate */,OpenSim::Model *model,QWidget *parent = nullptr);
     ~vsCoordinateDelegate();
+    void updateModelGeometries();
+
+private slots:
+    void on_valueSpinBox_valueChanged(double arg1);
+
+    void on_lockButton_toggled(bool checked);
+
+    void on_clampButton_toggled(bool checked);
+
+    void on_seekSlider_valueChanged(int value);
 
 private:
     Ui::vsCoordinateDelegate *ui;

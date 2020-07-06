@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>26</height>
+    <width>467</width>
+    <height>30</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -38,10 +38,22 @@
    <item>
     <widget class="QLabel" name="nameLabel">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>4</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>80</width>
+       <height>16777215</height>
+      </size>
      </property>
      <property name="text">
       <string>Name</string>
@@ -78,6 +90,9 @@
      <property name="maximum">
       <double>9999.000000000000000</double>
      </property>
+     <property name="singleStep">
+      <double>1.000000000000000</double>
+     </property>
     </widget>
    </item>
    <item>
@@ -93,7 +108,8 @@
      </property>
      <property name="icon">
       <iconset resource="../resource.qrc">
-       <normaloff>:/Data/Images/DefaultIcon/padlock-open.png</normaloff>:/Data/Images/DefaultIcon/padlock-open.png</iconset>
+       <normaloff>:/Data/Images/DefaultIcon/padlock-open.png</normaloff>
+       <normalon>:/Data/Images/DefaultIcon/padlock-closed.png</normalon>:/Data/Images/DefaultIcon/padlock-open.png</iconset>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -113,20 +129,39 @@
      </property>
      <property name="icon">
       <iconset resource="../resource.qrc">
-       <normaloff>:/Data/Images/DefaultIcon/MD-time-position.png</normaloff>:/Data/Images/DefaultIcon/MD-time-position.png</iconset>
+       <normaloff>:/Data/Images/DefaultIcon/MD-time-pos-back.png</normaloff>
+       <normalon>:/Data/Images/DefaultIcon/MD-time-pos-forward.png</normalon>:/Data/Images/DefaultIcon/MD-time-pos-back.png</iconset>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="boundMin">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>1</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>26</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>26</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="text">
-      <string>-90</string>
+      <string>-180</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -153,15 +188,27 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="boundMax">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>1</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>26</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>26</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="text">
-      <string>90</string>
+      <string>-180</string>
      </property>
     </widget>
    </item>
