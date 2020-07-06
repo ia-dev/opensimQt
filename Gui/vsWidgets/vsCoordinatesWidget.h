@@ -10,11 +10,25 @@
 
 #include "vsCoordinateDelegate.h"
 
+#include <QAction>
 #include <QWidget>
+#include <qmenu.h>
 
 namespace Ui {
 class vsCoordinatesWidget;
 }
+
+typedef struct CoordinateInfo
+{
+    double m_value;
+    double m_speed;
+    bool m_isLocked;
+    bool m_isClamped;
+    CoordinateInfo(double value,double speed, double isLocked , double isClamped) :
+    m_value(value),m_speed(speed),m_isLocked(isLocked),m_isClamped(isClamped)
+    {
+    }
+};
 
 class vsCoordinatesWidget : public QWidget
 {
@@ -25,9 +39,14 @@ public:
     ~vsCoordinatesWidget();
     void addCoordinateDelegate(vsCoordinateDelegate *delegate);
     void removeCoordinateDelegate(vsCoordinateDelegate *delegate);
+    QList<QAction*> getPosesActions();
+    QMenu* getPosesMenu();
 
 private:
     Ui::vsCoordinatesWidget *ui;
+    QMap<QString,QList<CoordinateInfo*>> poses;
+    QList<QAction*> m_posesActions;
+    QMenu *retMenu;
 };
 
 #endif // VSCOORDINATESWIDGET_H

@@ -367,3 +367,12 @@ void vsMainWindow::on_actionLoad_Motion_triggered()
     else return vsOpenSimTools::tools->log("No Active Model is present","vsMainWindow");
 
 }
+
+void vsMainWindow::on_posesButton_clicked()
+{
+    auto posesMenu = coordinatesWidget->getPosesMenu();
+    //posesMenu->setParent(ui->posesButton);
+    posesMenu->move(ui->)
+    posesMenu->move(ui->coordinatesDock->mapToGlobal(ui->posesButton->pos()));
+    posesMenu->show();
+}

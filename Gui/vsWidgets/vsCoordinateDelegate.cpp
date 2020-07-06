@@ -45,7 +45,7 @@ vsCoordinateDelegate::~vsCoordinateDelegate()
 void vsCoordinateDelegate::updateModelGeometries()
 {
     if(m_isLoading) return;
-    m_model->realizeDynamics(m_model->updWorkingState());
+    m_model->realizePosition(m_model->updWorkingState());
     vsNavigatorNode::visualizerVTK->updating = true;
     vsNavigatorNode::visualizerVTK->updateModelDecorations(m_model);
 

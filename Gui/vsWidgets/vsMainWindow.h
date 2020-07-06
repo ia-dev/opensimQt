@@ -49,6 +49,8 @@ private slots:
 
     void on_actionLoad_Motion_triggered();
 
+    void on_posesButton_clicked();
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
