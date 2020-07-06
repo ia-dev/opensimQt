@@ -11,7 +11,7 @@
 #include <vsTools/vsOpenSimTools.h>
 
 #include <vsModeling/vsNavigatorNode.h>
-
+#include <QState>
 #define _COORDINATE m_model->updCoordinateSet().get(m_coordinateIndex)
 
 vsCoordinateDelegate::vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordinate& coordinate*/,OpenSim::Model *model,QWidget *parent) :
@@ -34,6 +34,7 @@ vsCoordinateDelegate::vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordi
 
     ui->boundMin->setText(QString::number(ui->seekSlider->minimum()));
     ui->boundMax->setText(QString::number(ui->seekSlider->maximum()));
+    m_isLoading = false;
 }
 
 vsCoordinateDelegate::~vsCoordinateDelegate()
@@ -43,13 +44,16 @@ vsCoordinateDelegate::~vsCoordinateDelegate()
 
 void vsCoordinateDelegate::updateModelGeometries()
 {
+    if(m_isLoading) return;
     m_model->realizeDynamics(m_model->updWorkingState());
+    vsNavigatorNode::visualizerVTK->updating = true;
     vsNavigatorNode::visualizerVTK->updateModelDecorations(m_model);
 
 }
 
 void vsCoordinateDelegate::on_valueSpinBox_valueChanged(double arg1)
 {
+    if(m_isLoading)return;
     if(ui->clampButton->isChecked()){
         if(arg1>ui->seekSlider->maximum()){
             ui->valueSpinBox->setValue(ui->seekSlider->maximum());

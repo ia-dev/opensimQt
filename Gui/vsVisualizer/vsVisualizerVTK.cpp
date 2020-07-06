@@ -544,7 +544,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     }else{
         auto probList = componentActorsMap.value(obj,nullptr);
         if(!probList){
-            //qDebug() << "no prob list detected for line";
+            qDebug() << "no prob list detected for line";
             return nullptr;
         };
         vtkSmartPointer<vtkProp> prop = nullptr;
@@ -1003,15 +1003,15 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //model->updWorkingState().
     //checking that the model geometries already exist
     if(!modelActorsMap.contains(model)){
-        //qDebug() << "cant update model as No geometries are found";
+        qDebug() << "cant update model as No geometries are found";
         return;
     }
     //auto modelActors = modelActorsMap.value(model);
     //modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     //actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
 
-    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
-    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
+    OpenSim::ComponentList<OpenSim::Component> componentList =model->updComponentList();
+    OpenSim::ComponentListIterator<OpenSim::Component> itr = componentList.begin();
     while (!itr.equals(componentList.end())) {
         const OpenSim::Component *comp = &itr.deref();
         SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;

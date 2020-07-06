@@ -9,6 +9,7 @@
 #define VSCOORDINATEDELEGATE_H
 
 #include <QWidget>
+#include <QStateMachine>
 #include <OpenSim.h>
 
 namespace Ui {
@@ -39,6 +40,8 @@ private:
     Ui::vsCoordinateDelegate *ui;
     OpenSim::Coordinate *m_connectedCoordinate;
     OpenSim::Model *m_model;
+    //QStateMachine coordinateState;
+    bool m_isLoading = true;
     //using the index instead of the Coordinate untill the OpenSim bug is fixed.
     int m_coordinateIndex;
 };
