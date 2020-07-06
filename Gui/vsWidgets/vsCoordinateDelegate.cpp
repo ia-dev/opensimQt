@@ -50,12 +50,23 @@ void vsCoordinateDelegate::updateModelGeometries()
 
 void vsCoordinateDelegate::on_valueSpinBox_valueChanged(double arg1)
 {
+    if(ui->clampButton->isChecked()){
+        if(arg1>ui->seekSlider->maximum()){
+            ui->valueSpinBox->setValue(ui->seekSlider->maximum());
+            return;
+        }
+        else if(arg1<ui->seekSlider->minimum()){
+            ui->valueSpinBox->setValue(ui->seekSlider->minimum());
+        }
+    }
     _COORDINATE.setValue(m_model->updWorkingState(),SimTK::convertDegreesToRadians(arg1));
     updateModelGeometries();
 }
 
 void vsCoordinateDelegate::on_lockButton_toggled(bool checked)
 {
+    ui->valueSpinBox->setEnabled(!checked);
+    ui->seekSlider->setEnabled(!checked);
     _COORDINATE.setLocked(m_model->updWorkingState(),checked);
     updateModelGeometries();
 }

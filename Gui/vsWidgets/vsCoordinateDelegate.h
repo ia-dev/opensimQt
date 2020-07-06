@@ -33,6 +33,8 @@ private slots:
 
     void on_seekSlider_valueChanged(int value);
 
+    void on_speedSpinBox_valueChanged(double arg1);
+
 private:
     Ui::vsCoordinateDelegate *ui;
     OpenSim::Coordinate *m_connectedCoordinate;
