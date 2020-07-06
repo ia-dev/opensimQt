@@ -7,6 +7,7 @@
  ***************************************************************************/
 #include "vsCoordinatesWidget.h"
 #include "ui_vsCoordinatesWidget.h"
+#include "vsDeletePoseDialog.h"
 
 #include <QDebug>
 #include <QDialog>
@@ -106,5 +107,12 @@ void vsCoordinatesWidget::onNewPoseTriggered()
 
 void vsCoordinatesWidget::onDeleteTriggered()
 {
-
+    vsDeletePoseDialog dlg(poses.keys());
+    if(dlg.exec()){
+        auto keysToRemoved = dlg.getSelected();
+        qDebug() << "kyes to be removed : " << keysToRemoved;
+        foreach (auto k, keysToRemoved) {
+            poses.remove(k);
+        }
+    };
 }

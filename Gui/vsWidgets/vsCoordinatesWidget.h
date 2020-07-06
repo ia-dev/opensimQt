@@ -48,6 +48,7 @@ public slots:
     //menu actions
     void onSetDefaultTrigered();
     void onNewPoseTriggered();
+    void onDeleteTriggered();
 
 private:
     Ui::vsCoordinatesWidget *ui;
