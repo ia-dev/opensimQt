@@ -120,7 +120,7 @@ void vsMainWindow::onCurrentModelUpdated()
         coordinatesWidget->addCoordinateDelegate(coordinateDelegate);
         currentCoordinatesDelegates.append(coordinateDelegate);
     }
-
+    coordinatesWidget->initializeWidgetForNewModel();
     //using the group solution
 }
 
@@ -371,8 +371,7 @@ void vsMainWindow::on_actionLoad_Motion_triggered()
 void vsMainWindow::on_posesButton_clicked()
 {
     auto posesMenu = coordinatesWidget->getPosesMenu();
-    //posesMenu->setParent(ui->posesButton);
-    posesMenu->move(ui->)
-    posesMenu->move(ui->coordinatesDock->mapToGlobal(ui->posesButton->pos()));
+    //posesMenu->setParent();
+    posesMenu->move(ui->coordinatesDock->mapToGlobal(ui->posesButton->pos())+QPoint(0,30));
     posesMenu->show();
 }

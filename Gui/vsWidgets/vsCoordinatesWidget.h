@@ -39,12 +39,15 @@ public:
     ~vsCoordinatesWidget();
     void addCoordinateDelegate(vsCoordinateDelegate *delegate);
     void removeCoordinateDelegate(vsCoordinateDelegate *delegate);
+    void initializeWidgetForNewModel();
+    void loadPose(QString k);
     QList<QAction*> getPosesActions();
     QMenu* getPosesMenu();
 
 private:
     Ui::vsCoordinatesWidget *ui;
-    QMap<QString,QList<CoordinateInfo*>> poses;
+    QMap<QString,QList<CoordinateInfo>*> poses;
+    QList<vsCoordinateDelegate *> delegates;
     QList<QAction*> m_posesActions;
     QMenu *retMenu;
 };

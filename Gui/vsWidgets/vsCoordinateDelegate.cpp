@@ -7,6 +7,7 @@
  ***************************************************************************/
 #include "vsCoordinateDelegate.h"
 #include "ui_vsCoordinateDelegate.h"
+#include "vsCoordinatesWidget.h"
 
 #include <vsTools/vsOpenSimTools.h>
 
@@ -48,6 +49,27 @@ void vsCoordinateDelegate::updateModelGeometries()
     m_model->realizePosition(m_model->updWorkingState());
     vsNavigatorNode::visualizerVTK->updating = true;
     vsNavigatorNode::visualizerVTK->updateModelDecorations(m_model);
+
+}
+
+CoordinateInfo vsCoordinateDelegate::getDefaultCoordinateInfo()
+{
+    return CoordinateInfo(_COORDINATE.getDefaultValue(),_COORDINATE.getDefaultSpeedValue(),
+                          _COORDINATE.getDefaultLocked(),_COORDINATE.getDefaultClamped());
+}
+
+void vsCoordinateDelegate::setCoordinateInfo(CoordinateInfo info)
+{
+    ui->valueSpinBox->setValue(info.m_value);
+    ui->speedSpinBox->setValue(info.m_value);
+    ui->lockButton->setChecked(info.m_isLocked);
+    ui->clampButton->setChecked(info.m_isClamped);
+}
+
+CoordinateInfo vsCoordinateDelegate::getCurrentCoordinateInfo()
+{
+    return CoordinateInfo(ui->valueSpinBox->value(),ui->speedSpinBox->value(),
+                          ui->lockButton->isChecked(),ui->clampButton->isChecked());
 
 }
 

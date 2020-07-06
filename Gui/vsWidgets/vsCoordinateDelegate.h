@@ -16,6 +16,8 @@ namespace Ui {
 class vsCoordinateDelegate;
 }
 
+struct CoordinateInfo;
+
 class vsCoordinateDelegate : public QWidget
 {
     Q_OBJECT
@@ -24,6 +26,10 @@ public:
     explicit vsCoordinateDelegate(int coordinate_index/*OpenSim::Coordinate& coordinate */,OpenSim::Model *model,QWidget *parent = nullptr);
     ~vsCoordinateDelegate();
     void updateModelGeometries();
+    CoordinateInfo getCurrentCoordinateInfo();
+    CoordinateInfo getDefaultCoordinateInfo();
+
+    void setCoordinateInfo(CoordinateInfo info);
 
 private slots:
     void on_valueSpinBox_valueChanged(double arg1);
