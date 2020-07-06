@@ -9,6 +9,8 @@
 #include "ui_vsCoordinatesWidget.h"
 
 #include <QDebug>
+#include <QDialog>
+#include <QInputDialog>
 
 vsCoordinatesWidget::vsCoordinatesWidget(QWidget *parent) :
     QWidget(parent),
@@ -17,8 +19,11 @@ vsCoordinatesWidget::vsCoordinatesWidget(QWidget *parent) :
     ui->setupUi(this);
 
     QAction *newAction = new QAction("New...",this);
+    connect(newAction,&QAction::triggered,this,&vsCoordinatesWidget::onNewPoseTriggered);
     QAction *setDefaultAction = new QAction("Set Default",this);
+    connect(setDefaultAction,&QAction::triggered,this,&vsCoordinatesWidget::onSetDefaultTrigered);
     QAction *deleteAction = new QAction("Delete...",this);
+    connect(deleteAction,&QAction::triggered,this,&vsCoordinatesWidget::onDeleteTriggered);
     m_posesActions << newAction << setDefaultAction << deleteAction;
 }
 
@@ -79,4 +84,27 @@ QMenu* vsCoordinatesWidget::getPosesMenu()
     retMenu->addSeparator();
     retMenu->addActions(m_posesActions);
     return retMenu;
+}
+
+void vsCoordinatesWidget::onSetDefaultTrigered()
+{
+    if(poses.contains("default"))
+        loadPose("default");
+}
+
+void vsCoordinatesWidget::onNewPoseTriggered()
+{
+    QString newPos = QInputDialog::getText(this,"GetPoseName"," Pose Name");
+    if(newPos == "") return;
+    QList<CoordinateInfo> retList;
+    foreach (auto delegate, delegates) {
+        retList << delegate->getCurrentCoordinateInfo();
+    }
+    poses.insert(newPos,new QList<CoordinateInfo>(retList));
+
+}
+
+void vsCoordinatesWidget::onDeleteTriggered()
+{
+
 }

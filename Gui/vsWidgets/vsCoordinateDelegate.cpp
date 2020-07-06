@@ -61,6 +61,7 @@ CoordinateInfo vsCoordinateDelegate::getDefaultCoordinateInfo()
 void vsCoordinateDelegate::setCoordinateInfo(CoordinateInfo info)
 {
     ui->valueSpinBox->setValue(info.m_value);
+    ui->seekSlider->setValue(info.m_value);
     ui->speedSpinBox->setValue(info.m_value);
     ui->lockButton->setChecked(info.m_isLocked);
     ui->clampButton->setChecked(info.m_isClamped);

@@ -44,6 +44,11 @@ public:
     QList<QAction*> getPosesActions();
     QMenu* getPosesMenu();
 
+public slots:
+    //menu actions
+    void onSetDefaultTrigered();
+    void onNewPoseTriggered();
+
 private:
     Ui::vsCoordinatesWidget *ui;
     QMap<QString,QList<CoordinateInfo>*> poses;
