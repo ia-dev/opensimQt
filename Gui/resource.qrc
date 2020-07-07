@@ -693,5 +693,7 @@
         <file>Data/Images/Nodes/wrap.png</file>
         <file>Data/Images/Nodes/wrapNode.png</file>
         <file>Data/Images/View/skybox1.png</file>
+        <file>Data/Images/DefaultIcon/user-refreshG.png</file>
+        <file>Data/Images/DefaultIcon/stopRed.png</file>
     </qresource>
 </RCC>

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
-    <height>56</height>
+    <width>1379</width>
+    <height>83</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -115,7 +115,8 @@
         </property>
         <property name="icon">
          <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/power-standby.png</normaloff>:/Data/Images/DefaultIcon/power-standby.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/power-standby.png</normaloff>
+          <activeon>:/Data/Images/DefaultIcon/stopRed.png</activeon>:/Data/Images/DefaultIcon/power-standby.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -209,7 +210,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/user-refresh.png</normaloff>:/Data/Images/DefaultIcon/user-refresh.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/user-refreshG.png</normaloff>:/Data/Images/DefaultIcon/user-refreshG.png</iconset>
         </property>
         <property name="iconSize">
          <size>
