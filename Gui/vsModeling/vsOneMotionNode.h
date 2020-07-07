@@ -16,9 +16,14 @@ class vsOneMotionNode : public vsNavigatorNode
 {
     Q_OBJECT
 public:
-    vsOneMotionNode(OpenSim::Storage *motion ,vsNavigatorNode *parentNode,QObject *parent);
+    vsOneMotionNode(OpenSim::Storage *motion,OpenSim::Model* model ,vsNavigatorNode *parentNode,QObject *parent);
     OpenSim::Storage *m_motion;
+    OpenSim::Model *m_model;
     //TODO add the action for the motion node
+
+    virtual void setupNodeActions(QMenu *rootMenu) override;
+public slots:
+    void onMakeCurrentTriggered();
 };
 
 #endif // VSONEMOTIONNODE_H

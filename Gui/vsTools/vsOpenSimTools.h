@@ -29,7 +29,9 @@ public:
     Q_ENUM(MessageType)
     vsOpenSimTools(QObject *parent = nullptr);
     static vsOpenSimTools *tools;
+    QMap<OpenSim::Model*,SimTK::State*> modelStateMap;
     void log(QString message,QString description="",MessageType messageType = MessageType::Info,bool logToConsole = true);
+    void logPlainText(QString message);
 
     //openModels functions
     void addToOpenModels(OpenSim::Model *newModel);
@@ -44,8 +46,13 @@ public:
     vsNavigatorModel *getNavigatorModel() const;
     void setNavigatorModel(vsNavigatorModel *navigatorModel);
 
+public slots:
+    void onCurrentModelUpdated();
+
 signals:
     void messageLogged(QString message);
+    void messageLoggedPlain(QString message);
+    void currentModelUpdated();
 
 private:
     QFile *logFile;

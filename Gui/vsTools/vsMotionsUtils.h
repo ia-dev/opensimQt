@@ -36,6 +36,7 @@ public:
     QMap<OpenSim::Model*,QList<OpenSim::Storage*>*> mapModelsToMotions;
     QMap<OpenSim::Storage*,QBitArray*> mapMotionToBitArray;
     QPair<OpenSim::Model*,OpenSim::Storage*> *currentMotion;
+    OpenSim::Manager *currentManager;
 
 
     //motion functions
@@ -47,6 +48,14 @@ public:
     void setCurrentMotion(OpenSim::Model *model,OpenSim::Storage *motion);
     void applyTimeToModel(OpenSim::Model *model,OpenSim::Storage *motion,double time);
     void applyFrameToModel(OpenSim::Model *model, OpenSim::Storage *motion,int framNumber);
+
+    //simulation functions
+    void applySimulationToCurrentModel(double endTime);
+    void applySimulationToCurrentModelM(double endTime,double accuracy, double stepSize,
+                                        OpenSim::Manager::IntegratorMethod integrator);
+    void applySimulationToModel(OpenSim::Model *model,double endTime);
+    void applySimulaitonToModelUsingManager(OpenSim::Model *model, double endTime,double accuracy,
+                                            double stepSize,OpenSim::Manager::IntegratorMethod integrator);
 
 public slots:
     void update(MotionEventObject eventObj);

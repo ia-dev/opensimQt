@@ -96,13 +96,14 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionNew_Model"/>
     <addaction name="actionOpen_Model"/>
     <addaction name="actionLoad_Motion"/>
     <addaction name="separator"/>
@@ -126,6 +127,7 @@
     <addaction name="actionExcitations"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionFile_xml"/>
+    <addaction name="actionCurrent_model_Externally"/>
    </widget>
    <widget class="QMenu" name="menu_Script">
     <property name="title">
@@ -353,6 +355,9 @@
   </widget>
   <widget class="QDockWidget" name="propertiesDock">
    <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="floating">
     <bool>false</bool>
    </property>
    <property name="windowTitle">
@@ -588,6 +593,73 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+  </widget>
+  <widget class="QDockWidget" name="coordinatesDock">
+   <property name="windowTitle">
+    <string>Coordinates</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <layout class="QHBoxLayout" name="headerLayout">
+       <item>
+        <widget class="QLabel" name="modelLabel">
+         <property name="text">
+          <string>Model : model name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="posesButton">
+         <property name="text">
+          <string>Poses &gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>271</width>
+          <height>68</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="actionOpen_Model">
    <property name="icon">
@@ -965,6 +1037,16 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionNew_Model">
+   <property name="text">
+    <string>Create new model</string>
+   </property>
+  </action>
+  <action name="actionCurrent_model_Externally">
+   <property name="text">
+    <string>Edit current model externally</string>
    </property>
   </action>
  </widget>

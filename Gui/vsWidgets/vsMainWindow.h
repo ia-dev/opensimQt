@@ -1,6 +1,9 @@
 #ifndef vsMainWindow_H
 #define vsMainWindow_H
 
+#include "vsCoordinateDelegate.h"
+#include "vsCoordinatesWidget.h"
+
 #include <QMainWindow>
 
 #include <vsWidgets/vsSimulationToolsWidget.h>
@@ -20,6 +23,9 @@ public:
     ~vsMainWindow();
 
 private slots:
+
+    void onCurrentModelUpdated();
+
     void on_actionOpen_Model_triggered();
     void on_actionReload_triggered();
 
@@ -43,11 +49,17 @@ private slots:
 
     void on_actionLoad_Motion_triggered();
 
+    void on_posesButton_clicked();
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
     vsNavigatorModel *navigatorModel;
     vsPropertyModel *propertiesModel;
+
+    //Coordinates variables
+    QList<vsCoordinateDelegate *> currentCoordinatesDelegates;
+    vsCoordinatesWidget *coordinatesWidget;
 
     // QWidget interface
 protected:
@@ -58,5 +70,10 @@ protected:
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
+private slots:
+    void on_actionNew_Model_triggered();
+
+private slots:
+    void on_actionCurrent_model_Externally_triggered();
 };
 #endif // vsMainWindow_H

@@ -15,7 +15,7 @@
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::vsMainWindow)
+    , ui(new Ui::vsMainWindow),coordinatesWidget(new vsCoordinatesWidget(this))
 {
     ui->setupUi(this);
 
@@ -23,6 +23,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     setCorner(Qt::BottomRightCorner,Qt::RightDockWidgetArea);
 
     tabifyDockWidget(ui->scriptingDock,ui->messagesDock);
+    tabifyDockWidget(ui->navigatorDock,ui->coordinatesDock);
+    ui->navigatorDock->raise();
 
     //adding the Simulation Tools Widget to the toolBar
 
@@ -57,7 +59,12 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //setting the logging
     connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLogged,ui->messagesTextEdit,&QTextEdit::append);
+    connect(vsOpenSimTools::tools,&vsOpenSimTools::messageLoggedPlain,ui->messagesTextEdit,&QTextEdit::insertPlainText);
     vsOpenSimTools::tools->log("Log display connected","",vsOpenSimTools::Success,true);
+
+    //setting the update of the coordintaes dock
+    ui->scrollArea->setWidget(coordinatesWidget);
+    connect(vsOpenSimTools::tools,&vsOpenSimTools::currentModelUpdated,this,&vsMainWindow::onCurrentModelUpdated);
 
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
@@ -78,6 +85,43 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 vsMainWindow::~vsMainWindow()
 {
     delete ui;
+}
+
+void vsMainWindow::onCurrentModelUpdated()
+{
+    //update the coordinates tab
+    foreach (auto deleg, currentCoordinatesDelegates) {
+        //ui->coordinatesLayout->removeWidget(deleg);
+        //ui->scrollAreaLayout->removeWidget(deleg);
+        coordinatesWidget->removeCoordinateDelegate(deleg);
+        currentCoordinatesDelegates.removeOne(deleg);
+        deleg->deleteLater();
+    }
+    auto currentModel = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!currentModel) return;
+    qDebug() << "creating coordinates delegates";
+//    currentModel->updCoordinateSet().so
+    ui->modelLabel->setText("Model : "+QString::fromStdString(currentModel->getName()));
+
+    //OpenSim::Array<std::string> coordinateNames;
+    //currentModel->updCoordinateSet().getNames(coordinateNames)
+    for (int i = 0; i < currentModel->getNumCoordinates(); ++i) {
+
+        //TODO the function get return a variable that is not complete and need to be investigated.
+        //for now only the index will be supplimented
+
+        //OpenSim::Coordinate coordinate = currentModel->updCoordinateSet().get;
+
+        //qDebug() << "coordinate name: " << QString::fromStdString(coordinate.getName()) << "value: " << coordinate.getValue(currentModel->updWorkingState());
+         //qDebug() << "coordinate name: " << QString::fromStdString(currentModel->getCoordinateSet().get(i).getName()) << "value: " << currentModel->getCoordinateSet().get(i).getValue(currentModel->updWorkingState());
+        auto coordinateDelegate =  new vsCoordinateDelegate(i,currentModel,this);
+        //ui->coordinatesLayout->addWidget(coordinateDelegate);
+        //ui->scrollAreaLayout->addWidget(coordinateDelegate);
+        coordinatesWidget->addCoordinateDelegate(coordinateDelegate);
+        currentCoordinatesDelegates.append(coordinateDelegate);
+    }
+    coordinatesWidget->initializeWidgetForNewModel();
+    //using the group solution
 }
 
 
@@ -321,5 +365,59 @@ void vsMainWindow::on_actionLoad_Motion_triggered()
         vsMotionsUtils::getInstance()->openLoadMotionDialog(navigatorModel->getActiveModel());
     }
     else return vsOpenSimTools::tools->log("No Active Model is present","vsMainWindow");
+
+}
+
+void vsMainWindow::on_posesButton_clicked()
+{
+    auto posesMenu = coordinatesWidget->getPosesMenu();
+    //posesMenu->setParent();
+    posesMenu->move(ui->coordinatesDock->mapToGlobal(ui->posesButton->pos())+QPoint(0,30));
+    posesMenu->show();
+}
+
+void vsMainWindow::on_actionCurrent_model_Externally_triggered()
+{
+    qDebug() <<"edit current model in a text editor...";
+    if(navigatorModel->getActiveModel()){
+      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
+      // open the file in system text editor
+      try{
+          //QProcess *vsProcess = new QProcess(this);
+        qDebug() << "productType():" << QSysInfo::productType();
+//        if (QSysInfo::productType() =="Windows")
+//            vsProcess::start(" Write " + modelFilename );
+//        else if (QSysInfo::productType() =="Linux")
+//            vsProcess::startc(" gedit " + modelFilename );
+//        else if (QSysInfo::productType() =="Windows")
+//            vsProcess::start(" open " + modelFilename );
+//        else
+//            qDebug() <<"un supported operating system ....";
+      } catch (...) {
+          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
+      }
+    }//if
+
+}
+
+void vsMainWindow::on_actionNew_Model_triggered()
+{
+  //copy the file from template folders to the build folder newmodel.osim
+
+  //load to the new model
+  try {      
+      qDebug() <<"create a new model from template ...";
+
+//      QString newModelFileName = QApplication.applicationDirPath()+"/templates/template.osim" ;
+//      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
+//      qDebug() << QString::fromStdString(newModel->getName());
+//      navigatorModel->loadOpenSimModel(newModel);
+//      //TODO save the state somewhere
+//      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+//      //update the openModelsFile
+//      vsOpenSimTools::tools->addToOpenModels(newModel);
+  } catch (...) {
+      vsOpenSimTools::tools->log("No valid OpenSim model was created","",vsOpenSimTools::Error,true);
+  }
 
 }

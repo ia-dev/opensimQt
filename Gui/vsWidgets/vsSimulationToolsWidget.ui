@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1058</width>
+    <width>1125</width>
     <height>56</height>
    </rect>
   </property>
@@ -98,41 +98,17 @@
      <property name="title">
       <string/>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QGridLayout" name="gridLayout_2">
       <property name="topMargin">
        <number>1</number>
       </property>
       <property name="bottomMargin">
        <number>1</number>
       </property>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Simulate :</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton">
-        <property name="text">
-         <string>Run</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/user-refresh.png</normaloff>:/Data/Images/DefaultIcon/user-refresh.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>24</width>
-          <height>24</height>
-         </size>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <property name="verticalSpacing">
+       <number>1</number>
+      </property>
+      <item row="0" column="4" rowspan="3">
        <widget class="QToolButton" name="toolButton_2">
         <property name="text">
          <string>Stop</string>
@@ -151,6 +127,103 @@
          <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
        </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QDoubleSpinBox" name="stepSizeSpinBox">
+        <property name="decimals">
+         <number>7</number>
+        </property>
+        <property name="maximum">
+         <double>999.990000000000009</double>
+        </property>
+        <property name="value">
+         <double>0.001000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QDoubleSpinBox" name="accuracySpinBox">
+        <property name="decimals">
+         <number>7</number>
+        </property>
+        <property name="maximum">
+         <double>999.990000000000009</double>
+        </property>
+        <property name="value">
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" rowspan="3">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Simulate :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QDoubleSpinBox" name="endTimeSpinBox">
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <double>999.990000000000009</double>
+        </property>
+        <property name="value">
+         <double>3.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Step Size (s)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="7">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Accuracy</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Integrator</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="endTimeLabel">
+        <property name="text">
+         <string>End Time:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="3">
+       <widget class="QToolButton" name="runSimulaitonButton">
+        <property name="text">
+         <string>Run</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resource.qrc">
+          <normaloff>:/Data/Images/DefaultIcon/user-refresh.png</normaloff>:/Data/Images/DefaultIcon/user-refresh.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QComboBox" name="integratorComboBox"/>
       </item>
      </layout>
     </widget>
@@ -176,21 +249,21 @@
       <property name="verticalSpacing">
        <number>1</number>
       </property>
-      <item row="0" column="4">
-       <widget class="QLineEdit" name="currentTime">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_3">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="text">
+         <string>Time :</string>
+        </property>
        </widget>
       </item>
-      <item row="2" column="8">
-       <widget class="QToolButton" name="stopToolButton">
+      <item row="2" column="9">
+       <widget class="QToolButton" name="playButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -202,33 +275,20 @@
         </property>
         <property name="icon">
          <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/MD-pause.png</normaloff>:/Data/Images/DefaultIcon/MD-pause.png</iconset>
+          <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="QLabel" name="label_4">
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="currentTime">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Speed :</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="label_3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Time :</string>
         </property>
        </widget>
       </item>
@@ -249,22 +309,33 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="4">
-       <widget class="QDoubleSpinBox" name="speedSpinBox">
-        <property name="enabled">
-         <bool>false</bool>
+      <item row="0" column="5" colspan="7">
+       <widget class="QSlider" name="horizontalSlider">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       </widget>
+      </item>
+      <item row="0" column="12">
+       <widget class="QToolButton" name="loopToolButton">
+        <property name="text">
+         <string>...</string>
         </property>
-        <property name="singleStep">
-         <double>0.100000000000000</double>
+        <property name="icon">
+         <iconset resource="../resource.qrc">
+          <normaloff>:/Data/Images/DefaultIcon/MD-reload.png</normaloff>:/Data/Images/DefaultIcon/MD-reload.png</iconset>
         </property>
-        <property name="value">
-         <double>1.000000000000000</double>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -302,6 +373,59 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="7">
+       <widget class="QToolButton" name="playBackwordToolButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resource.qrc">
+          <normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QToolButton" name="stopToolButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resource.qrc">
+          <normaloff>:/Data/Images/DefaultIcon/MD-pause.png</normaloff>:/Data/Images/DefaultIcon/MD-pause.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QDoubleSpinBox" name="speedSpinBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="sizePolicy">
@@ -315,27 +439,16 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5" colspan="7">
-       <widget class="QSlider" name="horizontalSlider">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="9">
-       <widget class="QToolButton" name="playButton">
+      <item row="2" column="3">
+       <widget class="QLabel" name="label_4">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-right.png</iconset>
+         <string>Speed :</string>
         </property>
        </widget>
       </item>
@@ -356,23 +469,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="7">
-       <widget class="QToolButton" name="playBackwordToolButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</normaloff>:/Data/Images/DefaultIcon/arrow-3-left.png</iconset>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <widget class="QLineEdit" name="motinNameEdit">
         <property name="enabled">
@@ -389,26 +485,23 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="12">
-       <widget class="QToolButton" name="loopToolButton">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>...</string>
+         <string>fps</string>
         </property>
-        <property name="icon">
-         <iconset resource="../resource.qrc">
-          <normaloff>:/Data/Images/DefaultIcon/MD-reload.png</normaloff>:/Data/Images/DefaultIcon/MD-reload.png</iconset>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBox">
+        <property name="minimum">
+         <number>1</number>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>16</height>
-         </size>
+        <property name="maximum">
+         <number>1000</number>
         </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+        <property name="value">
+         <number>30</number>
         </property>
        </widget>
       </item>

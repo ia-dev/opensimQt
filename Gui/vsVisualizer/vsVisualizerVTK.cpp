@@ -379,20 +379,26 @@ void vsVisualizerVTK::updateDecorativeGeometry(OpenSim::Object *obj, int actorIn
 {
     auto probList = componentActorsMap.value(obj,nullptr);
     if(!probList){
-        //qDebug() << "no prob detected.";
+        qDebug() << "no prob detected.";
         return;
     };
     vtkSmartPointer<vtkProp> prop = nullptr;
     vtkSmartPointer<vtkActor> actor = nullptr;
     try {
+      if(probList->size()<actorIndex+1){
+          qDebug() << "actor index not found";
+          return;
+      }
       prop = probList->at(actorIndex);
       actor = vtkActor::SafeDownCast(prop);
+      updateIndecies.value(currentModel)->insert(actor,true);
     } catch (...) {
         //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
         return;
     }
     actor->SetScale(scaleFactors);
     actor->SetUserMatrix(openSimToVtkTransform(geometryTransform));
+
 
 }
 
@@ -417,6 +423,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeMeshFile(const SimTK:
     //geometry->getFrame().generateDecorations()
 
 
+    updateIndecies.value(currentModel)->insert(vtpActor,false);
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(vtpActor);
     renderer->ResetCamera(vtpActor->GetBounds());
@@ -444,6 +451,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeSphere(const SimTK::D
     sphereActor->SetUserMatrix(openSimToVtkTransform(sphereTransform));
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(sphereActor);
+    updateIndecies.value(currentModel)->insert(sphereActor,false);
     return sphereActor;
 }
 
@@ -499,7 +507,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
     //    lineSource->SetRadius(line.getLineThickness());
     //    auto pointDiff = line.getPoint2() - line.getPoint1();
 
-        lineSource->Update();
+        //lineSource->Update();
 
         auto lineMapper =  vtkSmartPointer<vtkPolyDataMapper>::New();
         lineMapper->SetInputConnection(lineSource->GetOutputPort());
@@ -516,7 +524,7 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         tubeFilter->SetInputConnection(lineSource->GetOutputPort());
         tubeFilter->SetRadius(0.004);
         tubeFilter->SetVaryRadiusToVaryRadiusOff();
-        tubeFilter->SetNumberOfSides(60);
+        tubeFilter->SetNumberOfSides(20);
         tubeFilter->Update();
 
         //qDebug() << "the tickness of the line" << line.getLineThickness();
@@ -531,27 +539,35 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::renderDecorativeLine(const SimTK::Dec
         //renderer->AddActor(lineActor);
         renderer->AddActor(tubeActor);
         muscleActorLineSourceMap.insert(tubeActor,lineSource);
+        updateIndecies.value(currentModel)->insert(tubeActor,false);
 
     }else{
         auto probList = componentActorsMap.value(obj,nullptr);
         if(!probList){
-            //qDebug() << "no prob list detected for line";
+            qDebug() << "no prob list detected for line";
             return nullptr;
         };
         vtkSmartPointer<vtkProp> prop = nullptr;
         try {
+          if(probList->size()<actorIndex+1){
+              return nullptr;
+          }
           prop = probList->at(actorIndex);
           tubeActor = vtkActor::SafeDownCast(prop);
           auto lineSource = muscleActorLineSourceMap.value(tubeActor);
           lineSource->SetPoint1(line.getPoint1().get(0),line.getPoint1().get(1),line.getPoint1().get(2));
           lineSource->SetPoint2(line.getPoint2().get(0),line.getPoint2().get(1),line.getPoint2().get(2));
           lineSource->Update();
+          //lineSource->UpdateWholeExtent();
+
+          updateIndecies.value(currentModel)->insert(tubeActor,true);
 
         } catch (...) {
             //qDebug() << "no prob found at index> " << actorIndex << "\n" << "or the prob cant be converted to actor";
             return nullptr;
         }
     }
+    tubeActor->SetUserMatrix(openSimToVtkTransform(lineTransform));
     tubeActor->GetProperty()->SetColor(colorTable);
     tubeActor->GetProperty()->SetOpacity(line.getOpacity()<0?1:line.getOpacity());
     tubeActor->SetScale(scaleFactors);
@@ -901,6 +917,7 @@ vtkSmartPointer<vtkMatrix4x4> vsVisualizerVTK::openSimToVtkTransform(SimTK::Tran
 
 void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
 {
+    currentModel = model;
     auto renderer  = renderWindow()->GetRenderers()->GetFirstRenderer();
     auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
@@ -923,6 +940,7 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     geoImp.setIsUpdate(false);
     modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
+    updateIndecies.insert(model,new QMap<vtkSmartPointer<vtkProp>,bool>());
 
 
     OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
@@ -952,7 +970,6 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
     //renderer->SetNearClippingPlaneTolerance(0.5);
     //renderer->Render();
-    currentModel = model;
     double bounds[] = {0,0,0,0,0,0};
     getModelBounds(model,bounds);
     renderer->ResetCamera(bounds);
@@ -986,15 +1003,15 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //model->updWorkingState().
     //checking that the model geometries already exist
     if(!modelActorsMap.contains(model)){
-        //qDebug() << "cant update model as No geometries are found";
+        qDebug() << "cant update model as No geometries are found";
         return;
     }
     //auto modelActors = modelActorsMap.value(model);
     //modelActorsMap.insert(model,new QList<vtkSmartPointer<vtkProp>>());
     //actorObjectsMap.insert(model,new QList<OpenSim::Object*>());
 
-    OpenSim::ComponentList<const OpenSim::Component> componentList = model->getComponentList();
-    OpenSim::ComponentListIterator<const OpenSim::Component> itr = componentList.begin();
+    OpenSim::ComponentList<OpenSim::Component> componentList =model->updComponentList();
+    OpenSim::ComponentListIterator<OpenSim::Component> itr = componentList.begin();
     while (!itr.equals(componentList.end())) {
         const OpenSim::Component *comp = &itr.deref();
         SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
@@ -1016,7 +1033,9 @@ void vsVisualizerVTK::updateModelDecorations(OpenSim::Model *model)
     //renderer->GetActiveCamera()->SetDistance(viewAngle);
     //renderer->GetActiveCamera()->SetFocalPoint(0,0,0);
     //renderer->SetNearClippingPlaneTolerance(0.5);
-    //renderer->Render();
+    clearModelUpdateIndices(model);
+
+    renderer->Render();
     //currentModel = model;
     //double bounds[] = {0,0,0,0,0,0};
     //getModelBounds(model,bounds);
@@ -1064,6 +1083,20 @@ QList<vtkSmartPointer<vtkProp> >* vsVisualizerVTK::getActorForComponent(OpenSim:
     if(componentActorsMap.contains(component))
         return componentActorsMap.value(component);
     return nullptr;
+}
+
+void vsVisualizerVTK::clearModelUpdateIndices(OpenSim::Model *model)
+{
+    auto map_ = updateIndecies.value(currentModel);
+    foreach (auto k, map_->keys()) {
+        //disabling when not updated
+        if(!map_->value(k)){
+            k->SetVisibility(false);
+        }else{
+            k->SetVisibility(true);
+        }
+        map_->insert(k,false);
+    }
 }
 
 
@@ -1170,7 +1203,7 @@ void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
     OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
     if(selectedObject == nullptr) return;
     emit this->objectSelectedInNavigator(selectedObject);
-    //qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
+    qDebug() << "selected object " << QString::fromStdString(selectedObject->getName());
 }
 
 OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor)

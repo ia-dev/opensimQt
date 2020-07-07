@@ -13,6 +13,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(OpenSim_DIR "/home/ibr/myGitLab/opensim-dev/IA/install-opensim-core/lib/cmake/OpenSim")
+
 find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets OpenGL  LinguistTools REQUIRED)
 
 
@@ -51,7 +53,6 @@ include(${VTK_USE_FILE})
 include(cmake/GitUtils.cmake)
 
 option(Download_Geometry "Download geometry, models, and other files." False)
-
 if (Download_Models)
    message(STATUS "Downloading geometry, models and other files to vsWorkSpace")
    git_clone(
@@ -70,6 +71,12 @@ file(GLOB VtkImages
     )
 file(COPY ${VtkImages}
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/vtk_images)
+
+file(GLOB templateModels
+     ${CMAKE_SOURCE_DIR}/Data/templates/*.osim
+     )
+file(COPY ${templateModels}
+      DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/templates)
 
 #activate this when working with 8.2 vtk version
 #if("${VTK_QT_VERSION}" STREQUAL "")

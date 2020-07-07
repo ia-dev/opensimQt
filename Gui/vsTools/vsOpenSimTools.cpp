@@ -45,6 +45,11 @@ void vsOpenSimTools::log(QString message, QString description,MessageType messag
 
 }
 
+void vsOpenSimTools::logPlainText(QString message)
+{
+       emit messageLoggedPlain(message);
+}
+
 void vsOpenSimTools::addToOpenModels(OpenSim::Model *newModel)
 {
     QVariantMap modelVariant;
@@ -102,6 +107,12 @@ vsNavigatorModel *vsOpenSimTools::getNavigatorModel() const
 void vsOpenSimTools::setNavigatorModel(vsNavigatorModel *navigatorModel)
 {
     m_navigatorModel = navigatorModel;
+    connect(m_navigatorModel,&vsNavigatorModel::activeModelUpdated,this,&vsOpenSimTools::onCurrentModelUpdated);
+}
+
+void vsOpenSimTools::onCurrentModelUpdated()
+{
+   emit currentModelUpdated();
 }
 
 
