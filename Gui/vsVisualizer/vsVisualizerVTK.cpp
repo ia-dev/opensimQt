@@ -1200,6 +1200,11 @@ void vsVisualizerVTK::focusOnCurrentModel()
 
 void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
 {
+    if(actor == nullptr){
+        qDebug() << "the actot was deselected";
+        emit this->objectSelectedInNavigator(nullptr);
+        return;
+    }
     OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
     if(selectedObject == nullptr) return;
     emit this->objectSelectedInNavigator(selectedObject);
@@ -1350,12 +1355,20 @@ void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
 
         //updating the selected actor pointer and color
         if(propPicker->GetActor()){
-            if(selectedActor){
+            //removing the selected actor on second click
+            if(propPicker->GetActor() == selectedActor){
                 selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+                selectActorInNavigator(nullptr);
+                selectedActor = nullptr;
             }
-            selectedActor =  propPicker->GetActor();
-            selectedActor->GetProperty()->GetColor(selectedActorColorBackup);
-            selectedActor->GetProperty()->SetColor(1,.6,0);
+            else{
+                if(selectedActor){
+                    selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+                }
+                selectedActor =  propPicker->GetActor();
+                selectedActor->GetProperty()->GetColor(selectedActorColorBackup);
+                selectedActor->GetProperty()->SetColor(1,.6,0);
+            }
         }
 
     }

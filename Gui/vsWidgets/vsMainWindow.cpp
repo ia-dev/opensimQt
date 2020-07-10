@@ -260,6 +260,13 @@ void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
 
 void vsMainWindow::onSelectedObjectActor(OpenSim::Object *object)
 {
+    if(object == nullptr){
+        //navigatorModel->selectObject(nullptr);
+        ui->navigatorTreeView->setCurrentIndex(QModelIndex());
+        propertiesModel->setSelectedNavigarorNode(nullptr);
+        //TODO update the properties
+        return ;
+    }
     QModelIndex selectedIndex = navigatorModel->selectObject(object);
     if(!selectedIndex.isValid()) return;
     ui->navigatorTreeView->setCurrentIndex(selectedIndex);

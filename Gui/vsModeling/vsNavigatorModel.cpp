@@ -66,6 +66,9 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
 QModelIndex vsNavigatorModel::selectObject(OpenSim::Object *obj)
 {
+//    if(obj == nullptr){
+//        this->expendIndex(QModelIndex());
+//    }
     vsNavigatorNode *selectedObjNode  = m_rootNNode->getNodeForObj(obj);
     if(selectedObjNode == nullptr) return QModelIndex() ;
     qDebug() << "selected Node " << selectedObjNode->displayName;
