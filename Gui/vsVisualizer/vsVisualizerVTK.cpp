@@ -1249,8 +1249,23 @@ void vsVisualizerVTK::selectOpenSimObject(OpenSim::Object *obj)
        }
 
     }
+    else if(selectedActor){
+        auto object = getOpenSimObjectForActor(selectedActor);
+        //if the object was the same unselect the old one
+        selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+        if(object == obj){
+            selectedActor = nullptr;
+            m_selectedOpenSimObject = nullptr;
+            return;
+        }
+        //if they where diffrent unselect the old one and highlight the new
+    }
 
-    selectedOpenSimObjectColors.clear();
+    if(m_selectedOpenSimObject == obj){
+        m_selectedOpenSimObject = nullptr;
+        renderWindow()->Render();
+        return;
+    }
 
     m_selectedOpenSimObject = obj;
 
@@ -1406,6 +1421,33 @@ void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
 
         //updating the selected actor pointer and color
         if(propPicker->GetActor()){
+            //removing the selected object
+            if(m_selectedOpenSimObject){
+
+                auto selectedObjectActors = getActorForComponent(m_selectedOpenSimObject);
+                foreach (auto actorAsProb, *selectedObjectActors) {
+                    try {
+                        vtkSmartPointer<vtkActor> actor = vtkActor::SafeDownCast(actorAsProb);
+                        auto actorColor = selectedOpenSimObjectColors.value(actor);
+                        actor->GetProperty()->SetColor(actorColor.x(), actorColor.y(), actorColor.z());
+                    } catch (...) {
+                    }
+
+                }
+            }
+
+            //exiting if the new  object is the same as the selected object
+            auto currentActorOpenSimObject = getOpenSimObjectForActor(propPicker->GetActor());
+            if(currentActorOpenSimObject == m_selectedOpenSimObject){
+                m_selectedOpenSimObject = nullptr;
+                selectedOpenSimObjectColors.clear();
+                selectActorInNavigator(nullptr);
+                return;
+            }
+
+            m_selectedOpenSimObject = nullptr;
+            selectedOpenSimObjectColors.clear();
+
             //removing the selected actor on second click
             if(propPicker->GetActor() == selectedActor){
                 selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
