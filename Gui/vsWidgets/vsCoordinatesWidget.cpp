@@ -113,6 +113,7 @@ void vsCoordinatesWidget::onDeleteTriggered()
         qDebug() << "kyes to be removed : " << keysToRemoved;
         foreach (auto k, keysToRemoved) {
             poses.remove(k);
+            //TODO do the cleaning
         }
     };
 }
