@@ -1233,6 +1233,25 @@ void vsVisualizerVTK::selectOpenSimObject(OpenSim::Object *obj)
     //TODO restore the previous obj
     //TODO if the new object is the same deselect the object
 
+    //cleaning the previous selection
+    if(m_selectedOpenSimObject){
+       auto previousComponentActors = getActorForComponent(m_selectedOpenSimObject);
+       for (int i = 0; i < previousComponentActors->size(); ++i) {
+           auto prob = previousComponentActors->at(i);
+           try {
+               auto actor = vtkActor::SafeDownCast(prob);
+                auto theColor = selectedOpenSimObjectColors.value(prob);
+               qDebug() << "printing the color of the prob " << theColor[0] <<" " << theColor[1] << " " << theColor[2];
+               actor->GetProperty()->SetColor(theColor.x(),theColor.y(),theColor.z());
+           } catch (...) {
+               qDebug() << "could not convert prob to actor for selected opensim object";
+           }
+       }
+
+    }
+
+    selectedOpenSimObjectColors.clear();
+
     m_selectedOpenSimObject = obj;
 
     foreach (auto prob, *componentActors) {
@@ -1243,10 +1262,13 @@ void vsVisualizerVTK::selectOpenSimObject(OpenSim::Object *obj)
             qDebug() << "could not convert prob to actor for selected opensim object";
             return;
         }
-        selectedOpenSimObjectColors.insert(prob,actor->GetProperty()->GetColor());
+        double *backupColor = actor->GetProperty()->GetColor();
+        selectedOpenSimObjectColors.insert(prob,QVector3D(backupColor[0],backupColor[1],backupColor[2]));
         actor->GetProperty()->SetColor(1,.6,0);
         //actor->SetVisibility(false);
     }
+
+    renderWindow()->Render();
 
 }
 

@@ -135,7 +135,7 @@ private:
 
     //selection members
     OpenSim::Object *m_selectedOpenSimObject = nullptr;
-    QMap<vtkSmartPointer<vtkProp>,double*> selectedOpenSimObjectColors;
+    QMap<vtkSmartPointer<vtkProp>,QVector3D> selectedOpenSimObjectColors;
 
     //vtk to qt slots connection
 
