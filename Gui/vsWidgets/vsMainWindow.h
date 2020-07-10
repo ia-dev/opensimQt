@@ -70,5 +70,10 @@ protected:
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
+private slots:
+    void on_actionNew_Model_triggered();
+
+private slots:
+    void on_actionCurrent_model_Externally_triggered();
 };
 #endif // vsMainWindow_H

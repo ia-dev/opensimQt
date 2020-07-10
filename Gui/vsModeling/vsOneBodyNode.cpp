@@ -39,10 +39,12 @@ void vsOneBodyNode::onRenameActionTriggered()
     auto bodyObj = OpenSim::Body::safeDownCast(openSimObject);
     if(!bodyObj) return;
     QString newName = QInputDialog::getText(nullptr,"Rename","New Body Name: ");
-    vsXmlUtils::changeBodyName(bodyObj->getModel().getInputFileName(),bodyObj->getName(),newName.toStdString());
+    //vsXmlUtils::changeBodyName(bodyObj->getModel().getInputFileName(),bodyObj->getName(),newName.toStdString());
     bodyObj->setName(newName.toStdString());
-    //bodyObj->
-    //bodyObj->get
+    //TODO: BUG not all related objects are changed
+    bodyObj->updModel().finalizeConnections();
+    //save the model
+    bodyObj->updModel().print(  bodyObj->updModel().getInputFileName()  );
     displayName = newName;
     //TODO reload the model
     //modelObj->readObjectFromXMLNodeOrFile(modelElement,modelObj->getDocumentFileVersion());

@@ -375,3 +375,49 @@ void vsMainWindow::on_posesButton_clicked()
     posesMenu->move(ui->coordinatesDock->mapToGlobal(ui->posesButton->pos())+QPoint(0,30));
     posesMenu->show();
 }
+
+void vsMainWindow::on_actionCurrent_model_Externally_triggered()
+{
+    qDebug() <<"edit current model in a text editor...";
+    if(navigatorModel->getActiveModel()){
+      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
+      // open the file in system text editor
+      try{
+          //QProcess *vsProcess = new QProcess(this);
+        qDebug() << "productType():" << QSysInfo::productType();
+//        if (QSysInfo::productType() =="Windows")
+//            vsProcess::start(" Write " + modelFilename );
+//        else if (QSysInfo::productType() =="Linux")
+//            vsProcess::startc(" gedit " + modelFilename );
+//        else if (QSysInfo::productType() =="Windows")
+//            vsProcess::start(" open " + modelFilename );
+//        else
+//            qDebug() <<"un supported operating system ....";
+      } catch (...) {
+          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
+      }
+    }//if
+
+}
+
+void vsMainWindow::on_actionNew_Model_triggered()
+{
+  //copy the file from template folders to the build folder newmodel.osim
+
+  //load to the new model
+  try {      
+      qDebug() <<"create a new model from template ...";
+
+//      QString newModelFileName = QApplication.applicationDirPath()+"/templates/template.osim" ;
+//      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
+//      qDebug() << QString::fromStdString(newModel->getName());
+//      navigatorModel->loadOpenSimModel(newModel);
+//      //TODO save the state somewhere
+//      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+//      //update the openModelsFile
+//      vsOpenSimTools::tools->addToOpenModels(newModel);
+  } catch (...) {
+      vsOpenSimTools::tools->log("No valid OpenSim model was created","",vsOpenSimTools::Error,true);
+  }
+
+}

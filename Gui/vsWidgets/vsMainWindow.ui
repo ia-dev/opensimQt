@@ -96,13 +96,14 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionNew_Model"/>
     <addaction name="actionOpen_Model"/>
     <addaction name="actionLoad_Motion"/>
     <addaction name="separator"/>
@@ -126,6 +127,7 @@
     <addaction name="actionExcitations"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionFile_xml"/>
+    <addaction name="actionCurrent_model_Externally"/>
    </widget>
    <widget class="QMenu" name="menu_Script">
     <property name="title">
@@ -649,8 +651,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>238</width>
-          <height>123</height>
+          <width>271</width>
+          <height>68</height>
          </rect>
         </property>
        </widget>
@@ -1035,6 +1037,16 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionNew_Model">
+   <property name="text">
+    <string>Create new model</string>
+   </property>
+  </action>
+  <action name="actionCurrent_model_Externally">
+   <property name="text">
+    <string>Edit current model externally</string>
    </property>
   </action>
  </widget>
