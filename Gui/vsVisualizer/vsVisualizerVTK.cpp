@@ -1221,6 +1221,35 @@ OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkAc
     return nullptr;
 }
 
+void vsVisualizerVTK::selectOpenSimObject(OpenSim::Object *obj)
+{
+    if(!obj) return;
+    //TODO clear the previous data
+
+    auto componentActors = getActorForComponent(obj);
+    if(componentActors == nullptr) return;
+//    qDebug() << "actors size " << componentActors->size();
+
+    //TODO restore the previous obj
+    //TODO if the new object is the same deselect the object
+
+    m_selectedOpenSimObject = obj;
+
+    foreach (auto prob, *componentActors) {
+        vtkSmartPointer<vtkActor> actor;
+        try {
+            actor = vtkActor::SafeDownCast(prob);
+        } catch (...) {
+            qDebug() << "could not convert prob to actor for selected opensim object";
+            return;
+        }
+        selectedOpenSimObjectColors.insert(prob,actor->GetProperty()->GetColor());
+        actor->GetProperty()->SetColor(1,.6,0);
+        //actor->SetVisibility(false);
+    }
+
+}
+
 void vsVisualizerVTK::setComponetVisibility(OpenSim::Object *obj, bool visible)
 {
     auto componentProbs = componentActorsMap.value(obj);

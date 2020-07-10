@@ -212,13 +212,8 @@ void vsNavigatorNode::setupPropertiesModel(vsPropertyModel *model){
 void vsNavigatorNode::selectVisualizerActors()
 {
     if(openSimObject == nullptr) return;
-    auto componentActors = visualizerVTK->getActorForComponent(openSimObject);
-    if(componentActors == nullptr) return;
-//    qDebug() << "actors size " << componentActors->size();
 
-//    foreach (auto actor, *componentActors) {
-//        actor->SetVisibility(false);
-//    }
+    visualizerVTK->selectOpenSimObject(openSimObject);
 
 }
 

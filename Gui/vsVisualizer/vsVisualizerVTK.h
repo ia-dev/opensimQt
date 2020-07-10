@@ -97,6 +97,7 @@ public:
     void focusOnCurrentModel();
     void selectActorInNavigator(vtkSmartPointer<vtkActor> actor);
     OpenSim::Object* getOpenSimObjectForActor(vtkSmartPointer<vtkActor> actor);
+    void selectOpenSimObject(OpenSim::Object *obj);
 
     //Navigator Actions
     void setComponetVisibility(OpenSim::Object *obj,bool visible);
@@ -131,6 +132,10 @@ private:
 
     //updating index
     QMap<OpenSim::Model*,QMap<vtkSmartPointer<vtkProp>,bool>*> updateIndecies;
+
+    //selection members
+    OpenSim::Object *m_selectedOpenSimObject = nullptr;
+    QMap<vtkSmartPointer<vtkProp>,double*> selectedOpenSimObjectColors;
 
     //vtk to qt slots connection
 
