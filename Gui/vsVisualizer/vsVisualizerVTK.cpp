@@ -57,6 +57,8 @@
 #include <vtkOBJReader.h>
 #include <vtkSTLReader.h>
 #include <vtkPolyDataReader.h>
+#include <vtkLight.h>
+#include <vtkLightActor.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
@@ -76,7 +78,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     ground  = addGround();
-
+    //addLight();
     //skyBox = addSkyBox();
     //this->update();
     globalFrame = addGlobalFrame();
@@ -184,6 +186,26 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(boxActor);
     return boxActor;
+}
+
+vtkSmartPointer<vtkLightActor> vsVisualizerVTK::addLight()
+{
+    vtkSmartPointer<vtkLight> light = vtkSmartPointer<vtkLight>::New();
+    light->SetPositional(true); // without this line, the program crashes
+    //light->SetLightT
+    light->SetPosition(0,2,0);
+    light->SetFocalPoint(0,0,0);
+    light->SetColor(1,1,1);
+    light->SetIntensity(1);
+    vtkSmartPointer<vtkLightActor> lightActor = vtkSmartPointer<vtkLightActor>::New();
+    lightActor->SetLight(light);
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddViewProp(lightActor);
+    //renderer->AddActor(boxActor);
+    RenderWindow->Render();
+    renderer->AddLight(light);
+    return lightActor ;
+
 }
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()

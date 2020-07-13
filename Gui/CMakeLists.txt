@@ -45,7 +45,7 @@ find_package(VTK COMPONENTS
   vtkIOXML
   vtkCommonComputationalGeometry
   vtkCommonDataModel
-
+  vtkRenderingOpenGL2
   QUIET
 )
 include(${VTK_USE_FILE})

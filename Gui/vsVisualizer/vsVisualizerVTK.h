@@ -16,6 +16,7 @@
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkPropPicker.h>
 #include <vtkPolyDataMapper.h>
+#include <vtkLightActor.h>
 
 enum class BackgroundType{
     Solid,GroundAndSky
@@ -34,6 +35,7 @@ public:
 
     vtkSmartPointer<vtkActor> renderGeometry(OpenSim::Geometry *geometry);
     vtkSmartPointer<vtkActor> addBox();
+    vtkSmartPointer<vtkLightActor> addLight();
     vtkSmartPointer<vtkActor> addGround();
     void createGroundImage(vtkSmartPointer<vtkImageData> groundData,int w, int h);
     vtkSmartPointer<vtkActor> addSkyBox();
