@@ -26,6 +26,16 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     tabifyDockWidget(ui->scriptingDock,ui->messagesDock);
     tabifyDockWidget(ui->navigatorDock,ui->coordinatesDock);
     ui->navigatorDock->raise();
+    //resizing automatically depennding on the selected dock widget(coordinates or navigator)
+    connect(ui->coordinatesDock,&QDockWidget::visibilityChanged,[this](bool a){
+        if(a){
+            resizeDocks(QList<QDockWidget*>()<<ui->coordinatesDock<<ui->navigatorDock,QList<int>()<<500<<500,
+                        Qt::Orientation::Horizontal);
+        }else{
+            resizeDocks(QList<QDockWidget*>()<<ui->coordinatesDock<<ui->navigatorDock,QList<int>()<<290<<290,
+                        Qt::Orientation::Horizontal);
+        }
+    });
 
     //adding the Simulation Tools Widget to the toolBar
 
@@ -67,6 +77,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->scrollArea->setWidget(coordinatesWidget);
     connect(vsOpenSimTools::tools,&vsOpenSimTools::currentModelUpdated,this,&vsMainWindow::onCurrentModelUpdated);
 
+
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
@@ -79,6 +90,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //the sumulation configs
     connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
+
+
 
 
 }
