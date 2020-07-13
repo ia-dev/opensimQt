@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QIcon>
 #include <vsTools/vsOpenSimTools.h>
-vsNavigatorModel::vsNavigatorModel()
+vsNavigatorModel::vsNavigatorModel():m_activeModel(nullptr)
 {
     m_rootNNode = new vsNavigatorNode(nullptr,"the root",nullptr,this);
     m_rootNNode->setConnectedModel(this);

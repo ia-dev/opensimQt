@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QMessageBox>
+#include <QDesktopServices>
 #include <QtWebEngineWidgets/qwebengineview.h>
 #include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
@@ -385,25 +386,34 @@ void vsMainWindow::on_posesButton_clicked()
 
 void vsMainWindow::on_actionCurrent_model_Externally_triggered()
 {
-    qDebug() <<"edit current model in a text editor...";
-    if(navigatorModel->getActiveModel()){
-      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
-      // open the file in system text editor
-      try{
-          //QProcess *vsProcess = new QProcess(this);
-        qDebug() << "productType():" << QSysInfo::productType();
-//        if (QSysInfo::productType() =="Windows")
-//            vsProcess::start(" Write " + modelFilename );
-//        else if (QSysInfo::productType() =="Linux")
-//            vsProcess::startc(" gedit " + modelFilename );
-//        else if (QSysInfo::productType() =="Windows")
-//            vsProcess::start(" open " + modelFilename );
-//        else
-//            qDebug() <<"un supported operating system ....";
-      } catch (...) {
-          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
-      }
-    }//if
+
+    if(navigatorModel->getActiveModel() == nullptr){
+        vsOpenSimTools::tools->log("can not open model externally , current model in null","",vsOpenSimTools::Error);
+        return;
+    }
+    auto ret = QDesktopServices::openUrl(QString::fromStdString(navigatorModel->getActiveModel()->getInputFileName()));
+    vsOpenSimTools::tools->log((ret?"model opened externaly":"no default program is selected from type"));
+
+
+//    qDebug() <<"edit current model in a text editor...";
+//    if(navigatorModel->getActiveModel()){
+//      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
+//      // open the file in system text editor
+//      try{
+//          //QProcess *vsProcess = new QProcess(this);
+//        qDebug() << "productType():" << QSysInfo::productType();
+////        if (QSysInfo::productType() =="Windows")
+////            vsProcess::start(" Write " + modelFilename );
+////        else if (QSysInfo::productType() =="Linux")
+////            vsProcess::startc(" gedit " + modelFilename );
+////        else if (QSysInfo::productType() =="Windows")
+////            vsProcess::start(" open " + modelFilename );
+////        else
+////            qDebug() <<"un supported operating system ....";
+//      } catch (...) {
+//          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
+//      }
+//    }//if
 
 }
 
