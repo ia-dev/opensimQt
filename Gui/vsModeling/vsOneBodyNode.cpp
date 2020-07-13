@@ -43,8 +43,9 @@ void vsOneBodyNode::onRenameActionTriggered()
     bodyObj->setName(newName.toStdString());
     //TODO: BUG not all related objects are changed
     bodyObj->updModel().finalizeConnections();
-    //save the model
-    bodyObj->updModel().print(  bodyObj->updModel().getInputFileName()  );
+    //NOTE! finalizeConnections work just fine
+    //bodyObj->updModel().finalizeConnections();
+    //bodyObj->updModel().print("newNameTEst.osim");
     displayName = newName;
     //TODO reload the model
     //modelObj->readObjectFromXMLNodeOrFile(modelElement,modelObj->getDocumentFileVersion());

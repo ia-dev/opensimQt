@@ -412,18 +412,18 @@ void vsMainWindow::on_actionNew_Model_triggered()
   //copy the file from template folders to the build folder newmodel.osim
 
   //load to the new model
-  try {      
+  try {
       qDebug() <<"create a new model from template ...";
 
-//      QString newModelFileName = QApplication.applicationDirPath()+"/templates/template.osim" ;
-//      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
-//      qDebug() << QString::fromStdString(newModel->getName());
-//      navigatorModel->loadOpenSimModel(newModel);
-//      //TODO save the state somewhere
-//      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+      QString newModelFileName = QApplication::applicationDirPath()+"/templates/template.osim" ;
+      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
+      qDebug() << QString::fromStdString(newModel->getName());
+      navigatorModel->loadOpenSimModel(newModel);
+      //TODO save the state somewhere
+      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 //      //update the openModelsFile
-//      vsOpenSimTools::tools->addToOpenModels(newModel);
-  } catch (...) {
+     vsOpenSimTools::tools->addToOpenModels(newModel);
+  }catch (...) {
       vsOpenSimTools::tools->log("No valid OpenSim model was created","",vsOpenSimTools::Error,true);
   }
 
