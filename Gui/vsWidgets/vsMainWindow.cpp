@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QMessageBox>
+#include <QDesktopServices>
 #include <QtWebEngineWidgets/qwebengineview.h>
 #include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
@@ -25,6 +26,16 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     tabifyDockWidget(ui->scriptingDock,ui->messagesDock);
     tabifyDockWidget(ui->navigatorDock,ui->coordinatesDock);
     ui->navigatorDock->raise();
+    //resizing automatically depennding on the selected dock widget(coordinates or navigator)
+    connect(ui->coordinatesDock,&QDockWidget::visibilityChanged,[this](bool a){
+        if(a){
+            resizeDocks(QList<QDockWidget*>()<<ui->coordinatesDock<<ui->navigatorDock,QList<int>()<<500<<500,
+                        Qt::Orientation::Horizontal);
+        }else{
+            resizeDocks(QList<QDockWidget*>()<<ui->coordinatesDock<<ui->navigatorDock,QList<int>()<<290<<290,
+                        Qt::Orientation::Horizontal);
+        }
+    });
 
     //adding the Simulation Tools Widget to the toolBar
 
@@ -66,6 +77,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->scrollArea->setWidget(coordinatesWidget);
     connect(vsOpenSimTools::tools,&vsOpenSimTools::currentModelUpdated,this,&vsMainWindow::onCurrentModelUpdated);
 
+
     //setting up the context menu
     ui->navigatorTreeView->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
     connect(ui->navigatorTreeView,&QTreeView::customContextMenuRequested,this,&vsMainWindow::customMenuRequestedNavigator);
@@ -78,6 +90,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //the sumulation configs
     connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
+
+
 
 
 }
@@ -260,6 +274,13 @@ void vsMainWindow::onExpendIndex(const QModelIndex modelIndex)
 
 void vsMainWindow::onSelectedObjectActor(OpenSim::Object *object)
 {
+    if(object == nullptr){
+        //navigatorModel->selectObject(nullptr);
+        ui->navigatorTreeView->setCurrentIndex(QModelIndex());
+        propertiesModel->setSelectedNavigarorNode(nullptr);
+        //TODO update the properties
+        return ;
+    }
     QModelIndex selectedIndex = navigatorModel->selectObject(object);
     if(!selectedIndex.isValid()) return;
     ui->navigatorTreeView->setCurrentIndex(selectedIndex);
@@ -378,25 +399,34 @@ void vsMainWindow::on_posesButton_clicked()
 
 void vsMainWindow::on_actionCurrent_model_Externally_triggered()
 {
-    qDebug() <<"edit current model in a text editor...";
-    if(navigatorModel->getActiveModel()){
-      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
-      // open the file in system text editor
-      try{
-          //QProcess *vsProcess = new QProcess(this);
-        qDebug() << "productType():" << QSysInfo::productType();
-//        if (QSysInfo::productType() =="Windows")
-//            vsProcess::start(" Write " + modelFilename );
-//        else if (QSysInfo::productType() =="Linux")
-//            vsProcess::startc(" gedit " + modelFilename );
-//        else if (QSysInfo::productType() =="Windows")
-//            vsProcess::start(" open " + modelFilename );
-//        else
-//            qDebug() <<"un supported operating system ....";
-      } catch (...) {
-          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
-      }
-    }//if
+
+    if(navigatorModel->getActiveModel() == nullptr){
+        vsOpenSimTools::tools->log("can not open model externally , current model in null","",vsOpenSimTools::Error);
+        return;
+    }
+    auto ret = QDesktopServices::openUrl(QString::fromStdString(navigatorModel->getActiveModel()->getInputFileName()));
+    vsOpenSimTools::tools->log((ret?"model opened externaly":"no default program is selected from type"));
+
+
+//    qDebug() <<"edit current model in a text editor...";
+//    if(navigatorModel->getActiveModel()){
+//      //QString modelFilename =  navigatorModel->getActiveModel()->getInputFileName();
+//      // open the file in system text editor
+//      try{
+//          //QProcess *vsProcess = new QProcess(this);
+//        qDebug() << "productType():" << QSysInfo::productType();
+////        if (QSysInfo::productType() =="Windows")
+////            vsProcess::start(" Write " + modelFilename );
+////        else if (QSysInfo::productType() =="Linux")
+////            vsProcess::startc(" gedit " + modelFilename );
+////        else if (QSysInfo::productType() =="Windows")
+////            vsProcess::start(" open " + modelFilename );
+////        else
+////            qDebug() <<"un supported operating system ....";
+//      } catch (...) {
+//          vsOpenSimTools::tools->log("Can not open the current model in external editor ...","",vsOpenSimTools::Error,true);
+//      }
+//    }//if
 
 }
 
@@ -405,18 +435,18 @@ void vsMainWindow::on_actionNew_Model_triggered()
   //copy the file from template folders to the build folder newmodel.osim
 
   //load to the new model
-  try {      
+  try {
       qDebug() <<"create a new model from template ...";
 
-//      QString newModelFileName = QApplication.applicationDirPath()+"/templates/template.osim" ;
-//      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
-//      qDebug() << QString::fromStdString(newModel->getName());
-//      navigatorModel->loadOpenSimModel(newModel);
-//      //TODO save the state somewhere
-//      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
+      QString newModelFileName = QApplication::applicationDirPath()+"/templates/template.osim" ;
+      OpenSim::Model  *newModel = new OpenSim::Model(newModelFileName.toStdString());
+      qDebug() << QString::fromStdString(newModel->getName());
+      navigatorModel->loadOpenSimModel(newModel);
+      //TODO save the state somewhere
+      ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 //      //update the openModelsFile
-//      vsOpenSimTools::tools->addToOpenModels(newModel);
-  } catch (...) {
+     vsOpenSimTools::tools->addToOpenModels(newModel);
+  }catch (...) {
       vsOpenSimTools::tools->log("No valid OpenSim model was created","",vsOpenSimTools::Error,true);
   }
 

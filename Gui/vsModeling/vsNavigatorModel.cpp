@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QIcon>
 #include <vsTools/vsOpenSimTools.h>
-vsNavigatorModel::vsNavigatorModel()
+vsNavigatorModel::vsNavigatorModel():m_activeModel(nullptr)
 {
     m_rootNNode = new vsNavigatorNode(nullptr,"the root",nullptr,this);
     m_rootNNode->setConnectedModel(this);
@@ -66,6 +66,9 @@ void vsNavigatorModel::loadOpenSimModel(OpenSim::Model *openSimModel)
 
 QModelIndex vsNavigatorModel::selectObject(OpenSim::Object *obj)
 {
+//    if(obj == nullptr){
+//        this->expendIndex(QModelIndex());
+//    }
     vsNavigatorNode *selectedObjNode  = m_rootNNode->getNodeForObj(obj);
     if(selectedObjNode == nullptr) return QModelIndex() ;
     qDebug() << "selected Node " << selectedObjNode->displayName;

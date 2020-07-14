@@ -57,6 +57,8 @@
 #include <vtkOBJReader.h>
 #include <vtkSTLReader.h>
 #include <vtkPolyDataReader.h>
+#include <vtkLight.h>
+#include <vtkLightActor.h>
 
 vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     QVTKOpenGLNativeWidget(parent),currentModel(nullptr)
@@ -76,7 +78,7 @@ vsVisualizerVTK::vsVisualizerVTK(QWidget *parent):
     //addBox();
     //renderVtpMesh("F:\\FL\\3\\opensim-gui\\opensim-models\\Geometry\\bofoot.vtp");
     ground  = addGround();
-
+    //addLight();
     //skyBox = addSkyBox();
     //this->update();
     globalFrame = addGlobalFrame();
@@ -184,6 +186,26 @@ vtkSmartPointer<vtkActor> vsVisualizerVTK::addBox()
     vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
     renderer->AddActor(boxActor);
     return boxActor;
+}
+
+vtkSmartPointer<vtkLightActor> vsVisualizerVTK::addLight()
+{
+    vtkSmartPointer<vtkLight> light = vtkSmartPointer<vtkLight>::New();
+    light->SetPositional(true); // without this line, the program crashes
+    //light->SetLightT
+    light->SetPosition(0,2,0);
+    light->SetFocalPoint(0,0,0);
+    light->SetColor(1,1,1);
+    light->SetIntensity(1);
+    vtkSmartPointer<vtkLightActor> lightActor = vtkSmartPointer<vtkLightActor>::New();
+    lightActor->SetLight(light);
+    vtkRenderer *renderer = this->renderWindow()->GetRenderers()->GetFirstRenderer();
+    renderer->AddViewProp(lightActor);
+    //renderer->AddActor(boxActor);
+    RenderWindow->Render();
+    renderer->AddLight(light);
+    return lightActor ;
+
 }
 
 vtkSmartPointer<vtkActor> vsVisualizerVTK::addGround()
@@ -1200,6 +1222,11 @@ void vsVisualizerVTK::focusOnCurrentModel()
 
 void vsVisualizerVTK::selectActorInNavigator(vtkSmartPointer<vtkActor> actor)
 {
+    if(actor == nullptr){
+        qDebug() << "the actot was deselected";
+        emit this->objectSelectedInNavigator(nullptr);
+        return;
+    }
     OpenSim::Object *selectedObject = getOpenSimObjectForActor(actor);
     if(selectedObject == nullptr) return;
     emit this->objectSelectedInNavigator(selectedObject);
@@ -1214,6 +1241,72 @@ OpenSim::Object *vsVisualizerVTK::getOpenSimObjectForActor(vtkSmartPointer<vtkAc
         }
     }
     return nullptr;
+}
+
+void vsVisualizerVTK::selectOpenSimObject(OpenSim::Object *obj)
+{
+    if(!obj) return;
+    //TODO clear the previous data
+
+    auto componentActors = getActorForComponent(obj);
+    if(componentActors == nullptr) return;
+//    qDebug() << "actors size " << componentActors->size();
+
+    //TODO restore the previous obj
+    //TODO if the new object is the same deselect the object
+
+    //cleaning the previous selection
+    if(m_selectedOpenSimObject){
+       auto previousComponentActors = getActorForComponent(m_selectedOpenSimObject);
+       for (int i = 0; i < previousComponentActors->size(); ++i) {
+           auto prob = previousComponentActors->at(i);
+           try {
+               auto actor = vtkActor::SafeDownCast(prob);
+                auto theColor = selectedOpenSimObjectColors.value(prob);
+               qDebug() << "printing the color of the prob " << theColor[0] <<" " << theColor[1] << " " << theColor[2];
+               actor->GetProperty()->SetColor(theColor.x(),theColor.y(),theColor.z());
+           } catch (...) {
+               qDebug() << "could not convert prob to actor for selected opensim object";
+           }
+       }
+
+    }
+    else if(selectedActor){
+        auto object = getOpenSimObjectForActor(selectedActor);
+        //if the object was the same unselect the old one
+        selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+        if(object == obj){
+            selectedActor = nullptr;
+            m_selectedOpenSimObject = nullptr;
+            return;
+        }
+        //if they where diffrent unselect the old one and highlight the new
+    }
+
+    if(m_selectedOpenSimObject == obj){
+        m_selectedOpenSimObject = nullptr;
+        renderWindow()->Render();
+        return;
+    }
+
+    m_selectedOpenSimObject = obj;
+
+    foreach (auto prob, *componentActors) {
+        vtkSmartPointer<vtkActor> actor;
+        try {
+            actor = vtkActor::SafeDownCast(prob);
+        } catch (...) {
+            qDebug() << "could not convert prob to actor for selected opensim object";
+            return;
+        }
+        double *backupColor = actor->GetProperty()->GetColor();
+        selectedOpenSimObjectColors.insert(prob,QVector3D(backupColor[0],backupColor[1],backupColor[2]));
+        actor->GetProperty()->SetColor(1,.6,0);
+        //actor->SetVisibility(false);
+    }
+
+    renderWindow()->Render();
+
 }
 
 void vsVisualizerVTK::setComponetVisibility(OpenSim::Object *obj, bool visible)
@@ -1350,12 +1443,47 @@ void vsVisualizerVTK::onVtkDoubleClicked(vtkObject *obj)
 
         //updating the selected actor pointer and color
         if(propPicker->GetActor()){
-            if(selectedActor){
-                selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+            //removing the selected object
+            if(m_selectedOpenSimObject){
+
+                auto selectedObjectActors = getActorForComponent(m_selectedOpenSimObject);
+                foreach (auto actorAsProb, *selectedObjectActors) {
+                    try {
+                        vtkSmartPointer<vtkActor> actor = vtkActor::SafeDownCast(actorAsProb);
+                        auto actorColor = selectedOpenSimObjectColors.value(actor);
+                        actor->GetProperty()->SetColor(actorColor.x(), actorColor.y(), actorColor.z());
+                    } catch (...) {
+                    }
+
+                }
             }
-            selectedActor =  propPicker->GetActor();
-            selectedActor->GetProperty()->GetColor(selectedActorColorBackup);
-            selectedActor->GetProperty()->SetColor(1,.6,0);
+
+            //exiting if the new  object is the same as the selected object
+            auto currentActorOpenSimObject = getOpenSimObjectForActor(propPicker->GetActor());
+            if(currentActorOpenSimObject == m_selectedOpenSimObject){
+                m_selectedOpenSimObject = nullptr;
+                selectedOpenSimObjectColors.clear();
+                selectActorInNavigator(nullptr);
+                return;
+            }
+
+            m_selectedOpenSimObject = nullptr;
+            selectedOpenSimObjectColors.clear();
+
+            //removing the selected actor on second click
+            if(propPicker->GetActor() == selectedActor){
+                selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+                selectActorInNavigator(nullptr);
+                selectedActor = nullptr;
+            }
+            else{
+                if(selectedActor){
+                    selectedActor->GetProperty()->SetColor(selectedActorColorBackup);
+                }
+                selectedActor =  propPicker->GetActor();
+                selectedActor->GetProperty()->GetColor(selectedActorColorBackup);
+                selectedActor->GetProperty()->SetColor(1,.6,0);
+            }
         }
 
     }
