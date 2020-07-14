@@ -4,11 +4,7 @@ The project is still under development and is not recommend to use it in its cur
 
 ------------------------
 
-# **opensimQt:** a simplified user-friendly opensource and cross-platform cpp interface for OpenSim tool
-
-------------------------
-
-# About this project:
+# opensimQt: a simplified user-friendly opensource and cross-platform cpp interface for OpenSim tool
 
 This is a new cpp interface for the simulation tool [opensim](https://github.com/opensim-org/opensim-core). This interface uses Qt and VTk instead of the current Java netbeans interface. This makes it easier for cpp developers to help with extending and improving this interface as Qt and VTK have better support in the opens-source community.  
 
