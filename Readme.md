@@ -1,9 +1,10 @@
-3 +1,13 @@
-------------------------
-
 **Important note:**
 
 The project is still under development and is not recommend to use it in its current state. Stable version will be in the Tags tab and links to the binaries will be added. 
+
+------------------------
+
+# **opensimQt:** a simplified user-friendly opensource and cross-platform cpp interface for OpenSim tool
 
 ------------------------
 
