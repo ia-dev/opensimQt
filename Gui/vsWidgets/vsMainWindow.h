@@ -20,11 +20,16 @@ class vsMainWindow : public QMainWindow
 
 public:
     vsMainWindow(QWidget *parent = nullptr);
+    void listUserPlugins();
+
+
     ~vsMainWindow();
 
 private slots:
 
     void onCurrentModelUpdated();
+
+    void userPluginClicked(QString pluginFileName);
 
     void on_actionOpen_Model_triggered();
     void on_actionReload_triggered();
@@ -60,6 +65,9 @@ private:
     //Coordinates variables
     QList<vsCoordinateDelegate *> currentCoordinatesDelegates;
     vsCoordinatesWidget *coordinatesWidget;
+
+    //plugins
+    QMap<QString,QAction*> pluginActions;
 
     // QWidget interface
 protected:

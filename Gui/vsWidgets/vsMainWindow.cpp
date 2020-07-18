@@ -91,8 +91,27 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //the sumulation configs
     connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
 
+    //plugins
+
+    listUserPlugins();
 
 
+}
+
+void vsMainWindow::listUserPlugins()
+{
+    QDir pDir(QApplication::applicationDirPath());
+    if(!pDir.exists(pDir.path()+"/plugins"))pDir.mkdir("plugins");
+    pDir.cd("plugins");
+    pDir.setNameFilters(QStringList() << vsOpenSimTools::getPluginExtentionForOS());
+    foreach (auto entryInfo, pDir.entryInfoList(QDir::Files)) {
+        QAction *pluginAction = new QAction(entryInfo.fileName(),this);
+        ui->menuuser_plugins->addAction(pluginAction);
+        connect(pluginAction,&QAction::triggered,[this,entryInfo](){
+            qDebug() << "pluging is loading " << entryInfo.fileName();
+
+        });
+    }
 
 }
 
@@ -136,6 +155,12 @@ void vsMainWindow::onCurrentModelUpdated()
     }
     coordinatesWidget->initializeWidgetForNewModel();
     //using the group solution
+}
+
+void vsMainWindow::userPluginClicked(QString pluginFileName)
+{
+
+
 }
 
 
@@ -467,4 +492,6 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     if(!hDir.exists(hDir.path()+"/plugins"))hDir.mkdir("plugins");
     hDir.cd("plugins");
     QFile::copy(pluginFileURL.toLocalFile(),hDir.path()+"/"+pluginFileURL.fileName());
+    //TODO update the menue for user plugins
+    vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
 }

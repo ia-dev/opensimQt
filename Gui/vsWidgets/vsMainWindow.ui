@@ -147,6 +147,16 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <widget class="QMenu" name="menuuser_plugins">
+     <property name="title">
+      <string>user plugins</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resource.qrc">
+       <normaloff>:/Data/Images/DefaultIcon/plugin.png</normaloff>:/Data/Images/DefaultIcon/plugin.png</iconset>
+     </property>
+     <addaction name="separator"/>
+    </widget>
     <addaction name="actionPlot"/>
     <addaction name="separator"/>
     <addaction name="actionScale_Model"/>
@@ -160,7 +170,7 @@
     <addaction name="separator"/>
     <addaction name="actionConvert_Files"/>
     <addaction name="separator"/>
-    <addaction name="actionUser_Plugins"/>
+    <addaction name="menuuser_plugins"/>
     <addaction name="actionimport_new_plugin"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
