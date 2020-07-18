@@ -46,6 +46,10 @@ public:
     vsNavigatorModel *getNavigatorModel() const;
     void setNavigatorModel(vsNavigatorModel *navigatorModel);
 
+    //other tools
+    static QString getOSName();
+    static QString getPluginExtentionForOS();
+
 public slots:
     void onCurrentModelUpdated();
 

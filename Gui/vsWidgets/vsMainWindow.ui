@@ -96,7 +96,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -161,6 +161,7 @@
     <addaction name="actionConvert_Files"/>
     <addaction name="separator"/>
     <addaction name="actionUser_Plugins"/>
+    <addaction name="actionimport_new_plugin"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -248,8 +249,8 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>91</width>
-     <height>40</height>
+     <width>95</width>
+     <height>42</height>
     </size>
    </property>
    <property name="allowedAreas">
@@ -411,8 +412,8 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>218</width>
-     <height>25</height>
+     <width>227</width>
+     <height>27</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -651,8 +652,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>271</width>
-          <height>68</height>
+          <width>265</width>
+          <height>85</height>
          </rect>
         </property>
        </widget>
@@ -1047,6 +1048,15 @@
   <action name="actionCurrent_model_Externally">
    <property name="text">
     <string>Edit current model externally</string>
+   </property>
+  </action>
+  <action name="actionimport_new_plugin">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/arrow-1-down.png</normaloff>:/Data/Images/DefaultIcon/arrow-1-down.png</iconset>
+   </property>
+   <property name="text">
+    <string>import new plugin</string>
    </property>
   </action>
  </widget>

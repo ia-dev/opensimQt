@@ -451,3 +451,20 @@ void vsMainWindow::on_actionNew_Model_triggered()
   }
 
 }
+
+void vsMainWindow::on_actionimport_new_plugin_triggered()
+{
+
+    QUrl pluginFileURL = QFileDialog::getOpenFileUrl(nullptr,"plugin library file",
+                                                     QApplication::applicationDirPath(),
+                                                     vsOpenSimTools::getPluginExtentionForOS());
+    if(!pluginFileURL.isValid()){
+        vsOpenSimTools::tools->log("no plugin was selected !","MainWindow",vsOpenSimTools::Error);
+        return;
+    }
+    //test if the plugin dir exist
+    QDir hDir(QApplication::applicationDirPath());
+    if(!hDir.exists(hDir.path()+"/plugins"))hDir.mkdir("plugins");
+    hDir.cd("plugins");
+    QFile::copy(pluginFileURL.toLocalFile(),hDir.path()+"/"+pluginFileURL.fileName());
+}

@@ -75,5 +75,6 @@ private slots:
 
 private slots:
     void on_actionCurrent_model_Externally_triggered();
+    void on_actionimport_new_plugin_triggered();
 };
 #endif // vsMainWindow_H
