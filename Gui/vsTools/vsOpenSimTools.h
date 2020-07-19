@@ -14,6 +14,7 @@
 #include <QWidget>
 #include <OpenSim.h>
 #include <QVariantMap>
+#include <QSettings>
 
 class vsNavigatorModel;
 class vsNavigatorNode;
@@ -30,8 +31,13 @@ public:
     vsOpenSimTools(QObject *parent = nullptr);
     static vsOpenSimTools *tools;
     QMap<OpenSim::Model*,SimTK::State*> modelStateMap;
+    QSettings* openSimSettings;
+
     void log(QString message,QString description="",MessageType messageType = MessageType::Info,bool logToConsole = true);
     void logPlainText(QString message);
+
+    //settings
+    void loadOnEntryPlugins();
 
     //openModels functions
     void addToOpenModels(OpenSim::Model *newModel);

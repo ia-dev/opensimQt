@@ -7,7 +7,9 @@
  ***************************************************************************/
 #include "vsOpenSimTools.h"
 
+#include <QApplication>
 #include <QDebug>
+#include <QDir>
 #include <QJsonDocument>
 #include <QTextEdit>
 #include <QTime>
@@ -25,12 +27,17 @@ vsOpenSimTools::vsOpenSimTools(QObject *parent):QObject(parent),
     *logStream << "Launching OpenSimQt ..." << endl;
     logStream->flush();
 
-    OpenSim::LoadOpenSimLibrary("F:/FL/3/opensim-core-install/plugins/BodyDragForce");
 
     messageColors.insert(MessageType::Info,"#888888");
     messageColors.insert(MessageType::Success,"#55B83B");
     messageColors.insert(MessageType::Warning,"#ffff00");
     messageColors.insert(MessageType::Error,"#ff0000");
+
+    //loading the settings
+    QString settingFilePath = QDir::currentPath()+"/config.ini";
+    qDebug()<< "QSettings " << settingFilePath;
+    openSimSettings = new QSettings(settingFilePath,QSettings::Format::IniFormat);
+
 }
 
 void vsOpenSimTools::log(QString message, QString description,MessageType messageType,bool logToConsole)
@@ -49,7 +56,23 @@ void vsOpenSimTools::log(QString message, QString description,MessageType messag
 
 void vsOpenSimTools::logPlainText(QString message)
 {
-       emit messageLoggedPlain(message);
+    emit messageLoggedPlain(message);
+}
+
+void vsOpenSimTools::loadOnEntryPlugins()
+{
+    auto pluginsToLoad = openSimSettings->value("plugins/loadOnEntry","");
+    if(pluginsToLoad == ""){
+        log("no user plugins are preloaded on entry");
+    }else{
+        foreach (auto libraryFileName , pluginsToLoad.toStringList()) {
+            log("Loading user library on entry : "+libraryFileName);
+            QString libraryPath = QDir::currentPath()+"/"+libraryFileName;
+            qDebug() << "loading library: " << libraryPath;
+            OpenSim::LoadOpenSimLibrary(libraryPath.toStdString());
+        }
+    }
+
 }
 
 void vsOpenSimTools::addToOpenModels(OpenSim::Model *newModel)

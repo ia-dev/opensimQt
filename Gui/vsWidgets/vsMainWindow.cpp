@@ -93,7 +93,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
 
     //plugins
-
+    vsOpenSimTools::tools->loadOnEntryPlugins();
     listUserPlugins();
 
 

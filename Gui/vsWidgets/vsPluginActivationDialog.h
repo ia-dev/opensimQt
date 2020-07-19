@@ -27,6 +27,7 @@ private slots:
 
 private:
     Ui::vsPluginActivationDialog *ui;
+    QString m_fileName;
 };
 
 #endif // VSPLUGINACTIVATIONDIALOG_H
