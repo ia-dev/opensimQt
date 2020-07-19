@@ -108,12 +108,12 @@ void vsMainWindow::listUserPlugins()
     pDir.cd("plugins");
     pDir.setNameFilters(QStringList() << vsOpenSimTools::getPluginExtentionForOS());
     foreach (auto entryInfo, pDir.entryInfoList(QDir::Files)) {
-        QAction *pluginAction = new QAction(entryInfo.fileName(),this);
+        QAction *pluginAction = new QAction(entryInfo.baseName(),this);
         ui->menuuser_plugins->addAction(pluginAction);
         connect(pluginAction,&QAction::triggered,[this,entryInfo](){
             qDebug() << "pluging is loading " << entryInfo.fileName();
             OpenSim::LoadOpenSimLibrary(entryInfo.filePath().toStdString());
-            vsPluginActivationDialog dlg(entryInfo.fileName());
+            vsPluginActivationDialog dlg(entryInfo.baseName());
             dlg.exec();
         });
     }
