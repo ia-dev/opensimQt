@@ -67,9 +67,13 @@ void vsOpenSimTools::loadOnEntryPlugins()
     }else{
         foreach (auto libraryFileName , pluginsToLoad.toStringList()) {
             log("Loading user library on entry : "+libraryFileName);
-            QString libraryPath = QDir::currentPath()+"/"+libraryFileName;
+            QString libraryPath = QDir::currentPath()+"/plugins/"+libraryFileName;
             qDebug() << "loading library: " << libraryPath;
-            OpenSim::LoadOpenSimLibrary(libraryPath.toStdString());
+            //OpenSim::LoadOpenSimLibrary(libraryPath.toStdString());
+            bool loaded = OpenSim::LoadOpenSimLibraryExact(libraryPath.toStdString());
+            if(!loaded){
+                vsOpenSimTools::tools->log("could not load library","",vsOpenSimTools::Error);
+            }
         }
     }
 
