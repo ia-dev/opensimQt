@@ -16,6 +16,7 @@ vsPluginActivationDialog::vsPluginActivationDialog(QString fileName,QWidget *par
     m_fileName(fileName)
 {
     ui->setupUi(this);
+    setWindowTitle("Library Loaded");
     ui->loadedLabel->setText("library "+fileName+" has been loaded successfully !");
     QStringList onEntryPlugins = vsOpenSimTools::tools->openSimSettings
             ->value("plugins/loadOnEntry",QStringList()).toStringList();

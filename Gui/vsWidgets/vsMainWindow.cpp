@@ -101,6 +101,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
 void vsMainWindow::listUserPlugins()
 {
+    ui->menuuser_plugins->clear();
+    //TODO clean the removed actions
     QDir pDir(QApplication::applicationDirPath());
     if(!pDir.exists(pDir.path()+"/plugins"))pDir.mkdir("plugins");
     pDir.cd("plugins");
@@ -497,4 +499,5 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     QFile::copy(pluginFileURL.toLocalFile(),hDir.path()+"/"+pluginFileURL.fileName());
     //TODO update the menue for user plugins
     vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
+    listUserPlugins();
 }
