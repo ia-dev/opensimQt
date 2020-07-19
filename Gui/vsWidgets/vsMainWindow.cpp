@@ -1,5 +1,6 @@
 #include "vsMainWindow.h"
 #include "./ui_vsMainWindow.h"
+#include "vsPluginActivationDialog.h"
 
 #include <QLabel>
 #include <OpenSim.h>
@@ -109,7 +110,9 @@ void vsMainWindow::listUserPlugins()
         ui->menuuser_plugins->addAction(pluginAction);
         connect(pluginAction,&QAction::triggered,[this,entryInfo](){
             qDebug() << "pluging is loading " << entryInfo.fileName();
-
+            OpenSim::LoadOpenSimLibrary(entryInfo.filePath().toStdString());
+            vsPluginActivationDialog dlg(entryInfo.fileName());
+            dlg.exec();
         });
     }
 
