@@ -123,6 +123,7 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
     //TODO add multiple motions support
     activeModel = model;
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
+    if(!model || !motion) return;
     applyTimeToModel(model,motion,motion->getFirstTime());
     MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
     emit notifyObservers(evntObj);

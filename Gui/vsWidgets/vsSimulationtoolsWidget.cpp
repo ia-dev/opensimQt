@@ -131,6 +131,27 @@ void vsSimulationToolsWidget::onTimerTimout()
 
 }
 
+void vsSimulationToolsWidget::cleanSimulationWidget()
+{
+    qDebug() << "cleaning the simulation";
+    vsMotionsUtils::getInstance()->setCurrentMotion(nullptr,nullptr);
+    ui->motionGroupBox->setEnabled(false);
+    ui->speedSpinBox->setEnabled(false);
+    ui->motinNameEdit->setText("motion");
+    ui->currentTime->setText(0);
+    //m_currentTime = motion->getFirstTime()*1000;
+    //ui->horizontalSlider->setMinimum(0);
+    //ui->horizontalSlider->setMaximum(motion->getSize()-1);
+    ui->horizontalSlider->setMinimum(0);
+    ui->horizontalSlider->setMaximum(3);
+    ui->horizontalSlider->setSingleStep(TimerStep);
+    //TimerStep= motion->getMinTimeStep()*1000;
+    qDebug() << "TIME_STEP: " << TimerStep;
+    //setCurrentFrame(0);
+    //setCurrentTime(motion->getFirstTime()*1000);
+
+}
+
 void vsSimulationToolsWidget::on_horizontalSlider_sliderReleased()
 {
     if(!vsMotionsUtils::getInstance()->currentMotion) return;

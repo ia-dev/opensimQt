@@ -54,7 +54,7 @@ vsModelNode::vsModelNode(OpenSim::Model *model,vsNavigatorNode *parentNode,QObje
     //loading probs
     vsProbesNode *probesNode = new vsProbesNode(&model->updProbeSet(),this,this);
 
-
+    vsNavigatorNode::visualizerVTK->updating = false;
     visualizerVTK->addOpenSimModel(model);
 
 }

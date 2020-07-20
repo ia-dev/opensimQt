@@ -51,6 +51,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
     connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
+    connect(navigatorModel,&vsNavigatorModel::cleanCurrentModelProcesses,this,&vsMainWindow::onCleanCurrentModelProcesses);
+
 
     vsOpenSimTools::tools->setNavigatorModel(navigatorModel);
 
@@ -167,9 +169,16 @@ void vsMainWindow::onCurrentModelUpdated()
     //using the group solution
 }
 
+void vsMainWindow::onCleanCurrentModelProcesses()
+{
+    qDebug() << "cleaning the processecies(simulation...) for the current model";
+    simulationWidget->cleanSimulationWidget();
+
+}
+
 void vsMainWindow::userPluginClicked(QString pluginFileName)
 {
-
+//implemented in lambda
 
 }
 
@@ -270,6 +279,8 @@ void vsMainWindow::on_actionReload_triggered()
     ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     ui->vtkVisualiser->clearTheScene();
     ui->vtkVisualiser->update();
+    onCleanCurrentModelProcesses();
+    //TODO clean the simulation bar
     //update the treeview model
     //update the opensim library
     //form the tools reopen the models

@@ -28,6 +28,7 @@ public:
 private slots:
 
     void onCurrentModelUpdated();
+    void onCleanCurrentModelProcesses();
 
     void userPluginClicked(QString pluginFileName);
 
