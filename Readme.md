@@ -78,5 +78,6 @@ Future work:
    - repository for plugins. 
      - users upload the plugin-source code.
      - libraries for Windows, Linux and Mac are built (manually or automatic by a server).
-  
+
+
 If you like and/or using this project, your support is appreciated, (please cleck Sponsor button above for options). 
