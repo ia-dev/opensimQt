@@ -239,6 +239,10 @@ void vsMotionsUtils::applySimulationToCurrentModel(double endTime)
 void vsMotionsUtils::applySimulationToCurrentModelM(double endTime, double accuracy, double stepSize, OpenSim::Manager::IntegratorMethod integrator)
 {
     auto model = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!model){
+        vsOpenSimTools::tools->log("No active model to apply simulation on","vsMotionUtils",vsOpenSimTools::Error);
+        return;
+    }
     applySimulaitonToModelUsingManager(model,endTime,accuracy,stepSize,integrator);
 }
 

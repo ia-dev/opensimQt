@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDragEnterEvent>
 #include <vsTools/vsMotionsUtils.h>
+#include <vsTools/vsOpenSimTools.h>
 
 //Q_DECLARE_METATYPE(OpenSim::Manager::IntegratorMethod)
 
@@ -246,12 +247,17 @@ void vsSimulationToolsWidget::on_spinBox_valueChanged(int arg1)
 
 void vsSimulationToolsWidget::on_runSimulaitonButton_clicked()
 {
-    OpenSim::Manager::IntegratorMethod integratorMethod = (OpenSim::Manager::IntegratorMethod)ui->integratorComboBox->currentIndex();
-    //run the simulation
-    //vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
-    vsMotionsUtils::getInstance()->applySimulationToCurrentModelM(ui->endTimeSpinBox->value(),ui->accuracySpinBox->value()
-                                                                  , ui->stepSizeSpinBox->value(),integratorMethod);
-    //on_playButton_clicked();
+
+    try {
+        OpenSim::Manager::IntegratorMethod integratorMethod = (OpenSim::Manager::IntegratorMethod)ui->integratorComboBox->currentIndex();
+        //run the simulation
+        //vsMotionsUtils::getInstance()->applySimulationToCurrentModel(ui->endTimeSpinBox->value());
+        vsMotionsUtils::getInstance()->applySimulationToCurrentModelM(ui->endTimeSpinBox->value(),ui->accuracySpinBox->value()
+                                                                      , ui->stepSizeSpinBox->value(),integratorMethod);
+        //on_playButton_clicked();
+    } catch (...) {
+        vsOpenSimTools::tools->log("The Simulation computation has failed","vsSimulationTool",vsOpenSimTools::Error);
+    }
 
 
 }
