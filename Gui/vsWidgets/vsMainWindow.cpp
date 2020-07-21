@@ -1,5 +1,6 @@
 #include "vsMainWindow.h"
 #include "./ui_vsMainWindow.h"
+#include "vsPluginActivationDialog.h"
 
 #include <QLabel>
 #include <OpenSim.h>
@@ -50,6 +51,8 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     navigatorModel = new vsNavigatorModel();
     ui->navigatorTreeView->setModel(navigatorModel);
     connect(navigatorModel,&vsNavigatorModel::expendIndex,this,&vsMainWindow::onExpendIndex);
+    connect(navigatorModel,&vsNavigatorModel::cleanCurrentModelProcesses,this,&vsMainWindow::onCleanCurrentModelProcesses);
+
 
     vsOpenSimTools::tools->setNavigatorModel(navigatorModel);
 
@@ -91,8 +94,36 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //the sumulation configs
     connect(vsMotionsUtils::getInstance(),&vsMotionsUtils::currentMotionChanged,simulationWidget,&vsSimulationToolsWidget::onCurrentMotionChanged);
 
+    //plugins
+    vsOpenSimTools::tools->loadOnEntryPlugins();
+    listUserPlugins();
 
 
+}
+
+void vsMainWindow::listUserPlugins()
+{
+    ui->menuuser_plugins->clear();
+    //TODO clean the removed actions
+    QDir pDir(QApplication::applicationDirPath());
+    if(!pDir.exists(pDir.path()+"/plugins"))pDir.mkdir("plugins");
+    pDir.cd("plugins");
+    pDir.setNameFilters(QStringList() << vsOpenSimTools::getPluginExtentionForOS());
+    foreach (auto entryInfo, pDir.entryInfoList(QDir::Files)) {
+        QString fileName = vsOpenSimTools::getOSName()=="windows"?entryInfo.fileName():entryInfo.baseName();
+        QAction *pluginAction = new QAction(fileName,this);
+        ui->menuuser_plugins->addAction(pluginAction);
+        connect(pluginAction,&QAction::triggered,[this,fileName,pDir](){
+            qDebug() << "pluging is loading " << fileName;
+            OpenSim::LoadOpenSimLibrary((pDir.path()+"/"+fileName).toStdString());
+//            bool loaded = OpenSim::LoadOpenSimLibraryExact(entryInfo.filePath().toStdString());
+//            if(!loaded){
+//                vsOpenSimTools::tools->log("could not load library","",vsOpenSimTools::Error);
+//            }
+            vsPluginActivationDialog dlg(fileName);
+            dlg.exec();
+        });
+    }
 
 }
 
@@ -136,6 +167,19 @@ void vsMainWindow::onCurrentModelUpdated()
     }
     coordinatesWidget->initializeWidgetForNewModel();
     //using the group solution
+}
+
+void vsMainWindow::onCleanCurrentModelProcesses()
+{
+    qDebug() << "cleaning the processecies(simulation...) for the current model";
+    simulationWidget->cleanSimulationWidget();
+
+}
+
+void vsMainWindow::userPluginClicked(QString pluginFileName)
+{
+//implemented in lambda
+
 }
 
 
@@ -235,6 +279,8 @@ void vsMainWindow::on_actionReload_triggered()
     ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
     ui->vtkVisualiser->clearTheScene();
     ui->vtkVisualiser->update();
+    onCleanCurrentModelProcesses();
+    //TODO clean the simulation bar
     //update the treeview model
     //update the opensim library
     //form the tools reopen the models
@@ -450,4 +496,24 @@ void vsMainWindow::on_actionNew_Model_triggered()
       vsOpenSimTools::tools->log("No valid OpenSim model was created","",vsOpenSimTools::Error,true);
   }
 
+}
+
+void vsMainWindow::on_actionimport_new_plugin_triggered()
+{
+
+    QUrl pluginFileURL = QFileDialog::getOpenFileUrl(nullptr,"plugin library file",
+                                                     QApplication::applicationDirPath(),
+                                                     vsOpenSimTools::getPluginExtentionForOS());
+    if(!pluginFileURL.isValid()){
+        vsOpenSimTools::tools->log("no plugin was selected !","MainWindow",vsOpenSimTools::Error);
+        return;
+    }
+    //test if the plugin dir exist
+    QDir hDir(QApplication::applicationDirPath());
+    if(!hDir.exists(hDir.path()+"/plugins"))hDir.mkdir("plugins");
+    hDir.cd("plugins");
+    QFile::copy(pluginFileURL.toLocalFile(),hDir.path()+"/"+pluginFileURL.fileName());
+    //TODO update the menue for user plugins
+    vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
+    listUserPlugins();
 }

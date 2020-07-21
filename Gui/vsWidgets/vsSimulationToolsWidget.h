@@ -40,6 +40,7 @@ public slots:
     void setCurrentTime(int currentTime);
     void onCurrentMotionChanged();
     void onTimerTimout();
+    void cleanSimulationWidget();
 
     void on_horizontalSlider_sliderReleased();
     void on_horizontalSlider_valueChanged(int value);

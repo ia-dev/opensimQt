@@ -123,6 +123,7 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
     //TODO add multiple motions support
     activeModel = model;
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
+    if(!model || !motion) return;
     applyTimeToModel(model,motion,motion->getFirstTime());
     MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
     emit notifyObservers(evntObj);
@@ -238,6 +239,10 @@ void vsMotionsUtils::applySimulationToCurrentModel(double endTime)
 void vsMotionsUtils::applySimulationToCurrentModelM(double endTime, double accuracy, double stepSize, OpenSim::Manager::IntegratorMethod integrator)
 {
     auto model = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!model){
+        vsOpenSimTools::tools->log("No active model to apply simulation on","vsMotionUtils",vsOpenSimTools::Error);
+        return;
+    }
     applySimulaitonToModelUsingManager(model,endTime,accuracy,stepSize,integrator);
 }
 
