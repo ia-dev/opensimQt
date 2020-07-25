@@ -4,6 +4,13 @@
 
 #include <vsTools/vsOpenSimTools.h>
 
+
+/**
+ * program entry function.
+ * setup the Qt configurations and run the event loop
+ * @param argc number of inputs
+ * @param input values array
+*/
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

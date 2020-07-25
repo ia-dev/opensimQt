@@ -14,6 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
 QT_END_NAMESPACE
 
+
 class vsMainWindow : public QMainWindow
 {
     Q_OBJECT
