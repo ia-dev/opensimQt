@@ -16,8 +16,8 @@ QT_END_NAMESPACE
 
 
 /**
- * The vsMainWindow class, the main entry to the OpenSimQt program.
- * it is reference widget, and all the OpenSim object live in vsMainWindow scope
+ * The vsMainWindow class, the main entry to the OpenSimQt GUI.
+ * it is the reference widget, and all the OpenSim objects live in vsMainWindow scope
  */
 class vsMainWindow : public QMainWindow
 {
@@ -32,7 +32,7 @@ public:
     vsMainWindow(QWidget *parent = nullptr);
 
     /**
-     * @brief list the user plugins.
+     * list the user plugins.
      * analyse the plugins folder and create entries in the user plugins menu.
      * also it loads the libraries marked to be loaded on entry in the config.ini file
      *
