@@ -66,7 +66,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //ui->Visualizer->show();
 
     //setting the model preferences
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("/Users/ritesh/projects/idhamari/VisSimKoblenz/opensim-gui/opensim-models/Geometry");
 	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");                       //linux build
 	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../../../opensim-gui/opensim-models/Geometry");    //Windows build
 
@@ -98,7 +98,11 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     vsOpenSimTools::tools->loadOnEntryPlugins();
     listUserPlugins();
 
-
+    //init Python Scripting console
+    pythonConsole = new vsPythonQt(this);
+    ui->verticalLayout_4->addWidget(pythonConsole);
+    ui->verticalLayout_4->addStretch(1);
+    pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
 }
 
 void vsMainWindow::listUserPlugins()

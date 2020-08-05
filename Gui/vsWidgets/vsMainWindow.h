@@ -9,6 +9,7 @@
 #include <vsWidgets/vsSimulationToolsWidget.h>
 #include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsPropertyModel.h>
+#include <vsPython/vspythonqt.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -71,6 +72,9 @@ private:
     QMap<QString,QAction*> pluginActions;
 
     // QWidget interface
+
+    //Python Qt Object
+    vsPythonQt *pythonConsole;
 protected:
     virtual void dropEvent(QDropEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
