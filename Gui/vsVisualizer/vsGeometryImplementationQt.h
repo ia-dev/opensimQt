@@ -12,6 +12,15 @@
 
 #include <OpenSim.h>
 
+/**
+ * the interface linking opensim decoration and vtk probes.
+ * to direct the rendering of Decorative geometries of opensim object and create an other visualizer other than the default one , this class inherite the SimTK::DecorativeGeometryImplementation wich provide functions to be redifined to draw specific shapes and meshes
+ * the instanciation and use of this place can accure in two places :
+ *  - when called from the NavigatorNode to render the opensim object
+ * when called fromt the vsMotionUtils to update the geometries instead of deleting and reopening them
+ * call the function in the vsVisualizerVTK
+ */
+
 class vsGeometryImplementationQt : public SimTK::DecorativeGeometryImplementation
 {
 public:
