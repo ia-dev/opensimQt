@@ -8,7 +8,7 @@
 
 vsPythonQt::vsPythonQt(QWidget *parent) : QWidget(parent)
 {
-    PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
+    PythonQt::init(PythonQt::RedirectStdOut);
     PythonQt_QtAll::init();
     m_pyQtContext = PythonQt::self()->getMainModule();
     m_console = new PythonQtScriptingConsole(this,m_pyQtContext);
