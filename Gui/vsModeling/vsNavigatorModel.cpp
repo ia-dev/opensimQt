@@ -166,6 +166,7 @@ QList<OpenSim::Model *> vsNavigatorModel::getOpenModels() const
 
 void vsNavigatorModel::closeCurrentModel()
 {
+    emit cleanCurrentModelProcesses();
     if(m_activeModel == nullptr){
         vsOpenSimTools::tools->log("No Current Model to be closed","NavigatorModel",vsOpenSimTools::Error);
         return;
@@ -190,6 +191,7 @@ void vsNavigatorModel::closeCurrentModel()
 
 void vsNavigatorModel::closeAllModels()
 {
+    emit cleanCurrentModelProcesses();
     foreach(auto modelNode,m_rootNNode->childNodes){
         OpenSim::Model *model = static_cast<OpenSim::Model*>(modelNode->openSimObject);
         modelNode->visualizerVTK->removeModelActors(model);
@@ -207,7 +209,9 @@ void vsNavigatorModel::closeAllModels()
 
 void vsNavigatorModel::closeModel(OpenSim::Model *model)
 {
-
+    if(model == m_activeModel){
+        emit cleanCurrentModelProcesses();
+    }
     vsModelNode *activeNode = getNodeForModel(model);
 
     activeNode->visualizerVTK->removeModelActors(static_cast<OpenSim::Model*>(activeNode->openSimObject));

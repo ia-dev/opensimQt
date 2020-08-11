@@ -1,0 +1,34 @@
+MODEL: pendulumDF
+
+numStates = 4
+numCoordinates = 2
+numSpeeds = 2
+numActuators = 0
+numBodies = 2
+numConstraints = 0
+numProbes = 0
+
+ANALYSES (total: 3)
+analysis[0] = ForceReporter
+analysis[1] = StatesReporter
+analysis[2] = BodyKinematics
+
+BODIES (total: 2)
+body[0] = myrod. mass: 1
+              moments of inertia:  ~[1,1,1]
+              products of inertia: ~[0,0,0]
+body[1] = sph. mass: 1
+              moments of inertia:  ~[1,1,1]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 2)
+joint[0] = groundTrodJnt. parent: ground_offset, child: rod_offset
+joint[1] = rodTsphJnt. parent: rod_offset, child: sph_offset
+
+ACTUATORS (total: 0)
+
+STATES (total: 4)
+y[0] = /jointset/groundTrodJnt/groundTrodJnt_coord_0/value
+y[1] = /jointset/groundTrodJnt/groundTrodJnt_coord_0/speed
+y[2] = /jointset/rodTsphJnt/rodTsphJnt_coord_0/value
+y[3] = /jointset/rodTsphJnt/rodTsphJnt_coord_0/speed

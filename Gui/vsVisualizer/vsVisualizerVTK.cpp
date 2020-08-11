@@ -944,7 +944,8 @@ void vsVisualizerVTK::addOpenSimModel(OpenSim::Model *model)
     auto viewAngle = renderer->GetActiveCamera()->GetDistance();
     //visualizer solution
     //loading the Components
-    if(!updating)model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
+    if(!updating)
+    model->getSystem().realize(model->updWorkingState(),SimTK::Stage::Position);
     SimTK::Array_<SimTK::DecorativeGeometry> compDecorations;
 
     //TODO try to implement frame geometries as Axes
@@ -1188,6 +1189,12 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
         actor->Delete();
     }
     modelActorsMap.remove(model);
+    //removing the actor objects map
+    auto actorObjectList = actorObjectsMap.value(model,nullptr);
+    if(actorObjectList){
+        actorObjectList->clear();
+    }
+    actorObjectsMap.remove(model);
     //renderer->ResetCamera();
     //renderer->Render();
     renderWindow()->Render();
@@ -1198,9 +1205,17 @@ void vsVisualizerVTK::removeModelActors(OpenSim::Model *model)
 void vsVisualizerVTK::getModelBounds(OpenSim::Model *model, double *bounds)
 {
     if(currentModel == nullptr) return;
+    if(!modelActorsMap.value(model))qDebug() << "the list does not exist";
     auto  modelActors = *modelActorsMap.value(model);
+    int i = 0;
     foreach (vtkSmartPointer<vtkProp> actor, modelActors ) {
+        i++;
+        if(!actor)qDebug() << "actor " << i <<" is null";
         double *actorBounds = actor->GetBounds();
+        if(!actorBounds){
+            qDebug() << "bounds are not defined";
+            return;
+        }
         if(actorBounds[0]<bounds[0]) bounds[0] = actorBounds[0];
         if(actorBounds[1]>bounds[1]) bounds[1] = actorBounds[1];
         if(actorBounds[2]<bounds[2]) bounds[2] = actorBounds[2];

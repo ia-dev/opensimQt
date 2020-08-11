@@ -44,6 +44,8 @@ public:
 signals:
     void expendIndex(const QModelIndex modelIndex);
     void activeModelUpdated();
+    //notify the mainwindow to clean the simulation bar
+    void cleanCurrentModelProcesses();
 
 public:
     QModelIndex indexForNNode(vsNavigatorNode *nNode);
