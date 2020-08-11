@@ -98,6 +98,11 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     vsOpenSimTools::tools->loadOnEntryPlugins();
     listUserPlugins();
 
+    //init Python Scripting console
+    pythonConsole = new vsPythonQt(this);
+    ui->verticalLayout_4->addWidget(pythonConsole);
+    ui->verticalLayout_4->addStretch(1);
+    pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
 
 }
 
