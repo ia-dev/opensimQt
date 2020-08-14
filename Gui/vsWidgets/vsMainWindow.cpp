@@ -103,6 +103,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     ui->verticalLayout_4->addWidget(pythonConsole);
     ui->verticalLayout_4->addStretch(1);
     pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
+
+    //connect the history text edit to display history of script statements
+    connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
 }
 
 void vsMainWindow::listUserPlugins()
@@ -447,6 +450,11 @@ void vsMainWindow::on_posesButton_clicked()
     posesMenu->show();
 }
 
+void vsMainWindow::getHistory(const QString history)
+{
+    ui->scriptHistoryTextEdit->appendPlainText(history);
+}
+
 void vsMainWindow::on_actionCurrent_model_Externally_triggered()
 {
 
@@ -520,4 +528,19 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     //TODO update the menue for user plugins
     vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
     listUserPlugins();
+}
+
+void vsMainWindow::on_actionRun_triggered()
+{
+    try {
+        QString fileName = QFileDialog::getOpenFileName(this,
+                                                        tr("Open Python Script"), ".",
+                                                        tr("Python Script Files (*.py)"));
+        if(!fileName.isEmpty()){
+            pythonConsole->runFile(fileName);
+        }
+    } catch (...) {
+        vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
+    }
+
 }

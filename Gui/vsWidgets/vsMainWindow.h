@@ -9,7 +9,7 @@
 #include <vsWidgets/vsSimulationToolsWidget.h>
 #include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsPropertyModel.h>
-#include <vsPython/vspythonqt.h>
+#include <vsPython/vsPythonQt.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -58,6 +58,16 @@ private slots:
 
     void on_posesButton_clicked();
 
+    //! Slot: Handles the notification when history is updated on the python scripting console
+    //!
+    /**
+     * Connect this slot to @code historyUpdate(const QString) @code signal emitted by
+     * vsPythonCustomConsole object to get notified about updated history of commands executed on the console.
+     *
+     * @param [out] history : const QString.
+     */
+    void getHistory(const QString history);
+
 private:
     Ui::vsMainWindow *ui;
     vsSimulationToolsWidget *simulationWidget;
@@ -73,8 +83,7 @@ private:
 
     // QWidget interface
 
-    //Python Qt Object
-    vsPythonQt *pythonConsole;
+    vsPythonQt *pythonConsole;                                              //!< Embedded Python Scripting Console :  Qt Widget for embedded python scripting
 protected:
     virtual void dropEvent(QDropEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
@@ -89,5 +98,6 @@ private slots:
 private slots:
     void on_actionCurrent_model_Externally_triggered();
     void on_actionimport_new_plugin_triggered();
+    void on_actionRun_triggered();
 };
 #endif // vsMainWindow_H

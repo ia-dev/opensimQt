@@ -461,7 +461,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit_3">
+      <widget class="QPlainTextEdit" name="scriptHistoryTextEdit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -475,10 +475,7 @@
         </size>
        </property>
        <property name="plainText">
-        <string>## script history
-#a =10
-# a
-10</string>
+        <string/>
        </property>
       </widget>
      </item>
