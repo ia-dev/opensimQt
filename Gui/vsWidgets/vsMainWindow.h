@@ -22,8 +22,8 @@ class vsMainWindow : public QMainWindow
 public:
     vsMainWindow(QWidget *parent = nullptr);
     void listUserPlugins();
-
-
+    vsNavigatorModel* getvsNavigator() const {return this->navigatorModel;}
+    void updateNavigatorTreeView();
     ~vsMainWindow();
 
 private slots:

@@ -6,6 +6,8 @@
 #include "vsPythonCustomConsole.h"
 #include <QWidget>
 
+class vsMainWindow;
+
 class vsPythonQt : public QWidget
 {
     Q_OBJECT
@@ -13,6 +15,7 @@ public:
     explicit vsPythonQt(QWidget *parent = nullptr);
 
     void addApiForPython(QObject *receiver, const QString slot, const QString methodName);
+    PythonQtObjectPtr getOpenSimModule() const {return m_opensimModule;}
 
     //! Run a python script from a file
     void runFile(const QString fileName);
@@ -42,8 +45,12 @@ private slots:
     void getHistory(const QString history);
 
 private:
+    vsMainWindow* getMainWindow();
+private:
     PythonQtObjectPtr m_pyQtContext;
     vsPythonCustomConsole *m_console;
+    PythonQtObjectPtr m_opensimModule;
+
 
 };
 

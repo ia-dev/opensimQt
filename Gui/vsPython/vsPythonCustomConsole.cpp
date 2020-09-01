@@ -130,6 +130,16 @@ void vsPythonCustomConsole::executeLine(bool storeOnly)
 
 }
 
+void vsPythonCustomConsole::runScript(const QString &script)
+{
+    QTextCursor textCursor = this->textCursor();
+    textCursor.setPosition(commandPromptPosition());
+
+    insertPlainText(script);
+    executeLine(false);
+
+}
+
 void vsPythonCustomConsole::executeCode(const QString& code)
 {
   // put visible cursor to the end of the line

@@ -102,7 +102,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     pythonConsole = new vsPythonQt(this);
     ui->verticalLayout_4->addWidget(pythonConsole);
     ui->verticalLayout_4->addStretch(1);
-    pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
+    //pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
 
     //connect the history text edit to display history of script statements
     connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
@@ -543,4 +543,9 @@ void vsMainWindow::on_actionRun_triggered()
         vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
     }
 
+}
+
+void vsMainWindow::updateNavigatorTreeView()
+{
+    ui->navigatorTreeView->update(ui->navigatorTreeView->visibleRegion());
 }

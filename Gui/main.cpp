@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
 
 #ifdef __APPLE__
-    QSurfaceFormat::setDefaultFormat(QVTKOpenGLNativeWidget::defaultFormat());                              //To create appropria window and OpenGL context.
+    QSurfaceFormat::setDefaultFormat(QVTKOpenGLNativeWidget::defaultFormat());                              //To create appropriate window and OpenGL context.
 #endif
 
     QApplication a(argc, argv);

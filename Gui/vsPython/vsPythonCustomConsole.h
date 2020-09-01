@@ -37,8 +37,10 @@ public Q_SLOTS:
   //! multiline code is executed when storeOnly is set to false
   void executeLine(bool storeOnly);
 
+  void runScript(const QString& script);
+
   //! derived key press event
-  void keyPressEvent (QKeyEvent * e);
+  void keyPressEvent (QKeyEvent * e) override;
 
   //! output from console
   void consoleMessage(const QString & message);
