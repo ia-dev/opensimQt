@@ -19,19 +19,8 @@ public:
 
     //! Run a python script from a file
     void runFile(const QString fileName);
-signals:
-    void openModel();
-    void newModel();
-    void reload();
-    void saveModel();
-    void saveModelAs();
-    void saveAll();
-    void exit();
-    void closeModel();
-    void closeAll();
-    void loadMotion();
-    void poses();
 
+signals:
     //! Signal: Notifies the updated hisotory on python console and provides last statement executed as QString
     //! \code void historyUpdated(const QString history) \code
     //! \param history : QString \param

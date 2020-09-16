@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1332</width>
     <height>768</height>
    </rect>
   </property>
@@ -95,7 +95,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1332</width>
      <height>22</height>
     </rect>
    </property>
@@ -142,6 +142,10 @@
     <addaction name="actionRun_Recent"/>
     <addaction name="separator"/>
     <addaction name="actionRun_Current_Script"/>
+    <addaction name="separator"/>
+    <addaction name="actionRecord_Macro"/>
+    <addaction name="actionPause_Recording"/>
+    <addaction name="actionStop_Recording"/>
    </widget>
    <widget class="QMenu" name="menu_Tools">
     <property name="title">
@@ -528,6 +532,35 @@
    <addaction name="actionE_xit"/>
   </widget>
   <widget class="QToolBar" name="scriptToolBar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionRun"/>
+   <addaction name="separator"/>
+   <addaction name="actionSave_Current_Script"/>
+   <addaction name="actionRun_Current_Script"/>
+   <addaction name="separator"/>
+   <addaction name="actionRecord_Macro"/>
+   <addaction name="actionPause_Recording"/>
+   <addaction name="actionStop_Recording"/>
+  </widget>
+  <widget class="QToolBar" name="simulationToolBar">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -539,22 +572,6 @@
    </attribute>
    <attribute name="toolBarBreak">
     <bool>true</bool>
-   </attribute>
-   <addaction name="actionOpen"/>
-   <addaction name="actionRun"/>
-   <addaction name="separator"/>
-   <addaction name="actionSave_Current_Script"/>
-   <addaction name="actionRun_Current_Script"/>
-  </widget>
-  <widget class="QToolBar" name="simulationToolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
    </attribute>
   </widget>
   <widget class="QDockWidget" name="coordinatesDock">
@@ -1019,6 +1036,33 @@
    </property>
    <property name="text">
     <string>import new plugin</string>
+   </property>
+  </action>
+  <action name="actionRecord_Macro">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-record.png</normaloff>:/Data/Images/DefaultIcon/MD-record.png</iconset>
+   </property>
+   <property name="text">
+    <string>Record Macro</string>
+   </property>
+  </action>
+  <action name="actionStop_Recording">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-stop.png</normaloff>:/Data/Images/DefaultIcon/MD-stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop Recording</string>
+   </property>
+  </action>
+  <action name="actionPause_Recording">
+   <property name="icon">
+    <iconset resource="../resource.qrc">
+     <normaloff>:/Data/Images/DefaultIcon/MD-pause.png</normaloff>:/Data/Images/DefaultIcon/MD-pause.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pause Recording</string>
    </property>
   </action>
  </widget>

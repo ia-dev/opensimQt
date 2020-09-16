@@ -10,6 +10,7 @@
 #include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsPropertyModel.h>
 #include <vsPython/vsPythonQt.h>
+#include <vsPython/vsMacroManager.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -23,7 +24,7 @@ public:
     vsMainWindow(QWidget *parent = nullptr);
     void listUserPlugins();
     vsNavigatorModel* getvsNavigator() const {return this->navigatorModel;}
-    void updateNavigatorTreeView();
+    //vsMacroManager* getMacroManager() const {return this->macroManager;}
     ~vsMainWindow();
 
 private slots:
@@ -84,6 +85,7 @@ private:
     // QWidget interface
 
     vsPythonQt *pythonConsole;                                              //!< Embedded Python Scripting Console :  Qt Widget for embedded python scripting
+    //vsMacroManager *macroManager;
 protected:
     virtual void dropEvent(QDropEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
@@ -99,5 +101,11 @@ private slots:
     void on_actionCurrent_model_Externally_triggered();
     void on_actionimport_new_plugin_triggered();
     void on_actionRun_triggered();
+    void on_actionPlot_triggered();
+    void on_actionRecord_Macro_triggered();
+    void on_actionStop_Recording_triggered();
+
+    void on_actionPause_Recording_triggered();
+    void on_actionRun_Current_Script_triggered();
 };
 #endif // vsMainWindow_H

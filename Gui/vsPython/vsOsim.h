@@ -1,6 +1,17 @@
 #ifndef VSOSIM_H
 #define VSOSIM_H
 
+
+//----------------------------------------------------------------------------------
+/*!
+// \file    vsOsim.h
+// \author  Ritesh Sangani
+// \author  Last changed by $Author: ritesh $
+// \date    2020-09-01
+*/
+//----------------------------------------------------------------------------------
+
+
 #include <QObject>
 #include <OpenSim.h>
 #include <PythonQtObjectPtr.h>
