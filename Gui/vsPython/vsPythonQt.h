@@ -3,6 +3,7 @@
 
 #include "PythonQt.h"
 #include "PythonQt_QtAll.h"
+#include "vsManager.h"
 #include "vsPythonCustomConsole.h"
 #include <QWidget>
 
@@ -19,6 +20,8 @@ public:
 
     //! Run a python script from a file
     void runFile(const QString fileName);
+    // return the instance of a vsManager
+    vsManager* getManager() const {return this->manager;}
 
 signals:
     //! Signal: Notifies the updated hisotory on python console and provides last statement executed as QString
@@ -39,7 +42,7 @@ private:
     PythonQtObjectPtr m_pyQtContext;
     vsPythonCustomConsole *m_console;
     PythonQtObjectPtr m_opensimModule;
-
+    vsManager* manager;
 
 };
 

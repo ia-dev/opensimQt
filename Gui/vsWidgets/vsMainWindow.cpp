@@ -14,6 +14,7 @@
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 #include <vsPython/vsMacroManager.h>
+#include <vsPython/vsManager.h>
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -110,8 +111,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
 
     //connect the history text edit to display history of script statements
     connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
-
-
+    //connect the simulation params update from python manager to simulation widget gui
+    connect(pythonConsole->getManager(),&vsManager::updateSimulationParams,simulationWidget,&vsSimulationToolsWidget::updateSimulationParams);
+    connect(pythonConsole->getManager(),&vsManager::runSimulation,simulationWidget,&vsSimulationToolsWidget::on_runSimulaitonButton_clicked);
 }
 
 void vsMainWindow::listUserPlugins()

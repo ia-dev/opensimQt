@@ -24,7 +24,7 @@ public:
     vsMainWindow(QWidget *parent = nullptr);
     void listUserPlugins();
     vsNavigatorModel* getvsNavigator() const {return this->navigatorModel;}
-    //vsMacroManager* getMacroManager() const {return this->macroManager;}
+    vsSimulationToolsWidget* getSimulationWidget() const {return this->simulationWidget;}
     ~vsMainWindow();
 
 private slots:

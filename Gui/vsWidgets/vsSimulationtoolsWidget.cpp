@@ -29,6 +29,7 @@ vsSimulationToolsWidget::vsSimulationToolsWidget(QWidget *parent) :
     ui->integratorComboBox->setCurrentIndex(4);
 
     ui->accuracySpinBox->setValue(0.0000001);
+
 }
 
 vsSimulationToolsWidget::~vsSimulationToolsWidget()
@@ -316,4 +317,25 @@ void vsSimulationToolsWidget::setSpeedFactor(double speedFactor)
 
     m_speedFactor = speedFactor;
     emit speedFactorChanged(m_speedFactor);
+}
+
+void vsSimulationToolsWidget::updateSimulationParams(const SimulationParams p)
+{
+
+    if((p.flag & SimParamFlag::Accuracy) == SimParamFlag::Accuracy) {
+        this->ui->accuracySpinBox->setValue(p.accuracy);
+    }
+
+    if((p.flag & SimParamFlag::StepSize) == SimParamFlag::StepSize) {
+        this->ui->stepSizeSpinBox->setValue(p.stepSize);
+    }
+
+    if((p.flag & SimParamFlag::EndTime) == SimParamFlag::EndTime) {
+        this->ui->endTimeSpinBox->setValue(p.endTime);
+    }
+
+    if((p.flag & SimParamFlag::IntegratorMethod) == SimParamFlag::IntegratorMethod) {
+        this->ui->integratorComboBox->setCurrentIndex(p.integratorMethod);
+    }
+
 }

@@ -71,6 +71,8 @@ vsPyGui::vsPyGui(QObject *parent) : QObject{parent}
 //    connect(this,SIGNAL(analyze()),parent,SLOT(on_actionClose_All_triggered()));
 //    connect(this,SIGNAL(convertFiles()),parent,SLOT(on_actionLoad_Motion_triggered()));
 
+    //connect simulation tools
+
 }
 
 QAction* vsPyGui::findAction(const QString& objectName)

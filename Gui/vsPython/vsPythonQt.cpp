@@ -44,6 +44,11 @@ vsPythonQt::vsPythonQt(QWidget *parent) : QWidget(parent)
     vsPyGui *pygui = new vsPyGui(this);
     m_pyQtContext.addObject("vsGui",pygui);
 
+    //load the vsManager as vsManager
+    manager = new vsManager(this);
+    m_pyQtContext.addObject("vsManager",manager);
+
+
 
 }
 

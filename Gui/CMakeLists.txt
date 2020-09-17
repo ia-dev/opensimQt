@@ -121,10 +121,15 @@ file(GLOB opensim_python_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.ui
     )
+file(GLOB vscommon_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsCommon/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/vsCommon/*.h
+    )
 
 
 add_executable(${TARGET}
     main.cpp
+    ${vscommon_sources}
     ${opensim_widgets_sources}
     ${modeling_sources}
     ${visualizer_sources}

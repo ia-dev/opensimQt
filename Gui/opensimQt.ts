@@ -476,40 +476,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="200"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="203"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="541"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="544"/>
         <source>Open Python Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="542"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="545"/>
         <source>Python Script Files (*.py)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="568"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="585"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="600"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="615"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="571"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="588"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="605"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="621"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="611"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="617"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="611"/>
-        <source>No recent files available!</source>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="617"/>
+        <source>No recent script files available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="615"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="621"/>
         <source>Sorry! Some Error Occured during the process!</source>
         <translation type="unfinished"></translation>
     </message>
