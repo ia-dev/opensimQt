@@ -13,7 +13,8 @@
 #include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
-
+#include <vsPython/vsMacroManager.h>
+#include <vsPython/vsManager.h>
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -66,7 +67,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //ui->Visualizer->show();
 
     //setting the model preferences
-    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("/Users/ritesh/projects/idhamari/VisSimKoblenz/opensim-gui/opensim-models/Geometry");
 	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");                       //linux build
 	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../../../opensim-gui/opensim-models/Geometry");    //Windows build
 
@@ -98,12 +99,21 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     vsOpenSimTools::tools->loadOnEntryPlugins();
     listUserPlugins();
 
+    //disable stop recording button
+    this->ui->actionStop_Recording->setEnabled(false);
+    //disable pause recording button
+    this->ui->actionPause_Recording->setEnabled(false);
     //init Python Scripting console
     pythonConsole = new vsPythonQt(this);
     ui->verticalLayout_4->addWidget(pythonConsole);
     ui->verticalLayout_4->addStretch(1);
-    pythonConsole->addApiForPython(simulationWidget,"on_runSimulaitonButton_clicked()","runSimulation()");
 
+
+    //connect the history text edit to display history of script statements
+    connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
+    //connect the simulation params update from python manager to simulation widget gui
+    connect(pythonConsole->getManager(),&vsManager::updateSimulationParams,simulationWidget,&vsSimulationToolsWidget::updateSimulationParams);
+    connect(pythonConsole->getManager(),&vsManager::runSimulation,simulationWidget,&vsSimulationToolsWidget::on_runSimulaitonButton_clicked);
 }
 
 void vsMainWindow::listUserPlugins()
@@ -448,6 +458,11 @@ void vsMainWindow::on_posesButton_clicked()
     posesMenu->show();
 }
 
+void vsMainWindow::getHistory(const QString history)
+{
+    ui->scriptHistoryTextEdit->appendPlainText(history);
+}
+
 void vsMainWindow::on_actionCurrent_model_Externally_triggered()
 {
 
@@ -521,4 +536,89 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     //TODO update the menue for user plugins
     vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
     listUserPlugins();
+}
+
+void vsMainWindow::on_actionRun_triggered()
+{
+    try {
+        QString fileName = QFileDialog::getOpenFileName(this,
+                                                        tr("Open Python Script"), ".",
+                                                        tr("Python Script Files (*.py)"));
+        if(!fileName.isEmpty()){
+            pythonConsole->runFile(fileName);
+        }
+    } catch (...) {
+        vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
+    }
+
+}
+
+
+
+void vsMainWindow::on_actionRecord_Macro_triggered()
+{
+    try {
+        //connect python console to capture commands
+        connect(pythonConsole,SIGNAL(historyUpdated(QString)),&vsMacroManager::instance(),SLOT(getCommandsFromConsole(QString)));
+
+        vsMacroManager::instance().startRecording();
+        //enable pause recording button
+        this->ui->actionPause_Recording->setEnabled(true);
+         //enable stop recording button
+        this->ui->actionStop_Recording->setEnabled(true);
+        //disable start recording
+        this->ui->actionRecord_Macro->setEnabled(false);
+    } catch (std::exception& e) {
+        QMessageBox::information(this,tr("Error"),tr(e.what()));
+    }
+}
+
+void vsMainWindow::on_actionStop_Recording_triggered()
+{
+    try {
+        vsMacroManager::instance().stopRecording();
+        //disable stop recording button
+        this->ui->actionStop_Recording->setEnabled(false);
+        //disable pause recording button
+        this->ui->actionPause_Recording->setEnabled(false);
+        //enable start recording
+        this->ui->actionRecord_Macro->setEnabled(true);
+        //disconnect python console
+        disconnect(pythonConsole,SIGNAL(historyUpdated(QString)),&vsMacroManager::instance(),SLOT(getCommandsFromConsole(QString)));
+    } catch (std::exception& e) {
+        QMessageBox::information(this,tr("Error"),tr(e.what()));
+    }
+
+}
+
+void vsMainWindow::on_actionPause_Recording_triggered()
+{
+    try {
+        vsMacroManager::instance().pauseRecording();
+        //disable stop recording button
+        this->ui->actionStop_Recording->setEnabled(true);
+        //enable start recording
+        this->ui->actionRecord_Macro->setEnabled(true);
+        //disable pause recording button
+        this->ui->actionPause_Recording->setEnabled(false);
+
+    } catch (std::exception& e) {
+        QMessageBox::information(this,tr("Error"),tr(e.what()));
+    }
+}
+
+void vsMainWindow::on_actionRun_Current_Script_triggered()
+{
+    try {
+        const QString fileName = vsMacroManager::instance().getCurrentScript();
+        if(!fileName.isEmpty()){
+            qDebug() << "recent script file name " << fileName;
+            pythonConsole->runFile(fileName);
+        }else{
+            QMessageBox::information(this,tr("Information"),tr("No recent script files available!"));
+        }
+    } catch (...) {
+        vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
+        QMessageBox::information(this,tr("Error"),tr("Sorry! Some Error Occured during the process!"));
+    }
 }

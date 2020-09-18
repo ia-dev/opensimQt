@@ -3,10 +3,13 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <vsCommon/vsCommon.h>
 
 namespace Ui {
 class vsSimulationToolsWidget;
 }
+
+
 
 class vsSimulationToolsWidget : public QWidget
 {
@@ -65,6 +68,8 @@ public slots:
 
     void setSpeedFactor(double speedFactor);
 
+    void updateSimulationParams(const SimulationParams p);
+
 signals:
     void currentTimeChanged(int currentTime);
 
@@ -89,6 +94,7 @@ private:
     int m_currentFrame;
     bool m_bPlayInReverse;
     double m_speedFactor;
+    SimulationParams p;
 };
 
 #endif // vsSimulationToolsWidget_H

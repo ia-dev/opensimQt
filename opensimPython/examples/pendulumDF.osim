@@ -40,7 +40,7 @@
 									<!--Radius of cylinder.-->
 									<radius>0.10000000000000001</radius>
 									<!--Half-Height of cylinder.-->
-									<half_height>1</half_height>
+									<half_height>2</half_height>
 								</Cylinder>
 							</attached_geometry>
 							<!--Path to a Component that satisfies the Socket 'parent' of type C (description: The parent frame to this frame.).-->
@@ -157,9 +157,9 @@
 							<!--Path to a Component that satisfies the Socket 'parent' of type C (description: The parent frame to this frame.).-->
 							<socket_parent>/bodyset/myrod</socket_parent>
 							<!--Translational offset (in meters) of this frame's origin from the parent frame's origin, expressed in the parent frame.-->
-							<translation>0 1 0</translation>
+							<translation>0 2 0</translation>
 							<!--Orientation offset (in radians) of this frame in its parent frame, expressed as a frame-fixed x-y-z rotation sequence.-->
-							<orientation>0 0 1.5714285714285714</orientation>
+							<orientation>0 0 0.7857142857142857</orientation>
 						</PhysicalOffsetFrame>
 					</frames>
 				</PinJoint>
@@ -188,9 +188,9 @@
 							<!--Path to a Component that satisfies the Socket 'parent' of type C (description: The parent frame to this frame.).-->
 							<socket_parent>/bodyset/myrod</socket_parent>
 							<!--Translational offset (in meters) of this frame's origin from the parent frame's origin, expressed in the parent frame.-->
-							<translation>-1.9986663180038278e-07 -0.00063224459155324195 0</translation>
+							<translation>0 2 0</translation>
 							<!--Orientation offset (in radians) of this frame in its parent frame, expressed as a frame-fixed x-y-z rotation sequence.-->
-							<orientation>0 0 1.5714285714285714</orientation>
+							<orientation>0 0 0.7857142857142857</orientation>
 						</PhysicalOffsetFrame>
 						<PhysicalOffsetFrame name="sph_offset">
 							<!--The geometry used to display the axes of this Frame.-->
@@ -203,9 +203,9 @@
 							<!--Path to a Component that satisfies the Socket 'parent' of type C (description: The parent frame to this frame.).-->
 							<socket_parent>/bodyset/sph</socket_parent>
 							<!--Translational offset (in meters) of this frame's origin from the parent frame's origin, expressed in the parent frame.-->
-							<translation>0.9999998001333682 -0.00063224459155324195 0</translation>
+							<translation>0 4 0</translation>
 							<!--Orientation offset (in radians) of this frame in its parent frame, expressed as a frame-fixed x-y-z rotation sequence.-->
-							<orientation>0 0 0</orientation>
+							<orientation>0 0 0.7857142857142857</orientation>
 						</PhysicalOffsetFrame>
 					</frames>
 				</PinJoint>
