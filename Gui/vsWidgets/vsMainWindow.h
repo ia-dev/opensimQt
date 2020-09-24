@@ -3,6 +3,7 @@
 
 #include "vsCoordinateDelegate.h"
 #include "vsCoordinatesWidget.h"
+#include "vsInverseKinematicsUI.h"
 
 #include <QMainWindow>
 
@@ -121,6 +122,8 @@ private:
     vsNavigatorModel *navigatorModel;///< the model used by the ui->vsNavigatorTree, containing all of the nodes Data
     vsPropertyModel *propertiesModel;///< the model for displaying the properties for the selected openSim object @see onNavigatorClicked()
 
+    vsInverseKinematicsUI *m_IKUI;
+
     //Coordinates variables
     QList<vsCoordinateDelegate *> currentCoordinatesDelegates; ///< the list containing the active model coordinates delegate for the coordinate widget @see vsCoordinateWidget
     vsCoordinatesWidget *coordinatesWidget;///< the widget containing the different coordinates for the model represented using the delegate @see vsCoordinateDelegate
@@ -141,5 +144,6 @@ private slots:
     void on_actionNew_Model_triggered();///< load the new model template on new_model action triggered
     void on_actionCurrent_model_Externally_triggered();///< open the current model file using an external tool, on model_externally signal triggered
     void on_actionimport_new_plugin_triggered();///< locate and add a new plugin to user plugins list on new_plugin action triggered
+    void on_actionInverse_Kinematics_triggered();
 };
 #endif // vsMainWindow_H

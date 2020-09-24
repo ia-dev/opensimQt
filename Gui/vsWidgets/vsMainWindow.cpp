@@ -1,6 +1,7 @@
 #include "vsMainWindow.h"
 #include "./ui_vsMainWindow.h"
 #include "vsPluginActivationDialog.h"
+#include "vsInverseKinematicsUI.h"
 
 #include <QLabel>
 #include <OpenSim.h>
@@ -97,6 +98,9 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //plugins
     vsOpenSimTools::tools->loadOnEntryPlugins();
     listUserPlugins();
+
+    //initiating the inverse kinematics UI
+    m_IKUI = new vsInverseKinematicsUI();
 
 
 }
@@ -516,4 +520,9 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     //TODO update the menue for user plugins
     vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
     listUserPlugins();
+}
+
+void vsMainWindow::on_actionInverse_Kinematics_triggered()
+{
+    m_IKUI->show();
 }

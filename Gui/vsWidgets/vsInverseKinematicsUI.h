@@ -15,6 +15,9 @@ public:
     explicit vsInverseKinematicsUI(QWidget *parent = nullptr);
     ~vsInverseKinematicsUI();
 
+public slots:
+    void onCurrentModelChanged();
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 };
