@@ -102,6 +102,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //initiating the inverse kinematics UI
     m_IKUI = new vsInverseKinematicsUI();
 
+    //OpenSim::InverseKinematicsTool
 
 }
 
