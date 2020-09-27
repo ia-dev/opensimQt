@@ -58,105 +58,6 @@
     </message>
 </context>
 <context>
-    <name>vsInverseKinematicsUI</name>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="24"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="30"/>
-        <source>Current Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="48"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="83"/>
-        <source>Marker Set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="109"/>
-        <source>IK Trial</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="115"/>
-        <source>to</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="122"/>
-        <source>Time Range</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="155"/>
-        <source>Marker Data for Trial</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="162"/>
-        <source>Coordinate Data for Trial</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="169"/>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="218"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="189"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="195"/>
-        <source>Motion File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="242"/>
-        <source>Weights</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="268"/>
-        <source>Load...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="275"/>
-        <source>Save...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="282"/>
-        <source>Run</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="289"/>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="296"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>vsMainWindow</name>
     <message>
         <location filename="vsWidgets/vsMainWindow.ui" line="49"/>
@@ -555,7 +456,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="190"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="173"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
