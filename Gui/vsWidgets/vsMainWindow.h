@@ -141,5 +141,6 @@ private slots:
     void on_actionNew_Model_triggered();///< load the new model template on new_model action triggered
     void on_actionCurrent_model_Externally_triggered();///< open the current model file using an external tool, on model_externally signal triggered
     void on_actionimport_new_plugin_triggered();///< locate and add a new plugin to user plugins list on new_plugin action triggered
+    void on_actionInverse_Kinematics_triggered();
 };
 #endif // vsMainWindow_H

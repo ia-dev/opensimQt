@@ -1,6 +1,7 @@
 #include "vsMainWindow.h"
 #include "./ui_vsMainWindow.h"
 #include "vsPluginActivationDialog.h"
+#include "vsInverseKinematicsUI.h"
 
 #include <QLabel>
 #include <OpenSim.h>
@@ -516,4 +517,17 @@ void vsMainWindow::on_actionimport_new_plugin_triggered()
     //TODO update the menue for user plugins
     vsOpenSimTools::tools->log("a new library was listed from "+pluginFileURL.toLocalFile()+" to "+hDir.path()+"/"+pluginFileURL.fileName(),"MainWindow",vsOpenSimTools::Success);
     listUserPlugins();
+}
+
+void vsMainWindow::on_actionInverse_Kinematics_triggered()
+{
+    auto currentModel = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!currentModel)
+        vsOpenSimTools::tools->log("There is no current model to apply inverse kinematics to it ","vsMainWindow",vsOpenSimTools::Info);
+
+    vsInverseKinematicsUI *newIKUI = new vsInverseKinematicsUI();
+    newIKUI->setCurrentModel(currentModel);
+
+    newIKUI->show();
+
 }

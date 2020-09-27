@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "OpenSim.h"
+
 namespace Ui {
 class vsInverseKinematicsUI;
 }
@@ -15,8 +17,14 @@ public:
     explicit vsInverseKinematicsUI(QWidget *parent = nullptr);
     ~vsInverseKinematicsUI();
 
+    OpenSim::Model *currentModel() const;
+    void setCurrentModel(OpenSim::Model *currentModel);
+
 private:
     Ui::vsInverseKinematicsUI *ui;
+
+    OpenSim::Model *m_currentModel;
+
 };
 
 #endif // VSINVERSEKINEMATICSUI_H
