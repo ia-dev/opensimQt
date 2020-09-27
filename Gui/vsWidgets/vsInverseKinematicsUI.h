@@ -43,7 +43,7 @@ private slots:
 
     void on_motionFileTB_clicked();
 
-private:
+    private:
     Ui::vsInverseKinematicsUI *ui;
     OpenSim::Model *m_currentModel;
     OpenSim::InverseKinematicsTool *m_ikTool;

@@ -80,7 +80,7 @@ void vsInverseKinematicsUI::on_coordinateDataCB_toggled(bool checked)
 void vsInverseKinematicsUI::on_coordinateDataTB_clicked()
 {
     if(!m_currentModel) return;
-    QString coordinateDataFileName = QFileDialog::getOpenFileName(nullptr,"Coordinate for IK trial","","coordinate data (*.mot,*.sto)");
+    QString coordinateDataFileName = QFileDialog::getOpenFileName(nullptr,"Coordinate for IK trial","","coordinate data (*.mot *.sto)");
     if(coordinateDataFileName == "") return;
 
     m_ikTool->setCoordinateFileName(coordinateDataFileName.toStdString());
