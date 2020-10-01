@@ -5,6 +5,8 @@
 
 #include "OpenSim.h"
 
+#include "vsModeling/vsMarkerTasksModel.h"
+
 namespace Ui {
 class vsInverseKinematicsUI;
 }
@@ -47,6 +49,8 @@ private:
     OpenSim::Model *m_currentModel;
 
     OpenSim::InverseKinematicsTool *m_ikTool;
+
+    vsMarkerTasksModel *m_markersIKTasksModel;
 
     //IK variables
     std::string m_markersFileName;

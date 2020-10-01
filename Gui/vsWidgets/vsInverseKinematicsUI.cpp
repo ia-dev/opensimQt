@@ -9,6 +9,7 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     ui(new Ui::vsInverseKinematicsUI),
     m_currentModel(nullptr),
     m_ikTool(new OpenSim::InverseKinematicsTool()),
+    m_markersIKTasksModel(new vsMarkerTasksModel()),
     m_markersFileName(""),
     m_ikStartTime(0),
     m_ikEndTime(0),
@@ -16,6 +17,9 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     m_outputFile("")
 {
     ui->setupUi(this);
+
+    ui->ikMarkersTable->setModel(m_markersIKTasksModel);
+    ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 vsInverseKinematicsUI::~vsInverseKinematicsUI()
@@ -40,6 +44,8 @@ void vsInverseKinematicsUI::setCurrentModel(OpenSim::Model *currentModel)
     auto markersSetSize = m_currentModel->updMarkerSet().getSize();
 
     ui->markersSetTE->setPlainText(QString::number(markersSetSize)+" markers");
+
+    m_markersIKTasksModel->updateTasks(m_currentModel);
 
 }
 

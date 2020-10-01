@@ -58,6 +58,141 @@
     </message>
 </context>
 <context>
+    <name>vsInverseKinematicsUI</name>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="14"/>
+        <source>Inverse Kinematics Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="24"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="30"/>
+        <source>Current Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="48"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="117"/>
+        <source>Marker Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="127"/>
+        <source>IK trial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="133"/>
+        <source>Time Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="140"/>
+        <source>Marker Data for trial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="157"/>
+        <source>to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="164"/>
+        <source>Coordinate Data for trial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="209"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="244"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="292"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="254"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="260"/>
+        <source>Motion File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="316"/>
+        <source>Weights</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="343"/>
+        <source>weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="369"/>
+        <source>From File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="376"/>
+        <source>Disable All Selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="383"/>
+        <source>Manual Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="390"/>
+        <source>Defaul Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="397"/>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="404"/>
+        <source>Enable All Selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="473"/>
+        <source>Save...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="480"/>
+        <source>Load...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="490"/>
+        <source>Run</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="497"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="504"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>vsMainWindow</name>
     <message>
         <location filename="vsWidgets/vsMainWindow.ui" line="49"/>
@@ -456,7 +591,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="173"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="190"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
