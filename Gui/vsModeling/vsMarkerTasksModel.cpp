@@ -1,5 +1,6 @@
 #include "vsMarkerTasksModel.h"
 
+#include <QColor>
 #include <QDebug>
 
 vsMarkerTasksModel::vsMarkerTasksModel():QAbstractTableModel()
@@ -49,19 +50,30 @@ QVariant vsMarkerTasksModel::data(const QModelIndex &index, int role) const
 
     if(columnNumber == 0 && role == Qt::CheckStateRole){
         //we will return unchecked for now untill we create a map for the checked rows
-        return Qt::Unchecked;
+        return m_ikMarkerTasks[rowNumber]->getApply()?Qt::Checked:Qt::Unchecked;
     }
     else if (columnNumber == 1 && role == Qt::DisplayRole){
         //for now we will just use a temporary name
 
         return QString::fromStdString(m_ikMarkerTasks[rowNumber]->getName());
     }
+    else if (columnNumber == 2 && role == Qt::DisplayRole){
+        return "from file-- NOT FOUND";
+    }
+    else if (columnNumber ==2 && role == Qt::BackgroundRole){
+        return QColor("red");
+    }
+    else if (columnNumber == 3 && role == Qt::DisplayRole){
+        return m_ikMarkerTasks[rowNumber]->getWeight();
+    }
+
+
     return  QVariant();
 }
 
 bool vsMarkerTasksModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    return false;
+    return true;
 }
 
 Qt::ItemFlags vsMarkerTasksModel::flags(const QModelIndex &index) const
