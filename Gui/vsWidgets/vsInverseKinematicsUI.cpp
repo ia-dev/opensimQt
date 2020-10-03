@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QFileDialog>
+#include <QItemSelectionModel>
 
 vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     QWidget(parent),
@@ -19,7 +20,25 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     ui->setupUi(this);
 
     ui->ikMarkersTable->setModel(m_markersIKTasksModel);
-    ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::Stretch);
+    ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
+
+    connect(ui->ikMarkersTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_markersIKTasksModel,[=](){
+        m_markersIKTasksModel->selectionModelChanged(ui->ikMarkersTable->selectionModel()->selectedRows());
+        ui->enableAllCB->setChecked(m_markersIKTasksModel->getAllEnabled());
+        ui->disableAllCB->setChecked(m_markersIKTasksModel->getAllDisabled());
+    });
+
+    connect(m_markersIKTasksModel,&vsMarkerTasksModel::uiUpdated,[=](){
+
+        ui->enableAllCB->setChecked(m_markersIKTasksModel->getAllEnabled());
+        ui->enableAllCB->setEnabled(!m_markersIKTasksModel->getAllEnabled());
+
+        ui->disableAllCB->setChecked(m_markersIKTasksModel->getAllDisabled());
+        ui->disableAllCB->setEnabled(!m_markersIKTasksModel->getAllDisabled());
+
+    });
+
 }
 
 vsInverseKinematicsUI::~vsInverseKinematicsUI()
@@ -132,4 +151,14 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
               << "range : " << m_ikStartTime << " > "  << m_ikEndTime << std::endl
               << "coordinate file: " << m_coordinatesFileName << std::endl
               << "output file : " << m_outputFile;
+}
+
+void vsInverseKinematicsUI::on_enableAllCB_toggled(bool checked)
+{
+    if(checked) m_markersIKTasksModel->enableAllSelected();
+}
+
+void vsInverseKinematicsUI::on_disableAllCB_toggled(bool checked)
+{
+    if(checked) m_markersIKTasksModel->disableAllSelected();
 }

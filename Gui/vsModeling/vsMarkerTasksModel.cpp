@@ -30,6 +30,28 @@ void vsMarkerTasksModel::updateTasks(OpenSim::Model *model)
 
 }
 
+void vsMarkerTasksModel::enableAllSelected()
+{
+    foreach (auto ikMarker, m_selectedTasks) {
+        ikMarker->setApply(true);
+    }
+    updateIKUI();
+    // to update the UI table
+    emit layoutChanged();
+
+}
+
+void vsMarkerTasksModel::disableAllSelected()
+{
+    foreach (auto ikMarker, m_selectedTasks) {
+        ikMarker->setApply(false);
+    }
+    updateIKUI();
+    // to update the UI table
+    emit layoutChanged();
+
+}
+
 
 int vsMarkerTasksModel::rowCount(const QModelIndex &parent) const
 {
@@ -73,12 +95,31 @@ QVariant vsMarkerTasksModel::data(const QModelIndex &index, int role) const
 
 bool vsMarkerTasksModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    return true;
+    if(!index.isValid())
+        return false;
+
+    if(index.column()==0 && role == Qt::CheckStateRole){
+        auto ikMarkerTask =  m_ikMarkerTasks[index.row()];
+        if((Qt::CheckState)value.toInt() == Qt::Checked){
+            ikMarkerTask->setApply(true);
+            qDebug() << "item check state changed to true";
+            updateIKUI();
+            return true;
+        }else if ((Qt::CheckState)value.toInt() == Qt::Unchecked){
+            ikMarkerTask->setApply(false);
+            qDebug() << "item check state changed to false";
+            updateIKUI();
+            return true;
+        }
+
+    }
+    return false;
 }
 
 Qt::ItemFlags vsMarkerTasksModel::flags(const QModelIndex &index) const
 {
-    return QAbstractTableModel::flags(index);
+    if(index.column() == 0) return QAbstractTableModel::flags(index) | Qt::ItemFlag::ItemIsUserCheckable;
+    return QAbstractTableModel::flags(index) ;
 }
 
 
@@ -105,4 +146,42 @@ QVariant vsMarkerTasksModel::headerData(int section, Qt::Orientation orientation
         break;
     }
 
+}
+
+void vsMarkerTasksModel::selectionModelChanged(QModelIndexList selected)
+{
+    qDebug() << "the size of the markers selected items > " << selected.size();
+    m_selectedTasks.clear();
+    foreach (auto index, selected) {
+        if(!index.isValid()) continue;
+        auto ikMarkerTask = m_ikMarkerTasks[index.row()];
+        m_selectedTasks << ikMarkerTask;
+    }
+
+    updateIKUI();
+
+}
+
+void vsMarkerTasksModel::updateIKUI()
+{
+    m_allEnabled = true;
+    m_allDisabled = true;
+
+    foreach (auto markerTask, m_selectedTasks) {
+        if(markerTask->getApply()) m_allDisabled = false;
+        else m_allEnabled = false;
+    }
+
+    emit uiUpdated();
+
+}
+
+bool vsMarkerTasksModel::getAllDisabled() const
+{
+    return m_allDisabled;
+}
+
+bool vsMarkerTasksModel::getAllEnabled() const
+{
+    return m_allEnabled;
 }

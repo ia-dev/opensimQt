@@ -43,6 +43,10 @@ private slots:
 
     void on_runBTN_clicked();
 
+    void on_enableAllCB_toggled(bool checked);
+
+    void on_disableAllCB_toggled(bool checked);
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 
