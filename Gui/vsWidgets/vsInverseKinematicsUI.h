@@ -47,6 +47,8 @@ private slots:
 
     void on_disableAllCB_toggled(bool checked);
 
+    void on_weightFSP_valueChanged(double arg1);
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 

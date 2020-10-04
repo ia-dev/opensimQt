@@ -41,6 +41,7 @@ public slots:
     void selectionModelChanged(QModelIndexList selected);
     void updateIKUI();
     void updatePresentInFileMap();
+    void updateSelectedRowsWeight(double newWeight);
 
 signals :
     void uiUpdated();

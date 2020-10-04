@@ -171,3 +171,8 @@ void vsInverseKinematicsUI::on_disableAllCB_toggled(bool checked)
 {
     if(checked) m_markersIKTasksModel->disableAllSelected();
 }
+
+void vsInverseKinematicsUI::on_weightFSP_valueChanged(double arg1)
+{
+    m_markersIKTasksModel->updateSelectedRowsWeight(arg1);
+}

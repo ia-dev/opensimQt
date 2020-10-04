@@ -234,6 +234,14 @@ void vsMarkerTasksModel::updatePresentInFileMap()
 
 }
 
+void vsMarkerTasksModel::updateSelectedRowsWeight(double newWeight)
+{
+    foreach (auto task, m_selectedTasks) {
+        task->setWeight(newWeight);
+    }
+    emit layoutChanged();
+}
+
 OpenSim::InverseKinematicsTool *vsMarkerTasksModel::getIkTool() const
 {
     return m_ikTool;

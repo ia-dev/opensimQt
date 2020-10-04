@@ -318,8 +318,15 @@
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="2" column="3">
-          <widget class="QTextBrowser" name="manualValueTE">
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Value</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QPlainTextEdit" name="fromFileTE">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -337,15 +344,28 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="label_8">
+         <item row="2" column="2">
+          <widget class="QRadioButton" name="manualValueRB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>weight</string>
+            <string>Manual Value</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QPlainTextEdit" name="fromFileTE">
+         <item row="1" column="2">
+          <widget class="QRadioButton" name="defaultValueRB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Defaul Value</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QTextBrowser" name="manualValueTE">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -380,30 +400,10 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="QRadioButton" name="manualValueRB">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>Manual Value</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QRadioButton" name="defaultValueRB">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="text">
-            <string>Defaul Value</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Value</string>
+            <string>weight</string>
            </property>
           </widget>
          </item>
@@ -434,15 +434,15 @@
           </widget>
          </item>
          <item row="0" column="5">
-          <widget class="QPlainTextEdit" name="weightTE">
-           <property name="enabled">
-            <bool>false</bool>
+          <widget class="QDoubleSpinBox" name="weightFSP">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>30</height>
-            </size>
+           <property name="value">
+            <double>1.000000000000000</double>
            </property>
           </widget>
          </item>
