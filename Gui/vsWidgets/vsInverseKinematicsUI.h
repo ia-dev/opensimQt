@@ -4,7 +4,7 @@
 #include <QWidget>
 
 #include "OpenSim.h"
-
+#include "OpenSim/Common/MarkerData.h"
 #include "vsModeling/vsMarkerTasksModel.h"
 
 namespace Ui {

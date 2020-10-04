@@ -64,6 +64,8 @@ void vsInverseKinematicsUI::setCurrentModel(OpenSim::Model *currentModel)
 
     ui->markersSetTE->setPlainText(QString::number(markersSetSize)+" markers");
 
+    m_ikTool->setModel(*m_currentModel);
+
     m_markersIKTasksModel->updateTasks(m_currentModel);
 
 }
@@ -86,6 +88,16 @@ void vsInverseKinematicsUI::on_markerDateFileTE_textChanged()
     //actually we need the text to be empty when there is no text on the text edit
 
     m_markersFileName =  markersDataText.toStdString();
+
+    QFileInfo fileInfo(QString::fromStdString(m_markersFileName));
+
+    if(m_markersFileName != "" && fileInfo.exists()){
+        ui->fromFileTE->setPlainText(QString::fromStdString(m_markersFileName));
+        // that should load the IK tasks to the IK tool
+        m_ikTool->setMarkerDataFileName(m_markersFileName);
+
+        m_markersIKTasksModel->loadFromIKTool(m_ikTool);
+    }
 }
 
 void vsInverseKinematicsUI::on_trialRangefrom_valueChanged(double arg1)
@@ -137,9 +149,6 @@ void vsInverseKinematicsUI::on_motionFileName_textChanged()
 
 void vsInverseKinematicsUI::on_runBTN_clicked()
 {
-
-    m_ikTool->setModel(*m_currentModel);
-    m_ikTool->setMarkerDataFileName(m_markersFileName);
     m_ikTool->setStartTime(m_ikStartTime);
     m_ikTool->setEndTime(m_ikEndTime);
     if(ui->coordinateDataCB->isChecked()) m_ikTool->setCoordinateFileName(m_coordinatesFileName);

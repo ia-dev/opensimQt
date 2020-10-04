@@ -3,13 +3,18 @@
 #include <QColor>
 #include <QDebug>
 
-vsMarkerTasksModel::vsMarkerTasksModel():QAbstractTableModel()
-{
+#include <vsTools/vsOpenSimTools.h>
 
+vsMarkerTasksModel::vsMarkerTasksModel():QAbstractTableModel(),
+    m_currentModel(nullptr),
+    m_markerData(new OpenSim::MarkerData())
+{
 }
 
 void vsMarkerTasksModel::updateTasks(OpenSim::Model *model)
 {
+
+    setCurrentModel(model);
 
     auto modelMarkersSet  =model->getMarkerSet();
 
@@ -24,9 +29,41 @@ void vsMarkerTasksModel::updateTasks(OpenSim::Model *model)
         markerTask->setWeight(1);
 
         m_ikMarkerTasks << markerTask;
+        m_presentInFileMap[marker.getName()] = false;
     }
 
     emit layoutChanged();
+
+}
+
+void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
+{
+
+    setIkTool(tool);
+
+    //loop over the tasks of the tool and extract only the MarkerTasks
+
+    qDebug() << "IK taskset size : " << tool->getIKTaskSet().getSize();
+    if(tool->getIKTaskSet().getSize()>0){
+        for (int i = 0; i < tool->getIKTaskSet().getSize(); ++i) {
+
+            // convert the abstract task to a Marker task
+            auto task = OpenSim::IKMarkerTask::safeDownCast(&(tool->getIKTaskSet().get(i)));
+
+            if(!task) continue;
+
+            // get the task index in the OpenSim Model
+            auto taskIndex = m_currentModel->updMarkerSet().getIndex(task->getName());
+            // replace the temporary model with the one from the IK tool
+            m_ikMarkerTasks.replace(taskIndex,task);
+
+        }
+    }
+    else{
+        m_markerData = new OpenSim::MarkerData(tool->getMarkerDataFileName());
+        vsOpenSimTools::tools->log(" trc file loaded, number of markers : "+QString::number(m_markerData->getMarkerNames().getSize()),"vsMarkerTasksModel");
+        updatePresentInFileMap();
+    }
 
 }
 
@@ -80,10 +117,20 @@ QVariant vsMarkerTasksModel::data(const QModelIndex &index, int role) const
         return QString::fromStdString(m_ikMarkerTasks[rowNumber]->getName());
     }
     else if (columnNumber == 2 && role == Qt::DisplayRole){
-        return "from file-- NOT FOUND";
+        auto markerTask = m_ikMarkerTasks[index.row()];
+        bool taskValuePresent = m_presentInFileMap.value(markerTask->getName(),false);
+        if(taskValuePresent)
+            return "from file";
+        else
+            return "from file-- NOT FOUND";
     }
     else if (columnNumber ==2 && role == Qt::BackgroundRole){
-        return QColor("red");
+        auto markerTask = m_ikMarkerTasks[index.row()];
+        bool taskValuePresent = m_presentInFileMap.value(markerTask->getName(),false);
+        if(taskValuePresent)
+            return  QColor("white");
+        else
+            return QColor("red");
     }
     else if (columnNumber == 3 && role == Qt::DisplayRole){
         return m_ikMarkerTasks[rowNumber]->getWeight();
@@ -174,6 +221,37 @@ void vsMarkerTasksModel::updateIKUI()
 
     emit uiUpdated();
 
+}
+
+void vsMarkerTasksModel::updatePresentInFileMap()
+{
+    m_presentInFileMap.clear();
+    if(!m_markerData) return;
+    for (int i = 0; i < m_markerData->getMarkerNames().getSize(); ++i) {
+
+        m_presentInFileMap[m_markerData->getMarkerNames().get(i)] = true;
+    }
+
+}
+
+OpenSim::InverseKinematicsTool *vsMarkerTasksModel::getIkTool() const
+{
+    return m_ikTool;
+}
+
+void vsMarkerTasksModel::setIkTool(OpenSim::InverseKinematicsTool *ikTool)
+{
+    m_ikTool = ikTool;
+}
+
+OpenSim::Model *vsMarkerTasksModel::getCurrentModel() const
+{
+    return m_currentModel;
+}
+
+void vsMarkerTasksModel::setCurrentModel(OpenSim::Model *currentModel)
+{
+    m_currentModel = currentModel;
 }
 
 bool vsMarkerTasksModel::getAllDisabled() const

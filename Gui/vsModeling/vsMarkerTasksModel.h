@@ -5,7 +5,7 @@
 #include <QAbstractTableModel>
 #include <OpenSim.h>
 #include <QItemSelectionModel>
-
+#include "OpenSim/Common/MarkerData.h"
 
 class vsMarkerTasksModel : public QAbstractTableModel
 {
@@ -14,6 +14,7 @@ public:
     vsMarkerTasksModel();
 
     void updateTasks(OpenSim::Model *model);
+    void loadFromIKTool(OpenSim::InverseKinematicsTool *tool);
     void enableAllSelected();
     void disableAllSelected();
 
@@ -29,10 +30,17 @@ public:
     bool getAllEnabled() const;
     bool getAllDisabled() const;
 
+    OpenSim::Model *getCurrentModel() const;
+    void setCurrentModel(OpenSim::Model *currentModel);
+
+    OpenSim::InverseKinematicsTool *getIkTool() const;
+    void setIkTool(OpenSim::InverseKinematicsTool *ikTool);
+
 public slots:
 
     void selectionModelChanged(QModelIndexList selected);
     void updateIKUI();
+    void updatePresentInFileMap();
 
 signals :
     void uiUpdated();
@@ -42,6 +50,12 @@ private:
     QList<OpenSim::IKMarkerTask*> m_selectedTasks;
     bool m_allEnabled = false;
     bool m_allDisabled = false;
+
+    OpenSim::Model *m_currentModel;
+    OpenSim::InverseKinematicsTool *m_ikTool;
+    OpenSim::MarkerData *m_markerData;
+
+    QMap<std::string,bool> m_presentInFileMap;
 
 };
 
