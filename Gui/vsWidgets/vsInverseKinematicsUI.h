@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <vsModeling/vsIkCoordinateModel.h>
+
 #include "OpenSim.h"
 #include "OpenSim/Common/MarkerData.h"
 #include "vsModeling/vsMarkerTasksModel.h"
@@ -57,6 +59,7 @@ private:
     OpenSim::InverseKinematicsTool *m_ikTool;
 
     vsMarkerTasksModel *m_markersIKTasksModel;
+    vsIKCoordinateModel *m_coordinateIKTasksModel;
 
     //IK variables
     std::string m_markersFileName;

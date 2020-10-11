@@ -459,7 +459,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="ikCoordiantesTable"/>
+        <widget class="QTableView" name="ikCoordiantesTable">
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

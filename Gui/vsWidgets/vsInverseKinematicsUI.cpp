@@ -11,6 +11,7 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     m_currentModel(nullptr),
     m_ikTool(new OpenSim::InverseKinematicsTool()),
     m_markersIKTasksModel(new vsMarkerTasksModel()),
+    m_coordinateIKTasksModel(new vsIKCoordinateModel()),
     m_markersFileName(""),
     m_ikStartTime(0),
     m_ikEndTime(0),
@@ -20,13 +21,22 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     ui->setupUi(this);
 
     ui->ikMarkersTable->setModel(m_markersIKTasksModel);
+    ui->ikCoordiantesTable->setModel(m_coordinateIKTasksModel);
     ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::Stretch);
     ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
+    ui->ikCoordiantesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::Stretch);
+    ui->ikCoordiantesTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
 
     connect(ui->ikMarkersTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_markersIKTasksModel,[=](){
         m_markersIKTasksModel->selectionModelChanged(ui->ikMarkersTable->selectionModel()->selectedRows());
         ui->enableAllCB->setChecked(m_markersIKTasksModel->getAllEnabled());
         ui->disableAllCB->setChecked(m_markersIKTasksModel->getAllDisabled());
+    });
+
+    connect(ui->ikCoordiantesTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_coordinateIKTasksModel,[=](){
+        m_coordinateIKTasksModel->selectionModelChanged(ui->ikCoordiantesTable->selectionModel()->selectedRows());
+        ui->enableAllCB->setChecked(m_coordinateIKTasksModel->getAllEnabled());
+        ui->disableAllCB->setChecked(m_coordinateIKTasksModel->getAllDisabled());
     });
 
     connect(m_markersIKTasksModel,&vsMarkerTasksModel::uiUpdated,[=](){
@@ -36,6 +46,18 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
 
         ui->disableAllCB->setChecked(m_markersIKTasksModel->getAllDisabled());
         ui->disableAllCB->setEnabled(!m_markersIKTasksModel->getAllDisabled());
+
+    });
+
+    connect(m_coordinateIKTasksModel,&vsIKCoordinateModel::uiUpdated,[=](){
+
+        //TODO Set it to be the last to be changed
+
+        ui->enableAllCB->setChecked(m_coordinateIKTasksModel->getAllEnabled());
+        ui->enableAllCB->setEnabled(!m_coordinateIKTasksModel->getAllEnabled());
+
+        ui->disableAllCB->setChecked(m_coordinateIKTasksModel->getAllDisabled());
+        ui->disableAllCB->setEnabled(!m_coordinateIKTasksModel->getAllDisabled());
 
     });
 
@@ -67,6 +89,8 @@ void vsInverseKinematicsUI::setCurrentModel(OpenSim::Model *currentModel)
     m_ikTool->setModel(*m_currentModel);
 
     m_markersIKTasksModel->updateTasks(m_currentModel);
+    m_coordinateIKTasksModel->updateTasks(m_currentModel);
+    
 
 }
 
@@ -97,6 +121,7 @@ void vsInverseKinematicsUI::on_markerDateFileTE_textChanged()
         m_ikTool->setMarkerDataFileName(m_markersFileName);
 
         m_markersIKTasksModel->loadFromIKTool(m_ikTool);
+        m_coordinateIKTasksModel->loadFromIKTool(m_ikTool);
     }
 }
 
@@ -164,15 +189,23 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
 
 void vsInverseKinematicsUI::on_enableAllCB_toggled(bool checked)
 {
-    if(checked) m_markersIKTasksModel->enableAllSelected();
+    //TODO depending on the last one selected
+    if(checked){
+        m_markersIKTasksModel->enableAllSelected();
+        m_coordinateIKTasksModel->enableAllSelected();
+    }
 }
 
 void vsInverseKinematicsUI::on_disableAllCB_toggled(bool checked)
 {
-    if(checked) m_markersIKTasksModel->disableAllSelected();
+    if(checked){
+        m_markersIKTasksModel->disableAllSelected();
+        m_coordinateIKTasksModel->disableAllSelected();
+    }
 }
 
 void vsInverseKinematicsUI::on_weightFSP_valueChanged(double arg1)
 {
     m_markersIKTasksModel->updateSelectedRowsWeight(arg1);
+    m_coordinateIKTasksModel->updateSelectedRowsWeight(arg1);
 }
