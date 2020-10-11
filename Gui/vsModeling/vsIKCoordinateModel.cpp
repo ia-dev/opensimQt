@@ -3,8 +3,10 @@
 
 #include <QColor>
 #include <QDebug>
-
+#include <math.h>
 #include <vsTools/vsOpenSimTools.h>
+
+#define PI 3.141592653589793238463
 
 vsIKCoordinateModel::vsIKCoordinateModel():QAbstractTableModel(),
     m_currentModel(nullptr)
@@ -29,7 +31,7 @@ void vsIKCoordinateModel::updateTasks(OpenSim::Model *model)
         //set the apply to true and the weight to one temporarly
         coordinateTask->setApply(true);
         coordinateTask->setWeight(1);
-
+        coordinateTask->setValueType(OpenSim::IKCoordinateTask::DefaultValue);
         m_ikCoordinateTasks << coordinateTask;
         m_presentInFileMap[coordinate.getName()] = false;
     }
@@ -71,7 +73,7 @@ void vsIKCoordinateModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
 
 void vsIKCoordinateModel::enableAllSelected()
 {
-    foreach (auto ikCoordinate, m_ikCoordinateTasks) {
+    foreach (auto ikCoordinate, m_selectedTasks) {
         ikCoordinate->setApply(true);
     }
     updateIKUI();
@@ -88,6 +90,24 @@ void vsIKCoordinateModel::disableAllSelected()
     updateIKUI();
     // to update the UI table
     emit layoutChanged();
+
+}
+
+void vsIKCoordinateModel::setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ValueType valueType)
+{
+    foreach (auto selected, m_selectedTasks) {
+        selected->setValueType(valueType);
+    }
+    emit layoutChanged();
+}
+
+double vsIKCoordinateModel::getDefaultValue(int index ) const
+{
+    auto motionType = m_currentModel->getCoordinateSet().get(index).getMotionType();
+
+    auto motionFactor  = motionType==OpenSim::Coordinate::Translational?180.0/PI:1.0;
+
+    return (motionFactor * m_currentModel->getCoordinateSet().get(index).getDefaultValue());
 
 }
 
@@ -122,19 +142,38 @@ QVariant vsIKCoordinateModel::data(const QModelIndex &index, int role) const
 
         //TODO set the value depending on the methode of selection
         auto coordinateTask = m_ikCoordinateTasks[index.row()];
-        bool taskValuePresent = m_presentInFileMap.value(coordinateTask->getName(),false);
-        if(taskValuePresent)
-            return "from file";
-        else
-            return "from file-- NOT FOUND";
+
+        switch (coordinateTask->getValueType()) {
+        case OpenSim::IKCoordinateTask::FromFile:{
+                bool taskValuePresent = m_presentInFileMap.value(coordinateTask->getName(),false);
+                if(taskValuePresent)
+                    return "from file";
+                else
+                    return "from file-- NOT FOUND";
+            }
+        case OpenSim::IKCoordinateTask::DefaultValue:
+            return getDefaultValue(rowNumber);
+            break;
+        case OpenSim::IKCoordinateTask::ManualValue:
+            return coordinateTask->getValue();
+            break;
+        default:
+            return coordinateTask->getValue();
+            break;
+        }
+
     }
     else if (columnNumber ==2 && role == Qt::BackgroundRole){
         auto coordinateTask = m_ikCoordinateTasks[index.row()];
-        bool taskValuePresent = m_presentInFileMap.value(coordinateTask->getName(),false);
-        if(taskValuePresent)
-            return  QColor("white");
-        else
-            return QColor("red");
+        if(coordinateTask->getValueType() == OpenSim::IKCoordinateTask::FromFile){
+            bool taskValuePresent = m_presentInFileMap.value(coordinateTask->getName(),false);
+            if(taskValuePresent)
+                return  QColor("white");
+            else
+                return QColor("red");
+        }else{
+            return QColor("white");
+        }
     }
     else if (columnNumber == 3 && role == Qt::DisplayRole){
         return m_ikCoordinateTasks[rowNumber]->getWeight();

@@ -167,27 +167,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="489"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="493"/>
         <source>Save...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="496"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="500"/>
         <source>Load...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="506"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="510"/>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="513"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="517"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="520"/>
+        <location filename="vsWidgets/vsInverseKinematicsUI.ui" line="524"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>

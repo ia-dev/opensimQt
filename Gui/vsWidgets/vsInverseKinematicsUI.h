@@ -51,6 +51,12 @@ private slots:
 
     void on_weightFSP_valueChanged(double arg1);
 
+    void on_fromFileRB_toggled(bool checked);
+
+    void on_defaultValueRB_toggled(bool checked);
+
+    void on_manualValueRB_toggled(bool checked);
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 
@@ -60,6 +66,8 @@ private:
 
     vsMarkerTasksModel *m_markersIKTasksModel;
     vsIKCoordinateModel *m_coordinateIKTasksModel;
+
+    QAbstractTableModel *m_selectedIKTasksModel = nullptr;
 
     //IK variables
     std::string m_markersFileName;

@@ -17,6 +17,10 @@ public:
     void loadFromIKTool(OpenSim::InverseKinematicsTool *tool);
     void enableAllSelected();
     void disableAllSelected();
+    void setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ValueType valueType);
+
+
+    double getDefaultValue(int i) const; //< convert to radian or degress depending on the motiontype
 
     // QAbstractItemModel interface
 public:

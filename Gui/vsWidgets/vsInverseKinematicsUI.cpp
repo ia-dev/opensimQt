@@ -12,6 +12,7 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     m_ikTool(new OpenSim::InverseKinematicsTool()),
     m_markersIKTasksModel(new vsMarkerTasksModel()),
     m_coordinateIKTasksModel(new vsIKCoordinateModel()),
+    m_selectedIKTasksModel(m_markersIKTasksModel),
     m_markersFileName(""),
     m_ikStartTime(0),
     m_ikEndTime(0),
@@ -28,12 +29,24 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     ui->ikCoordiantesTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
 
     connect(ui->ikMarkersTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_markersIKTasksModel,[=](){
+        m_selectedIKTasksModel = m_markersIKTasksModel;
+
+        ui->fromFileRB->setEnabled(true);
+        ui->defaultValueRB->setEnabled(false);
+        ui->manualValueRB->setEnabled(false);
+
         m_markersIKTasksModel->selectionModelChanged(ui->ikMarkersTable->selectionModel()->selectedRows());
         ui->enableAllCB->setChecked(m_markersIKTasksModel->getAllEnabled());
         ui->disableAllCB->setChecked(m_markersIKTasksModel->getAllDisabled());
     });
 
     connect(ui->ikCoordiantesTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_coordinateIKTasksModel,[=](){
+        m_selectedIKTasksModel = m_coordinateIKTasksModel;
+
+        ui->fromFileRB->setEnabled(true);
+        ui->defaultValueRB->setEnabled(true);
+        ui->manualValueRB->setEnabled(true);
+
         m_coordinateIKTasksModel->selectionModelChanged(ui->ikCoordiantesTable->selectionModel()->selectedRows());
         ui->enableAllCB->setChecked(m_coordinateIKTasksModel->getAllEnabled());
         ui->disableAllCB->setChecked(m_coordinateIKTasksModel->getAllDisabled());
@@ -94,6 +107,8 @@ void vsInverseKinematicsUI::setCurrentModel(OpenSim::Model *currentModel)
 
 }
 
+
+
 void vsInverseKinematicsUI::on_markerFileTB_clicked(){
 
     auto markersFileName =  QFileDialog::getOpenFileName(nullptr,"IK trial marker data","","IK trial marker data (*.trc)");
@@ -121,7 +136,6 @@ void vsInverseKinematicsUI::on_markerDateFileTE_textChanged()
         m_ikTool->setMarkerDataFileName(m_markersFileName);
 
         m_markersIKTasksModel->loadFromIKTool(m_ikTool);
-        m_coordinateIKTasksModel->loadFromIKTool(m_ikTool);
     }
 }
 
@@ -191,16 +205,16 @@ void vsInverseKinematicsUI::on_enableAllCB_toggled(bool checked)
 {
     //TODO depending on the last one selected
     if(checked){
-        m_markersIKTasksModel->enableAllSelected();
-        m_coordinateIKTasksModel->enableAllSelected();
+        if(m_selectedIKTasksModel == m_markersIKTasksModel)m_markersIKTasksModel->enableAllSelected();
+        else if (m_selectedIKTasksModel == m_coordinateIKTasksModel)m_coordinateIKTasksModel->enableAllSelected();
     }
 }
 
 void vsInverseKinematicsUI::on_disableAllCB_toggled(bool checked)
 {
     if(checked){
-        m_markersIKTasksModel->disableAllSelected();
-        m_coordinateIKTasksModel->disableAllSelected();
+        if(m_selectedIKTasksModel == m_markersIKTasksModel) m_markersIKTasksModel->disableAllSelected();
+        else if (m_selectedIKTasksModel == m_coordinateIKTasksModel)m_coordinateIKTasksModel->disableAllSelected();
     }
 }
 
@@ -208,4 +222,28 @@ void vsInverseKinematicsUI::on_weightFSP_valueChanged(double arg1)
 {
     m_markersIKTasksModel->updateSelectedRowsWeight(arg1);
     m_coordinateIKTasksModel->updateSelectedRowsWeight(arg1);
+}
+
+void vsInverseKinematicsUI::on_fromFileRB_toggled(bool checked)
+{
+    ui->manualValueTE->setEnabled(false);
+    if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::FromFile);
+    }
+}
+
+void vsInverseKinematicsUI::on_defaultValueRB_toggled(bool checked)
+{
+    ui->manualValueTE->setEnabled(false);
+    if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::DefaultValue);
+    }
+}
+
+void vsInverseKinematicsUI::on_manualValueRB_toggled(bool checked)
+{
+    ui->manualValueTE->setEnabled(true);
+    if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ManualValue);
+    }
 }
