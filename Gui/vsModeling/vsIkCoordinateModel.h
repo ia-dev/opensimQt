@@ -19,8 +19,8 @@ public:
     void disableAllSelected();
     void setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ValueType valueType);
 
-
     double getDefaultValue(int i) const; //< convert to radian or degress depending on the motiontype
+    void updateValuesManualy(double newValue);
 
     // QAbstractItemModel interface
 public:
@@ -49,6 +49,11 @@ public slots:
 
 signals :
     void uiUpdated();
+
+public:
+    OpenSim::IKCoordinateTask::ValueType selectedValueType;
+    bool allSelectedHaveSameValueType = false;
+    QString selectedValue;
 
 private:
     QList<OpenSim::IKCoordinateTask*> m_ikCoordinateTasks;

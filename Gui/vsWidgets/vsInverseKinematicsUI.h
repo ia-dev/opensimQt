@@ -57,6 +57,8 @@ private slots:
 
     void on_manualValueRB_toggled(bool checked);
 
+    void on_manualValueTE_textChanged();
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 

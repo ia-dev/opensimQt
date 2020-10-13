@@ -9,6 +9,7 @@
 #define PI 3.141592653589793238463
 
 vsIKCoordinateModel::vsIKCoordinateModel():QAbstractTableModel(),
+    selectedValueType(OpenSim::IKCoordinateTask::DefaultValue),
     m_currentModel(nullptr)
     //m_markerData(new OpenSim::MarkerData())
 {
@@ -105,9 +106,23 @@ double vsIKCoordinateModel::getDefaultValue(int index ) const
 {
     auto motionType = m_currentModel->getCoordinateSet().get(index).getMotionType();
 
-    auto motionFactor  = motionType==OpenSim::Coordinate::Translational?180.0/PI:1.0;
+    auto motionFactor  = (motionType==OpenSim::Coordinate::Rotational)?180.0/PI:1.0;
 
     return (motionFactor * m_currentModel->getCoordinateSet().get(index).getDefaultValue());
+
+}
+
+void vsIKCoordinateModel::updateValuesManualy(double newValue)
+{
+//    auto firstItemIndex = m_currentModel->getCoordinateSet().getIndex(m_selectedTasks[0]->getName());
+//    auto motionType = m_currentModel->getCoordinateSet().get(firstItemIndex).getMotionType();
+//    auto motionFactor  = (motionType==OpenSim::Coordinate::Rotational)?180.0/PI:1.0;
+
+    foreach (auto task, m_selectedTasks) {
+        //perform right conversions or(in java) noticed that the value will be inserted without any regard for the MotionType
+        task->setValue(newValue);
+    }
+    emit layoutChanged();
 
 }
 
@@ -240,14 +255,23 @@ QVariant vsIKCoordinateModel::headerData(int section, Qt::Orientation orientatio
 
 void vsIKCoordinateModel::selectionModelChanged(QModelIndexList selected)
 {
+    //test if all the selected rows have the same value type
     qDebug() << "the size of the coordinates selected items > " << selected.size();
     m_selectedTasks.clear();
+    bool allHaveSameType = true;
+    //first we check only the type
+    bool allHaveSameValue = true;
+    OpenSim::IKCoordinateTask::ValueType firstType = m_ikCoordinateTasks[selected.first().row()]->getValueType();
     foreach (auto index, selected) {
         if(!index.isValid()) continue;
         auto ikCoordinateTask = m_ikCoordinateTasks[index.row()];
         m_selectedTasks << ikCoordinateTask;
+        if(firstType != ikCoordinateTask->getValueType()) allHaveSameType = false;
     }
 
+    allSelectedHaveSameValueType = allHaveSameType;
+    selectedValueType = firstType;
+    selectedValue = QString::number(m_ikCoordinateTasks[selected.first().row()]->getValue());
     updateIKUI();
 
 }

@@ -1,6 +1,7 @@
 #include "vsInverseKinematicsUI.h"
 #include "ui_vsInverseKinematicsUI.h"
 
+#include <QButtonGroup>
 #include <QDebug>
 #include <QFileDialog>
 #include <QItemSelectionModel>
@@ -30,7 +31,8 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
 
     connect(ui->ikMarkersTable->selectionModel(),&QItemSelectionModel::selectionChanged,m_markersIKTasksModel,[=](){
         m_selectedIKTasksModel = m_markersIKTasksModel;
-
+        //We update the value of the from file text edit when the selection is changed
+        ui->fromFileTE->setPlainText(m_markersFileName==""?"No File":QString::fromStdString(m_markersFileName));
         ui->fromFileRB->setEnabled(true);
         ui->defaultValueRB->setEnabled(false);
         ui->manualValueRB->setEnabled(false);
@@ -53,6 +55,8 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     });
 
     connect(m_markersIKTasksModel,&vsMarkerTasksModel::uiUpdated,[=](){
+        ui->fromFileRB->setChecked(true);
+        ui->fromFileTE->setPlainText(QString::fromStdString(m_markersFileName));
 
         ui->enableAllCB->setChecked(m_markersIKTasksModel->getAllEnabled());
         ui->enableAllCB->setEnabled(!m_markersIKTasksModel->getAllEnabled());
@@ -64,7 +68,47 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
 
     connect(m_coordinateIKTasksModel,&vsIKCoordinateModel::uiUpdated,[=](){
 
-        //TODO Set it to be the last to be changed
+
+        //handle the display of the Radio Buttons when the update message is emmited
+
+        if(m_coordinateIKTasksModel->allSelectedHaveSameValueType){
+            switch (m_coordinateIKTasksModel->selectedValueType) {
+            case OpenSim::IKCoordinateTask::FromFile:{
+                ui->fromFileRB->setChecked(true);
+                ui->fromFileTE->setPlainText(m_coordinatesFileName==""?"No File":QString::fromStdString(m_coordinatesFileName));
+                ui->defaultValueTE->setPlainText("");
+                ui->manualValueTE->setText("");
+                }
+                break;
+            case OpenSim::IKCoordinateTask::DefaultValue:{
+                ui->defaultValueRB->setChecked(true);
+                ui->fromFileTE->setPlainText("");
+                ui->defaultValueTE->setPlainText(m_coordinateIKTasksModel->selectedValue);
+                ui->manualValueTE->setText("");
+            }
+                break;
+            case OpenSim::IKCoordinateTask::ManualValue:{
+                ui->manualValueRB->setChecked(true);
+                ui->fromFileTE->setPlainText("");
+                ui->defaultValueTE->setPlainText("");
+                ui->manualValueTE->setText(m_coordinateIKTasksModel->selectedValue);
+            }
+                break;
+            default:
+                break;
+            }
+        }
+        else{
+            //ui->defaultValueRB->group()->setExclusive(false);
+            ui->fromFileRB->setChecked(false);
+            ui->defaultValueRB->setChecked(false);
+            ui->markerFileTB->setChecked(false);
+            //ui->defaultValueRB->group()->setExclusive(true);
+
+            ui->fromFileTE->setPlainText("");
+            ui->defaultValueTE->setPlainText("");
+            ui->manualValueTE->setPlainText("");
+        }
 
         ui->enableAllCB->setChecked(m_coordinateIKTasksModel->getAllEnabled());
         ui->enableAllCB->setEnabled(!m_coordinateIKTasksModel->getAllEnabled());
@@ -226,24 +270,44 @@ void vsInverseKinematicsUI::on_weightFSP_valueChanged(double arg1)
 
 void vsInverseKinematicsUI::on_fromFileRB_toggled(bool checked)
 {
-    ui->manualValueTE->setEnabled(false);
     if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        ui->manualValueTE->setEnabled(false);
+        ui->defaultValueTE->setPlainText("");
+        ui->manualValueTE->setPlainText("");
         m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::FromFile);
+
+        ui->fromFileTE->setPlainText(m_coordinatesFileName==""?"No File":QString::fromStdString(m_coordinatesFileName));
+
     }
 }
 
 void vsInverseKinematicsUI::on_defaultValueRB_toggled(bool checked)
 {
-    ui->manualValueTE->setEnabled(false);
     if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        ui->manualValueTE->setEnabled(false);
+        ui->fromFileTE->setPlainText("");
+        ui->manualValueTE->setPlainText("");
         m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::DefaultValue);
+        ui->defaultValueTE->setPlainText(m_coordinateIKTasksModel->selectedValue);
     }
 }
 
 void vsInverseKinematicsUI::on_manualValueRB_toggled(bool checked)
 {
-    ui->manualValueTE->setEnabled(true);
     if(checked && m_selectedIKTasksModel == m_coordinateIKTasksModel){
+        ui->manualValueTE->setEnabled(true);
+        ui->defaultValueTE->setPlainText("");
+        ui->fromFileTE->setPlainText("");
         m_coordinateIKTasksModel->setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ManualValue);
+        ui->manualValueTE->setPlainText(m_coordinateIKTasksModel->selectedValue);
     }
+}
+
+void vsInverseKinematicsUI::on_manualValueTE_textChanged()
+{
+    // check that the  value is valid
+    double newValue = ui->manualValueTE->toPlainText().toDouble();
+    // apply it to the selected rows
+
+    m_coordinateIKTasksModel->updateValuesManualy(newValue);
 }
