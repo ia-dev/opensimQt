@@ -22,6 +22,10 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    valueTypeBG.addButton(ui->fromFileRB);
+    valueTypeBG.addButton(ui->defaultValueRB);
+    valueTypeBG.addButton(ui->manualValueRB);
+
     ui->ikMarkersTable->setModel(m_markersIKTasksModel);
     ui->ikCoordiantesTable->setModel(m_coordinateIKTasksModel);
     ui->ikMarkersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::Stretch);
@@ -99,11 +103,11 @@ vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
             }
         }
         else{
-            //ui->defaultValueRB->group()->setExclusive(false);
+            valueTypeBG.setExclusive(false);
             ui->fromFileRB->setChecked(false);
             ui->defaultValueRB->setChecked(false);
             ui->markerFileTB->setChecked(false);
-            //ui->defaultValueRB->group()->setExclusive(true);
+            ui->defaultValueRB->group()->setExclusive(true);
 
             ui->fromFileTE->setPlainText("");
             ui->defaultValueTE->setPlainText("");
@@ -309,5 +313,5 @@ void vsInverseKinematicsUI::on_manualValueTE_textChanged()
     double newValue = ui->manualValueTE->toPlainText().toDouble();
     // apply it to the selected rows
 
-    m_coordinateIKTasksModel->updateValuesManualy(newValue);
+    if(m_coordinateIKTasksModel->allSelectedHaveSameValueType)m_coordinateIKTasksModel->updateValuesManualy(newValue);
 }

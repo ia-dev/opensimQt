@@ -1,6 +1,7 @@
 #ifndef VSINVERSEKINEMATICSUI_H
 #define VSINVERSEKINEMATICSUI_H
 
+#include <QButtonGroup>
 #include <QWidget>
 
 #include <vsModeling/vsIkCoordinateModel.h>
@@ -61,6 +62,8 @@ private slots:
 
 private:
     Ui::vsInverseKinematicsUI *ui;
+
+    QButtonGroup valueTypeBG;
 
     OpenSim::Model *m_currentModel;
 

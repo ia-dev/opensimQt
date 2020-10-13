@@ -99,6 +99,7 @@ void vsIKCoordinateModel::setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::
     foreach (auto selected, m_selectedTasks) {
         selected->setValueType(valueType);
     }
+    allSelectedHaveSameValueType = true;
     emit layoutChanged();
 }
 
@@ -262,14 +263,17 @@ void vsIKCoordinateModel::selectionModelChanged(QModelIndexList selected)
     //first we check only the type
     bool allHaveSameValue = true;
     OpenSim::IKCoordinateTask::ValueType firstType = m_ikCoordinateTasks[selected.first().row()]->getValueType();
+    auto firstValue  = m_ikCoordinateTasks[selected.first().row()]->getValue();
     foreach (auto index, selected) {
         if(!index.isValid()) continue;
         auto ikCoordinateTask = m_ikCoordinateTasks[index.row()];
         m_selectedTasks << ikCoordinateTask;
         if(firstType != ikCoordinateTask->getValueType()) allHaveSameType = false;
+        if(firstValue != ikCoordinateTask->getValue()) allHaveSameValue = false;
     }
 
     allSelectedHaveSameValueType = allHaveSameType;
+    allSelectedHaveSameValue  =allHaveSameValue;
     selectedValueType = firstType;
     selectedValue = QString::number(m_ikCoordinateTasks[selected.first().row()]->getValue());
     updateIKUI();

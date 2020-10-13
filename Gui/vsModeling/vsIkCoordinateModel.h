@@ -53,6 +53,7 @@ signals :
 public:
     OpenSim::IKCoordinateTask::ValueType selectedValueType;
     bool allSelectedHaveSameValueType = false;
+    bool allSelectedHaveSameValue = false;
     QString selectedValue;
 
 private:
