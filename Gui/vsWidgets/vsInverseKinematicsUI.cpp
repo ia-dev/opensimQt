@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <QItemSelectionModel>
 
+#include <vsTools/vsOpenSimTools.h>
+
 vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::vsInverseKinematicsUI),
@@ -206,6 +208,15 @@ void vsInverseKinematicsUI::on_coordinateDataCB_toggled(bool checked)
 void vsInverseKinematicsUI::on_coordinateFileTE_textChanged()
 {
     m_coordinatesFileName = ui->coordinateFileTE->toPlainText().toStdString();
+    QFileInfo fileInfo(QString::fromStdString(m_coordinatesFileName));
+
+    if(m_coordinatesFileName != "" && fileInfo.exists()){
+        //handle the file name between coordinates and markers
+        // that should load the IK tasks to the IK tool
+        m_ikTool->setCoordinateFileName(m_coordinatesFileName);
+
+        m_coordinateIKTasksModel->loadFromIKTool(m_ikTool);
+    }
 }
 
 void vsInverseKinematicsUI::on_coordianteFileTB_clicked()
@@ -236,6 +247,16 @@ void vsInverseKinematicsUI::on_motionFileName_textChanged()
 
 void vsInverseKinematicsUI::on_runBTN_clicked()
 {
+    //Check that all the values are set
+    if(!m_markersIKTasksModel->areAllValuesSet()) return;
+    if(!m_coordinateIKTasksModel->areAllValuesSet()) return;
+
+    // Check the output value is set
+    if(m_outputFile==""){
+        vsOpenSimTools::tools->log("No output file was specified for the motion","vsInverseKinematicsUI",vsOpenSimTools::Error);
+        return;
+    }
+
     m_ikTool->setStartTime(m_ikStartTime);
     m_ikTool->setEndTime(m_ikEndTime);
     if(ui->coordinateDataCB->isChecked()) m_ikTool->setCoordinateFileName(m_coordinatesFileName);

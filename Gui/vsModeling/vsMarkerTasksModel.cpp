@@ -89,6 +89,22 @@ void vsMarkerTasksModel::disableAllSelected()
 
 }
 
+bool vsMarkerTasksModel::areAllValuesSet()
+{
+    foreach (auto task, m_ikMarkerTasks) {
+        //for values that will not be applied
+        if(!task->getApply()) continue;
+        if(m_presentInFileMap.value(task->getName(),false)){
+            continue;
+        }
+        else{
+            vsOpenSimTools::tools->log("Not all marker tasks values are set","vsMarkerTasksModel",vsOpenSimTools::Error);
+            return false;
+        }
+    }
+    return true;
+}
+
 
 int vsMarkerTasksModel::rowCount(const QModelIndex &parent) const
 {
@@ -228,10 +244,8 @@ void vsMarkerTasksModel::updatePresentInFileMap()
     m_presentInFileMap.clear();
     if(!m_markerData) return;
     for (int i = 0; i < m_markerData->getMarkerNames().getSize(); ++i) {
-
         m_presentInFileMap[m_markerData->getMarkerNames().get(i)] = true;
     }
-
 }
 
 void vsMarkerTasksModel::updateSelectedRowsWeight(double newWeight)

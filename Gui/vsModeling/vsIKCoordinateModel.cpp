@@ -10,8 +10,8 @@
 
 vsIKCoordinateModel::vsIKCoordinateModel():QAbstractTableModel(),
     selectedValueType(OpenSim::IKCoordinateTask::DefaultValue),
-    m_currentModel(nullptr)
-    //m_markerData(new OpenSim::MarkerData())
+    m_currentModel(nullptr),
+    m_coordinateData(new OpenSim::Storage())
 {
 }
 
@@ -65,8 +65,8 @@ void vsIKCoordinateModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
         }
     }
     else{
-        //m_Data = new OpenSim::MarkerData(tool->getMarkerDataFileName());
-        vsOpenSimTools::tools->log(" mot,sto file loaded, number of coordinates : "/*+QString::number(m_->getMarkerNames().getSize())*/,"vsIKCoordinateModel");
+        m_coordinateData = new OpenSim::Storage(tool->getCoordinateFileName());
+        vsOpenSimTools::tools->log(" mot,sto file loaded, number of coordinates : "+QString::number(m_coordinateData->getColumnLabels().getSize()),"vsIKCoordinateModel");
         updatePresentInFileMap();
     }
 
@@ -125,6 +125,35 @@ void vsIKCoordinateModel::updateValuesManualy(double newValue)
     }
     emit layoutChanged();
 
+}
+
+bool vsIKCoordinateModel::areAllValuesSet()
+{
+    foreach (auto coordinateTask, m_ikCoordinateTasks) {
+        switch (coordinateTask->getValueType()) {
+        case OpenSim::IKCoordinateTask::DefaultValue:{
+            //restore the default value
+            auto index  =  m_currentModel->getCoordinateSet().getIndex(coordinateTask->getName());
+            // get the factor
+            auto motionType = m_currentModel->getCoordinateSet().get(index).getMotionType();
+            auto motionFactor  = (motionType==OpenSim::Coordinate::Rotational)?180.0/PI:1.0;
+
+            coordinateTask->setValue(getDefaultValue(index)/motionFactor);
+            }
+            break;
+        case OpenSim::IKCoordinateTask::FromFile:{
+            if(!coordinateTask->getApply()) continue;
+            if(!m_presentInFileMap.value(coordinateTask->getName(),false)){
+                vsOpenSimTools::tools->log("Not all the files in the coordinate model are set","vsIKCoordinateModel",vsOpenSimTools::Error);
+                return false;
+            }
+        }break;
+
+        default:
+            break;
+        }
+    }
+    return true;
 }
 
 
@@ -297,11 +326,11 @@ void vsIKCoordinateModel::updateIKUI()
 void vsIKCoordinateModel::updatePresentInFileMap()
 {
     m_presentInFileMap.clear();
-//    if(!m_markerData) return;
-//    for (int i = 0; i < m_markerData->getMarkerNames().getSize(); ++i) {
+    if(!m_coordinateData) return;
+    for (int i = 0; i < m_coordinateData->getColumnLabels().getSize(); ++i) {
 
-//        m_presentInFileMap[m_markerData->getMarkerNames().get(i)] = true;
-//    }
+        m_presentInFileMap[m_coordinateData->getColumnLabels().get(i)] = true;
+    }
 
 }
 

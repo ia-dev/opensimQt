@@ -22,6 +22,9 @@ public:
     double getDefaultValue(int i) const; //< convert to radian or degress depending on the motiontype
     void updateValuesManualy(double newValue);
 
+
+    bool areAllValuesSet();
+
     // QAbstractItemModel interface
 public:
     virtual int rowCount(const QModelIndex &parent) const override;
@@ -64,7 +67,7 @@ private:
 
     OpenSim::Model *m_currentModel;
     OpenSim::InverseKinematicsTool *m_ikTool;
-    //OpenSim::CoordinateData *m_markerData;
+    OpenSim::Storage *m_coordinateData;
 
     QMap<std::string,bool> m_presentInFileMap;
 

@@ -18,6 +18,8 @@ public:
     void enableAllSelected();
     void disableAllSelected();
 
+    bool areAllValuesSet();
+
     // QAbstractItemModel interface
 public:
     virtual int rowCount(const QModelIndex &parent) const override;
