@@ -63,7 +63,7 @@ void vsMotionsUtils::loadMotionStorage(OpenSim::Storage *newMotion, bool primary
     if(true){//testMotionAssociationPossible(activeModel,newMotion)){
         addMotion(activeModel,newMotion,nullptr);
         vsOpenSimTools::tools->log("Motion : "+QString::fromStdString(newMotion->getName())+
-                                   " Loaded to model : "+QString::fromStdString(activeModel->getName()),
+                                   "Loaded to model : "+QString::fromStdString(activeModel->getName()),
                                    "vsMotionUtils",vsOpenSimTools::Success);
     }
     else{

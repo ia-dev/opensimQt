@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QItemSelectionModel>
 
+#include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 
 vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
@@ -268,6 +269,14 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
               << "range : " << m_ikStartTime << " > "  << m_ikEndTime << std::endl
               << "coordinate file: " << m_coordinatesFileName << std::endl
               << "output file : " << m_outputFile;
+
+    vsOpenSimTools::tools->log("Running the IKTool ...");
+    m_ikTool->run();
+    vsOpenSimTools::tools->log("Execution for the IK tool has finnished ...");
+    OpenSim::Storage *storage = new OpenSim::Storage(m_ikTool->getOutputMotionFileName());
+    vsMotionsUtils::getInstance()->activeModel = m_currentModel;
+    vsMotionsUtils::getInstance()->loadMotionStorage(storage,true,m_ikTool->getOutputMotionFileName());
+
 }
 
 void vsInverseKinematicsUI::on_enableAllCB_toggled(bool checked)
