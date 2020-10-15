@@ -1,0 +1,7 @@
+In Ubuntu there is a problem related to cmake finding the correct python library
+
+To solve:
+ - add the correct version include and lib to .bashrc 
+ - rename the version that found by cmake to less version e.g. from 3.7 to 3.0.7
+ - link the correct version of python to /usr/bin/python and /usr/bin/python3
+ 
