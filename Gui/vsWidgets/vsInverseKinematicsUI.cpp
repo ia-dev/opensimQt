@@ -383,3 +383,42 @@ void vsInverseKinematicsUI::on_saveBTN_clicked()
     m_ikTool->print(savingFileName.toStdString());
 
 }
+
+void vsInverseKinematicsUI::on_loadBTN_clicked()
+{
+    //select the configuration file
+    auto configFileName =  QFileDialog::getOpenFileName(nullptr,"IK tool setting file","","IK tool setting file (*.xml)");
+    if(configFileName == "") return;
+
+    //create a new instance of the IK tool
+
+    m_ikTool = new OpenSim::InverseKinematicsTool(configFileName.toStdString(),false);
+    m_ikTool->setModel(*m_currentModel);
+
+    //convert the relative path to an absolute one (for the registered files
+    auto configFileDir = QFileInfo(configFileName).dir();
+    m_coordinatesFileName = m_ikTool->getCoordinateFileName()=="Unassigned"?"": configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getCoordinateFileName()))).toStdString();
+    m_markersFileName = configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getMarkerDataFileName()))).toStdString();
+    m_outputFile = configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getOutputMotionFileName()))).toStdString();
+
+    qDebug() << "Coordinate file name "<< QString::fromStdString(m_coordinatesFileName);
+    m_ikTool->setCoordinateFileName(m_coordinatesFileName);
+    m_ikTool->setMarkerDataFileName(m_markersFileName);
+    m_ikTool->setOutputMotionFileName(m_outputFile);
+
+    //load the coordinates and markers data from the IK tool
+
+    m_coordinateIKTasksModel->loadFromIKTool(m_ikTool);
+    m_markersIKTasksModel->loadFromIKTool(m_ikTool);
+
+    //update the UI
+
+    ui->coordinateFileTE->setPlainText(QString::fromStdString(m_coordinatesFileName));
+    ui->markerDateFileTE->setPlainText(QString::fromStdString(m_markersFileName));
+    ui->motionFileName->setPlainText(QString::fromStdString(m_outputFile));
+
+    ui->trialRangefrom->setValue(m_ikTool->getStartTime());
+    ui->trialRangeTo->setValue(m_ikTool->getEndTime());
+
+    if(m_ikTool->getCoordinateFileName()!= "") ui->coordinateDataCB->setChecked(true);
+}

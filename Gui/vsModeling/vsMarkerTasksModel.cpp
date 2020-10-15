@@ -42,6 +42,9 @@ void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
     setIkTool(tool);
 
     //loop over the tasks of the tool and extract only the MarkerTasks
+    m_markerData = new OpenSim::MarkerData(tool->getMarkerDataFileName());
+    vsOpenSimTools::tools->log(" trc file loaded, number of markers : "+QString::number(m_markerData->getMarkerNames().getSize()),"vsMarkerTasksModel");
+    updatePresentInFileMap();
 
     qDebug() << "IK taskset size : " << tool->getIKTaskSet().getSize();
     if(tool->getIKTaskSet().getSize()>0){
@@ -55,14 +58,9 @@ void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
             // get the task index in the OpenSim Model
             auto taskIndex = m_currentModel->updMarkerSet().getIndex(task->getName());
             // replace the temporary model with the one from the IK tool
-            m_ikMarkerTasks.replace(taskIndex,task);
+            m_ikMarkerTasks.replace(taskIndex,new OpenSim::IKMarkerTask(*task));
 
         }
-    }
-    else{
-        m_markerData = new OpenSim::MarkerData(tool->getMarkerDataFileName());
-        vsOpenSimTools::tools->log(" trc file loaded, number of markers : "+QString::number(m_markerData->getMarkerNames().getSize()),"vsMarkerTasksModel");
-        updatePresentInFileMap();
     }
 
 }
@@ -70,7 +68,7 @@ void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
 void vsMarkerTasksModel::toTaskSet(OpenSim::IKTaskSet &taskSet)
 {
     //first clean all the existing tasks (markers)
-    for (int i = 0; i < taskSet.getSize(); ++i) {
+    for (int i = taskSet.getSize()-1; i >= 0; i--) {
         auto markerTask = OpenSim::IKMarkerTask::safeDownCast(&taskSet.get(i));
         if(markerTask) taskSet.remove(i);
     }
