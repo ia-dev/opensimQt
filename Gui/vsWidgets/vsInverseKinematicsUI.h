@@ -64,6 +64,10 @@ private slots:
 
     void on_loadBTN_clicked();
 
+    void on_closeBTN_clicked();
+
+    void on_helpBTN_clicked();
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 

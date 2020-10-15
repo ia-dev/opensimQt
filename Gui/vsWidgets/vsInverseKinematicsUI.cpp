@@ -3,6 +3,7 @@
 
 #include <QButtonGroup>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QItemSelectionModel>
 
@@ -421,4 +422,14 @@ void vsInverseKinematicsUI::on_loadBTN_clicked()
     ui->trialRangeTo->setValue(m_ikTool->getEndTime());
 
     if(m_ikTool->getCoordinateFileName()!= "") ui->coordinateDataCB->setChecked(true);
+}
+
+void vsInverseKinematicsUI::on_closeBTN_clicked()
+{
+    this->close();
+}
+
+void vsInverseKinematicsUI::on_helpBTN_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://simtk-confluence.stanford.edu/display/OpenSim40/Inverse+Kinematics"));
 }
