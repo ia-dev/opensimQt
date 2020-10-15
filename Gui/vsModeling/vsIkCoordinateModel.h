@@ -15,6 +15,7 @@ public:
 
     void updateTasks(OpenSim::Model *model);
     void loadFromIKTool(OpenSim::InverseKinematicsTool *tool);
+    void toTaskSet(OpenSim::IKTaskSet &taskSet);
     void enableAllSelected();
     void disableAllSelected();
     void setValueTypeForSelectedRow(OpenSim::IKCoordinateTask::ValueType valueType);

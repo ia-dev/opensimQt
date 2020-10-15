@@ -67,6 +67,23 @@ void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
 
 }
 
+void vsMarkerTasksModel::toTaskSet(OpenSim::IKTaskSet &taskSet)
+{
+    //first clean all the existing tasks (markers)
+    for (int i = 0; i < taskSet.getSize(); ++i) {
+        auto markerTask = OpenSim::IKMarkerTask::safeDownCast(&taskSet.get(i));
+        if(markerTask) taskSet.remove(i);
+    }
+
+    //next load the task present in the model
+
+    foreach (auto task, m_ikMarkerTasks) {
+        if(!task->getApply() || task->getWeight()== 0) continue;
+        taskSet.cloneAndAppend(*task);
+    }
+
+}
+
 void vsMarkerTasksModel::enableAllSelected()
 {
     foreach (auto ikMarker, m_selectedTasks) {

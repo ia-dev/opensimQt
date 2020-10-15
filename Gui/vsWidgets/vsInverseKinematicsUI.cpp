@@ -258,6 +258,9 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
         return;
     }
 
+    m_coordinateIKTasksModel->toTaskSet(m_ikTool->getIKTaskSet());
+    m_markersIKTasksModel->toTaskSet(m_ikTool->getIKTaskSet());
+
     m_ikTool->setStartTime(m_ikStartTime);
     m_ikTool->setEndTime(m_ikEndTime);
     if(ui->coordinateDataCB->isChecked()) m_ikTool->setCoordinateFileName(m_coordinatesFileName);

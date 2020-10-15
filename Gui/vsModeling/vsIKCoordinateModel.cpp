@@ -31,7 +31,7 @@ void vsIKCoordinateModel::updateTasks(OpenSim::Model *model)
         coordinateTask->setName(coordinate.getName());
         //set the apply to true and the weight to one temporarly
         coordinateTask->setApply(true);
-        coordinateTask->setWeight(1);
+        coordinateTask->setWeight(0);
         coordinateTask->setValueType(OpenSim::IKCoordinateTask::DefaultValue);
         m_ikCoordinateTasks << coordinateTask;
         m_presentInFileMap[coordinate.getName()] = false;
@@ -68,6 +68,23 @@ void vsIKCoordinateModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
         m_coordinateData = new OpenSim::Storage(tool->getCoordinateFileName());
         vsOpenSimTools::tools->log(" mot,sto file loaded, number of coordinates : "+QString::number(m_coordinateData->getColumnLabels().getSize()),"vsIKCoordinateModel");
         updatePresentInFileMap();
+    }
+
+}
+
+void vsIKCoordinateModel::toTaskSet(OpenSim::IKTaskSet &taskSet)
+{
+    //first clean all the existing tasks (coordinates)
+    for (int i = 0; i < taskSet.getSize(); ++i) {
+        auto coordinateTask = OpenSim::IKCoordinateTask::safeDownCast(&taskSet.get(i));
+        if(coordinateTask) taskSet.remove(i);
+    }
+
+    //next load the task present in the model
+
+    foreach (auto task, m_ikCoordinateTasks) {
+        if(!task->getApply() || task->getWeight()== 0) continue;
+        taskSet.cloneAndAppend(*task);
     }
 
 }
