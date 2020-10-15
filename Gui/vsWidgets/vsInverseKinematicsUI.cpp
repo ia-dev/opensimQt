@@ -277,6 +277,7 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
     m_ikTool->run();
     vsOpenSimTools::tools->log("Execution for the IK tool has finnished ...");
     OpenSim::Storage *storage = new OpenSim::Storage(m_ikTool->getOutputMotionFileName());
+    storage->setName("IK Results");
     vsMotionsUtils::getInstance()->activeModel = m_currentModel;
     vsMotionsUtils::getInstance()->loadMotionStorage(storage,true,m_ikTool->getOutputMotionFileName());
 
@@ -347,4 +348,38 @@ void vsInverseKinematicsUI::on_manualValueTE_textChanged()
     // apply it to the selected rows
 
     if(m_coordinateIKTasksModel->allSelectedHaveSameValueType)m_coordinateIKTasksModel->updateValuesManualy(newValue);
+}
+
+void vsInverseKinematicsUI::on_saveBTN_clicked()
+{
+    //Open A File Dialog
+
+    auto savingFileName = QFileDialog::getSaveFileName(nullptr,"IK tool setting file","","IK tool setting file (*.xml)");
+
+    if(savingFileName == "") return;
+
+    //ge the relative paths to the saveFileName
+    //get the correct path
+    QFileInfo savingFileInfo(savingFileName);
+    QDir savingDir  = savingFileInfo.dir();
+    auto relativeMarkersFile = savingDir.relativeFilePath(QString::fromStdString(m_markersFileName));
+    auto relativeCoordinateFile = savingDir.relativeFilePath(QString::fromStdString(m_coordinatesFileName));
+    auto relativeOutputFile = savingDir.relativeFilePath(QString::fromStdString(m_outputFile));
+    auto relativeModelFile = savingDir.relativeFilePath(QString::fromStdString(m_currentModel->getInputFileName()));
+
+    //load the current tasks before saving
+
+    m_ikTool->getIKTaskSet().setInlined(true);
+
+    m_coordinateIKTasksModel->toTaskSet(m_ikTool->getIKTaskSet());
+    m_markersIKTasksModel->toTaskSet(m_ikTool->getIKTaskSet());
+
+    m_ikTool->setStartTime(m_ikStartTime);
+    m_ikTool->setEndTime(m_ikEndTime);
+    m_ikTool->setMarkerDataFileName(relativeMarkersFile.toStdString());
+    if(ui->coordinateDataCB->isChecked()) m_ikTool->setCoordinateFileName(relativeCoordinateFile.toStdString());
+    m_ikTool->setOutputMotionFileName(relativeOutputFile.toStdString());
+
+    m_ikTool->print(savingFileName.toStdString());
+
 }

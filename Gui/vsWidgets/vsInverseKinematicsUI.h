@@ -60,6 +60,8 @@ private slots:
 
     void on_manualValueTE_textChanged();
 
+    void on_saveBTN_clicked();
+
 private:
     Ui::vsInverseKinematicsUI *ui;
 
