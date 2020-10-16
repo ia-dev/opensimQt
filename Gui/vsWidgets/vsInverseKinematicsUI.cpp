@@ -396,9 +396,11 @@ void vsInverseKinematicsUI::on_loadBTN_clicked()
     m_ikTool = new OpenSim::InverseKinematicsTool(configFileName.toStdString(),false);
     m_ikTool->setModel(*m_currentModel);
 
+    qDebug() << "Coordinate file name form the config file :" << QString::fromStdString(m_ikTool->getCoordinateFileName());
     //convert the relative path to an absolute one (for the registered files
     auto configFileDir = QFileInfo(configFileName).dir();
-    m_coordinatesFileName = m_ikTool->getCoordinateFileName()=="Unassigned"?"": configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getCoordinateFileName()))).toStdString();
+    m_coordinatesFileName = (m_ikTool->getCoordinateFileName()=="Unassigned" || m_ikTool->getCoordinateFileName() == "")?
+                "": configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getCoordinateFileName()))).toStdString();
     m_markersFileName = configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getMarkerDataFileName()))).toStdString();
     m_outputFile = configFileDir.cleanPath(configFileDir.absoluteFilePath(QString::fromStdString(m_ikTool->getOutputMotionFileName()))).toStdString();
 

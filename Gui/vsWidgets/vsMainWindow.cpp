@@ -70,7 +70,7 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //setting the model preferences
     OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("/Users/ritesh/projects/idhamari/VisSimKoblenz/opensim-gui/opensim-models/Geometry");
 	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../vsWorkSpace/Geometry");                       //linux build
-	OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("../../../opensim-gui/opensim-models/Geometry");    //Windows build
+    OpenSim::ModelVisualizer::addDirToGeometrySearchPaths("./vsWorkSpace/opensim-models/Geometry");    //Windows build
 
 
     //setting the logging
