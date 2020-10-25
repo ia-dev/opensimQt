@@ -187,7 +187,7 @@ if doBuildReq:
 else:
     print("Install required tools is disabled. ")
 
-from git import Repo
+#from git import Repo
 
 #---------------------------------------------------------------------
 #          Setup Paths, WebLinks, and Cmake configs
@@ -256,7 +256,7 @@ if doBuildOpenSim:
     simbodyCfg   = ["cmake",simbodyBuildPath,"-DBUILD_EXAMPLES=ON"]
     opensimCoreCfg   = ["cmake",opensimSrcPath,"-DSUPERBUILD_BTK='True'", "-DBUILD_PYTHON_WRAPPING='True'", "-DOPENSIM_PYTHON_VERSION='3'","-DOPENSIM_DEPENDENCIES_DIR="+opensimDepsInstallPath,"-DCMAKE_INSTALL_PREFIX="+opensimInstallPath, "-DCMAKE_BUILD_TYPE='Release'"]
     vsDownload(opensimURL, buildPath, 128, opensimSrcPath)
-    #vsCreateFolder(opensimDepsBuildPath) ;  
+    vsCreateFolder(opensimDepsBuildPath) ;  
     vsConfig(opensimDepsBuildPath,opensimDepsCfg) ;
     vsBuild(opensimDepsBuildPath)
     # build simbody examples and documentation 
