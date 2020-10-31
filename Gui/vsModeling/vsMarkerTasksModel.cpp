@@ -49,10 +49,8 @@ void vsMarkerTasksModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
     qDebug() << "IK taskset size : " << tool->getIKTaskSet().getSize();
     if(tool->getIKTaskSet().getSize()>0){
         for (int i = 0; i < tool->getIKTaskSet().getSize(); ++i) {
-
             // convert the abstract task to a Marker task
             auto task = OpenSim::IKMarkerTask::safeDownCast(&(tool->getIKTaskSet().get(i)));
-
             if(!task) continue;
 
             // get the task index in the OpenSim Model
@@ -260,6 +258,13 @@ void vsMarkerTasksModel::updatePresentInFileMap()
     if(!m_markerData) return;
     for (int i = 0; i < m_markerData->getMarkerNames().getSize(); ++i) {
         m_presentInFileMap[m_markerData->getMarkerNames().get(i)] = true;
+    }
+
+    //disable the markers that are not present in the data
+
+    foreach (auto task, m_ikMarkerTasks) {
+        if(m_presentInFileMap[task->getName()]) continue;
+        task->setApply(false);
     }
 }
 

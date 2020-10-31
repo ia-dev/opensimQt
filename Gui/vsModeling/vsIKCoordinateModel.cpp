@@ -51,6 +51,12 @@ void vsIKCoordinateModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
     } catch (...) {
         vsOpenSimTools::tools->log("no coordinate file was specified while loading IKTool ","vsIKCoordinateModel");
     }
+    //disable all the tasks first that are read from value
+
+    foreach (auto task, m_ikCoordinateTasks) {
+        if(task->getValueType() == OpenSim::IKCoordinateTask::FromFile)
+            task->setApply(false);
+    }
 
     //loop over the tasks of the tool and extract only the MarkerTasks
 
@@ -62,6 +68,7 @@ void vsIKCoordinateModel::loadFromIKTool(OpenSim::InverseKinematicsTool *tool)
             auto task = OpenSim::IKCoordinateTask::safeDownCast(&(tool->getIKTaskSet().get(i)));
 
             if(!task) continue;
+            task->setApply(true);
 
             // get the task index in the OpenSim Model
             auto taskIndex = m_currentModel->updCoordinateSet().getIndex(task->getName());

@@ -96,7 +96,7 @@
      <x>0</x>
      <y>0</y>
      <width>1332</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -490,11 +490,26 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
-     <width>100</width>
+     <width>0</width>
      <height>52</height>
     </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>0</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
    </property>
    <property name="windowTitle">
     <string>Topologie</string>
@@ -631,8 +646,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>254</width>
-          <height>68</height>
+          <width>265</width>
+          <height>85</height>
          </rect>
         </property>
        </widget>
@@ -1065,6 +1080,7 @@
     <string>Pause Recording</string>
    </property>
   </action>
+  <zorder>topologyDock</zorder>
  </widget>
  <customwidgets>
   <customwidget>
