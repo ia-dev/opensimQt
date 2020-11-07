@@ -16,6 +16,8 @@
 #include "vsVisualizer/vsOpenGLVisualizer.h"
 #include <vsPython/vsMacroManager.h>
 #include <vsPython/vsManager.h>
+#include "vsScaleToolUi.h"
+
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -634,4 +636,10 @@ void vsMainWindow::on_actionRun_Current_Script_triggered()
         vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
         QMessageBox::information(this,tr("Error"),tr("Sorry! Some Error Occured during the process!"));
     }
+}
+
+void vsMainWindow::on_actionScale_Model_triggered()
+{
+    vsScaleToolUI *scaleToolUI = new vsScaleToolUI();
+    scaleToolUI->show();
 }

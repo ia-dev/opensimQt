@@ -87,20 +87,20 @@ file(COPY ${templateModels}  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/templates)
 #---------------------------------------------------------
 # TODO add option to select python version
 # TODO add option to locate PYTHONQT
-#set (PyVer 38)
-set (PyVer "" CACHE STRING "python version")
+set (PyVer 38)
+#set (PyVer "" CACHE STRING "python version")
 find_package(PythonLibs REQUIRED)
 if(${PYTHONLIBS_FOUND})
     #PythonQt Package
      message(WARNING "Python ${PYTHONLIBS_VERSION_STRING} was found")
      message(WARNING "Python ${Python_VERSION_MAJOR}.${Python_VERSION_MINOR} was found")
 
-     #set(PYTHONQT_SRC_PATH "F:/GitClones/pythonqt" CACHE STRING "")
-     #set(PYTHONQT_PATH "F:/GitClones/build-PythonQt-Desktop_Qt_5_14_1_MSVC2017_64bit-Release" CACHE STRING "")
+     set(PYTHONQT_SRC_PATH "F:/GitClones/pythonqt" CACHE STRING "")
+     set(PYTHONQT_PATH "F:/GitClones/build-PythonQt-Desktop_Qt_5_14_1_MSVC2017_64bit-Release" CACHE STRING "")
      #set(PYTHONQT_SRC_PATH "/home/ibr/opensim-dev/pyhtonQT-3.2" CACHE STRING "")
      #set(PYTHONQT_PATH "/home/ibr/opensim-dev/pyhtonQT-3.2-build" CACHE STRING "")
-     set(PYTHONQT_SRC_PATH "" CACHE STRING "path tp pythonqt source ")
-     set(PYTHONQT_PATH ""     CACHE STRING  "path to pythonqt build")
+     #set(PYTHONQT_SRC_PATH "" CACHE STRING "path tp pythonqt source ")
+     #set(PYTHONQT_PATH ""     CACHE STRING  "path to pythonqt build")
      find_library(PYTHONQT PythonQt-Qt5-Python${PyVer} PATHS ${PYTHONQT_PATH}/lib NO_DEFAULT_PATH)
      find_library(PYTHONQTALL PythonQt_QtAll-Qt5-Python${PyVer}  PATHS ${PYTHONQT_PATH}/lib NO_DEFAULT_PATH)
      include_directories(${PYTHONQT_SRC_PATH}/src)

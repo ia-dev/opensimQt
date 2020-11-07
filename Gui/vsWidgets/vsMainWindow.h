@@ -165,5 +165,6 @@ private slots:
 
     void on_actionPause_Recording_triggered();
     void on_actionRun_Current_Script_triggered();
+    void on_actionScale_Model_triggered();
 };
 #endif // vsMainWindow_H
