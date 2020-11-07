@@ -611,40 +611,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="205"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="207"/>
         <source>Open Model From File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="558"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="560"/>
         <source>Open Python Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="559"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="561"/>
         <source>Python Script Files (*.py)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="585"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="602"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="619"/>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="635"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="587"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="604"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="621"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="637"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="631"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="633"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="631"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="633"/>
         <source>No recent script files available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsMainWindow.cpp" line="635"/>
+        <location filename="vsWidgets/vsMainWindow.cpp" line="637"/>
         <source>Sorry! Some Error Occured during the process!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -675,11 +675,6 @@
 <context>
     <name>vsScaleToolUI</name>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="24"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
@@ -696,7 +691,7 @@
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="61"/>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="190"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="187"/>
         <source>and</source>
         <translation type="unfinished"></translation>
     </message>
@@ -712,49 +707,57 @@
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="85"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="238"/>
         <source>Marker Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="91"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="272"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="98"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="279"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="105"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="286"/>
         <source>@</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="112"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="244"/>
         <source>Frames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="119"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="265"/>
         <source>Markers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="126"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="258"/>
         <source>Hz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="133"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="251"/>
         <source>s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="vsWidgets/vsScaleToolUi.ui" line="143"/>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="214"/>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="224"/>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="293"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="165"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="221"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="351"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -764,7 +767,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="171"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="214"/>
         <source>Average markers between times</source>
         <translation type="unfinished"></translation>
     </message>
@@ -774,88 +777,127 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="207"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="231"/>
         <source>Coordinate data for static pose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="231"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="204"/>
         <source>Preview static pose (no marker movement)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="241"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="14"/>
+        <source>Scale Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="299"/>
         <source>Generic Model Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="253"/>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="310"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="311"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="368"/>
         <source>Mass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="260"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="318"/>
         <source>Model Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="267"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="325"/>
         <source>Marker Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="280"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="338"/>
         <source>Subject Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="286"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="344"/>
         <source>Add markers from file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="303"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="361"/>
         <source>ModelName</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="317"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="375"/>
         <source>Resulting Marker Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="337"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="395"/>
         <source>Scale Factors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="342"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="404"/>
+        <source>Use Measurements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="423"/>
+        <source>Reset to Measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="430"/>
+        <source>Edit Measurement Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="437"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="493"/>
+        <source>Uniform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="450"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="460"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="473"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="500"/>
+        <source>=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="486"/>
+        <source>Use Manual Scales</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="511"/>
         <source>Static Pose Weights</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="368"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="537"/>
         <source>Load ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="375"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="544"/>
         <source>Save ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="382"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="551"/>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="389"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="558"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="vsWidgets/vsScaleToolUi.ui" line="396"/>
+        <location filename="vsWidgets/vsScaleToolUi.ui" line="565"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
