@@ -640,6 +640,14 @@ void vsMainWindow::on_actionRun_Current_Script_triggered()
 
 void vsMainWindow::on_actionScale_Model_triggered()
 {
+    auto currentModel = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!currentModel)
+        vsOpenSimTools::tools->log("There is no current model to apply scale to it ","vsMainWindow",vsOpenSimTools::Info);
+
+
     vsScaleToolUI *scaleToolUI = new vsScaleToolUI();
+
+    scaleToolUI->setCurrentModel(currentModel);
+
     scaleToolUI->show();
 }

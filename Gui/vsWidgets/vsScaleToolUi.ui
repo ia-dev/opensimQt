@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="settingsTab">
       <attribute name="title">
@@ -300,10 +300,30 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="2" column="1">
-           <widget class="QLineEdit" name="genericMarkerSetLE"/>
+           <widget class="QLineEdit" name="genericMarkerSetLE">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="genericMassSB"/>
+           <widget class="QSpinBox" name="genericMassSB">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="inputMethodHints">
+             <set>Qt::ImhDigitsOnly</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_5">
@@ -327,7 +347,14 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="genericModelNameLE"/>
+           <widget class="QLineEdit" name="genericModelNameLE">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -347,6 +374,9 @@
           </item>
           <item row="2" column="2">
            <widget class="QToolButton" name="markerFileTB">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>...</string>
             </property>
@@ -377,10 +407,18 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="markersFileLE"/>
+           <widget class="QLineEdit" name="markersFileLE">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="3" column="1" colspan="2">
-           <widget class="QLineEdit" name="resultingMarkersLE"/>
+           <widget class="QLineEdit" name="resultingMarkersLE">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1" colspan="2">
            <widget class="QLineEdit" name="modelNameLE"/>
