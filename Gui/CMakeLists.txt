@@ -31,7 +31,8 @@ endif ()
 #---------------------------------------------------------
 #set(Qt5_DIR "/Users/ritesh/Qt/5.15.0/clang_64/lib/cmake/Qt5")
 find_package(Qt5 COMPONENTS Widgets WebEngine WebEngineWidgets OpenGL LinguistTools REQUIRED)
-
+find_package(Qt5Xml REQUIRED)
+find_package(Qt5XmlPatterns REQUIRED)
 #---------------------------------------------------------
 #              OpenSim
 #---------------------------------------------------------
@@ -87,20 +88,18 @@ file(COPY ${templateModels}  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/templates)
 #---------------------------------------------------------
 # TODO add option to select python version
 # TODO add option to locate PYTHONQT
-#set (PyVer 38)
-set (PyVer "" CACHE STRING "python version")
+set (PyVer "36" CACHE STRING "python version")
+#set (PyVer "" CACHE STRING "python version")
 find_package(PythonLibs REQUIRED)
 if(${PYTHONLIBS_FOUND})
     #PythonQt Package
      message(WARNING "Python ${PYTHONLIBS_VERSION_STRING} was found")
      message(WARNING "Python ${Python_VERSION_MAJOR}.${Python_VERSION_MINOR} was found")
 
-     #set(PYTHONQT_SRC_PATH "F:/GitClones/pythonqt" CACHE STRING "")
-     #set(PYTHONQT_PATH "F:/GitClones/build-PythonQt-Desktop_Qt_5_14_1_MSVC2017_64bit-Release" CACHE STRING "")
-     #set(PYTHONQT_SRC_PATH "/home/ibr/opensim-dev/pyhtonQT-3.2" CACHE STRING "")
-     #set(PYTHONQT_PATH "/home/ibr/opensim-dev/pyhtonQT-3.2-build" CACHE STRING "")
-     set(PYTHONQT_SRC_PATH "" CACHE STRING "path tp pythonqt source ")
-     set(PYTHONQT_PATH ""     CACHE STRING  "path to pythonqt build")
+     set(PYTHONQT_SRC_PATH "myGitLab/opensim-dev/IA/pythonQt" CACHE STRING "")
+     set(PYTHONQT_PATH "myGitLab/opensim-dev/IA/pythonQt-build" CACHE STRING "")
+#     set(PYTHONQT_SRC_PATH "" CACHE STRING "path tp pythonqt source ")
+#     set(PYTHONQT_PATH ""     CACHE STRING  "path to pythonqt build")
      find_library(PYTHONQT PythonQt-Qt5-Python${PyVer} PATHS ${PYTHONQT_PATH}/lib NO_DEFAULT_PATH)
      find_library(PYTHONQTALL PythonQt_QtAll-Qt5-Python${PyVer}  PATHS ${PYTHONQT_PATH}/lib NO_DEFAULT_PATH)
      include_directories(${PYTHONQT_SRC_PATH}/src)
@@ -147,11 +146,11 @@ file(GLOB opensim_widgets_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/vsWidgets/*.ui
     )
-file(GLOB opensim_python_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.ui
-    )
+#file(GLOB opensim_python_sources
+#    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.cpp
+#    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.h
+#    ${CMAKE_CURRENT_SOURCE_DIR}/vsPython/*.ui
+#    )
 
 #---------------------------------------------------------
 #              Building and linking
@@ -170,10 +169,13 @@ add_executable(${TARGET}
 if (WIN32)
     if(${PYTHONLIBS_FOUND})
        message(STATUS "linking opensimQt OpenSim VTK PythonQt ...................... ")
-       target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL 
-                          ${OpenSim_LIBRARIES} ${VTK_LIBRARIES}  ${PYTHONQT} ${PYTHONQTALL} ${PYTHON_LIBRARIES})
-       #includes for PythonQt
-       target_include_directories(${TARGET} PRIVATE ${PYTHON_INCLUDE_PATH} ${PYTHONQT_SRC_PATH}/src ${PYTHONQT_SRC_PATH}/extensions/PythonQt_QtAll)
+       #target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL
+       #                   ${OpenSim_LIBRARIES} ${VTK_LIBRARIES}  ${PYTHONQT} ${PYTHONQTALL} ${PYTHON_LIBRARIES})
+       target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL Qt5::Xml Qt5::XmlPatterns
+                          ${OpenSim_LIBRARIES} ${VTK_LIBRARIES}  )
+
+	   #includes for PythonQt
+       #target_include_directories(${TARGET} PRIVATE ${PYTHON_INCLUDE_PATH} ${PYTHONQT_SRC_PATH}/src ${PYTHONQT_SRC_PATH}/extensions/PythonQt_QtAll)
    else()
        message(STATUS "linking opensimQt OpenSim VTK ...................... ")
        target_link_libraries(${TARGET} PRIVATE Qt5::Widgets Qt5::WebEngine Qt5::WebEngineWidgets Qt5::OpenGL  ${OpenSim_LIBRARIES} ${VTK_LIBRARIES} )

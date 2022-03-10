@@ -9,8 +9,8 @@
 #include <vsWidgets/vsSimulationToolsWidget.h>
 #include <vsModeling/vsNavigatorModel.h>
 #include <vsModeling/vsPropertyModel.h>
-#include <vsPython/vsPythonQt.h>
-#include <vsPython/vsMacroManager.h>
+//#include <vsPython/vsPythonQt.h>
+//#include <vsPython/vsMacroManager.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class vsMainWindow; }
@@ -142,7 +142,7 @@ private:
 
     // QWidget interface
 
-    vsPythonQt *pythonConsole;                                              //!< Embedded Python Scripting Console :  Qt Widget for embedded python scripting
+//    vsPythonQt *pythonConsole;                                              //!< Embedded Python Scripting Console :  Qt Widget for embedded python scripting
     //vsMacroManager *macroManager;
 protected:
     virtual void dropEvent(QDropEvent *event) override; ///< overrided drop event to load the droped file depending on it's extension
@@ -152,6 +152,12 @@ protected:
     virtual void closeEvent(QCloseEvent *event) override;///<overrided close event to show the confirmation dialog
     virtual void showEvent(QShowEvent *event) override;///< update the vtkButtons position when the window is shown
     virtual void resizeEvent(QResizeEvent *event) override;///< update the vtkButtons position when the window is resized
+private slots:
+    void on_actionAnalyze_triggered();
+
+private slots:
+    void on_actionInverse_Dynamics_triggered();
+
 private slots:
     void on_actionNew_Model_triggered();///< load the new model template on new_model action triggered
     void on_actionCurrent_model_Externally_triggered();///< open the current model file using an external tool, on model_externally signal triggered
@@ -165,5 +171,6 @@ private slots:
 
     void on_actionPause_Recording_triggered();
     void on_actionRun_Current_Script_triggered();
+    void on_actionForward_Dynamics_triggered();
 };
 #endif // vsMainWindow_H

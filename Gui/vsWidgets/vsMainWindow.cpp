@@ -2,6 +2,10 @@
 #include "./ui_vsMainWindow.h"
 #include "vsPluginActivationDialog.h"
 #include "vsInverseKinematicsUI.h"
+#include "vsInverseDynamicsUI.h"
+#include "vsForwardDynamicsToolUI.h"
+#include "vsAnalyzeToolUI.h"
+
 
 #include <QLabel>
 #include <OpenSim.h>
@@ -14,8 +18,8 @@
 #include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 #include "vsVisualizer/vsOpenGLVisualizer.h"
-#include <vsPython/vsMacroManager.h>
-#include <vsPython/vsManager.h>
+//#include <vsPython/vsMacroManager.h>
+//#include <vsPython/vsManager.h>
 
 vsMainWindow::vsMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -105,16 +109,16 @@ vsMainWindow::vsMainWindow(QWidget *parent)
     //disable pause recording button
     this->ui->actionPause_Recording->setEnabled(false);
     //init Python Scripting console
-    pythonConsole = new vsPythonQt(this);
-    ui->verticalLayout_4->addWidget(pythonConsole);
-    ui->verticalLayout_4->addStretch(1);
+    //pythonConsole = new vsPythonQt(this);
+    //ui->verticalLayout_4->addWidget(pythonConsole);
+    //ui->verticalLayout_4->addStretch(1);
 
 
     //connect the history text edit to display history of script statements
-    connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
+   // connect(pythonConsole,SIGNAL(historyUpdated(QString)),this,SLOT(getHistory(QString)));
     //connect the simulation params update from python manager to simulation widget gui
-    connect(pythonConsole->getManager(),&vsManager::updateSimulationParams,simulationWidget,&vsSimulationToolsWidget::updateSimulationParams);
-    connect(pythonConsole->getManager(),&vsManager::runSimulation,simulationWidget,&vsSimulationToolsWidget::on_runSimulaitonButton_clicked);
+   // connect(pythonConsole->getManager(),&vsManager::updateSimulationParams,simulationWidget,&vsSimulationToolsWidget::updateSimulationParams);
+   // connect(pythonConsole->getManager(),&vsManager::runSimulation,simulationWidget,&vsSimulationToolsWidget::on_runSimulaitonButton_clicked);
 }
 
 void vsMainWindow::listUserPlugins()
@@ -553,6 +557,7 @@ void vsMainWindow::on_actionInverse_Kinematics_triggered()
 }
 void vsMainWindow::on_actionRun_triggered()
 {
+	/*
     try {
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Open Python Script"), ".",
@@ -563,16 +568,17 @@ void vsMainWindow::on_actionRun_triggered()
     } catch (...) {
         vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
     }
-
+	*/
 }
 
 
 
 void vsMainWindow::on_actionRecord_Macro_triggered()
 {
+	/*
     try {
         //connect python console to capture commands
-        connect(pythonConsole,SIGNAL(historyUpdated(QString)),&vsMacroManager::instance(),SLOT(getCommandsFromConsole(QString)));
+        // connect(pythonConsole,SIGNAL(historyUpdated(QString)),&vsMacroManager::instance(),SLOT(getCommandsFromConsole(QString)));
 
         vsMacroManager::instance().startRecording();
         //enable pause recording button
@@ -584,11 +590,14 @@ void vsMainWindow::on_actionRecord_Macro_triggered()
     } catch (std::exception& e) {
         QMessageBox::information(this,tr("Error"),tr(e.what()));
     }
+	*/
 }
 
 void vsMainWindow::on_actionStop_Recording_triggered()
 {
+	/*
     try {
+
         vsMacroManager::instance().stopRecording();
         //disable stop recording button
         this->ui->actionStop_Recording->setEnabled(false);
@@ -601,11 +610,13 @@ void vsMainWindow::on_actionStop_Recording_triggered()
     } catch (std::exception& e) {
         QMessageBox::information(this,tr("Error"),tr(e.what()));
     }
+	*/
 
 }
 
 void vsMainWindow::on_actionPause_Recording_triggered()
 {
+	/*
     try {
         vsMacroManager::instance().pauseRecording();
         //disable stop recording button
@@ -618,10 +629,12 @@ void vsMainWindow::on_actionPause_Recording_triggered()
     } catch (std::exception& e) {
         QMessageBox::information(this,tr("Error"),tr(e.what()));
     }
+	*/
 }
 
 void vsMainWindow::on_actionRun_Current_Script_triggered()
 {
+	/*
     try {
         const QString fileName = vsMacroManager::instance().getCurrentScript();
         if(!fileName.isEmpty()){
@@ -634,4 +647,47 @@ void vsMainWindow::on_actionRun_Current_Script_triggered()
         vsOpenSimTools::tools->log("Python Script file could not be opened","",vsOpenSimTools::Error,true);
         QMessageBox::information(this,tr("Error"),tr("Sorry! Some Error Occured during the process!"));
     }
+	*/
 }
+
+
+
+
+void vsMainWindow::on_actionInverse_Dynamics_triggered()
+{
+    auto input = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!input)
+        vsOpenSimTools::tools->log("There is no input to apply inverse Dynamics to it ","vsMainWindow",vsOpenSimTools::Info);
+
+    vsInverseDynamicsUI *newIDUI = new vsInverseDynamicsUI();
+    newIDUI->setinput(input);
+
+    newIDUI->show();
+}
+
+
+void vsMainWindow::on_actionForward_Dynamics_triggered()
+{
+    auto CurrentModelInput = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!CurrentModelInput)
+        vsOpenSimTools::tools->log("There is no input to apply forward Dynamics to it ","vsMainWindow",vsOpenSimTools::Info);
+
+    vsForwardDynamicsToolUI *newFDUI = new vsForwardDynamicsToolUI();
+    newFDUI->setCurrentModelInput(CurrentModelInput);
+
+    newFDUI->show();
+}
+
+
+void vsMainWindow::on_actionAnalyze_triggered()
+{
+    auto CurrentInput = vsOpenSimTools::tools->getNavigatorModel()->getActiveModel();
+    if(!CurrentInput)
+        vsOpenSimTools::tools->log("There is no input to apply Analyze to it ","vsMainWindow",vsOpenSimTools::Info);
+
+    vsAnalyzeToolUI *newAUI = new vsAnalyzeToolUI();
+    newAUI->setCurrentInput(CurrentInput);
+
+    newAUI->show();
+}
+

@@ -10,6 +10,8 @@
 #include <vsTools/vsMotionsUtils.h>
 #include <vsTools/vsOpenSimTools.h>
 
+std::string storedvalue;
+
 vsInverseKinematicsUI::vsInverseKinematicsUI(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::vsInverseKinematicsUI),
@@ -266,6 +268,8 @@ void vsInverseKinematicsUI::on_runBTN_clicked()
     m_ikTool->setEndTime(m_ikEndTime);
     if(ui->coordinateDataCB->isChecked()) m_ikTool->setCoordinateFileName(m_coordinatesFileName);
     m_ikTool->setOutputMotionFileName(m_outputFile);
+
+    std::cout <<"getoutputmotionfile ik" << m_ikTool->getOutputMotionFileName() << std::endl;
 
     std::cout << "IK Tool info :: " << std::endl
               <<" Model Name : " << m_currentModel->getName() << std::endl

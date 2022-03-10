@@ -23,8 +23,9 @@ struct MotionEventObject
     OpenSim::Model *m_model;
     OpenSim::Storage *m_storage;
     MotionOperation m_motionOperation;
-    MotionEventObject(OpenSim::Model* model,OpenSim::Storage *storage,MotionOperation motionOperation)
-        :m_model(model),m_storage(storage),m_motionOperation(motionOperation) {}
+    std::string m_FilePath;
+    MotionEventObject(OpenSim::Model* model,OpenSim::Storage *storage,MotionOperation motionOperation, std::string FilePath )
+        :m_model(model),m_storage(storage),m_motionOperation(motionOperation),m_FilePath(FilePath ) {}
 };
 typedef MotionEventObject MotionEventObject;
 
@@ -97,7 +98,7 @@ public:
      * @see MotionEventObject
      * @see notifyObservers
      */
-    void addMotion(OpenSim::Model *model , OpenSim::Storage *newMotion , OpenSim::Storage *parentMotion);
+    void addMotion(OpenSim::Model *model , OpenSim::Storage *newMotion , OpenSim::Storage *parentMotion, std::string strFilePath);
     /**
      * set the current motion-model pair and set the state of the model the the first frame.
      * @param model

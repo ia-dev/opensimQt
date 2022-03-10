@@ -16,6 +16,7 @@ vsOneMotionNode::vsOneMotionNode(OpenSim::Storage *motion,OpenSim::Model *model 
 {
     iconPath = ":/Data/Images/Nodes/motionNode.png";
     displayName = QString::fromStdString(motion->getName());
+    FilePath = parentNode->FilePath;
 }
 
 void vsOneMotionNode::setupNodeActions(QMenu *rootMenu)

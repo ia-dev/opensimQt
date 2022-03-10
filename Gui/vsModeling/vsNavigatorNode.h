@@ -37,6 +37,7 @@ public:
     vsNavigatorNode* parentNode;
     QList<vsNavigatorNode*> childNodes;
     QString iconPath;
+    QString FilePath;
     QMenu *displayMenu;
     bool editColorAndOpacity = true;
     static vsVisualizerVTK *visualizerVTK;

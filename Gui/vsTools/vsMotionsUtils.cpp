@@ -61,7 +61,7 @@ void vsMotionsUtils::loadMotionStorage(OpenSim::Storage *newMotion, bool primary
 {
     if(!activeModel) return;
     if(true){//testMotionAssociationPossible(activeModel,newMotion)){
-        addMotion(activeModel,newMotion,nullptr);
+        addMotion(activeModel,newMotion,nullptr, filePath);
         vsOpenSimTools::tools->log("Motion : "+QString::fromStdString(newMotion->getName())+
                                    "Loaded to model : "+QString::fromStdString(activeModel->getName()),
                                    "vsMotionUtils",vsOpenSimTools::Success);
@@ -97,7 +97,7 @@ bool vsMotionsUtils::testMotionAssociationPossible(OpenSim::Model *model, OpenSi
     return (numberUsedColumnes >= 1);
 }
 
-void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotion, OpenSim::Storage *parentMotion)
+void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotion, OpenSim::Storage *parentMotion, std::string strFilePath)
 {
     //test for the Model For Experement Data
     bool convertAngels = newMotion->isInDegrees();
@@ -110,9 +110,11 @@ void vsMotionsUtils::addMotion(OpenSim::Model *model, OpenSim::Storage *newMotio
     }
 
     modelMotions->append(newMotion);
+
+
     //TODO change 4 to bitnumbers
     //mapMotionToBitArray.insert(newMotion,new QBitArray(4));
-    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open);
+    MotionEventObject evntObj(model,newMotion,parentMotion?MotionOperation::Assoc:MotionOperation::Open, strFilePath);
     emit notifyObservers(evntObj);
 
     if(parentMotion == nullptr) setCurrentMotion(model,newMotion);
@@ -125,7 +127,7 @@ void vsMotionsUtils::setCurrentMotion(OpenSim::Model *model, OpenSim::Storage *m
     currentMotion= new QPair<OpenSim::Model*,OpenSim::Storage*>(model,motion);
     if(!model || !motion) return;
     applyTimeToModel(model,motion,motion->getFirstTime());
-    MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged);
+    MotionEventObject evntObj(model,motion,MotionOperation::CurrentMotionsChanged,"");
     emit notifyObservers(evntObj);
     emit currentMotionChanged();
 }
@@ -334,6 +336,7 @@ void vsMotionsUtils::update(MotionEventObject eventObj)
         if(motionsNode == nullptr){
             motionsNode = new vsNavigatorNode(nullptr,"Motions",modelNode,modelNode);
             motionsNode->iconPath = ":/Data/Images/Nodes/motionsNode.png";
+            motionsNode->FilePath = eventObj.m_FilePath.c_str();
         }
 
         //TODO add suppoet for experemental data model
