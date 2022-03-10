@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Installer>
+    <!-- 
+     refs:
+         https://doc.qt.io/qtinstallerframework/ifw-creating-installers.html
+         https://doc.qt.io/qtinstallerframework/ifw-globalconfig.html
+    -->
+    <Name>OpenSimQt</Name>
+    <Version>0.0.1</Version>
+    <Title>OpenSim CPP Interface with Qt and VTK</Title>
+    <Publisher>Koblenz University, VisSim</Publisher>
+    <ProductUrl>http://www.uni-koblenz.de</ProductUrl>
+    <InstallerWindowIcon>installericon</InstallerWindowIcon>
+    <InstallerApplicationIcon>installericon</InstallerApplicationIcon>
+    <Logo>logo.png</Logo>
+    <Watermark>watermark.png</Watermark>
+    <RunProgram>@TargetDir@/opensimQt</RunProgram>
+    <!--
+    <RunProgramArguments>
+        <Argument>Argument 1</Argument>
+        <Argument>Argument 2</Argument>
+    </RunProgramArguments>
+    -->
+    <RunProgramDescription> OpenSim CPP Interface Using Qt and VTK</RunProgramDescription>
+    <StartMenuDir>OpenSimQt</StartMenuDir>
+    <MaintenanceToolName>SDKMaintenanceTool</MaintenanceToolName>
+    <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
+    <Background>background.png</Background>
+
+    <TargetDir>@HomeDir@/testinstall</TargetDir>
+    <AdminTargetDir>@RootDir@/testinstall</AdminTargetDir>
+    <RemoteRepositories>
+        <Repository>
+            <Url>https://github.com/VisSimKoblenz/opensimQt/packages/</Url>
+        </Repository>
+    </RemoteRepositories>
+</Installer>
